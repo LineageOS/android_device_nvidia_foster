@@ -32,6 +32,7 @@ PRODUCT_PACKAGES += \
     init.comms.rc \
     init.dualwifi.rc \
     init.foster.rc \
+    init.recovery.foster.rc \
     init.foster_e_common.rc \
     init.hdcp.rc \
     init.loki_e_common.rc \
