@@ -1,0 +1,33 @@
+# opengles.version is 16.16 (maj.min) fixed point
+ro.opengles.version = 196609
+persist.tegra.nvmmlite = 1
+persist.wlan.ti.calibrated = 0
+ro.sf.override_lcd_density = 1
+
+# vic composition
+persist.tegra.compositor=gralloc
+
+persist.tegra.decompression = cde-client
+# WAR for bug 1536227: Restrict all ZBC clears to transparent black:
+persist.tegra.AF73C63E = 0x7ffd
+
+# disable input resampling
+ro.input.noresample=1
+
+#enable Miracast game mode support
+nvwfd.gamemode = 1
+
+#max resolution supported for Miracast is 1080p, represented interms of macroblocks
+nvwfd.max_macroblocks = 8160
+
+# usb vendor and product ID definition
+ro.nv.usb.vid = 0955
+ro.nv.usb.pid.mtp = 7102
+ro.nv.usb.pid.mtp.adb = 7100
+ro.nv.usb.pid.rndis = 7103
+ro.nv.usb.pid.rndis.adb = 7103
+ro.nv.usb.pid.ptp = 7102
+ro.nv.usb.pid.ptp.adb = 7100
+
+#Set audioflinger resampler quality to DYN_HIGH_QUALITY
+af.resampler.quality = 7

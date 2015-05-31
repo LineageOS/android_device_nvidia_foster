@@ -1,0 +1,21 @@
+#Copyright (c) 2013-2014 NVIDIA Corporation.  All Rights Reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+#
+# TLK storage service
+#
+# Starts as user=root but drops to user=system internally
+# after necessary capabilities are established.
+#
+service tlk_daemon /vendor/bin/tlk_daemon --storagedir /data
+    class main
+    group keystore
+    oneshot
+
+on post-fs-data
+    mkdir /data/tlk 0700 system keystore

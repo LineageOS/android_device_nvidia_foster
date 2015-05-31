@@ -1,0 +1,209 @@
+#Copyright (c) 2011-2014 NVIDIA Corporation.  All Rights Reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import init.nv_dev_board.usb.rc
+import init.${ro.boot.modem}.rc
+import init.comms.rc
+
+on early-init
+    mount debugfs debugfs /sys/kernel/debug mode=0755
+
+on init
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage/emulated 0555 root root
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    mkdir /storage/sdcard1 0700 root root
+
+    export EXTERNAL_STORAGE /storage/emulated/legacy
+    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+    export EMULATED_STORAGE_TARGET /storage/emulated
+    export SECONDARY_STORAGE /storage/sdcard1
+
+    # Support legacy paths
+    symlink /storage/emulated/legacy /sdcard
+    symlink /storage/emulated/legacy /mnt/sdcard
+    symlink /storage/sdcard1 /mnt/sdcard2
+    symlink /storage/emulated/legacy /storage/sdcard0
+    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+
+    # create directory for mounting usb drives
+    mkdir /mnt/media_rw/usbdrive 0700 media_rw media_rw
+    mkdir /storage/usbdrive 0700 root root
+    symlink /mnt/media_rw/usbdrive /storage/usbdrive
+    symlink /mnt/media_rw/usbdrive /usbdrive
+
+    # create directory for mounting calibration partition
+    mkdir /mnt/factory 0666 system system
+
+    # create directory for mounting user calibration partition
+    mkdir /mnt/usercalib 0771 system system
+
+    start watchdogd
+
+on fs
+# mount console ramooops
+   mount pstore pstore /sys/fs/pstore
+
+on post-fs-data
+    # We chown/chmod /mnt/usercalib again so because mount is run as root + defaults
+    chown system system /mnt/usercalib
+    chmod 0771 /mnt/usercalib
+
+    # create the lost+found directories, so as to enforce our permissions
+    mkdir /mnt/usercalib/lost+found 0770 root root
+
+    # Set SELinux security contexts on upgrade or policy update.
+    restorecon_recursive /mnt/usercalib
+
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    mkdir /data/nvcam 0700 media camera
+    chown dhcp dhcp /data/misc/dhcp
+
+    mkdir /data/media 0770 media_rw media_rw
+
+    # Set indication (checked by vold) that we have finished this action
+    setprop vold.post_fs_data_done 1
+
+    # create directory for camera calibration data
+    mkdir /mnt/factory/camera 0666 system system
+
+    # cpu volt cap
+    mkdir /data/misc/cvc 0774 system system
+
+# Set up HDCP
+import init.hdcp.rc
+
+on boot
+
+# backlight
+    chown system system /sys/class/backlight/pwm-backlight/brightness
+
+# didim
+    chown system system /sys/devices/platform/host1x/tegradc.0/smartdimmer/enable
+    chown system system /sys/devices/platform/host1x/tegradc.0/smartdimmer/aggressiveness
+    chown system system /sys/devices/platform/host1x/tegradc.0/smartdimmer/sd_window
+    chown system system /sys/devices/platform/host1x/tegradc.0/smartdimmer/sd_window_enable
+
+# CMU
+    chown system system /sys/devices/platform/host1x/tegradc.0/cmu_enable
+    chown system system /sys/devices/platform/host1x/tegradc.1/cmu_enable
+
+# power
+    chown system system /sys/kernel/tegra_cap/core_cap_level
+    chown system system /sys/kernel/tegra_cap/core_cap_state
+    chown system system /sys/kernel/tegra_volt_cap/cpu_volt
+    chmod 0664 /sys/kernel/tegra_volt_cap/cpu_volt
+    chown system system /sys/module/cpu_tegra/parameters/cpu_user_cap
+    chown system system /sys/devices/platform/host1x/gk20a.0/enable_3d_scaling
+
+# audio
+    chmod 0664 /sys/power/suspend/mode
+    chown system audio /sys/power/suspend/mode
+
+# Tegra wakeup monitor
+    chown system system /sys/devices/platform/tegra_wakeup_monitor/cmd
+    chown system system /sys/devices/platform/tegra_wakeup_monitor/monitor_enable
+    chown system system /sys/devices/platform/tegra_wakeup_monitor/nf_enable
+    chown system system /sys/devices/platform/tegra_wakeup_monitor/am_enable
+    chown system system /sys/devices/platform/tegra_wakeup_monitor/init_ports
+    chown system system /sys/devices/platform/tegra_wakeup_monitor/add_ports
+    chown system system /sys/devices/platform/tegra_wakeup_monitor/del_ports
+
+# nvdps
+    chown system system /sys/devices/platform/host1x/tegradc.0/nvdps
+
+# Default Read Ahead value for sdcards
+    write /sys/block/mmcblk0/queue/read_ahead_kb 2048
+    write /sys/block/mmcblk1/queue/read_ahead_kb 2048
+
+#ozwpan driver: WiFi direct USB shim driver
+    chown system system /dev/ozwpan
+    chown system system /sys/class/ozmo_wpan/ozwpan/devices
+    chown system system /sys/class/ozmo_wpan/ozwpan/select
+    chown system system /sys/class/ozmo_wpan/ozwpan/bind
+    chmod 0660 /sys/class/ozmo_wpan/ozwpan/bind
+
+# TLK storage service
+import init.tlk.rc
+
+# set hwui properties depending on the screen resolution and the memory size
+service set_hwui_params /system/bin/set_hwui_params.sh
+    class main
+    user root
+    group root
+    oneshot
+
+# Enable/disable CMU according to the colorspace
+
+# BL/Kernel enable CMU as default, skip here
+#on property:persist.sys.dpy0.colorspace=srgb
+#    write /sys/devices/platform/host1x/tegradc.0/cmu_enable 1
+
+on property:persist.sys.dpy0.colorspace=native
+    write /sys/devices/platform/host1x/tegradc.0/cmu_enable 0
+
+on property:persist.sys.dpy1.colorspace=srgb
+    write /sys/devices/platform/host1x/tegradc.1/cmu_enable 1
+
+on property:persist.sys.dpy1.colorspace=native
+    write /sys/devices/platform/host1x/tegradc.1/cmu_enable 0
+
+on property:ro.debuggable=1
+    # EMC debug interface
+    chmod 666 /sys/kernel/debug/tegra_emc/eack_state
+
+service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
+    class late_start
+
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+    class late_start
+    disabled
+
+service fuse_usbdrive /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbdrive /storage/usbdrive
+    class late_start
+    disabled
+
+
+# bugreport is triggered by the VOLUME-DOWN and VOLUME-UP keys
+service bugreport /system/bin/dumpstate -d -p -B -o /data/data/com.android.shell/files/bugreports/bugreport
+    class main
+    disabled
+    oneshot
+    keycodes 116 115 114
+
+# Mount usb drives as /usbdrive. Generally usb drives are formatted with FAT
+# filesystem, so we support FAT as of now.
+on device-added-/sys/block/sda
+  mount vfat /dev/block/sda /mnt/media_rw/usbdrive
+
+on device-removed-/sys/block/sda
+  umount /mnt/media_rw/usbdrive
+
+# unified scaling setup
+import init.ussrd.rc
+
+service cvc /vendor/bin/cvc
+    user system
+    group system
+    class main
+
+# Enable rbe
+# thresIncr:50  thresIncrCntMax:6  thresDecr:70  thresDecrCntMax:2
+# The change from default is the thresDecrCntMax.  Default is 3.
+service wlbwservice /system/bin/wlbwservice -t 50 6 70 2
+    class main
+    user system
+    group system inet net_admin
+
+# Thie yields each tegra wdt expiration to be at 45 secs and fourth expiration for reboot at 180 secs
+service watchdogd /sbin/watchdogd 20 160
+    class core
+    seclabel u:r:watchdogd:s0
+
+# Disable kmemleak auto scan
+    write /sys/kernel/debug/kmemleak scan=0

@@ -1,0 +1,8 @@
+import init.t210_common.rc
+
+on boot
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 0
+
+# Sensor permissions
+    chown system system /sys/class/sensors/light/device/amb_clear
+

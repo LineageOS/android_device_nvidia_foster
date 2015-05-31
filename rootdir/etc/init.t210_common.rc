@@ -1,0 +1,63 @@
+on init
+    write /proc/sys/vm/legacy_va_layout 1
+
+    # Mount a tmpfs into /mnt/tmp for hosting nvram, phs shared memory
+    mkdir /mnt/tmp 0770 system system
+    mount tmpfs tmpfs /mnt/tmp mode=0775,gid=1003
+
+on boot
+# Power management settings
+    write /sys/module/tegra3_emc/parameters/emc_enable 0
+    #write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 1000000
+    #write /sys/module/cpu_tegra/parameters/cpu_user_cap 700000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
+    #write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 510000
+    #write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 510000
+
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/target_loads
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/boost_factor
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
+    write /sys/devices/system/cpu/cpufreq/interactive/io_busy_threshold 50
+
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1020000
+    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "65 228000:75 1020000:85"
+    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay 19000
+    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 20000
+    #write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 510000
+    #write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 510000
+    #write /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed 700000
+    #write /sys/devices/system/cpu/cpu1/cpufreq/scaling_setspeed 700000
+    #write /sys/devices/system/cpu/cpufreq/interactive/boost_factor 2
+    #write /sys/devices/system/cpu/cpufreq/interactive/sustain_load 80
+
+    write /sys/kernel/debug/cpuidle_t210/fast_cluster_states_enable 0xf
+    write /sys/kernel/debug/cpuidle_t210/slow_cluster_states_enable 0x9
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
+    write /sys/devices/system/cpu/cpuquiet/current_governor runnable
+
+    write /sys/module/input_cfboost/parameters/boost_freq 1530000
+    write /sys/module/input_cfboost/parameters/boost_emc 300000
+    write /sys/module/input_cfboost/parameters/boost_gpu 540000
+    write /sys/module/input_cfboost/parameters/boost_time 160
+    write /sys/module/input_cfboost/parameters/boost_cpus 3
+
+# Good driver settings
+    setprop persist.tegra.0x523dc0 1
+    setprop persist.tegra.0x523dc2 0x210a
+    setprop persist.tegra.0x523dc5 0x3f000000
+    setprop persist.tegra.0xe0036b 1
+    setprop persist.tegra.CA345840 "When=SH=0x97693C3C7595BE4B~LoopUnrollUnknownMultiBlock~HoistTex=2"
+    setprop persist.tegra.58027529 0x00000002
+    setprop persist.tegra.a3456abe 0x087F6080
+
+# disable IMP for now, Bug #1456329
+    setprop nvidia.hwc.imp_enable 0
+
+# disable CDE for now
+    setprop persist.tegra.decompression lazy
+    setprop persist.tegra.AF73C63E 0

@@ -1,0 +1,15 @@
+#Copyright (c) 2011-2013 NVIDIA Corporation.  All Rights Reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+    # Create HDCP SRM folder and set its permissions
+on post-fs-data
+    setprop hdcp.srm.path       "/etc/hdcpsrm"
+    setprop hdcp1x.srm.name     "hdcp1x.srm"
+    setprop hdcp2x.srm.name     "hdcp2x.srm"
+    setprop hdcp2xtest.srm.name "hdcp2xtest.srm"
+

@@ -1,0 +1,53 @@
+#Copyright (c) 2014 NVIDIA Corporation.  All Rights Reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+# unified scaling setup
+service ussr_setup /system/bin/ussr_setup.sh
+    class main
+    user root
+    group root
+    oneshot
+
+on boot
+    chown system system /sys/devices/system/cpu/cpufreq/cpuload/cpu_load
+    chmod 0440 /sys/devices/system/cpu/cpufreq/cpuload/cpu_load
+    chown system system /sys/devices/system/cpu/cpufreq/cpuload/cpu_usage
+    chmod 0440 /sys/devices/system/cpu/cpufreq/cpuload/cpu_usage
+    chown system system /sys/devices/system/cpu/cpufreq/cpuload/enable
+    chmod 0664 /sys/devices/system/cpu/cpufreq/cpuload/enable
+    chown system system /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/no_lp
+    chmod 0664 /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/no_lp
+    chown system system /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable
+    chmod 0664 /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable
+    chown system system /sys/devices/system/cpu/cpuquiet/current_governor
+    chmod 0664 /sys/devices/system/cpu/cpuquiet/current_governor
+    chown system system /sys/devices/system/cpu/present
+    chmod 0444 /sys/devices/system/cpu/present
+    chown system system /sys/kernel/debug/clock/cpu_g/min
+    chmod 0444 /sys/kernel/debug/clock/cpu_g/min
+    chown system system /sys/kernel/debug/clock/c2bus/possible_rates
+    chmod 0444 /sys/kernel/debug/clock/c2bus/possible_rates
+    chown system system /sys/kernel/debug/clock/cpu_lp/max
+    chmod 0664 /sys/kernel/debug/clock/cpu_lp/max
+
+    chown system system /sys/devices/virtual/misc/tegra-throughput/fps
+    chmod 0444 /sys/devices/virtual/misc/tegra-throughput/fps
+    chown system system /sys/devices/virtual/misc/tegra-throughput/framecount
+    chmod 0444 /sys/devices/virtual/misc/tegra-throughput/framecount
+
+# create a folder for phs to store various files
+on post-fs-data
+    mkdir /data/misc/phs 0775 system system
+
+# unified scaling process
+service ussrd /vendor/bin/ussrd
+    user system
+    group system
+    class main
+    socket phsd stream 0666 system system
+

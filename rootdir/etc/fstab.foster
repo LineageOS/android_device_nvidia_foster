@@ -1,0 +1,27 @@
+# Android fstab file.
+#<src>                                                  <mnt_point>         <type>    <mnt_flags>                                                                         <fs_mgr_flags>
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+# Both foster_e and foster_e_hdd mounts are listed. The emmc is tried first. If that fails, it tries sata.
+
+/dev/block/platform/sdhci-tegra.3/by-name/APP           /system             ext4      ro                                                                  wait
+/dev/block/platform/tegra-sata.0/by-name/APP            /system             ext4      ro                                                                  wait
+/dev/block/platform/sdhci-tegra.3/by-name/CAC           /cache              ext4      noatime,nosuid,nodev,data=ordered,nodelalloc,errors=panic           wait
+/dev/block/platform/tegra-sata.0/by-name/CAC            /cache              ext4      noatime,nosuid,nodev,data=ordered,nodelalloc,errors=panic           wait
+/dev/block/platform/sdhci-tegra.3/by-name/LNX           /boot               emmc      defaults                                                            defaults
+/dev/block/platform/tegra-sata.0/by-name/LNX            /boot               emmc      defaults                                                            defaults
+/dev/block/platform/sdhci-tegra.3/by-name/MSC           /misc               emmc      defaults                                                            defaults
+/dev/block/platform/tegra-sata.0/by-name/MSC            /misc               emmc      defaults                                                            defaults
+/dev/block/platform/sdhci-tegra.3/by-name/UDA           /data               ext4      noatime,nosuid,nodev,data=ordered,auto_da_alloc,errors=panic        wait,check,encryptable=/dev/block/platform/sdhci-tegra.3/by-name/MDA
+/dev/block/platform/tegra-sata.0/by-name/UDA            /data               ext4      noatime,nosuid,nodev,data=ordered,auto_da_alloc,errors=panic        wait,check,encryptable=/dev/block/platform/tegra-sata.0/by-name/MDA
+/dev/block/platform/sdhci-tegra.3/by-name/USP           /staging            emmc      defaults                                                            defaults
+/dev/block/platform/tegra-sata.0/by-name/USP            /staging            emmc      defaults                                                            defaults
+/dev/block/platform/sdhci-tegra.3/by-name/MDA           /metadata           emmc      defaults                                                            defaults
+/dev/block/platform/tegra-sata.0/by-name/MDA            /metadata           emmc      defaults                                                            defaults
+/dev/block/platform/sdhci-tegra.3/by-name/SOS           /recovery           emmc      defaults                                                            defaults
+/dev/block/platform/tegra-sata.0/by-name/SOS            /recovery           emmc      defaults                                                            defaults
+/devices/platform/sdhci-tegra.0/mmc_host/mmc2           auto                vfat      defaults                                                            voldmanaged=sdcard1:auto
+/devices/platform/tegra-xhci                            auto                vfat      defaults                                                            voldmanaged=usbdrive:auto
+/dev/block/platform/sdhci-tegra.0/by-num/p1             /sdcard             vfat      defaults                                                            recoveryonly
+/dev/block/platform/sdhci-tegra.3/by-name/IMG           /bmps               emmc      defaults                                                            recoveryonly
+/dev/block/platform/tegra-sata.0/by-name/BMP            /bmps               emmc      defaults                                                            recoveryonly
