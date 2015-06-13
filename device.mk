@@ -36,7 +36,9 @@ PRODUCT_PACKAGES += \
     init.foster_e_common.rc \
     init.hdcp.rc \
     init.loki_e_common.rc \
+    init.nv_dev_board.usb.rc \
     init.t210.rc \
+    init.t210_common.rc \
     init.tegra.rc \
     init.tlk.rc \
     init.ussrd.rc \
