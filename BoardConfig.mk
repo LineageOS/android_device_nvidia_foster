@@ -67,7 +67,7 @@ MAX_EGL_CACHE_ENTRY_SIZE := 262144
 # Recovery
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 #TARGET_RECOVERY_DEVICE_DIRS += device/nvidia/foster
-TARGET_RECOVERY_FSTAB := device/nvidia/foster/rootdir/etc/fstab.foster_e
+TARGET_RECOVERY_FSTAB := device/nvidia/foster/rootdir/etc/fstab.foster
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211

@@ -28,6 +28,7 @@ $(call inherit-product-if-exists, vendor/nvidia/shieldtablet/shieldtablet-vendor
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    fstab.foster \
     fstab.foster_e \
     fstab.foster_e_hdd \
     init.comms.rc \
