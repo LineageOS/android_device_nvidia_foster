@@ -28,10 +28,12 @@ $(call inherit-product-if-exists, vendor/nvidia/shieldtablet/shieldtablet-vendor
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    fstab.foster \
+    fstab.foster_e \
+    fstab.foster_e_hdd \
     init.comms.rc \
     init.dualwifi.rc \
-    init.foster.rc \
+    init.foster_e.rc \
+    init.foster_e_hdd.rc \
     init.recovery.foster.rc \
     init.foster_e_common.rc \
     init.hdcp.rc \
