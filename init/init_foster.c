@@ -39,26 +39,24 @@ void vendor_load_properties()
     char platform[PROP_VALUE_MAX];
     char model[PROP_VALUE_MAX];
     int rc;
-    FILE  *fp = NULL;
 
     rc = property_get("ro.board.platform", platform);
     if (!rc || strncmp(platform, ANDROID_TARGET, PROP_VALUE_MAX))
         return;
 
-    if ((fp = fopen("/sys/devices/platform/tegra-sata.0/modalias", "r")) == NULL) { // Try to open a sata only file
+    property_get("ro.hardware", model);
+    if (!strcmp(model, "foster_e")) { // check cpuinfo hardware identifier
         /* EMMC Model */
         property_set("ro.build.fingerprint", "nvidia/foster_e/t210:5.0./LRX21M/29979_515.3274:user/release-keys");
         property_set("ro.build.description", "foster_e-user 5.0 LRX21M 29979_515.3274 release-keys");
         property_set("ro.product.model", "foster_e");
     } else {
         /* SATA Model */
-	close(fp);
         property_set("ro.build.fingerprint", "nvidia/foster_e_hdd/t210:5.0./LRX21M/29979_515.3274:user/release-keys");
         property_set("ro.build.description", "foster_e_hdd-user 5.0 LRX21M 29979_515.3274 release-keys");
         property_set("ro.product.model", "foster_e_hdd");
     }
 
     property_set("ro.product.device", "foster");
-    property_get("ro.product.model", model);
     ERROR("Setting build properties for %s model\n", model);
 }
