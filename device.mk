@@ -20,11 +20,11 @@ TARGET_SCREEN_WIDTH := 1080
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
-$(call inherit-product-if-exists, vendor/nvidia/shieldtablet/shieldtablet-vendor.mk)
+$(call inherit-product-if-exists, vendor/nvidia/foster/foster-vendor.mk)
 
 # Overlay
 #DEVICE_PACKAGE_OVERLAYS += \
-    device/nvidia/shieldtablet/overlay
+    device/nvidia/foster/overlay
 
 # Ramdisk
 PRODUCT_PACKAGES += \
