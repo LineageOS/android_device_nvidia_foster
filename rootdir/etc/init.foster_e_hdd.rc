@@ -22,21 +22,14 @@ import init.loki_e_common.rc
 import init.foster_e_common.rc
 
 on fs
-    mount_all /fstab.foster
+    mount_all /fstab.foster_e_hdd
 
 # Mount should fail gracefully if the block device isn't found.
 on post-fs-data
-    mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/FCT /mnt/factory ro context=u:object_r:factory_file:s0
     mount ext4 /dev/block/platform/tegra-sata.0/by-name/FCT /mnt/factory ro context=u:object_r:factory_file:s0
 
 # create filesystems if necessary
-# Setup_fs gracefully skips filesystems that aren't found,
-# so listed both emmc and sata here is safe.
-service setup_fs_emmc /system/bin/setup_fs \
-        /dev/block/platform/sdhci-tegra.3/by-name/UDA \
-        /dev/block/platform/sdhci-tegra.3/by-name/CAC \
-        /dev/block/platform/sdhci-tegra.3/by-name/FCT \
-        /dev/block/platform/sdhci-tegra.3/by-name/UCB \
+service setup_fs /system/bin/setup_fs \
         /dev/block/platform/tegra-sata.0/by-name/UDA \
         /dev/block/platform/tegra-sata.0/by-name/CAC \
         /dev/block/platform/tegra-sata.0/by-name/FCT
