@@ -86,49 +86,45 @@ WIFI_DRIVER_MODULE_NAME     := "bcmdhd"
 #BOARD_HARDWARE_CLASS := device/nvidia/foster/cmhw/
 
 # SELinux
-#BOARD_SEPOLICY_DIRS += device/nvidia/foster/sepolicy
-#BOARD_SEPOLICY_UNION += \
+BOARD_SEPOLICY_DIRS += device/nvidia/foster/sepolicy
+BOARD_SEPOLICY_UNION += \
 	te_macros \
-	agpsd.te \
 	app.te \
 	bluetooth.te \
 	bootanim.te \
+	ctload.te \
 	cvc.te \
+	diag.te \
 	device.te \
 	domain.te \
 	drmserver.te \
-	fild.te \
 	file_contexts \
 	file.te \
 	genfs_contexts \
 	gpload.te \
-	gpsd.te \
 	healthd.te\
 	hostapd.te \
-	icera-crashlogs.te \
-	icera-feedback.te \
-	icera-loader.te \
-	icera-switcherd.te \
-	init.te \
 	installd.te \
 	mediaserver.te \
-	mock_modem.te \
 	netd.te \
+	pbc.te \
 	platform_app.te \
 	property_contexts \
 	property.te \
-	raydium.te \
+	qvs.te \
 	recovery.te \
-	service.te \
 	service_contexts \
 	set_hwui.te \
+	setup_fs.te \
 	shell.te \
 	surfaceflinger.te \
 	system_app.te \
 	system_server.te \
 	tee.te \
 	ueventd.te \
+	uncrypt.te \
 	untrusted_app.te \
+	update_js_touch_fw.te \
 	usb.te \
 	ussrd.te \
 	ussr_setup.te \

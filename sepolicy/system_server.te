@@ -1,0 +1,49 @@
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Blake specific
+allow system_server sysfs_bus_usb:dir r_dir_perms;
+allow system_server sysfs_bus_usb:file rw_file_perms;
+allow system_server sysfs_sound:file r_file_perms;
+allow system_server sysfs_ozmo:dir rw_dir_perms;
+allow system_server sysfs_ozmo:file rw_file_perms;
+allow system_server sysfs_hid:dir r_dir_perms;
+allow system_server sysfs_hid:file rw_file_perms;
+allow system_server hidraw_device:chr_file rw_file_perms;
+
+# Allow system_server to control Foster LED lightbar
+allow system_server sysfs_lightbar:file rw_file_perms;
+
+# hdd control
+allow system_server sysfs_sata:file rw_file_perms;
+
+# pmqos control
+allow system_server pmqos_device:chr_file rw_file_perms;
+
+# i2c control
+allow system_server sysfs_nvi2c:dir r_dir_perms;
+allow system_server sysfs_nvi2c:{ file lnk_file } rw_file_perms;
+
+# phs
+allow_use_phs(system_server)
+
+allow system_server proc_wmem_max_writable:file rw_file_perms;
+r_dir_file(system_server, factory_file)
+
+# mpu sensor
+allow system_server user_calib_file:dir rw_dir_perms;
+allow system_server user_calib_file:file create_file_perms;
+
+# dc for cec
+allow system_server tegradc_device:chr_file { read ioctl open write };
