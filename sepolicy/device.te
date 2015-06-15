@@ -44,3 +44,7 @@ type usercalib_block_device, dev_type;
 
 # Factory calibration partion(FCT) block device
 type factorycalib_block_device, dev_type;
+
+# Block Devices (not in CM's sepolicy yet)
+type cache_block_device, dev_type;
+type userdata_block_device, dev_type;

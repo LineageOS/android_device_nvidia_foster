@@ -99,9 +99,6 @@ type factory_file, fs_type, contextmount_type;
 # /mnt/usercalib
 type user_calib_file, file_type, data_file_type;
 
-# Needed to mount fuseblk filesystem
-type fuseblk, sdcard_type, fs_type, mlstrustedobject;
-
 # /sys/devices/platform/tegra.*i2c\.[0-9]+(/.*)?
 type sysfs_nvi2c, fs_type, sysfs_type, mlstrustedobject;
 
