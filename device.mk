@@ -43,10 +43,14 @@ PRODUCT_PACKAGES += \
     init.t210.rc \
     init.t210_common.rc \
     init.tegra.rc \
+    init.tegra_emmc.rc \
+    init.tegra_sata.rc \
     init.tlk.rc \
     init.ussrd.rc \
-    power.foster.rc \
-    ueventd.foster.rc
+    power.foster_e.rc \
+    power.foster_e_hdd.rc \
+    ueventd.foster_e.rc \
+    ueventd.foster_e_hdd.rc
 
 # Permissions
 PRODUCT_COPY_FILES += \
