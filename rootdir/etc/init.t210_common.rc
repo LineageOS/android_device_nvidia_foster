@@ -5,6 +5,9 @@ on init
     mkdir /mnt/tmp 0770 system system
     mount tmpfs tmpfs /mnt/tmp mode=0775,gid=1003
 
+# YUV420 supported
+    setprop persist.tegra.hdmi.yuv.enable 1
+
 on boot
 # Power management settings
     write /sys/module/tegra3_emc/parameters/emc_enable 0
@@ -40,6 +43,8 @@ on boot
     write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
     write /sys/devices/system/cpu/cpuquiet/current_governor runnable
 
+    chown system system /sys/module/input_cfboost/parameters/boost_freq
+    chown system system /sys/module/input_cfboost/parameters/boost_gpu
     write /sys/module/input_cfboost/parameters/boost_freq 1530000
     write /sys/module/input_cfboost/parameters/boost_emc 300000
     write /sys/module/input_cfboost/parameters/boost_gpu 540000
@@ -51,13 +56,8 @@ on boot
     setprop persist.tegra.0x523dc2 0x210a
     setprop persist.tegra.0x523dc5 0x3f000000
     setprop persist.tegra.0xe0036b 1
-    setprop persist.tegra.CA345840 "When=SH=0x97693C3C7595BE4B~LoopUnrollUnknownMultiBlock~HoistTex=2"
     setprop persist.tegra.58027529 0x00000002
     setprop persist.tegra.a3456abe 0x087F6080
 
 # disable IMP for now, Bug #1456329
     setprop nvidia.hwc.imp_enable 0
-
-# disable CDE for now
-    setprop persist.tegra.decompression lazy
-    setprop persist.tegra.AF73C63E 0

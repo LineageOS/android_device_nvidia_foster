@@ -1,4 +1,4 @@
-#Copyright (c) 2011-2014 NVIDIA Corporation.  All Rights Reserved.
+#Copyright (c) 2011-2015 NVIDIA Corporation.  All Rights Reserved.
 #
 #NVIDIA Corporation and its licensors retain all intellectual property and
 #proprietary rights in and to this software and related documentation.  Any
@@ -137,21 +137,6 @@ service set_hwui_params /system/bin/set_hwui_params.sh
     user root
     group root
     oneshot
-
-# Enable/disable CMU according to the colorspace
-
-# BL/Kernel enable CMU as default, skip here
-#on property:persist.sys.dpy0.colorspace=srgb
-#    write /sys/devices/platform/host1x/tegradc.0/cmu_enable 1
-
-on property:persist.sys.dpy0.colorspace=native
-    write /sys/devices/platform/host1x/tegradc.0/cmu_enable 0
-
-on property:persist.sys.dpy1.colorspace=srgb
-    write /sys/devices/platform/host1x/tegradc.1/cmu_enable 1
-
-on property:persist.sys.dpy1.colorspace=native
-    write /sys/devices/platform/host1x/tegradc.1/cmu_enable 0
 
 on property:ro.debuggable=1
     # EMC debug interface

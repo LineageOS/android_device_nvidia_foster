@@ -2,17 +2,60 @@
 #<src>                                                  <mnt_point>         <type>    <mnt_flags>                                                                         <fs_mgr_flags>
 # The filesystem that contains the filesystem checker binary (typically /system) cannot
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
-# Both foster_e and foster_e_hdd mounts are listed. The emmc is tried first. If that fails, it tries sata.
+/dev/block/platform/tegra-sata.0/by-name/APP           /system             ext4      noatime,ro                                                           wait
+/dev/block/platform/tegra-sata.0/by-name/CAC           /cache              ext4      noatime,nosuid,nodev,data=ordered,nodelalloc,barrier=1               wait
+/dev/block/platform/tegra-sata.0/by-name/LNX           /boot               emmc      defaults                                                             defaults
+/dev/block/platform/tegra-sata.0/by-name/MSC           /misc               emmc      defaults                                                             defaults
+/dev/block/platform/tegra-sata.0/by-name/UDA           /data               ext4      noatime,nosuid,nodev,data=ordered,auto_da_alloc,discard,barrier=1    wait,check,encryptable=/dev/block/platform/tegra-sata.0/by-name/MDA
+/dev/block/platform/tegra-sata.0/by-name/USP           /staging            emmc      defaults                                                             defaults
+/dev/block/platform/tegra-sata.0/by-name/MDA           /metadata           emmc      defaults                                                             defaults
+/dev/block/platform/tegra-sata.0/by-name/SOS           /recovery           emmc      defaults                                                             defaults
+# w/o built-in eMMC
+/devices/platform/sdhci-tegra.0/mmc_host/mmc1           auto                vfat      defaults                                                            voldmanaged=sdcard1:auto
+# with built-in eMMC
+/devices/platform/sdhci-tegra.0/mmc_host/mmc2           auto               vfat      defaults                                                             voldmanaged=sdcard1:auto
+/dev/block/platform/sdhci-tegra.0/by-num/p1             /sdcard            vfat      defaults                                                             recoveryonly
+/dev/block/platform/tegra-sata.0/by-name/BMP           /bmps               emmc      defaults                                                             recoveryonly
 
-/dev/block/platform/tegra-sata.0/by-name/APP            /system             ext4      ro                                                                  wait
-/dev/block/platform/tegra-sata.0/by-name/CAC            /cache              ext4      noatime,nosuid,nodev,data=ordered,nodelalloc,errors=panic           wait
-/dev/block/platform/tegra-sata.0/by-name/LNX            /boot               emmc      defaults                                                            defaults
-/dev/block/platform/tegra-sata.0/by-name/MSC            /misc               emmc      defaults                                                            defaults
-/dev/block/platform/tegra-sata.0/by-name/UDA            /data               ext4      noatime,nosuid,nodev,data=ordered,auto_da_alloc,errors=panic        wait,check,encryptable=/dev/block/platform/tegra-sata.0/by-name/MDA
-/dev/block/platform/tegra-sata.0/by-name/USP            /staging            emmc      defaults                                                            defaults
-/dev/block/platform/tegra-sata.0/by-name/MDA            /metadata           emmc      defaults                                                            defaults
-/dev/block/platform/tegra-sata.0/by-name/SOS            /recovery           emmc      defaults                                                            defaults
-/devices/platform/sdhci-tegra.0/mmc_host/mmc2           auto                vfat      defaults                                                            voldmanaged=sdcard1:auto
-/devices/platform/tegra-xhci                            auto                vfat      defaults                                                            voldmanaged=usbdrive:auto
-/dev/block/platform/sdhci-tegra.0/by-num/p1             /sdcard             vfat      defaults                                                            recoveryonly
-/dev/block/platform/tegra-sata.0/by-name/BMP            /bmps               emmc      defaults                                                            recoveryonly
+############### USB Drive Configuration ##############
+# P1963-E00 IO board
+## config#1
+### usbdrive
+/devices/platform/tegra-xhci/usb2/2-2/2-2.1/2-2.1:1.0   auto                vfat      defaults                                                            voldmanaged=usbdrive:auto
+/devices/platform/tegra-xhci/usb3/3-1/3-1.1/3-1.1:1.0   auto                vfat      defaults                                                            voldmanaged=usbdrive:auto
+### usbdrive2
+/devices/platform/tegra-xhci/usb2/2-2/2-2.2/2-2.2:1.0   auto                vfat      defaults                                                            voldmanaged=usbdrive2:auto
+/devices/platform/tegra-xhci/usb3/3-1/3-1.2/3-1.2:1.0   auto                vfat      defaults                                                            voldmanaged=usbdrive2:auto
+
+## config#2(OTG cable attached before boot)
+### usbdrive2
+/devices/platform/tegra-xhci/usb3/3-2/3-2.1/3-2.1:1.0   auto                vfat      defaults                                                            voldmanaged=usbdrive2:auto
+/devices/platform/tegra-xhci/usb4/4-1/4-1.1/4-1.1:1.0   auto                vfat      defaults                                                            voldmanaged=usbdrive2:auto
+### usbdrive
+/devices/platform/tegra-xhci/usb3/3-2/3-2.2/3-2.2:1.0   auto                vfat      defaults                                                            voldmanaged=usbdrive:auto
+/devices/platform/tegra-xhci/usb4/4-1/4-1.2/4-1.2:1.0   auto                vfat      defaults                                                            voldmanaged=usbdrive:auto
+
+
+# P1963-C00 IO board
+## config#1
+### usbdrive
+/devices/platform/tegra-xhci/usb2/2-2/2-2:1.0           auto                vfat      defaults                                                            voldmanaged=usbdrive:auto
+/devices/platform/tegra-xhci/usb3/3-1/3-1:1.0           auto                vfat      defaults                                                            voldmanaged=usbdrive:auto
+### usbdrive2
+/devices/platform/tegra-xhci/usb2/2-3/2-3:1.0           auto                vfat      defaults                                                            voldmanaged=usbdrive2:auto
+/devices/platform/tegra-xhci/usb3/3-2/3-2:1.0           auto                vfat      defaults                                                            voldmanaged=usbdrive2:auto
+
+## config#2(OTG cable attached before boot)
+### usbdrive2
+/devices/platform/tegra-xhci/usb3/3-2/3-2:1.0           auto                vfat      defaults                                                            voldmanaged=usbdrive2:auto
+/devices/platform/tegra-xhci/usb4/4-1/4-1:1.0           auto                vfat      defaults                                                            voldmanaged=usbdrive2:auto
+### usbdrive
+/devices/platform/tegra-xhci/usb3/3-3/3-3:1.0           auto                vfat      defaults                                                            voldmanaged=usbdrive:auto
+/devices/platform/tegra-xhci/usb4/4-2/4-2:1.0           auto                vfat      defaults                                                            voldmanaged=usbdrive:auto
+
+#usbdrive3
+## OTG Host
+/devices/tegra-ehci.0                                   auto                vfat      defaults                                                            voldmanaged=usbdrive3:auto
+
+/dev/block/zram0 none swap defaults zramsize=536870912
+/dev/block/platform/tegra-sata.0/by-name/RP2           /persistent         emmc      defaults                                                            defaults

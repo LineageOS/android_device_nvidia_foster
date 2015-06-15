@@ -15,7 +15,6 @@
 service tlk_daemon /vendor/bin/tlk_daemon --storagedir /data
     class main
     group keystore
-    oneshot
 
 on post-fs-data
     mkdir /data/tlk 0700 system keystore

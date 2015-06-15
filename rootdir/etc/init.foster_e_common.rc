@@ -8,10 +8,38 @@
 
 on boot
     chown system system /sys/class/leds/led_lightbar/brightness
+    write /sys/devices/system/cpu/cpuquiet/runnable_threads/nr_run_thresholds "6 10 18"
 
 on post-fs-data
 # Set Foster as console mode
     setprop persist.sys.display.resolution 1920x1080
     setprop persist.tegra.hdmi.resolution Max_60Hz
-    setprop persist.tegra.idle.minimum_fps 0
+    setprop persist.tegra.composite.policy assign-windows
     write /sys/power/wake_lock foster-staywake
+    start cyupdate
+
+
+
+service cyupdate /vendor/bin/cyupdate.sh
+    class main
+    user system
+    group system
+    oneshot
+    disabled
+
+on init
+    mkdir /mnt/media_rw/usbdrive2 0700 media_rw media_rw
+    mkdir /storage/usbdrive2 0700 root root
+    symlink /mnt/media_rw/usbdrive2 /usbdrive2
+
+    mkdir /mnt/media_rw/usbdrive3 0700 media_rw media_rw
+    mkdir /storage/usbdrive3 0700 root root
+    symlink /mnt/media_rw/usbdrive3 /usbdrive3
+
+service fuse_usbdrive2 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbdrive2 /storage/usbdrive2
+    class late_start
+    disabled
+
+service fuse_usbdrive3 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbdrive3 /storage/usbdrive3
+    class late_start
+    disabled
