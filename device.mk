@@ -23,7 +23,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product-if-exists, vendor/nvidia/foster/foster-vendor.mk)
 
 # Overlay
-#DEVICE_PACKAGE_OVERLAYS += \
+DEVICE_PACKAGE_OVERLAYS += \
     device/nvidia/foster/overlay
 
 # Ramdisk
