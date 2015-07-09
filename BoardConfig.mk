@@ -56,6 +56,10 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/nvidia/foster/bluetooth
 USE_OPENGL_RENDERER := true
 #BOARD_DISABLE_TRIPLE_BUFFERED_DISPLAY_SURFACES := true
 
+#Audio
+BOARD_USES_GENERIC_AUDIO := false
+BOARD_USES_ALSA_AUDIO := true
+
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 

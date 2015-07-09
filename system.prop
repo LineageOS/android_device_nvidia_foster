@@ -4,8 +4,8 @@ persist.tegra.nvmmlite = 1
 persist.wlan.ti.calibrated = 0
 ro.sf.override_lcd_density = 1
 
-# vic composition
-persist.tegra.compositor=gralloc
+# gl composition
+persist.tegra.compositor=glcomposer
 
 persist.tegra.decompression = cde-client
 # WAR for bug 1536227: Restrict all ZBC clears to transparent black:
