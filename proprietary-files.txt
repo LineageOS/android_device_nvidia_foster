@@ -65,6 +65,7 @@ vendor/lib64/libglcore.so
 vendor/lib/libnvaudiofx.so
 vendor/lib/libnvaudioservice.so
 vendor/lib/libnvblit.so
+vendor/lib64/libnvblit.so
 vendor/lib/libnvcapaudioservice.so
 vendor/lib/libnvcapclk.so
 vendor/lib/libnvcms.so
@@ -72,12 +73,14 @@ vendor/lib/libnvcpl.so
 vendor/lib64/libnvcpl.so
 vendor/lib/libnvddk_2d_v2.so
 vendor/lib/libnvddk_vic.so
+vendor/lib64/libnvddk_vic.so
 vendor/lib/libnvfusebypass.so
 vendor/lib/libnvglsi.so
 vendor/lib64/libnvglsi.so
 vendor/lib/libnvgr.so
 vendor/lib64/libnvgr.so
 vendor/lib/libnvhwc_service.so
+vendor/lib64/libnvhwc_service.so
 vendor/lib/libnvmm_audio.so
 vendor/lib/libnvmm_contentpipe.so
 vendor/lib/libnvmmlite_audio.so
@@ -113,6 +116,7 @@ vendor/lib/liboemcrypto.so
 vendor/lib/libphs.so
 vendor/lib64/libphs.so
 vendor/lib/libtlk_secure_hdcp_up.so
+vendor/lib64/libtlk_secure_hdcp_up.so
 vendor/lib/libtsechdcp.so
 vendor/lib64/libtsechdcp.so
 vendor/lib/libtsec_wrapper.so
