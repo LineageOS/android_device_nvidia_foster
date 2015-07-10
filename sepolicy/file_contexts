@@ -78,10 +78,12 @@
 /dev/block/platform/sdhci-tegra\.3/by-name/CAC		u:object_r:cache_block_device:s0
 /dev/block/platform/sdhci-tegra\.3/by-name/UCB		u:object_r:usercalib_block_device:s0
 /dev/block/platform/sdhci-tegra\.3/by-name/FCT		u:object_r:factorycalib_block_device:s0
+/dev/block/platform/sdhci-tegra\.3/by-name/RP2		u:object_r:frp_block_device:s0
 #setup_fs sata
 /dev/block/platform/tegra-sata\.0/by-name/UDA		u:object_r:userdata_block_device:s0
 /dev/block/platform/tegra-sata\.0/by-name/CAC		u:object_r:cache_block_device:s0
 /dev/block/platform/tegra-sata\.0/by-name/FCT		u:object_r:factorycalib_block_device:s0
+/dev/block/platform/tegra-sata\.0/by-name/RP2		u:object_r:frp_block_device:s0
 
 #############################
 # System files
