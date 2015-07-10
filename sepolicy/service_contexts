@@ -16,6 +16,7 @@ blakemgr		u:object_r:system_app_service:s0
 input-cfboost		u:object_r:system_app_service:s0
 nvcpl			u:object_r:system_app_service:s0
 set_hwui_params		u:object_r:system_app_service:s0
+ShieldStats		u:object_r:system_app_service:s0
 
 nvwifi			u:object_r:system_server_service:s0
 xlanwifi		u:object_r:system_server_service:s0

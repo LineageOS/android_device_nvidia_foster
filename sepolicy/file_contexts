@@ -85,6 +85,9 @@
 /dev/block/platform/tegra-sata\.0/by-name/FCT		u:object_r:factorycalib_block_device:s0
 /dev/block/platform/tegra-sata\.0/by-name/RP2		u:object_r:frp_block_device:s0
 
+# /dev/cy8c-led-boot devices
+/dev/cy8c-led-boot			u:object_r:cy8c_device:s0
+
 #############################
 # System files
 
@@ -116,6 +119,12 @@
 (/system)?/vendor/bin/pbc2		u:object_r:pbc_exec:s0
 # cvc
 (/system)?/vendor/bin/cvc		u:object_r:cvc_exec:s0
+# cyupdate.sh
+(/system)?/vendor/bin/cyupdate.sh		u:object_r:cyupdate_exec:s0
+# cyload
+(/system)?/vendor/bin/cyload		u:object_r:cyupdate_exec:s0
+# foster cypress led fw
+/system/vendor/firmware/psoc_foster_fw.cyacd		u:object_r:cyupdate_file:s0
 # qvs shell script
 /system/xbin/qvs_post_boot.sh		u:object_r:qvs_exec:s0
 #setup_fs
@@ -164,6 +173,9 @@
 /sys/devices/platform/pwm-fan.*/pwm_cap		u:object_r:sysfs_pwm_fan:s0
 /sys/devices/platform/pwm-fan.*/pwm_state_map		u:object_r:sysfs_pwm_fan:s0
 /sys/devices/platform/pwm-fan.*/state_cap		u:object_r:sysfs_pwm_fan:s0
+# cfboost sysfs for pbc access
+/sys/module/input_cfboost/parameters/boost_freq		u:object_r:sysfs_cfboost:s0
+/sys/module/input_cfboost/parameters/boost_gpu		u:object_r:sysfs_cfboost:s0
 # phs sysfs
 /sys/devices/virtual/misc/tegra-throughput/fps			u:object_r:sysfs_throughput:s0
 /sys/devices/virtual/misc/tegra-throughput/framecount		u:object_r:sysfs_throughput:s0
@@ -192,6 +204,9 @@
 /sys/kernel/tegra_volt_cap(/.*)?		u:object_r:sysfs_cvc:s0
 # Blake touchpad setting
 /sys/devices/platform/ozwpan/.*/mode		u:object_r:sysfs_blake:s0
+/sys/devices/platform/tegra-xhci/.*/mode	u:object_r:sysfs_blake:s0
+# Gamepad reset sysfs
+/sys/devices/platform/gamepad_reset(.*)/gamepad_reset		u:object_r:sysfs_gamepad:s0
 
 #############################
 # SurfaceFlinger to PHS pagefiles
