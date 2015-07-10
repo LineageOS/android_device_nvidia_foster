@@ -78,7 +78,7 @@ Only the three quirks included above are recognized at this point:
 <MediaCodecs>
     <Decoders>
         <MediaCodec name="OMX.Nvidia.mp4.decode" type="video/mp4v-es" >
-            <Limit name="size" min="32x32" max="1920x1088" />
+            <Limit name="size" min="48x48" max="1920x1088" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="244800" />
@@ -86,12 +86,12 @@ Only the three quirks included above are recognized at this point:
             <Feature name="adaptive-playback" />
         </MediaCodec>
         <MediaCodec name="OMX.Nvidia.h263.decode" type="video/3gpp" >
-            <Limit name="size" min="32x32" max="720x576" />
+            <Limit name="size" min="48x48" max="720x576" />
             <Limit name="alignment" value="2x2" />
             <Feature name="adaptive-playback" />
         </MediaCodec>
         <MediaCodec name="OMX.Nvidia.h264.decode" type="video/avc" >
-            <Limit name="size" min="32x32" max="3840x2176" />
+            <Limit name="size" min="48x48" max="3840x2176" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="783360" />
@@ -99,7 +99,7 @@ Only the three quirks included above are recognized at this point:
             <Feature name="adaptive-playback" />
         </MediaCodec>
         <MediaCodec name="OMX.Nvidia.h264.decode.secure" type="video/avc" >
-            <Limit name="size" min="32x32" max="3840x2176" />
+            <Limit name="size" min="48x48" max="3840x2176" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="783360" />
@@ -108,7 +108,7 @@ Only the three quirks included above are recognized at this point:
             <Feature name="secure-playback" required="true" />
         </MediaCodec>
         <MediaCodec name="OMX.Nvidia.vp8.decode" type="video/x-vnd.on2.vp8" >
-            <Limit name="size" min="32x32" max="3840x2176" />
+            <Limit name="size" min="48x48" max="3840x2176" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="783360" />
@@ -116,7 +116,7 @@ Only the three quirks included above are recognized at this point:
             <Feature name="adaptive-playback" />
         </MediaCodec>
         <MediaCodec name="OMX.Nvidia.vp9.decode" type="video/x-vnd.on2.vp9" >
-            <Limit name="size" min="32x32" max="3840x2176" />
+            <Limit name="size" min="180x180" max="3840x2176" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="783360" />
@@ -124,7 +124,7 @@ Only the three quirks included above are recognized at this point:
             <Feature name="adaptive-playback" />
         </MediaCodec>
         <MediaCodec name="OMX.Nvidia.h265.decode" type="video/hevc" >
-            <Limit name="size" min="32x32" max="3840x2176" />
+            <Limit name="size" min="180x180" max="3840x2176" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="2000000" />
@@ -132,7 +132,7 @@ Only the three quirks included above are recognized at this point:
             <Feature name="adaptive-playback" />
         </MediaCodec>
         <MediaCodec name="OMX.Nvidia.h265.decode.secure" type="video/hevc" >
-            <Limit name="size" min="32x32" max="3840x2176" />
+            <Limit name="size" min="180x180" max="3840x2176" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="2000000" />
@@ -140,17 +140,27 @@ Only the three quirks included above are recognized at this point:
             <Feature name="adaptive-playback" />
             <Feature name="secure-playback" required="true" />
         </MediaCodec>
+
+
+        <MediaCodec name="OMX.Nvidia.mp3.decoder" type="audio/mpeg" >
+             <Limit name="channel-count" max="6" />
+             <Limit name="sample-rate" ranges="16000,22050,24000,32000,44100,48000" />
+             <Limit name="bitrate" range="8000-384000" />
+        </MediaCodec>
+
+        <MediaCodec name="OMX.Nvidia.eaacp.decoder" type="audio/mp4a-latm" >
+             <Limit name="channel-count" max="6" />
+             <Limit name="sample-rate" ranges="16000,22050,24000,32000,44100,48000" />
+             <Limit name="bitrate" range="8000-384000" />
+        </MediaCodec>
+        <MediaCodec name="OMX.Nvidia.mjpeg.decoder" type="video/mjpeg" >
+            <Limit name="block-size" value="16x16" />
+            <Feature name="adaptive-playback" />
+        </MediaCodec>
     </Decoders>
 
     <Encoders>
         <MediaCodec name="OMX.Nvidia.h264.encoder" type="video/avc" >
-            <Limit name="size" min="48x48" max="3840x2176" />
-            <Limit name="alignment" value="2x2" />
-            <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="783360" />
-            <Limit name="bitrate" range="1-50000000" />
-        </MediaCodec>
-        <MediaCodec name="OMX.Nvidia.h265.encoder" type="video/hevc" >
             <Limit name="size" min="48x48" max="3840x2176" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />

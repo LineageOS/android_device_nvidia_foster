@@ -32,7 +32,7 @@ etc/firmware/tegra21x_xusb_firmware
 etc/hdcpsrm/hdcp1x.srm
 etc/hdcpsrm/hdcp2x.srm
 etc/hdcpsrm/hdcp2xtest.srm
-etc/nvram_43241.txt
+etc/nvram_foster_e_antenna_tuned_4354.txt
 etc/ussrd.conf
 lib/hw/power.tegra.so
 lib/libinvensense_hal.so
@@ -42,7 +42,7 @@ lib/libopencv24_tegra.so
 lib/libtbb.so
 vendor/bin/btmacwriter
 vendor/bin/tegrastats
-vendor/firmware/bcm43241/fw_bcmdhd.bin
+vendor/firmware/bcm4354/fw_bcmdhd.bin
 vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib64/egl/libEGL_tegra.so
 vendor/lib/egl/libEGL_tegra.so
@@ -113,6 +113,8 @@ vendor/lib/libnvwinsys.so
 vendor/lib/libnvwsi.so
 vendor/lib64/libnvwsi.so
 vendor/lib/liboemcrypto.so
+vendor/lib/libstagefright_hdcp.so
+vendor/lib/libstagefrighthw.so
 vendor/lib/libphs.so
 vendor/lib64/libphs.so
 vendor/lib/libtlk_secure_hdcp_up.so

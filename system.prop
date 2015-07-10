@@ -31,3 +31,8 @@ ro.nv.usb.pid.ptp.adb = 7100
 
 #Set audioflinger resampler quality to DYN_HIGH_QUALITY
 af.resampler.quality = 7
+
+# Wifi
+wifi.interface=wlan0
+wifi.Xinterface=xlan0
+ap.interface=wlan0
