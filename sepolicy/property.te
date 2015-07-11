@@ -20,4 +20,3 @@ type thermal_prop, property_type;
 type hwui_prop, property_type;
 
 type pbc_prop, property_type;
-type audio_prop, property_type;
