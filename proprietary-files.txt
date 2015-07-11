@@ -162,8 +162,6 @@ vendor/lib/libWVStreamControlAPI_L1.so
 vendor/lib/libwvdrm_L1.so
 vendor/lib/libdrmdecrypt.so
 vendor/lib/mediadrm/libDxModularPluginNvGoo.so
-vendor/lib/mediadrm/libdrmclearkeyplugin.so
-vendor/lib64/mediadrm/libdrmclearkeyplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib64/libgov_boot.so
 vendor/lib64/libgov_camera.so
