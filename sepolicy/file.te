@@ -71,6 +71,9 @@ type sysfs_blake, fs_type, sysfs_type;
 # /dev/ozwpan
 type ozmo_device, dev_type;
 
+# /dev/cy8c-led-boot
+type cy8c_device, dev_type;
+
 # /sys/kernel/pmic/...
 type sysfs_pmic, fs_type, sysfs_type;
 
@@ -105,3 +108,13 @@ type sysfs_nvi2c, fs_type, sysfs_type, mlstrustedobject;
 # /data/misc/cvc(/.*)
 type cvc_data_file, file_type, data_file_type;
 type sysfs_cvc, fs_type, sysfs_type;
+
+# /system/vendor/bin/{cyload,cyupdate.sh}
+type cyupdate_exec, exec_type, file_type;
+type cyupdate_file, file_type;
+
+# /sys/module/input_cfboost/parameters/boost_{freq,gpu}
+type sysfs_cfboost, fs_type, sysfs_type;
+
+# Gamepad reset sysfs
+type sysfs_gamepad, fs_type, sysfs_type;
