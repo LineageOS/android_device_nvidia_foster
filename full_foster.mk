@@ -30,6 +30,6 @@ $(call inherit-product, device/nvidia/foster/device.mk)
 # Set those variables here to overwrite the inherited values.
 PRODUCT_NAME := full_foster
 PRODUCT_DEVICE := foster
-PRODUCT_BRAND := nvidia
-PRODUCT_MANUFACTURER := nvidia
+PRODUCT_BRAND := NVIDIA
+PRODUCT_MANUFACTURER := NVIDIA
 PRODUCT_MODEL := foster
