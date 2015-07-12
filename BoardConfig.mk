@@ -37,13 +37,12 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Kernel
-KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
-TARGET_KERNEL_SOURCE := kernel/nvidia/foster
-TARGET_KERNEL_CONFIG := cyanogenmod_foster_defconfig
-BOARD_KERNEL_IMAGE_NAME := Image
 # Open Source kernel boots aosp libs, but hangs on stock blobs.
 # Only the prebuilt stock kernel will boot the stock blobs.
-TARGET_PREBUILT_KERNEL := device/nvidia/foster/kernel
+#KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
+#TARGET_KERNEL_SOURCE := kernel/nvidia/foster
+#TARGET_KERNEL_CONFIG := cyanogenmod_foster_defconfig
+#BOARD_KERNEL_IMAGE_NAME := Image
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USERDATAIMAGE_PARTITION_SIZE  := 12228902400
