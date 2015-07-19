@@ -125,7 +125,7 @@ PRODUCT_PACKAGES += \
     charger \
     charger_res_images
 
-PRODUCT_CHARACTERISTICS := tablet
+PRODUCT_CHARACTERISTICS := tv
 
 # USB
 PRODUCT_PACKAGES += \
