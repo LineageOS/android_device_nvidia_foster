@@ -102,12 +102,12 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     audio.r_submix.default \
     libaudio-resampler \
-    libaudiospdif
-    #libtinycompress \
-    #tinycap \
-    #tinymix \
-    #tinyplay \
-    #xaplay
+    libaudiospdif \
+    libtinycompress \
+    tinycap \
+    tinymix \
+    tinyplay \
+    xaplay
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
