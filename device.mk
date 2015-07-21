@@ -134,3 +134,9 @@ PRODUCT_PACKAGES += \
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     setup_fs
+
+# Wireless Controller
+PRODUCT_PACKAGES += BlakePairing
+
+# Leanback Keyboard
+PRODUCT_PACKAGES += LeanbackIme
