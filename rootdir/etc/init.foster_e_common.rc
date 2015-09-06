@@ -1,10 +1,12 @@
-#Copyright (c) 2014, NVIDIA CORPORATION.  All rights reserved.
+#Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
 #
 #NVIDIA Corporation and its licensors retain all intellectual property and
 #proprietary rights in and to this software and related documentation.  Any
 #use, reproduction, disclosure or distribution of this software and related
 #documentation without an express license agreement from NVIDIA Corporation
 #is strictly prohibited.
+
+import init.loki_foster_e_common.rc
 
 on boot
     chown system system /sys/class/leds/led_lightbar/brightness
@@ -17,8 +19,6 @@ on post-fs-data
     setprop persist.tegra.composite.policy assign-windows
     write /sys/power/wake_lock foster-staywake
     start cyupdate
-
-
 
 service cyupdate /vendor/bin/cyupdate.sh
     class main

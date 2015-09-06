@@ -40,6 +40,8 @@ on init
     # create directory for mounting calibration partition
     mkdir /mnt/factory 0666 system system
 
+    mkdir /mnt/wifi_config 0666 system system
+
     # create directory for mounting user calibration partition
     mkdir /mnt/usercalib 0771 system system
 

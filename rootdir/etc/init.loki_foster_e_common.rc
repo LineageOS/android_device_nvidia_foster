@@ -1,0 +1,31 @@
+#Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+#THIS IS A COMMON FILE FOR FOSTER AND LOKI
+
+import init.diag.rc
+import init.cal.rc
+
+on fs
+    setprop ro.wifi.sdmmc 1
+    setprop audio.custompolicy 1
+    setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
+    setprop ro.crypto.umount_sd false
+    setprop ro.crypto.fuse_sdcard true
+    setprop persist.sys.dpy0.prism 0
+
+#start pbc daemon
+service pbc2 /system/vendor/bin/pbc2
+    class main
+    user system
+    group system
+
+on post-fs-data
+    setprop persist.sys.display.resolution 1920x1080
+
+on boot
+    setprop persist.tegra.decompression cde-client

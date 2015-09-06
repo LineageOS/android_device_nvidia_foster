@@ -1,4 +1,4 @@
-# Copyright (c) 2014, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,11 @@
 type surfaceflinger_prop, property_type;
 type thermal_prop, property_type;
 
+# For pbc
+type pbc_prop, property_type;
+
 # For properties written by set_hwui_params.sh
 type hwui_prop, property_type;
 
-type pbc_prop, property_type;
+# Factory
+type factory_prop, property_type;

@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014, NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -47,3 +47,15 @@ allow system_server user_calib_file:file create_file_perms;
 
 # dc for cec
 allow system_server tegradc_device:chr_file { read ioctl open write };
+
+# set factory property
+allow system_server factory_prop:property_service set;
+
+# check file on usbdrive
+allow system_server fuse:dir search;
+
+# for accessing dir and files in RP3 partition
+allow system_server factoryconfig_block_device:dir r_dir_perms;
+allow system_server factoryconfig_block_device:file r_file_perms;
+allow system_server factoryconfig_file:file r_file_perms;
+allow system_server factoryconfig_file:dir r_dir_perms;

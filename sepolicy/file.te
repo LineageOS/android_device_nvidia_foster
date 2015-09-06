@@ -59,6 +59,9 @@ type sysfs_cmu, fs_type, sysfs_type;
 # /sys/devices/platform/pwm-fan.*
 type sysfs_pwm_fan, fs_type, sysfs_type;
 
+# /sys/module/input_cfboost/parameters/...
+type sysfs_cfboost, fs_type, sysfs_type;
+
 # /sys/class/sound/...
 type sysfs_sound, fs_type, sysfs_type;
 
@@ -70,9 +73,6 @@ type sysfs_blake, fs_type, sysfs_type;
 
 # /dev/ozwpan
 type ozmo_device, dev_type;
-
-# /dev/cy8c-led-boot
-type cy8c_device, dev_type;
 
 # /sys/kernel/pmic/...
 type sysfs_pmic, fs_type, sysfs_type;
@@ -102,6 +102,9 @@ type factory_file, fs_type, contextmount_type;
 # /mnt/usercalib
 type user_calib_file, file_type, data_file_type;
 
+# Needed to mount fuseblk filesystem
+type fuseblk, sdcard_type, fs_type, mlstrustedobject;
+
 # /sys/devices/platform/tegra.*i2c\.[0-9]+(/.*)?
 type sysfs_nvi2c, fs_type, sysfs_type, mlstrustedobject;
 
@@ -109,12 +112,11 @@ type sysfs_nvi2c, fs_type, sysfs_type, mlstrustedobject;
 type cvc_data_file, file_type, data_file_type;
 type sysfs_cvc, fs_type, sysfs_type;
 
-# /system/vendor/bin/{cyload,cyupdate.sh}
-type cyupdate_exec, exec_type, file_type;
+# /sys/devices/platform/gamepad.*/gamepad_reset
+type sysfs_gamepad, fs_type, sysfs_type;
+
+# /system/vendor/firmware/psoc_led_fw.cycad
 type cyupdate_file, file_type;
 
-# /sys/module/input_cfboost/parameters/boost_{freq,gpu}
-type sysfs_cfboost, fs_type, sysfs_type;
-
-# Gamepad reset sysfs
-type sysfs_gamepad, fs_type, sysfs_type;
+# /mnt/wifi_config
+type factoryconfig_file, file_type;

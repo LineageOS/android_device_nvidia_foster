@@ -15,7 +15,8 @@ on post-fs-data
 service setup_fs /system/bin/setup_fs \
         /dev/block/platform/tegra-sata.0/by-name/UDA \
         /dev/block/platform/tegra-sata.0/by-name/CAC \
-        /dev/block/platform/tegra-sata.0/by-name/FCT
+        /dev/block/platform/tegra-sata.0/by-name/FCT \
+        /dev/block/platform/tegra-sata.0/by-name/RP3
     class core
     user root
     group root

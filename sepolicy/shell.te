@@ -14,3 +14,7 @@
 
 allow shell quadd_device:chr_file rw_file_perms;
 allow shell gpload_exec:file { read getattr execute open execute_no_trans};
+
+userdebug_or_eng(`
+r_dir_file(shell, sysfs_thermal);
+')
