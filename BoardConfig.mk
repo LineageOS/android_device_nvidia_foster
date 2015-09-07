@@ -101,6 +101,7 @@ BOARD_SEPOLICY_UNION += \
 	bluetooth.te \
 	bootanim.te \
 	ctload.te \
+	cyupdate.te \
 	cvc.te \
 	diag.te \
 	device.te \
