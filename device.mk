@@ -43,7 +43,7 @@ PRODUCT_PACKAGES += \
     init.recovery.foster.rc \
     init.foster_e_common.rc \
     init.hdcp.rc \
-    init.loki_e_common.rc \
+    init.loki_foster_e_common.rc \
     init.nv_dev_board.usb.rc \
     init.t210.rc \
     init.t210_common.rc \
