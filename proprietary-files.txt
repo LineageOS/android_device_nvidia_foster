@@ -32,6 +32,7 @@ etc/firmware/tegra_xusb_firmware
 etc/hdcpsrm/hdcp1x.srm
 etc/hdcpsrm/hdcp2x.srm
 etc/hdcpsrm/hdcp2xtest.srm
+etc/nvram_foster_e_antenna_tuned_4354.bin
 etc/nvram_foster_e_antenna_tuned_4354.txt
 etc/ussrd.conf
 lib/hw/power.tegra.so
