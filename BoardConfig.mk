@@ -113,6 +113,7 @@ BOARD_SEPOLICY_UNION += \
 	gpload.te \
 	healthd.te\
 	hostapd.te \
+	init.te \
 	installd.te \
 	mediaserver.te \
 	netd.te \
