@@ -225,3 +225,14 @@
 
 #mark /dev/camera/.* as video device
 /dev/camera(/video[0-9]*)?   u:object_r:video_device:s0
+
+# enable UART port permission
+/dev/ttyTHS3				u:object_r:hci_attach_dev:s0
+
+# gps
+/dev/ttyTHS2				u:object_r:gps_device:s0
+
+# camera
+/dev/imx214				u:object_r:camera_device:s0
+/dev/ov5693.*				u:object_r:camera_device:s0
+/dev/ov7695				u:object_r:camera_device:s0
