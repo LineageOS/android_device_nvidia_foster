@@ -39,3 +39,6 @@ af.resampler.quality = 7
 wifi.interface=wlan0
 wifi.Xinterface=xlan0
 ap.interface=wlan0
+
+# Hdmi CEC
+ro.hdmi.device_type=4
