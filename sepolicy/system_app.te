@@ -73,6 +73,7 @@ allow system_app sysfs_nvi2c:{ file lnk_file } rw_file_perms;
 # NvCPLSvc
 allow system_app cvc_data_file:dir r_dir_perms;
 allow system_app cvc_data_file:file rw_file_perms;
+allow system_app sysfs_tcp_window_divisor:file rw_file_perms;
 
 # Read and write /data/data subdirectory.
 allow system_app system_app_data_file:lnk_file create_file_perms;
@@ -82,13 +83,10 @@ allow system_app sysfs_gamepad:file rw_file_perms;
 
 # Nvidiafeedback to collect dmesg
 access_kmsg(system_app)
-
 # Nvidiafeedback to collect last_kmsg
 allow system_app pstorefs:dir { search read open };
 allow system_app pstorefs:file { read open };
 
 # Sku files and RP3 partition
-allow system_app factoryconfig_block_device:dir r_dir_perms;
-allow system_app factoryconfig_block_device:file r_file_perms;
-allow system_app factoryconfig_file:dir r_dir_perms;
-allow system_app factoryconfig_file:file r_file_perms;
+r_dir_file(system_app, factoryconfig_block_device)
+r_dir_file(system_app, factoryconfig_file)

@@ -26,3 +26,4 @@ allow ueventd sysfs_thermal:file rw_file_perms;
 allow ueventd sysfs_ozmo:file rw_file_perms;
 allow ueventd sysfs_nvi2c:file rw_file_perms;
 allow ueventd tegradc_device:file rw_file_perms;
+allow ueventd sysfs_lightbar:file rw_file_perms;

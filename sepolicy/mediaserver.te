@@ -1,4 +1,4 @@
-# Copyright (c) 2014, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ allow mediaserver nv_camera_data_file:file create_file_perms;
 
 # Mediaserver searches through sysfs, so we need to allow it to search all dirs we retag
 r_dir_file(mediaserver, sysfs_thermal);
+r_dir_file(mediaserver, sysfs_ozmo);
 
 # Allow mediaserver read and write access to system_server
 # It needs to access the sensors as video stabilization uses

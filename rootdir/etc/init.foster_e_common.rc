@@ -11,6 +11,8 @@ import init.loki_foster_e_common.rc
 on boot
     chown system system /sys/class/leds/led_lightbar/brightness
     write /sys/devices/system/cpu/cpuquiet/runnable_threads/nr_run_thresholds "6 10 18"
+    # Lower console loglevel to reduce number of printk messages to console
+    write /proc/sys/kernel/printk "4 7 1 7 3"
 
 on post-fs-data
 # Set Foster as console mode

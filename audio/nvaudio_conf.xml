@@ -65,6 +65,7 @@
     <param name="nvoice" val="1"/>
     <param name="HW Rates" val="48000 44100"/>
     <param name="flags" val="AUDIO_OUTPUT_FLAG_PRIMARY"/>
+    <param name="HDMI HW Latency" val="50"/>
 
     <path>
       <!--playback paths-->
@@ -188,6 +189,7 @@
     <param name="nvoice" val="0"/>
     <param name="HW Rates" val="48000 44100"/>
     <param name="flags" val="AUDIO_OUTPUT_FLAG_PRIMARY"/>
+    <param name="HDMI HW Latency" val="50"/>
 
     <path>
       <!--Codec paths-->
@@ -583,11 +585,11 @@
           <ctl name="VP Primary MUX" val="None" mode="AUDIO_MODE_NORMAL"/>
           <ctl name="PCM0.0 MUX" val="None" mode="AUDIO_MODE_NORMAL"/>
           <ctl name="VP Secondary MUX" val="None" mode="AUDIO_MODE_NORMAL"/>
+          <ctl name="PCM0.1 MUX" val="None" mode="AUDIO_MODE_NORMAL"/>
           <ctl name="Pass AUDIN1 MUX" val="None" mode="AUDIO_MODE_NORMAL"/>
           <ctl name="DAC0.0 MUX" val="None" mode="AUDIO_MODE_NORMAL"/>
           <ctl name="Pass AUDIN2 MUX" val="None" mode="AUDIO_MODE_NORMAL"/>
           <ctl name="DAC0.1 MUX" val="None" mode="AUDIO_MODE_NORMAL"/>
-          <ctl name="PCM0.1 MUX" val="None" mode="AUDIO_MODE_NORMAL"/>
 
           <ctl name="PT_VP Algorithm" val="Off" mode="AUDIO_MODE_RINGTONE"/>
           <ctl name="VP AEC" val="Off" mode="AUDIO_MODE_RINGTONE"/>
@@ -940,9 +942,9 @@
             channels="2"
             bps="16"
             period_size="512"
-            period_count="8"
-            start_threshold="4095"
-            stop_threshold="4096"
+            period_count="4"
+            start_threshold="2047"
+            stop_threshold="2048"
             silence_threshold="0"
             avail_min="1"/>
     <param name="HW Rates" val="48000 44100 192000"/>

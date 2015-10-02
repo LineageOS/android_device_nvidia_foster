@@ -8,7 +8,7 @@
 /dev/block/CAC            /cache              ext4      noatime,nosuid,nodev,data=ordered,nodelalloc,errors=panic           wait
 /dev/block/LNX            /boot               emmc      defaults                                                            defaults
 /dev/block/MSC            /misc               emmc      defaults                                                            defaults
-/dev/block/UDA            /data               ext4      noatime,nosuid,nodev,data=ordered,auto_da_alloc,errors=panic        wait,check,encryptable=/dev/block/MDA
+/dev/block/UDA            /data               ext4      noatime,nosuid,nodev,data=ordered,noauto_da_alloc,errors=panic      wait,check,encryptable=/dev/block/MDA
 /dev/block/USP            /staging            emmc      defaults                                                            defaults
 /dev/block/MDA            /metadata           emmc      defaults                                                            defaults
 /dev/block/SOS            /recovery           emmc      defaults                                                            defaults

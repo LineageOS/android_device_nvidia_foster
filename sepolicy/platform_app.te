@@ -1,4 +1,4 @@
-# Copyright (c) 2014, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,3 +16,7 @@
 r_dir_file(platform_app, sysfs_nvi2c)
 r_dir_file(platform_app, sysfs_thermal)
 allow platform_app debugfs:file r_file_perms;
+
+# Sku files and RP3 partition
+r_dir_file(platform_app, factoryconfig_block_device)
+r_dir_file(platform_app, factoryconfig_file)

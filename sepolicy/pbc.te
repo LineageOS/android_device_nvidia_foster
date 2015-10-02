@@ -1,4 +1,4 @@
-# Copyright (c) 2014, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,8 +21,10 @@ unix_socket_connect(pbc, property, init)
 
 allow pbc sysfs_devices_system_cpu:file rw_file_perms;
 allow pbc pmqos_device:chr_file rw_file_perms;
+allow pbc sysfs_cfboost:file rw_file_perms;
 allow pbc debugfs:file r_file_perms;
 allow pbc system_prop:property_service set;
+allow pbc pbc_prop:property_service set;
 
 # i2c control
 allow pbc sysfs_nvi2c:dir r_dir_perms;

@@ -26,6 +26,10 @@ userdebug_or_eng(`
   allow qvs system_file:file rx_file_perms;
   #allow pseudo tty
   allow qvs devpts:chr_file rw_file_perms;
+  #allow kmsg read/write
+  allow qvs kmsg_device:chr_file rw_file_perms;
+  #allow printk read/write
+  allow qvs proc:file rw_file_perms;
   #Transition into zygote domain, if zygote_exe is found.
   domain_auto_trans(qvs, zygote_exec, zygote)
   allow qvs self:process setcurrent;

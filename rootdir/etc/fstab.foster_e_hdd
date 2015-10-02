@@ -6,7 +6,7 @@
 /dev/block/platform/tegra-sata.0/by-name/CAC           /cache              ext4      noatime,nosuid,nodev,data=ordered,nodelalloc,barrier=1               wait
 /dev/block/platform/tegra-sata.0/by-name/LNX           /boot               emmc      defaults                                                             defaults
 /dev/block/platform/tegra-sata.0/by-name/MSC           /misc               emmc      defaults                                                             defaults
-/dev/block/platform/tegra-sata.0/by-name/UDA           /data               ext4      noatime,nosuid,nodev,data=ordered,auto_da_alloc,discard,barrier=1    wait,check,encryptable=/dev/block/platform/tegra-sata.0/by-name/MDA
+/dev/block/platform/tegra-sata.0/by-name/UDA           /data               ext4      noatime,nosuid,nodev,data=ordered,noauto_da_alloc,discard,barrier=1    wait,check,encryptable=/dev/block/platform/tegra-sata.0/by-name/MDA
 /dev/block/platform/tegra-sata.0/by-name/USP           /staging            emmc      defaults                                                             defaults
 /dev/block/platform/tegra-sata.0/by-name/MDA           /metadata           emmc      defaults                                                             defaults
 /dev/block/platform/tegra-sata.0/by-name/SOS           /recovery           emmc      defaults                                                             defaults

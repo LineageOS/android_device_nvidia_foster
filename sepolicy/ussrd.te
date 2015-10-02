@@ -1,4 +1,4 @@
-# Copyright (c) 2014, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2015 NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -48,3 +48,17 @@ allow ussrd surfaceflinger_fc:file r_file_perms;
 # thermal
 allow ussrd sysfs_thermal:dir rw_dir_perms;
 allow ussrd sysfs_thermal:file rw_file_perms;
+
+# affinity functionality
+
+# read /proc
+allow ussrd domain:dir r_dir_perms;
+allow ussrd domain:file r_file_perms;
+allow ussrd domain:lnk_file r_file_perms;
+
+# set affinity
+allow ussrd domain:process setsched;
+
+# netlink access
+allow ussrd self:netlink_socket create_stream_socket_perms;
+allow ussrd self:capability { net_admin sys_nice };

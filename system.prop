@@ -40,5 +40,8 @@ wifi.interface=wlan0
 wifi.Xinterface=xlan0
 ap.interface=wlan0
 
-# Hdmi CEC
+#playback type device, for cec
 ro.hdmi.device_type=4
+
+#used to enable adb over tcpip on port 5555 from Settings app
+persist.system.adb.tcp.enable = 0

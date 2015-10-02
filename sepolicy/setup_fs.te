@@ -25,3 +25,4 @@ allow setup_fs factorycalib_block_device:blk_file rw_file_perms;
 allow setup_fs proc_sysrq:file rw_file_perms;
 allow setup_fs system_file:file execute_no_trans;
 allow setup_fs self:capability sys_boot;
+allow setup_fs factoryconfig_block_device:blk_file rw_file_perms;

@@ -49,3 +49,5 @@ allow surfaceflinger surfaceflinger_fc:dir rw_dir_perms;
 allow surfaceflinger surfaceflinger_fc:file create_file_perms;
 
 allow surfaceflinger tegradc_device:chr_file { read ioctl open write };
+
+allow surfaceflinger pmqos_device:chr_file rw_file_perms;

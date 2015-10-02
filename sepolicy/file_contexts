@@ -211,6 +211,8 @@
 /sys/devices/platform/tegra-xhci/.*/mode	u:object_r:sysfs_blake:s0
 # Gamepad reset sysfs
 /sys/devices/platform/gamepad_reset(.*)/gamepad_reset		u:object_r:sysfs_gamepad:s0
+# TCP Window Divisor
+/sys/module/tcp_output/parameters/tcp_window_divisor           u:object_r:sysfs_tcp_window_divisor:s0
 
 #############################
 # SurfaceFlinger to PHS pagefiles

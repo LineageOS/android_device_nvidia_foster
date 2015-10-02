@@ -27,6 +27,9 @@ on boot
     # Wifi support rx-filter
     setprop wifi.rx-filter 1
 
+    # Increase rmem_max for 4k GS
+    write /proc/sys/net/core/rmem_max 512000
+
 on post-fs-data
     mkdir /data/misc/wifi 0771 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi

@@ -112,6 +112,9 @@ type sysfs_nvi2c, fs_type, sysfs_type, mlstrustedobject;
 type cvc_data_file, file_type, data_file_type;
 type sysfs_cvc, fs_type, sysfs_type;
 
+# /sys/module/tcp_output/parameters
+type sysfs_tcp_window_divisor, fs_type, sysfs_type;
+
 # /sys/devices/platform/gamepad.*/gamepad_reset
 type sysfs_gamepad, fs_type, sysfs_type;
 

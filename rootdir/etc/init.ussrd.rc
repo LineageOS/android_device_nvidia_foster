@@ -40,6 +40,8 @@ on boot
     chown system system /sys/devices/virtual/misc/tegra-throughput/framecount
     chmod 0444 /sys/devices/virtual/misc/tegra-throughput/framecount
 
+    setprop persist.sys.ad.enable 0
+
 # create a folder for phs to store various files
 on post-fs-data
     mkdir /data/misc/phs 0775 system system

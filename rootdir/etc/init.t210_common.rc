@@ -52,10 +52,8 @@ on boot
     write /sys/module/input_cfboost/parameters/boost_cpus 3
 
 # Good driver settings
-    setprop persist.tegra.0x523dc0 1
-    setprop persist.tegra.0x523dc2 0x210a
+    # default value for 0x523dc5 in d3doglregs.rky is 0.5
     setprop persist.tegra.0x523dc5 0x3f000000
-    setprop persist.tegra.0xe0036b 1
     setprop persist.tegra.58027529 0x00000002
     setprop persist.tegra.a3456abe 0x087F6080
 

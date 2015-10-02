@@ -23,3 +23,5 @@ auditallow vold usercalib_block_device:blk_file rw_file_perms;
 # Access factory  calibration block device.
 allow vold factorycalib_block_device:blk_file rw_file_perms;
 auditallow vold factorycalib_block_device:blk_file rw_file_perms;
+allow vold self:capability sys_rawio;
+allow vold system_prop:property_service set;

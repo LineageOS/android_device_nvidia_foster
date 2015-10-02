@@ -9,8 +9,8 @@
        <Integer32>68842029</Integer32>
    </spkrFc44>
    <spkrG>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
    </spkrG>
    <spkrQ>
        <Integer32>2048</Integer32>
@@ -18,20 +18,20 @@
    </spkrQ>
    <peqcoeff48>
        <Integer32>268435456</Integer32>
-       <Integer32>-268435462</Integer32>
+       <Integer32>-268435464</Integer32>
        <Integer32>0</Integer32>
        <Integer32>256661980</Integer32>
        <Integer32>0</Integer32>
        <Integer32>268435456</Integer32>
-       <Integer32>-536804864</Integer32>
-       <Integer32>268435445</Integer32>
-       <Integer32>528490286</Integer32>
+       <Integer32>-536804861</Integer32>
+       <Integer32>268435442</Integer32>
+       <Integer32>528490285</Integer32>
        <Integer32>-260368590</Integer32>
        <Integer32>268435456</Integer32>
-       <Integer32>-536731249</Integer32>
-       <Integer32>268435461</Integer32>
+       <Integer32>-536731251</Integer32>
+       <Integer32>268435463</Integer32>
        <Integer32>535199095</Integer32>
-       <Integer32>-266996749</Integer32>
+       <Integer32>-266996750</Integer32>
        <Integer32>268435456</Integer32>
        <Integer32>-535907583</Integer32>
        <Integer32>267655832</Integer32>
@@ -52,26 +52,26 @@
        <Integer32>264522778</Integer32>
        <Integer32>520108855</Integer32>
        <Integer32>-258714364</Integer32>
-       <Integer32>260280016</Integer32>
-       <Integer32>-510702743</Integer32>
-       <Integer32>251310024</Integer32>
-       <Integer32>510702743</Integer32>
-       <Integer32>-243154584</Integer32>
+       <Integer32>257284901</Integer32>
+       <Integer32>-506209408</Integer32>
+       <Integer32>249803997</Integer32>
+       <Integer32>506209408</Integer32>
+       <Integer32>-238653441</Integer32>
        <Integer32>268435456</Integer32>
-       <Integer32>-268435462</Integer32>
+       <Integer32>-268435464</Integer32>
        <Integer32>0</Integer32>
        <Integer32>256661980</Integer32>
        <Integer32>0</Integer32>
        <Integer32>268435456</Integer32>
-       <Integer32>-536804864</Integer32>
-       <Integer32>268435445</Integer32>
-       <Integer32>528490286</Integer32>
+       <Integer32>-536804861</Integer32>
+       <Integer32>268435442</Integer32>
+       <Integer32>528490285</Integer32>
        <Integer32>-260368590</Integer32>
        <Integer32>268435456</Integer32>
-       <Integer32>-536731249</Integer32>
-       <Integer32>268435461</Integer32>
+       <Integer32>-536731251</Integer32>
+       <Integer32>268435463</Integer32>
        <Integer32>535199095</Integer32>
-       <Integer32>-266996749</Integer32>
+       <Integer32>-266996750</Integer32>
        <Integer32>268435456</Integer32>
        <Integer32>-535907583</Integer32>
        <Integer32>267655832</Integer32>
@@ -92,26 +92,26 @@
        <Integer32>264522778</Integer32>
        <Integer32>520108855</Integer32>
        <Integer32>-258714364</Integer32>
-       <Integer32>260280016</Integer32>
-       <Integer32>-510702743</Integer32>
-       <Integer32>251310024</Integer32>
-       <Integer32>510702743</Integer32>
-       <Integer32>-243154584</Integer32>
+       <Integer32>257284901</Integer32>
+       <Integer32>-506209408</Integer32>
+       <Integer32>249803997</Integer32>
+       <Integer32>506209408</Integer32>
+       <Integer32>-238653441</Integer32>
    </peqcoeff48>
    <peqcoeff44>
        <Integer32>268435456</Integer32>
-       <Integer32>-268435463</Integer32>
+       <Integer32>-268435453</Integer32>
        <Integer32>0</Integer32>
        <Integer32>255645404</Integer32>
        <Integer32>0</Integer32>
        <Integer32>268435456</Integer32>
-       <Integer32>-536792664</Integer32>
-       <Integer32>268435442</Integer32>
+       <Integer32>-536792682</Integer32>
+       <Integer32>268435461</Integer32>
        <Integer32>527731437</Integer32>
        <Integer32>-259667188</Integer32>
        <Integer32>268435456</Integer32>
-       <Integer32>-536705454</Integer32>
-       <Integer32>268435462</Integer32>
+       <Integer32>-536705445</Integer32>
+       <Integer32>268435454</Integer32>
        <Integer32>535029286</Integer32>
        <Integer32>-266869926</Integer32>
        <Integer32>268435456</Integer32>
@@ -134,24 +134,24 @@
        <Integer32>264182986</Integer32>
        <Integer32>517990857</Integer32>
        <Integer32>-257880140</Integer32>
-       <Integer32>259596495</Integer32>
-       <Integer32>-508424445</Integer32>
-       <Integer32>249874713</Integer32>
-       <Integer32>508424445</Integer32>
-       <Integer32>-241035752</Integer32>
+       <Integer32>256359259</Integer32>
+       <Integer32>-503579813</Integer32>
+       <Integer32>248257343</Integer32>
+       <Integer32>503579813</Integer32>
+       <Integer32>-236181146</Integer32>
        <Integer32>268435456</Integer32>
-       <Integer32>-268435463</Integer32>
+       <Integer32>-268435453</Integer32>
        <Integer32>0</Integer32>
        <Integer32>255645404</Integer32>
        <Integer32>0</Integer32>
        <Integer32>268435456</Integer32>
-       <Integer32>-536792664</Integer32>
-       <Integer32>268435442</Integer32>
+       <Integer32>-536792682</Integer32>
+       <Integer32>268435461</Integer32>
        <Integer32>527731437</Integer32>
        <Integer32>-259667188</Integer32>
        <Integer32>268435456</Integer32>
-       <Integer32>-536705454</Integer32>
-       <Integer32>268435462</Integer32>
+       <Integer32>-536705445</Integer32>
+       <Integer32>268435454</Integer32>
        <Integer32>535029286</Integer32>
        <Integer32>-266869926</Integer32>
        <Integer32>268435456</Integer32>
@@ -174,11 +174,11 @@
        <Integer32>264182986</Integer32>
        <Integer32>517990857</Integer32>
        <Integer32>-257880140</Integer32>
-       <Integer32>259596495</Integer32>
-       <Integer32>-508424445</Integer32>
-       <Integer32>249874713</Integer32>
-       <Integer32>508424445</Integer32>
-       <Integer32>-241035752</Integer32>
+       <Integer32>256359259</Integer32>
+       <Integer32>-503579813</Integer32>
+       <Integer32>248257343</Integer32>
+       <Integer32>503579813</Integer32>
+       <Integer32>-236181146</Integer32>
    </peqcoeff44>
    <peqpregain48>
        <Integer32>234075580</Integer32>
@@ -197,7 +197,7 @@
        <Integer32>268435456</Integer32>
    </peqpostgain44>
    <mode>2</mode>
-   <ExcursionControl>1</ExcursionControl>
+   <ExcursionControl>0</ExcursionControl>
    <bandcoeff48>
        <Integer32>234987958</Integer32>
        <Integer32>-501871528</Integer32>
@@ -527,28 +527,28 @@
        <Integer32>68842029</Integer32>
    </AntiResonanceFc44>
    <AntiResonanceG>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
-       <Integer32>1220</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
+       <Integer32>1026</Integer32>
    </AntiResonanceG>
    <AntiResonanceQ>
        <Integer32>2048</Integer32>

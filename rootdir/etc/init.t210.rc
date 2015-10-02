@@ -6,3 +6,5 @@ on boot
 # Sensor permissions
     chown system system /sys/class/sensors/light/device/amb_clear
 
+# TCP divisor for traffic throttling
+    chown system system /sys/module/tcp_output/parameters/tcp_window_divisor

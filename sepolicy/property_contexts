@@ -20,6 +20,7 @@ persist.tegra.hdmi.volume_type   u:object_r:system_prop:s0
 persist.tegra.stb.mode           u:object_r:system_prop:s0
 persist.tegra.idle.minimum_fps   u:object_r:system_prop:s0
 persist.tegra.hdmi.resolution    u:object_r:system_prop:s0
+persist.tegra.hdmi.underscan     u:object_r:system_prop:s0
 persist.tegra.hdmi.cec_volume    u:object_r:system_prop:s0
 persist.tegra.sf.enable_TB       u:object_r:system_prop:s0
 persist.tegra.panel.rotation     u:object_r:system_prop:s0
@@ -41,6 +42,9 @@ hwui.                           u:object_r:hwui_prop:s0
 
 # audio non persistent properties
 audio.                           u:object_r:audio_prop:s0
+
+#used to enable adb over tcpip on port 5555 from Settings app
+persist.system.adb.tcp.enable    u:object_r:system_prop:s0
 
 # factory
 factory.                           u:object_r:factory_prop:s0
