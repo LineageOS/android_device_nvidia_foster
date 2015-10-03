@@ -26,11 +26,6 @@ $(call inherit-product-if-exists, vendor/nvidia/foster/foster-vendor.mk)
 DEVICE_PACKAGE_OVERLAYS += \
     device/nvidia/foster/overlay
 
-# Kernel
-# Open Source kernel boots aosp libs, but hangs on stock blobs.
-# Only the prebuilt stock kernel will boot the stock blobs.
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/kernel:kernel
-
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.foster \
