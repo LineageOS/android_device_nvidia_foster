@@ -82,6 +82,7 @@ vendor/lib64/hw/hwcomposer.tegra.so
 vendor/lib64/hw/keystore.tegra.so
 vendor/lib64/hw/memtrack.tegra.so
 vendor/lib64/hw/pbc.tegra.so
+vendor/lib64/libaffinitydaemon.so
 vendor/lib64/libaudiopolicymanager.so
 vendor/lib64/libclcore_nvidia.bc
 vendor/lib64/libcuda.so
@@ -154,6 +155,7 @@ vendor/lib/libglcore.so
 vendor/lib/libnppc.so
 vendor/lib/libnppi.so
 vendor/lib/libnvapputil.so
+vendor/lib/libnvasfparserhal.so
 vendor/lib/libnvaudiofx.so
 vendor/lib/libnvaudioservice.so
 vendor/lib/libnvaviparserhal.so
@@ -182,6 +184,8 @@ vendor/lib/libnvidia_APP5Marker_jni.so
 vendor/lib/libnvidia-compiler.so
 vendor/lib/libnvisp_v3.so
 vendor/lib/libnvme_msenc.so
+vendor/lib/libnvmm_msaudio.so
+vendor/lib/libnvmm_asfparser.so
 vendor/lib/libnvmm_audio.so
 vendor/lib/libnvmm_aviparser.so
 vendor/lib/libnvmm_camera_v3.so
@@ -189,6 +193,7 @@ vendor/lib/libnvmm_contentpipe.so
 vendor/lib/libnvmmlite_audio.so
 vendor/lib/libnvmmlite_image.so
 vendor/lib/libnvmmlite.so
+vendor/lib/libnvmmlite_msaudio.so
 vendor/lib/libnvmmlite_utils.so
 vendor/lib/libnvmmlite_video.so
 vendor/lib/libnvmm_parser.so
