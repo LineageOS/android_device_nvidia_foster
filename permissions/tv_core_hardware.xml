@@ -27,7 +27,7 @@
     <feature name="android.hardware.location" />
     <feature name="android.hardware.location.network" />
     <feature name="android.hardware.screen.landscape" />
-    <feature name="android.hardware.type.television" />
+    <!--<feature name="android.hardware.type.television" />-->
 
     <!-- basic system services -->
     <feature name="android.software.app_widgets" />
@@ -35,7 +35,7 @@
     <feature name="android.software.backup" />
     <feature name="android.software.home_screen" />
     <feature name="android.software.input_methods" />
-    <feature name="android.software.leanback" />
+    <!--<feature name="android.software.leanback" />-->
     <feature name="android.software.print" />
 
     <!-- Feature to specify if the device supports adding device admins. -->
