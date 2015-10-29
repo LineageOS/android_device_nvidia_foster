@@ -18,15 +18,15 @@ nvcpl			u:object_r:system_app_service:s0
 set_hwui_params		u:object_r:system_app_service:s0
 ShieldStats		u:object_r:system_app_service:s0
 
-nvwifi			u:object_r:system_server_service:s0
-xlanwifi		u:object_r:system_server_service:s0
-xlanwifip2p		u:object_r:system_server_service:s0
+#nvwifi			u:object_r:system_server_service:s0
+#xlanwifi		u:object_r:system_server_service:s0
+#xlanwifip2p		u:object_r:system_server_service:s0
 
 PHS			u:object_r:ussrd_service:s0
 
 android.display.hwcomposer	u:object_r:surfaceflinger_service:s0
 
-nvidia.inputservice         u:object_r:system_server_service:s0
+#nvidia.inputservice         u:object_r:system_server_service:s0
 
-RemoteControlService		u:object_r:system_server_service:s0
+#RemoteControlService		u:object_r:system_server_service:s0
 
