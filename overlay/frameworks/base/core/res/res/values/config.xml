@@ -79,6 +79,11 @@
          autodetected from the Configuration. -->
     <bool name="config_showNavigationBar">false</bool>
 
+    <!--  Maximum number of supported users -->
+    <integer name="config_multiuserMaximumUsers">8</integer>
+    <!-- Whether UI for multi user should be shown -->
+    <bool name="config_enableMultiUserUI">true</bool>
+
     <!-- Whether enable sleep button in power menu -->
     <add-resource type="bool" name="config_enableSleepButtonInPowerMenu"/>
     <bool name="config_enableSleepButtonInPowerMenu">true</bool>
