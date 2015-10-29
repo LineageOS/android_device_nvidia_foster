@@ -43,6 +43,7 @@ KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_SOURCE := kernel/nvidia/foster
 TARGET_KERNEL_CONFIG := cyanogenmod_foster_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_USERDATAIMAGE_PARTITION_SIZE  := 12228902400
@@ -95,53 +96,6 @@ WIFI_DRIVER_MODULE_NAME     := "bcmdhd"
 
 # SELinux
 BOARD_SEPOLICY_DIRS += device/nvidia/foster/sepolicy
-BOARD_SEPOLICY_UNION += \
-	te_macros \
-	app.te \
-	bluetooth.te \
-	bootanim.te \
-	ctload.te \
-	cyupdate.te \
-	cvc.te \
-	diag.te \
-	device.te \
-	domain.te \
-	drmserver.te \
-	file_contexts \
-	file.te \
-	genfs_contexts \
-	gpload.te \
-	healthd.te\
-	hostapd.te \
-	init.te \
-	installd.te \
-	mediaserver.te \
-	netd.te \
-	pbc.te \
-	platform_app.te \
-	property_contexts \
-	property.te \
-	qvs.te \
-	recovery.te \
-	service_contexts \
-	set_hwui.te \
-	setup_fs.te \
-	shell.te \
-	surfaceflinger.te \
-	system_app.te \
-	system_server.te \
-	tee.te \
-	ueventd.te \
-	uncrypt.te \
-	untrusted_app.te \
-	update_js_touch_fw.te \
-	usb.te \
-	ussrd.te \
-	ussr_setup.te \
-	vold.te \
-	wifi_loader.te \
-	wpa.te \
-	zygote.te
 
 # Pro model doesn't support trim commands
 BOARD_SUPPRESS_EMMC_WIPE := true
@@ -149,4 +103,4 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_foster
-TARGET_LIBINIT_DEFINES_FILE := device/nvidia/foster/init/init_foster.c
+TARGET_LIBINIT_DEFINES_FILE := device/nvidia/foster/init/init_foster.cpp

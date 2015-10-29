@@ -131,7 +131,7 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 # Wireless Controller
-$(call inherit-product-if-exists, vendor/nvidia/shield_common/blake64-blobs.mk)
+#$(call inherit-product-if-exists, vendor/nvidia/shield_common/blake64-blobs.mk)
 
 # Leanback Keyboard
 PRODUCT_PACKAGES += LeanbackIme
