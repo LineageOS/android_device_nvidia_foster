@@ -1,0 +1,53 @@
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#
+# ussrd - power management service
+#
+type ussrd, domain;
+type ussrd_exec, exec_type, file_type;
+type ussrd_service, service_manager_type;
+
+init_daemon_domain(ussrd)
+
+# Allow ussrd to be add a new Binder service, be a binder server, and
+# allow clients to connect to the ussrd Binder service.
+binder_use(ussrd)
+binder_service(ussrd)
+allow ussrd ussrd_service:service_manager add;
+
+# /dev/socket/phsd
+allow ussrd phsd_socket:unix_stream_socket rw_stream_socket_perms;
+
+# R/W sysfs, /dev nodes
+allow ussrd sysfs_devices_system_cpu:file rw_file_perms;
+allow ussrd pmqos_device:chr_file rw_file_perms;
+
+# /data/misc/phs
+# Rule states that when a process of type ussrd creates a file in the directory
+# of type system_data_file, by default it should have the type phsd_data
+type_transition ussrd system_data_file:file phsd_data;
+allow ussrd phsd_data:dir { setattr rw_dir_perms };
+allow ussrd phsd_data:file create_file_perms;
+
+# /mnt/tmp/fc[0-9] files.
+allow ussrd surfaceflinger_tmpfs:file r_file_perms;
+allow ussrd surfaceflinger_fc:file r_file_perms;
+
+# thermal
+allow ussrd sysfs_thermal:dir rw_dir_perms;
+allow ussrd sysfs_thermal:file rw_file_perms;
+
+# Allow to write to nvfeedback log file
+allow ussrd anr_data_file:file write;

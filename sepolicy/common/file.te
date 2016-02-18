@@ -1,0 +1,148 @@
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Filesystem type
+type ntfs, sdcard_type, fs_type, mlstrustedobject;
+
+# /sys/power/sysedp/...
+type sysfs_sysedp, fs_type, sysfs_type;
+
+# /sys/devices/platform/tegra_usb_modem_power/...
+# /sys/devices/platform/sysedp_modem/...
+type sysfs_radio, fs_type, sysfs_type;
+
+# /sys/devices/platform/tegra_usb_modem_power/...
+# /sys/devices/platform/.../gpio/gpio../...
+type sysfs_gpio, fs_type, sysfs_type;
+
+#/sys/class/gps_wake/gps_device/gps_enable
+type sysfs_gps_wake, fs_type, sysfs_type;
+
+# /sys/bus/usb/...
+# /sys/devices/platform/tegra-ehci../...
+type sysfs_bus_usb, fs_type, sysfs_type;
+
+# /sys/devices/platform/tegra-sata.*/...
+type sysfs_sata, fs_type, sysfs_type;
+
+# /sys/net/core/wmem_default
+type proc_wmem_default_writable, fs_type;
+
+# /sys/net/core/wmem_max
+type proc_wmem_max_writable, fs_type;
+
+# /data/nvcam
+type nv_camera_data_file, file_type, data_file_type;
+
+# /data/misc/nvsipc
+type nvs_socket, file_type;
+
+# /data/misc
+type phsd_data, file_type;
+
+# /dev/socket/phsd
+type phsd_socket, file_type;
+
+# /dev/socket/charon..
+type charon_socket, file_type;
+
+# /sys/devices/virtual/thermal(/.*)
+type sysfs_thermal, fs_type, sysfs_type;
+
+# /sys/devices/platform/host1x/tegradc.0/smartdimmer/...
+type sysfs_smartdimmer, fs_type, sysfs_type;
+
+# /sys/devices/platform/host1x/tegradc.0/cmu_enable
+type sysfs_cmu, fs_type, sysfs_type;
+
+# /sys/devices/platform/pwm-fan.*
+type sysfs_pwm_fan, fs_type, sysfs_type;
+
+# /sys/module/input_cfboost/parameters/...
+type sysfs_cfboost, fs_type, sysfs_type;
+
+# /sys/class/sound/...
+type sysfs_sound, fs_type, sysfs_type;
+
+# /sys/class/ozmo_wpan
+type sysfs_ozmo, fs_type, sysfs_type;
+
+# /sys/devices/platform/ozwpan/.../mode
+type sysfs_blake, fs_type, sysfs_type;
+
+# /sys/devices/virtual/misc/touch/slowscan_enable
+type sysfs_slowscan, fs_type, sysfs_type;
+
+# /dev/ozwpan
+type ozmo_device, dev_type;
+
+# /sys/kernel/pmic/...
+type sysfs_pmic, fs_type, sysfs_type;
+
+# sys/devices/soc*/...
+type sysfs_soc, fs_type, sysfs_type;
+
+# /sys/bus/hid/
+type sysfs_hid, fs_type, sysfs_type;
+
+# /sys/devices/virtual/misc/tegra-throughput/fps
+# /sys/devices/virtual/misc/tegra-throughput/framecount
+type sysfs_throughput, fs_type, sysfs_type;
+
+# /sys/module/bcmdhd/parameters/firmware_path
+type sysfs_wifi, fs_type, sysfs_type;
+
+# /sys/devices/platform/pwm-leds(.*)/leds/led_lightbar(/.*)
+type sysfs_lightbar, fs_type, sysfs_type;
+
+# /mnt/tmp/fc[0-9] files.
+type surfaceflinger_fc, file_type;
+
+# /mnt/factory
+type factory_file, fs_type, contextmount_type;
+
+# /usercalib
+type user_calib_file, file_type, data_file_type;
+
+# Needed to mount fuseblk filesystem
+type fuseblk, sdcard_type, fs_type, mlstrustedobject;
+
+# /sys/devices/platform/tegra.*i2c\.[0-9]+(/.*)?
+# /sys/devices/platform/[0-9a-f]+\.i2c(/.*)?
+type sysfs_nvi2c, fs_type, sysfs_type, mlstrustedobject;
+
+# /data/misc/cvc(/.*)
+type cvc_data_file, file_type, data_file_type;
+type sysfs_cvc, fs_type, sysfs_type;
+
+# /sys/module/tcp_output/parameters
+type sysfs_tcp_window_divisor, fs_type, sysfs_type;
+
+# /sys/devices/platform/gamepad.*/gamepad_reset
+type sysfs_gamepad, fs_type, sysfs_type;
+
+# For USB gadget configuration
+type configfs, fs_type;
+
+# /factory/wifi_config
+type factoryconfig_file, file_type;
+
+# /sys/devices/platform/host1x/tegradc.0/vrr/...
+type sysfs_vrr, fs_type, sysfs_type;
+
+# /sys/devices/virtual/misc/touch/log
+type sysfs_touch_log, fs_type, sysfs_type;
+
+# Filesystem type CIFS
+type cifs, sdcard_type, fs_type, mlstrustedobject;

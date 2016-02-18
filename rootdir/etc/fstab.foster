@@ -5,6 +5,7 @@
 # This fstab is only used for the updater script. Assumes the recovery has made appropriate symlinks
 
 /dev/block/APP            /system             ext4      ro                                                                  wait
+/dev/block/vendor         /vendor             ext4      ro                                                                  wait
 /dev/block/CAC            /cache              ext4      noatime,nosuid,nodev,data=ordered,nodelalloc,errors=panic           wait
 /dev/block/LNX            /boot               emmc      defaults                                                            defaults
 /dev/block/MSC            /misc               emmc      defaults                                                            defaults

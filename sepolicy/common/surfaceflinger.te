@@ -1,0 +1,64 @@
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Allow writing to ro.sf.lcd_density at boot, so that we can dynamically
+# configure the DPI
+allow surfaceflinger surfaceflinger_prop:property_service set;
+# Allow execmem to use fast format/data conversions inside the driver.
+allow surfaceflinger self:process execmem;
+# Allow surfaceflinger to configure smartdimmer and other PMQoS nodes
+allow surfaceflinger sysfs_thermal:file rw_file_perms;
+allow surfaceflinger sysfs_smartdimmer:file rw_file_perms;
+
+# Allow surfaceflinger to access tsec
+allow surfaceflinger tsec_device:chr_file rw_file_perms;
+
+# allow /dev to allow adf to search for /dev/adf*
+allow surfaceflinger device:dir r_dir_perms;
+
+# The objective here is to allow surfaceflinger r/w/c access
+# /mnt/tmp/fc[0-9] files.
+#
+# I first give surfaceflinger r/w/c to 'tmpfs' and
+# 'surfaceflinger_tmpfs': I don't know _exactly_ how those two are
+# related (I suppose 'surfaceflinger_tmpfs' is subset of 'tmpfs'
+# because the first line is also required).
+#
+# Then, further, I also give permissions to the /mnt/tmp/fc<N> nodes
+# explicitly (r/w/c to surfaceflinger and r to ussrd) which may not be
+# strictly needed after the first two but seems to be in line with how
+# sepolicies are written, i.e. come up with as many contexts and
+# domains and types as you can think of to model your usage patterns.
+#
+allow surfaceflinger tmpfs:dir rw_dir_perms;
+allow surfaceflinger surfaceflinger_tmpfs:dir rw_dir_perms;
+allow surfaceflinger surfaceflinger_tmpfs:file create_file_perms;
+
+allow surfaceflinger surfaceflinger_fc:dir rw_dir_perms;
+allow surfaceflinger surfaceflinger_fc:file create_file_perms;
+
+allow surfaceflinger tegradc_device:chr_file { read ioctl open write };
+
+# Needed to call NvPHSSendThroughputHints() from surfaceflinger
+allow_use_phs(surfaceflinger);
+allow surfaceflinger ussrd_service:service_manager find;
+
+allow surfaceflinger self:capability sys_nice;
+
+allow surfaceflinger sysfs_vrr:file rw_file_perms;
+
+allow surfaceflinger pmqos_device:chr_file rw_file_perms;
+
+# Allow to write to nvfeedback log file
+allow surfaceflinger anr_data_file:file write;

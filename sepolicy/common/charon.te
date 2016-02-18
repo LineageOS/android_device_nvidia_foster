@@ -1,0 +1,52 @@
+# Copyright (c) 2015, NVIDIA CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# IKEv2 key management daemon
+type charon, domain;
+type charon_exec, exec_type, file_type;
+
+init_daemon_domain(charon)
+typeattribute charon mlstrustedsubject;
+
+net_domain(charon)
+
+binder_use(charon)
+
+allow charon tun_device:chr_file rw_file_perms;
+allow charon cgroup:dir { add_name create };
+allow charon kernel:system module_request;
+allow charon proc_net:file write;
+allow charon radio_device:chr_file rw_file_perms;
+
+allow charon self:key_socket create_socket_perms;
+allow charon self:tun_socket create_socket_perms;
+allow charon self:netlink_socket create_socket_perms;
+allow charon self:netlink_xfrm_socket { create_socket_perms nlmsg_read nlmsg_write };
+allow charon self:netlink_route_socket nlmsg_write;
+allow charon self:capability { net_admin net_bind_service net_raw setuid setgid chown dac_override dac_read_search };
+
+allow charon system_file:file rx_file_perms;
+allow charon vpn_data_file:file create_file_perms;
+allow charon vpn_data_file:dir w_dir_perms;
+
+set_prop(charon, net_radio_prop)
+
+use_keystore(charon)
+
+# charon (VPN) has a restricted set of permissions from the default.
+allow charon keystore:keystore_key {
+	get
+	sign
+	verify
+};

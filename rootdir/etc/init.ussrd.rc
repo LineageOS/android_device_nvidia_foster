@@ -1,4 +1,4 @@
-#Copyright (c) 2014 NVIDIA Corporation.  All Rights Reserved.
+#Copyright (c) 2014-2015 NVIDIA Corporation.  All Rights Reserved.
 #
 #NVIDIA Corporation and its licensors retain all intellectual property and
 #proprietary rights in and to this software and related documentation.  Any
@@ -34,13 +34,6 @@ on boot
     chmod 0444 /sys/kernel/debug/clock/c2bus/possible_rates
     chown system system /sys/kernel/debug/clock/cpu_lp/max
     chmod 0664 /sys/kernel/debug/clock/cpu_lp/max
-
-    chown system system /sys/devices/virtual/misc/tegra-throughput/fps
-    chmod 0444 /sys/devices/virtual/misc/tegra-throughput/fps
-    chown system system /sys/devices/virtual/misc/tegra-throughput/framecount
-    chmod 0444 /sys/devices/virtual/misc/tegra-throughput/framecount
-
-    setprop persist.sys.ad.enable 0
 
 # create a folder for phs to store various files
 on post-fs-data

@@ -1,0 +1,103 @@
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+allow system_app quadd_auth_device:chr_file rw_file_perms;
+allow system_app asec_apk_file:file r_file_perms;
+
+# /sys/devices/virtual/thermal/...
+allow system_app sysfs_thermal:file rw_file_perms;
+allow system_app sysfs_thermal:dir r_dir_perms;
+
+# /dev/constraint_*
+allow system_app pmqos_device:{ file chr_file } rw_file_perms;
+
+# /sys/devices/system/cpu/...
+allow system_app sysfs_devices_system_cpu:file rw_file_perms;
+
+# /sys/devices/platform/host1x/tegradc.0/smartdimmer/...
+allow system_app sysfs_smartdimmer:file rw_file_perms;
+
+#/sys/devices/platform/pwm-leds(.*)/leds/led_lightbar(/.*)
+allow system_app sysfs_lightbar:file rw_file_perms;
+
+# /sys/devices/platform/pwm-fan.*
+allow system_app sysfs_pwm_fan:file rw_file_perms;
+
+# /sys/devices/platform/host1x/tegradc.0/cmu_enable
+allow system_app sysfs_cmu:file rw_file_perms;
+
+# sys/devices/soc*/...
+allow system_app sysfs_soc:file r_file_perms;
+allow system_app sysfs_soc:dir r_dir_perms;
+
+# /dev/tegra_dc_*
+allow system_app tegradc_device:chr_file rw_file_perms;
+
+allow system_app device:dir r_dir_perms;
+
+allow system_app debugfs:file r_file_perms;
+
+# Blake specific
+allow system_app sysfs_bus_usb:file w_file_perms;
+allow system_app sysfs_sound:{ file lnk_file } r_file_perms;
+allow system_app sysfs_sound:dir r_dir_perms;
+allow system_app sysfs_ozmo:lnk_file read;
+allow system_app sysfs_ozmo:dir rw_dir_perms;
+allow system_app sysfs_ozmo:file rw_file_perms;
+allow system_app sysfs_hid:dir r_dir_perms;
+allow system_app sysfs_hid:file rw_file_perms;
+allow system_app hidraw_device:chr_file rw_file_perms;
+allow system_app input_device:dir r_dir_perms;
+allow system_app input_device:chr_file r_file_perms;
+allow system_app ozmo_device:chr_file rw_file_perms;
+allow system_app sysfs_blake:file rw_file_perms;
+
+# NvEsrd specific
+allow system_app sysfs_sysedp:dir r_dir_perms;
+allow system_app sysfs_sysedp:file rw_file_perms;
+allow system_app sysfs_nvi2c:dir r_dir_perms;
+allow system_app sysfs_nvi2c:{ file lnk_file } rw_file_perms;
+
+# NvCPLSvc
+allow system_app cvc_data_file:dir r_dir_perms;
+allow system_app cvc_data_file:file rw_file_perms;
+allow system_app system_app_service:service_manager add;
+allow system_app sysfs_tcp_window_divisor:file rw_file_perms;
+
+# Read and write /data/data subdirectory.
+allow system_app system_app_data_file:lnk_file create_file_perms;
+
+# IKEv2 daemon
+unix_socket_connect(system_app, charon, charon)
+allow system_app ctl_charon_prop:property_service set;
+
+# Gamepad reset
+allow system_app sysfs_gamepad:file rw_file_perms;
+
+# Sku files and RP3 partition
+r_dir_file(system_app, factoryconfig_block_device)
+r_dir_file(system_app, factoryconfig_file)
+
+allow system_app factory_prop:property_service set;
+
+# Variable refresh rate
+allow system_app sysfs_vrr:file rw_file_perms;
+
+#Shield Remote
+allow system_app uhid_device:chr_file rw_file_perms;
+
+# nvfeedback to use dumpstate in order to collect full bugreport
+allow system_app ctl_default_prop:property_service set;
+allow system_app dumpstate_exec:file { read getattr open execute execute_no_trans };
+allow system_app anr_data_file:dir remove_name;

@@ -10,7 +10,12 @@ import init.loki_foster_e_common.rc
 
 on boot
     chown system system /sys/class/leds/led_lightbar/brightness
+    chown system system /sys/class/leds/led_lightbar/boot_mode
+    chown system system /sys/class/leds/led_lightbar/version
+    chown system system /sys/class/leds/led_lightbar/effects
+    chown system system /sys/class/leds/led_lightbar/params
     write /sys/devices/system/cpu/cpuquiet/runnable_threads/nr_run_thresholds "6 10 18"
+
     # Lower console loglevel to reduce number of printk messages to console
     write /proc/sys/kernel/printk "4 7 1 7 3"
 
@@ -18,16 +23,9 @@ on post-fs-data
 # Set Foster as console mode
     setprop persist.sys.display.resolution 1920x1080
     setprop persist.tegra.hdmi.resolution Max_60Hz
-    setprop persist.tegra.composite.policy assign-windows
+    setprop persist.tegra.composite.policy composite-yuv
     write /sys/power/wake_lock foster-staywake
     start cyupdate
-
-service cyupdate /vendor/bin/cyupdate.sh
-    class main
-    user system
-    group system
-    oneshot
-    disabled
 
 on init
     mkdir /mnt/media_rw/usbdrive2 0700 media_rw media_rw
@@ -44,4 +42,11 @@ service fuse_usbdrive2 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_
 
 service fuse_usbdrive3 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbdrive3 /storage/usbdrive3
     class late_start
+    disabled
+
+service cyupdate /vendor/bin/cyupdate.sh
+    class main
+    user system
+    group system
+    oneshot
     disabled

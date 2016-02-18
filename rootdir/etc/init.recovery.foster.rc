@@ -16,8 +16,8 @@
 # Based off init scripts from Nvidia which are:
 #Copyright (c) 2011-2014 NVIDIA Corporation.  All Rights Reserved.
 
-# This yields each tegra wdt expiration to be at 7.5 secs and fourth expiration for reboot at 30 secs.
-service watchdogd /sbin/watchdogd 10 20
+# This yields each tegra wdt expiration to be at 45 secs and fourth expiration for reboot at 180 secs.
+service watchdogd /sbin/watchdogd 20 160
     class default
     seclabel u:r:watchdogd:s0
 

@@ -1,0 +1,265 @@
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+##########################
+# Devices
+
+# GPU
+/dev/nvhost-as-gpu			u:object_r:gpu_device:s0
+/dev/nvhost-ctrl			u:object_r:gpu_device:s0
+/dev/nvhost-ctrl-gpu			u:object_r:gpu_device:s0
+/dev/nvhost-gpu				u:object_r:gpu_device:s0
+/dev/nvhost-dbg-gpu			u:object_r:gpu_device:s0
+/dev/nvhost-tsg-gpu			u:object_r:gpu_device:s0
+/dev/nvhost-prof-gpu			u:object_r:gpu_device:s0
+/dev/nvhost-vic				u:object_r:gpu_device:s0
+/dev/nvmap				u:object_r:gpu_device:s0
+/dev/nvhdcp0				u:object_r:gpu_device:s0
+# camera devices
+/dev/camera.pcl				u:object_r:camera_device:s0
+/dev/nvhost-ctrl-vi.*			u:object_r:camera_device:s0
+/dev/nvhost-vi.*			u:object_r:camera_device:s0
+/dev/nvhost-ctrl-isp.*			u:object_r:camera_device:s0
+/dev/nvhost-isp.*			u:object_r:camera_device:s0
+/dev/nvhost-msenc			u:object_r:camera_device:s0
+/dev/focuser				u:object_r:camera_device:s0
+/dev/torch.*				u:object_r:camera_device:s0
+/dev/mipi-cal				u:object_r:camera_device:s0
+/dev/tegra_camera_ctrl			u:object_r:camera_device:s0
+# Pmqos device
+/dev/constraint.*			u:object_r:pmqos_device:s0
+/dev/emc_freq_min			u:object_r:pmqos_device:s0
+/dev/cpu_freq_max			u:object_r:pmqos_device:s0
+/dev/cpu_freq_min			u:object_r:pmqos_device:s0
+/dev/gpu_freq_max			u:object_r:pmqos_device:s0
+/dev/gpu_freq_min			u:object_r:pmqos_device:s0
+# TLK device
+/dev/tlk_device				u:object_r:tee_device:s0
+# modem devices
+/dev/ttyACM.*				u:object_r:radio_device:s0
+# Tegra System Profiler
+/dev/quadd				u:object_r:quadd_device:s0
+/dev/quadd_auth				u:object_r:quadd_auth_device:s0
+# Hidraw
+/dev/hidraw[0-9]			u:object_r:hidraw_device:s0
+# Tsec
+/dev/nvhost-tsec			u:object_r:tsec_device:s0
+/dev/nvhost-tsecb			u:object_r:tsec_device:s0
+# Nvdec
+/dev/nvhost-nvdec			u:object_r:video_device:s0
+# Nvjpg
+/dev/nvhost-nvjpg			u:object_r:gpu_device:s0
+# Nvdec control node
+/dev/nvhost-ctrl-nvdec			u:object_r:tee_device:s0
+# Blake OTA path
+/dev/ozwpan				u:object_r:ozmo_device:s0
+# i2c devices
+/dev/i2c-[0-9]+				u:object_r:i2c_device:s0
+# phs
+/dev/socket/phsd			u:object_r:phsd_socket:s0
+# dual wifi
+/dev/socket/wpa_xlan[0-9]		u:object_r:wpa_socket:s0
+# /dev/tegra_dc devices
+/dev/tegra_dc_.*			u:object_r:tegradc_device:s0
+# rpmb block device
+/dev/block/platform/sdhci-tegra\.3/mmcblk0rpmb		u:object_r:rpmb_block_device:s0
+# setup_fs emmc
+/dev/block/platform/sdhci-tegra(.*)/by-name/UDA		u:object_r:userdata_block_device:s0
+/dev/block/platform/sdhci-tegra(.*)/by-name/CAC		u:object_r:cache_block_device:s0
+/dev/block/platform/sdhci-tegra(.*)/by-name/UCB		u:object_r:usercalib_block_device:s0
+/dev/block/platform/sdhci-tegra(.*)/by-name/FCT		u:object_r:factorycalib_block_device:s0
+/dev/block/platform/sdhci-tegra(.*)/by-name/RP3		u:object_r:factoryconfig_block_device:s0
+/dev/block/platform/sdhci-tegra(.*)/by-name/LNX		u:object_r:boot_block_device:s0
+/dev/block/platform/sdhci-tegra(.*)/by-name/SOS		u:object_r:recovery_block_device:s0
+# setup_fs sata
+/dev/block/platform/tegra-sata(.*)/by-name/UDA		u:object_r:userdata_block_device:s0
+/dev/block/platform/tegra-sata(.*)/by-name/CAC		u:object_r:cache_block_device:s0
+/dev/block/platform/tegra-sata(.*)/by-name/UCB		u:object_r:usercalib_block_device:s0
+/dev/block/platform/tegra-sata(.*)/by-name/FCT		u:object_r:factorycalib_block_device:s0
+/dev/block/platform/tegra-sata(.*)/by-name/RP3		u:object_r:factoryconfig_block_device:s0
+/dev/block/platform/tegra-sata(.*)/by-name/LNX		u:object_r:boot_block_device:s0
+/dev/block/platform/tegra-sata(.*)/by-name/SOS		u:object_r:recovery_block_device:s0
+# cpc char device
+/dev/tegra_cpc				u:object_r:cpc_device:s0
+# IKEv2 daemon
+/dev/socket/charon			u:object_r:charon_socket:s0
+/dev/socket/charon_status		u:object_r:charon_socket:s0
+# touch
+/dev/touch				u:object_r:touch_device:s0
+# zram
+/dev/block/zram0			u:object_r:swap_block_device:s0
+# /dev/cy8c-led-boot devices
+/dev/cy8c-led-boot			u:object_r:cy8c_device:s0
+
+#############################
+# System files
+
+# TEE
+(/system)?/vendor/bin/tlk_daemon	u:object_r:tee_exec:s0
+(/system)?/vendor/bin/ss_status		u:object_r:tee_exec:s0
+(/system)?/vendor/bin/ss_status.sh	u:object_r:tee_exec:s0
+# wifi
+/system/bin/wifi_loader.sh		u:object_r:wifi_loader_exec:s0
+# bt
+/system/bin/bt_loader.sh		u:object_r:bt_loader_exec:s0
+# ethernet
+/system/bin/rebindEthernet.sh		u:object_r:rebindEthernet_exec:s0
+# gps
+/system/bin/gps_select.sh		u:object_r:gpsd_exec:s0
+/system/bin/glgps_nvidiaTegra2android	u:object_r:gpsd_exec:s0
+# set_hwui_params.sh
+/system/bin/set_hwui_params.sh		u:object_r:set_hwui_exec:s0
+# adbenable.sh
+/system/bin/adbenable.sh		u:object_r:adb_enable_exec:s0
+# diag
+(/system)?/vendor/bin/stress_test.sh	u:object_r:diag_exec:s0
+(/system)?/vendor/bin/diag_perm.sh	u:object_r:diag_exec:s0
+# gpload
+(/system)?/vendor/bin/gpload		u:object_r:gpload_exec:s0
+# ctload
+(/system)?/vendor/bin/ctload		u:object_r:ctload_exec:s0
+# update_js_touch_fw
+/system/bin/update_js_touch_fw.sh	u:object_r:update_js_touch_fw_exec:s0
+# phs
+(/system)?/vendor/bin/ussrd		u:object_r:ussrd_exec:s0
+/system/bin/ussr_setup.sh		u:object_r:ussr_setup_exec:s0
+# dual wifi
+/system/bin/wpa_supplicant_2		u:object_r:wpa_exec:s0
+# pbc
+(/system)?/vendor/bin/pbc		u:object_r:pbc_exec:s0
+(/system)?/vendor/bin/pbc2		u:object_r:pbc_exec:s0
+# cvc
+(/system)?/vendor/bin/cvc		u:object_r:cvc_exec:s0
+# cyupdate.sh
+(/system)?/vendor/bin/cyupdate.sh	u:object_r:cyupdate_exec:s0
+# cyload
+(/system)?/vendor/bin/cyload		u:object_r:cyupdate_exec:s0
+# qvs shell script
+/system/xbin/qvs_post_boot.sh		u:object_r:qvs_exec:s0
+#setup_fs
+/system/bin/setup_fs			u:object_r:setup_fs_exec:s0
+# bt restart service
+/system/bin/bt_restart			u:object_r:bt_restart_exec:s0
+# IKEv2 daemon
+/system/bin/charon			u:object_r:charon_exec:s0
+# factory region and sku configuration
+/system/bin/factoryconfig.sh		u:object_r:factoryconfig_exec:s0
+
+#############################
+# Data files
+
+# camera data folder
+/data/nvcam(/.*)?			u:object_r:nv_camera_data_file:s0
+# tlk data folder
+/data/tlk(/.*)?				u:object_r:tee_data_file:s0
+# tlk ss data folder
+/data/ss(/.*)?				u:object_r:tee_data_file:s0
+# user calibration
+/data/touchscreen(/.*)?			u:object_r:user_calib_file:s0
+
+# Misc data
+# phs data
+/data/misc/phs(/.*)?			u:object_r:phsd_data:s0
+# dual wifi
+/data/misc/wifi[0-9]			u:object_r:wifi_data_file:s0
+/data/misc/wifi[0-9]/sockets		u:object_r:wpa_socket:s0
+# cvc data folder
+/data/misc/cvc(/.*)?			u:object_r:cvc_data_file:s0
+# mediaserver EGL blob cache
+/data/misc/mediaserver(/.*)?		u:object_r:media_data_file:s0
+#GPS
+/data/system/gps(/.*)?			u:object_r:gps_data_file:s0
+# NVSensor socket file
+/data/misc/nvsipc(/.*)?			u:object_r:nvs_socket:s0
+
+#############################
+# sysfs files
+
+# modem sysfs
+/sys/power/sysedp(/.*)?					u:object_r:sysfs_sysedp:s0
+/sys/class/gpio(/.*)?					u:object_r:sysfs_gpio:s0
+/sys/class/gps_wake(/.*)?				u:object_r:sysfs_gps_wake:s0
+/sys/devices/platform/.*/gpio/gpio[^/]+/[^/]*		u:object_r:sysfs_gpio:s0
+/sys/devices/platform/tegra_usb_modem_power(/.*)?	u:object_r:sysfs_radio:s0
+/sys/devices/platform/sysedp_modem(/.*)?		u:object_r:sysfs_radio:s0
+/sys/bus/usb(/.*)?					u:object_r:sysfs_bus_usb:s0
+/sys/devices/platform/tegra-ehci\.[0-9](/.*)?		u:object_r:sysfs_bus_usb:s0
+/sys/devices/tegra-ehci\.[0-9](/.*)?			u:object_r:sysfs_bus_usb:s0
+# LED sysfs
+/sys/devices/platform/tegra-xhci(/.*)?			u:object_r:sysfs_bus_usb:s0
+# SATA sysfs
+/sys/devices/platform/tegra-sata.*/ata1/power/control					u:object_r:sysfs_sata:s0
+/sys/devices/platform/tegra-sata.*/ata1/host0/target.*/0.*/power/autosuspend_delay_ms	u:object_r:sysfs_sata:s0
+/sys/devices/platform/tegra-sata.*/ata1/host0/target.*/0.*/power/control		u:object_r:sysfs_sata:s0
+# PMQoS files for NvCplSvc
+/sys/devices/virtual/thermal(/.*)		u:object_r:sysfs_thermal:s0
+/sys/class/thermal/thermal_zone\.*(/.*)?	u:object_r:sysfs_thermal:s0
+/sys/devices/platform/host1x/tegradc.[0-1]/smartdimmer(/.*)	u:object_r:sysfs_smartdimmer:s0
+/sys/devices/platform/host1x/tegradc\.[0-1]/cmu_enable		u:object_r:sysfs_cmu:s0
+/sys/devices/platform/pwm-fan.*/pwm_cap		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan.*/pwm_state_map		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan.*/state_cap		u:object_r:sysfs_pwm_fan:s0
+# cfboost sysfs for pbc access
+/sys/module/input_cfboost/parameters/boost_freq		u:object_r:sysfs_cfboost:s0
+/sys/module/input_cfboost/parameters/boost_gpu		u:object_r:sysfs_cfboost:s0
+# phs sysfs
+/sys/devices/virtual/misc/tegra-throughput/fps			u:object_r:sysfs_throughput:s0
+/sys/devices/virtual/misc/tegra-throughput/framecount		u:object_r:sysfs_throughput:s0
+# Sound sysfs nodes
+/sys/class/sound(/.*)?			u:object_r:sysfs_sound:s0
+# Configure Ozmo driver
+/sys/class/ozmo_wpan(/.*)?		u:object_r:sysfs_ozmo:s0
+/sys/devices/virtual/ozmo_wpan(/.*)?	u:object_r:sysfs_ozmo:s0
+# Configure Foster LED lightbar
+/sys/devices/platform/pwm-leds(.*)/leds/led_lightbar(/.*)	u:object_r:sysfs_lightbar:s0
+# soc sysfs
+/sys/devices/soc[0-9]+(/.*)?		u:object_r:sysfs_soc:s0
+# pmic sysfs
+/sys/kernel/pmic			u:object_r:sysfs_pmic:s0
+# wifi sysfs
+/sys/module/bcmdhd/parameters/firmware_path	u:object_r:sysfs_wifi:s0
+# Bluetooth rfkill interface for Platform data driver
+/sys/devices/platform/bluedroid_pm(.*)/rfkill/rfkill0/state	u:object_r:sysfs_bluetooth_writable:s0
+# Bluetooth rfkill interface for DT enabled driver
+/sys/devices/platform/bluedroid_pm/rfkill/rfkill0/state		u:object_r:sysfs_bluetooth_writable:s0
+# Tegra i2c devices sysfs
+/sys/devices/platform/tegra.*i2c\.[0-9]+(/.*)?	u:object_r:sysfs_nvi2c:s0
+/sys/devices/platform/[0-9a-f]+\.i2c(/.*)?	u:object_r:sysfs_nvi2c:s0
+# cvc sysfs
+/sys/kernel/tegra_volt_cap(/.*)?		u:object_r:sysfs_cvc:s0
+# Blake touchpad setting
+/sys/devices/platform/ozwpan/.*/mode            u:object_r:sysfs_blake:s0
+/sys/devices/platform/tegra-xhci/.*/mode	u:object_r:sysfs_blake:s0
+# Gamepad reset sysfs
+/sys/devices/platform/gamepad_reset(.*)/gamepad_reset       u:object_r:sysfs_gamepad:s0
+# touch slowscan sysfs
+/sys/devices/virtual/misc/touch/slowscan_enable			u:object_r:sysfs_slowscan:s0
+# Touch sysfs for touch service
+/sys/devices/virtual/misc/touch/log	u:object_r:sysfs_touch_log:s0
+# TCP Window Divisor
+/sys/module/tcp_output/parameters/tcp_window_divisor		u:object_r:sysfs_tcp_window_divisor:s0
+
+#############################
+# SurfaceFlinger to PHS pagefiles
+/mnt/tmp/fc[0-9]			u:object_r:surfaceflinger_fc:s0
+# user calibration
+/usercalib(/.*)?			u:object_r:user_calib_file:s0
+# wifi config
+/factory/wifi_config(/.*)?		u:object_r:factoryconfig_file:s0
+
+#mark /dev/camera/.* as video device
+/dev/camera(/video[0-9]*)?   u:object_r:video_device:s0
+
+# Variable refresh rate sysfs
+/sys/devices/platform/host1x/tegradc.[0-1]/vrr(/.*)    u:object_r:sysfs_vrr:s0

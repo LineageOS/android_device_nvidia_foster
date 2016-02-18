@@ -1,0 +1,70 @@
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+bt.bdaddr_path                   u:object_r:bdaddr_path_prop:s0
+
+sf.lcd_density                   u:object_r:surfaceflinger_prop:s0
+
+ctl.consolemode                  u:object_r:system_prop:s0
+
+ro.bootanim.preload                 u:object_r:system_prop:s0
+
+persist.tegra.stb.mode           u:object_r:system_prop:s0
+persist.tegra.idle.minimum_fps   u:object_r:system_prop:s0
+persist.tegra.hdmi.resolution    u:object_r:system_prop:s0
+persist.tegra.hdmi.cec_volume    u:object_r:system_prop:s0
+persist.tegra.sf.enable_TB       u:object_r:system_prop:s0
+persist.tegra.panel.rotation     u:object_r:system_prop:s0
+persist.tegra.hdmi.underscan     u:object_r:system_prop:s0
+persist.tegra.hdmi.limit.clock   u:object_r:system_prop:s0
+persist.tegra.hdmi.yuv.enable    u:object_r:system_prop:s0
+
+phs.therm.cpu_temp               u:object_r:thermal_prop:s0
+phs.therm.cpu_trip               u:object_r:thermal_prop:s0
+phs.therm.skin_temp              u:object_r:thermal_prop:s0
+phs.therm.skin_trip              u:object_r:thermal_prop:s0
+
+pbc.cfboost.default              u:object_r:pbc_prop:s0
+pbc.gfboost.default              u:object_r:pbc_prop:s0
+
+hardware.gps                     u:object_r:gpsd_prop:s0
+#dual wifi
+xlan.driver.status               u:object_r:system_prop:s0
+
+# hwui properties
+hwui.                           u:object_r:hwui_prop:s0
+
+# IKEv2 daemon
+ctl.charon                       u:object_r:ctl_charon_prop:s0
+
+# locality properties
+user.language			u:object_r:locality_prop:s0
+user.region			u:object_r:locality_prop:s0
+
+# udc properties
+sys.usb.udc			u:object_r:udc_prop:s0
+sys.usb.delay			u:object_r:udc_prop:s0
+
+# audio non persistent properties
+audio.				u:object_r:audio_prop:s0
+
+#used to enable adb over tcpip on port 5555 from Settings app
+persist.nvda.adb.tcp.enable      u:object_r:system_prop:s0
+persist.nvda.adb.tcp.port        u:object_r:system_prop:s0
+
+# factory
+factory.                           u:object_r:factory_prop:s0
+
+# handshake property between system server and vold
+hssv.fw_restart_done            u:object_r:handshake_sys_vold_prop:s0

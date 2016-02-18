@@ -14,12 +14,8 @@ on early-init
     mount debugfs debugfs /sys/kernel/debug mode=0755
 
 on init
+    mkdir /dev/camera 0755 media camera
     mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
-
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
 
     # create directory for mounting usb drives
     mkdir /mnt/media_rw/usbdrive 0700 media_rw media_rw
@@ -30,31 +26,39 @@ on init
     # create directory for mounting calibration partition
     mkdir /mnt/factory 0666 system system
 
-    mkdir /mnt/wifi_config 0666 system system
+    mkdir /factory/wifi_config 0666 system system
 
     # create directory for mounting user calibration partition
-    mkdir /mnt/usercalib 0771 system system
-
-    start watchdogd
+    mkdir /usercalib 0771 system system
 
 on fs
 # mount console ramooops
    mount pstore pstore /sys/fs/pstore
 
 on post-fs-data
-    # We chown/chmod /mnt/usercalib again so because mount is run as root + defaults
-    chown system system /mnt/usercalib
-    chmod 0771 /mnt/usercalib
+    # We chown/chmod /usercalib again so because mount is run as root + defaults
+    chown system system /usercalib
+    chmod 0771 /usercalib
 
     # create the lost+found directories, so as to enforce our permissions
-    mkdir /mnt/usercalib/lost+found 0770 root root
+    mkdir /usercalib/lost+found 0770 root root
 
     # Set SELinux security contexts on upgrade or policy update.
-    restorecon_recursive /mnt/usercalib
+    restorecon_recursive /usercalib
 
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     mkdir /data/nvcam 0700 media camera
     chown dhcp dhcp /data/misc/dhcp
+
+    #create folder for stats and audio stats
+    mkdir /data/stats_share 0771 system system
+    mkdir /data/stats_share/audio 0771 system system
+    write /data/stats_share/audio/audio_stats.txt 0
+    chown system system /data/stats_share/audio/audio_stats.txt
+    chmod 666 /data/stats_share/audio/audio_stats.txt
+
+    #create Nv sensors socket dir
+    mkdir /data/misc/nvsipc 0777 system system
 
     # Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
@@ -62,8 +66,10 @@ on post-fs-data
     # create directory for camera calibration data
     mkdir /mnt/factory/camera 0666 system system
 
-    # cpu volt cap
-    mkdir /data/misc/cvc 0774 system system
+    # create directory for mediaserver EGL blob cache
+    mkdir /data/misc/mediaserver 0770 media media
+
+    mkdir /data/anr 0773 root system
 
 # Set up HDCP
 import init.hdcp.rc
@@ -107,6 +113,18 @@ on boot
 # nvdps
     chown system system /sys/devices/platform/host1x/tegradc.0/nvdps
 
+# vrr
+    chown system system /sys/devices/platform/host1x/tegradc.0/vrr/capability
+    chown system system /sys/devices/platform/host1x/tegradc.0/vrr/max_fps
+    chown system system /sys/devices/platform/host1x/tegradc.0/vrr/min_fps
+    chown system system /sys/devices/platform/host1x/tegradc.0/vrr/max_flip_pct
+    chown system system /sys/devices/platform/host1x/tegradc.0/vrr/max_adj_pct
+    chown system system /sys/devices/platform/host1x/tegradc.0/vrr/max_dc_balance
+    chown system system /sys/devices/platform/host1x/tegradc.0/vrr/max_inc_pct
+
+# default SF to realtime
+    setprop persist.sys.sf.realtime 1
+
 # Default Read Ahead value for sdcards
     write /sys/block/mmcblk0/queue/read_ahead_kb 2048
     write /sys/block/mmcblk1/queue/read_ahead_kb 2048
@@ -132,6 +150,7 @@ on property:ro.debuggable=1
     # EMC debug interface
     chmod 666 /sys/kernel/debug/tegra_emc/eack_state
 
+
 service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
     class late_start
     disabled
@@ -142,11 +161,21 @@ service fuse_usbdrive /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_r
 
 
 # bugreport is triggered by the VOLUME-DOWN and VOLUME-UP keys
-service bugreport /system/bin/dumpstate -d -p -B -o /data/data/com.android.shell/files/bugreports/bugreport
+service bugreport /system/bin/dumpstate -d -p -B -z -o /data/data/com.android.shell/files/bugreports/bugreport
     class main
     disabled
     oneshot
     keycodes 116 115 114
+
+# nvidiafeedback triggered by nvidiafeedback app
+service nvidiafeedback /system/bin/dumpstate -b -o /data/anr/nvfeedback.log
+    class main
+    disabled
+    oneshot
+
+on property:init.svc.nvidiafeedback=stopped
+    # change permission for nvfeedback.log file
+    chmod 0664 /data/anr/nvfeedback.log.txt
 
 # Mount usb drives as /usbdrive. Generally usb drives are formatted with FAT
 # filesystem, so we support FAT as of now.
@@ -159,11 +188,6 @@ on device-removed-/sys/block/sda
 # unified scaling setup
 import init.ussrd.rc
 
-service cvc /vendor/bin/cvc
-    user system
-    group system
-    class main
-
 # Enable rbe
 # thresIncr:50  thresIncrCntMax:6  thresDecr:70  thresDecrCntMax:2
 # The change from default is the thresDecrCntMax.  Default is 3.
@@ -172,10 +196,5 @@ service wlbwservice /system/bin/wlbwservice -t 50 6 70 2
     user system
     group system inet net_admin
 
-# Thie yields each tegra wdt expiration to be at 45 secs and fourth expiration for reboot at 180 secs
-service watchdogd /sbin/watchdogd 20 160
-    class core
-    seclabel u:r:watchdogd:s0
-
-# Disable kmemleak auto scan
-    write /sys/kernel/debug/kmemleak scan=0
+# Customers should remove this line
+import init.qvs.rc

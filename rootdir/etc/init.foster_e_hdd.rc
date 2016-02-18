@@ -24,20 +24,25 @@ on fs
 
 
 on post-fs-data
-    mount ext4 /dev/block/platform/tegra-sata.0/by-name/RP3 /mnt/wifi_config ro nosuid noexec nodev
-
+    mount ext4 /dev/block/platform/tegra-sata.0/by-name/RP3 /factory/wifi_config rw nosuid noexec nodev
+    restorecon_recursive /factory/wifi_config
+    mount ext4 /dev/block/platform/tegra-sata.0/by-name/RP3 /factory/wifi_config ro nosuid noexec nodev remount
 
 on property:factory.wifi_country_code=*
-    mount ext4 /dev/block/platform/tegra-sata.0/by-name/RP3 /mnt/wifi_config rw remount
-    copy ${factory.wifi_country_code}.sig /mnt/wifi_config/country_code.sig
-    copy ${factory.wifi_country_code}.txt /mnt/wifi_config/country_code.txt
-    copy ${factory.sku_config}.txt /mnt/wifi_config/FSS.txt
-    chown system system /mnt/wifi_config
-    chown system system /mnt/wifi_config/country_code.sig
-    chown system system /mnt/wifi_config/country_code.txt
-    chown system system /mnt/wifi_config/FSS.txt
-    chmod 664 /mnt/wifi_config/country_code.sig
-    chmod 664 /mnt/wifi_config/country_code.txt
-    chmod 664 /mnt/wifi_config/FSS.txt
-    restorecon_recursive /mnt/wifi_config
-    mount ext4 /dev/block/platform/tegra-sata.0/by-name/RP3 /mnt/wifi_config ro nosuid noexec nodev remount
+    mount ext4 /dev/block/platform/tegra-sata.0/by-name/RP3 /factory/wifi_config rw remount
+    chown system system /factory/wifi_config
+    chown system system /factory/wifi_config/FSS.txt
+    chown system system /factory/wifi_config/country_code.txt
+    chown system system /factory/wifi_config/country_code.sig
+    restorecon_recursive /factory/wifi_config
+    start factoryconfig
+
+on property:factory.sku_config=done
+    mount ext4 /dev/block/platform/tegra-sata.0/by-name/RP3 /factory/wifi_config ro nosuid noexec nodev remount
+
+service factoryconfig /system/bin/factoryconfig.sh
+    class main
+    user system
+    group system sdcard_rw
+    disabled
+    oneshot

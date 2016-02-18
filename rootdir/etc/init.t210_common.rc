@@ -8,6 +8,8 @@ on init
 # YUV420 supported
     setprop persist.tegra.hdmi.yuv.enable 1
 
+    start watchdogd
+
 on boot
 # Power management settings
     write /sys/module/tegra3_emc/parameters/emc_enable 0
@@ -38,10 +40,12 @@ on boot
     #write /sys/devices/system/cpu/cpufreq/interactive/boost_factor 2
     #write /sys/devices/system/cpu/cpufreq/interactive/sustain_load 80
 
-    write /sys/kernel/debug/cpuidle_t210/fast_cluster_states_enable 0xf
-    write /sys/kernel/debug/cpuidle_t210/slow_cluster_states_enable 0x9
+    write /sys/kernel/debug/cpuidle_t210/fast_cluster_states_enable 0xcf
+    write /sys/kernel/debug/cpuidle_t210/slow_cluster_states_enable 0xc9
     write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
     write /sys/devices/system/cpu/cpuquiet/current_governor runnable
+
+    write /sys/module/tegra21_emc/parameters/pasr_enable 1
 
     chown system system /sys/module/input_cfboost/parameters/boost_freq
     chown system system /sys/module/input_cfboost/parameters/boost_gpu
@@ -57,5 +61,13 @@ on boot
     setprop persist.tegra.58027529 0x00000002
     setprop persist.tegra.a3456abe 0x087F6080
 
-# disable IMP for now, Bug #1456329
-    setprop nvidia.hwc.imp_enable 0
+# WAR for bug 1536227: Restrict all ZBC clears to transparent black:
+    setprop persist.tegra.AF73C63E 0x80007ffd
+
+#set HW acceleration to true
+    setprop skia.jpeg.hwaccelerate 1
+
+# Thie yields each tegra wdt expiration to be at 45 secs and fourth expiration for reboot at 180 secs.
+service watchdogd /sbin/watchdogd 20 160
+    class core
+    seclabel u:r:watchdogd:s0

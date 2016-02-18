@@ -1,0 +1,29 @@
+# Copyright (c) 2015, NVIDIA CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+type cyupdate, domain;
+type cyupdate_exec, exec_type, file_type;
+
+init_daemon_domain(cyupdate)
+unix_socket_connect(cyupdate, property, init)
+
+allow cyupdate shell_exec:file rx_file_perms;
+allow cyupdate system_file:file execute_no_trans;
+allow cyupdate cyupdate_exec:file execute_no_trans;
+allow cyupdate i2c_device:chr_file rw_file_perms;
+allow cyupdate sysfs_nvi2c:{ file lnk_file } rw_file_perms;
+allow cyupdate sysfs_nvi2c:dir r_dir_perms;
+allow cyupdate self:capability { net_admin dac_override chown sys_module fowner fsetid };
+allow cyupdate cy8c_device:dir r_dir_perms;
+allow cyupdate cy8c_device:chr_file rw_file_perms;

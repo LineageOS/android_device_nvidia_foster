@@ -1,0 +1,55 @@
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# /dev/quadd
+type quadd_device, dev_type;
+
+# /dev/quadd_auth
+type quadd_auth_device, dev_type;
+
+# /dev/i2c*
+type i2c_device, dev_type;
+
+# /dev/hidraw[0-9]
+type hidraw_device, dev_type;
+
+# Tsec device
+type tsec_device, dev_type, mlstrustedobject;
+
+# /dev/constraint*
+type pmqos_device, dev_type;
+
+# Tegra graphics devices
+type tegradc_device, dev_type;
+
+# /dev/block/mmcblk0rpmb
+type rpmb_block_device, dev_type;
+
+# User calibration partion(UCB) block device
+type usercalib_block_device, dev_type;
+
+# Factory calibration partion(FCT) block device
+type factorycalib_block_device, dev_type;
+
+# /dev/tegra_cpc
+type cpc_device, dev_type;
+
+# /dev/touch
+type touch_device, dev_type;
+
+# RP3 partition
+type factoryconfig_block_device, dev_type;
+
+# /dev/cy8c-led-boot
+type cy8c_device, dev_type;

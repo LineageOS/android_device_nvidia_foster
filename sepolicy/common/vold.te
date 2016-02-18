@@ -1,0 +1,65 @@
+# Copyright (c) 2014-2015 NVIDIA CORPORATION.  All rights reserved.
+# Copyright (C) 2014 Paragon Software GmbH
+#
+# Portions copyright 2009-2014 Paragon Software GmbH
+# $Author: Ivan.Zorin $
+# Support: oem@paragon-software.com
+# License: This code is licensed under the associated license agreement.
+#
+# ----- Disclaimer ------
+# Paragon Software accepts no responsibility for malfunctions or damage caused
+# by modification of the software or the use of the software in conjunction with
+# hardware configurations, platforms or operating systems other than the
+# recommended or intended hardware configuration, platform or operating system.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# NOTE: This file has been modified by Paragon Software Group GmbH.
+# Modifications are licensed under the License.
+#
+
+allow vold fuse_device:chr_file rw_file_perms;
+allow vold sysfs_bus_usb:file rw_file_perms;
+allow vold media_rw_data_file:dir { r_dir_perms mounton };
+
+# Access user calibration block device.
+allow vold usercalib_block_device:blk_file rw_file_perms;
+auditallow vold usercalib_block_device:blk_file rw_file_perms;
+allow vold user_calib_file:dir { getattr open read ioctl };
+
+# Access factory  calibration block device.
+allow vold factorycalib_block_device:blk_file rw_file_perms;
+auditallow vold factorycalib_block_device:blk_file rw_file_perms;
+
+allow vold factory_file:filesystem unmount;
+
+# vold need to restart surfaceflinger so that hwcomposer gets correct prop
+allow vold ctl_default_prop:property_service set;
+
+allow vold self:capability sys_rawio;
+allow vold system_prop:property_service set;
+
+# vold need to mount cifs fs from remote computer
+allow vold self:capability net_raw;
+
+# Paragon UFSD integration support
+#	- additional policies for Paragon UFSD tools
+allow vold mnt_media_rw_stub_file:dir r_dir_perms;
+
+allow vold storage_stub_file:dir r_dir_perms;
+
+# Request various crypto modules.
+allow vold kernel:system module_request;
+
+# hand shake property between system and vold
+allow vold handshake_sys_vold_prop:property_service set;

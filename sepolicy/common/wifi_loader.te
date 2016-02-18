@@ -1,0 +1,42 @@
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# wifi_loader - wifi loader which modifies /data/misc/wifi/*
+type wifi_loader, domain;
+type wifi_loader_exec, exec_type, file_type;
+
+init_daemon_domain(wifi_loader)
+set_prop(wifi_loader, system_prop)
+
+allow wifi_loader shell_exec:file rx_file_perms;
+allow wifi_loader wifi_loader_exec:file { execute_no_trans open };
+allow wifi_loader wifi_data_file:{ file lnk_file } create_file_perms;
+allow wifi_loader wifi_data_file:dir rw_dir_perms;
+allow wifi_loader bluetooth_data_file:dir w_dir_perms;
+allow wifi_loader bluetooth_data_file:lnk_file create_file_perms;
+allow wifi_loader gps_data_file:dir w_dir_perms;
+allow wifi_loader gps_data_file:lnk_file create_file_perms;
+allow wifi_loader { device hci_attach_dev gps_device }:chr_file { setattr getattr };
+allow wifi_loader devpts:chr_file rw_file_perms;
+allow wifi_loader kernel:system module_request;
+allow wifi_loader self:capability { net_admin dac_override chown sys_module fowner fsetid };
+allow wifi_loader sysfs_wifi:file r_file_perms;
+allow wifi_loader system_file:file execute_no_trans;
+allow wifi_loader proc_wmem_default_writable:file w_file_perms;
+allow wifi_loader proc_wmem_max_writable:file w_file_perms;
+
+# Allow wifi_loader to read a custom MAC address from /mnt/factory/<wifi>
+r_dir_file(wifi_loader, factory_file)
+
+type_transition wifi_loader wifi_data_file:sock_file wpa_socket;

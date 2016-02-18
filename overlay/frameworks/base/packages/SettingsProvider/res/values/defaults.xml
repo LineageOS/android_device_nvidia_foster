@@ -17,13 +17,8 @@
  */
 -->
 <resources>
-    <bool name="def_accelerometer_rotation">false</bool>
-    <!-- Comma-separated list of location providers.
-         Network location is off by default because it requires
-         user opt-in via Setup Wizard or Settings.
-    -->
-    <string name="def_location_providers_allowed" translatable="false"></string>
-    <bool name="def_lockscreen_disabled">true</bool>
-    <!-- Default for Settings.Secure.BACKUP_TRANSPORT - Google cloud backup -->
-    <string name="def_backup_transport" translatable="false">com.google.android.backup/.BackupTransportService</string>
+    <string name="def_backup_transport">com.google.android.backup/.BackupTransportService</string>
+
+    <!-- Auto brightness mode is ON by default-->
+    <bool name="def_screen_brightness_automatic_mode">true</bool>
 </resources>

@@ -1,4 +1,4 @@
-#Copyright (c) 2011-2014 NVIDIA Corporation.  All Rights Reserved.
+#Copyright (c) 2011-2015 NVIDIA Corporation.  All Rights Reserved.
 #
 #NVIDIA Corporation and its licensors retain all intellectual property and
 #proprietary rights in and to this software and related documentation.  Any
@@ -18,12 +18,18 @@ on boot
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
 
-    # bluetooth MAC address programming
     chown bluetooth net_bt_stack ro.bt.bdaddr_path
     chown bluetooth net_bt_stack /system/etc/bluetooth
     chown bluetooth net_bt_stack /mnt/factory/bluetooth/bt_mac.txt
-    setprop ro.bt.bdaddr_path "/mnt/factory/bluetooth/bt_mac.txt"
 
+# bluetooth mac address programming
+service bt_loader /system/bin/bt_loader.sh
+    class main
+    user root
+    group root
+    oneshot
+
+on fs
     # Wifi support rx-filter
     setprop wifi.rx-filter 1
 
@@ -35,6 +41,11 @@ on post-fs-data
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/wifi/firmware 0770 wifi system
 
+    #create gps files
+    mkdir /data/system/gps
+    chown gps system /data/system/gps/
+    chmod 0770 /data/system/gps/
+
     start wifiloader
 
 # wifiloader - set the wifi commchip_id accordingly
@@ -43,6 +54,21 @@ service wifiloader /system/bin/wifi_loader.sh
     user root
     group root
     oneshot
+    disabled
+
+service start-gps /system/bin/gps_select.sh
+    user root
+    group root
+    class late_start
+    oneshot
+    disabled
+
+#Start GPS daemon
+service gpsd /system/bin/glgps_nvidiaTegra2android -c /system/etc/gps/gpsconfig.xml
+    user gps
+    socket gps seqpacket 0660 gps system
+    group system inet sdcard_rw sdcard_r
+    class late_start
     disabled
 
 service dhcpcd_p2p_wlan0 /system/bin/dhcpcd p2p-wlan0-0
@@ -70,11 +96,6 @@ service dhcpcd_eth0 /system/bin/dhcpcd -ABKL -f/system/etc/dhcpcd/dhcpcd.conf
      disabled
      oneshot
 
-service dhcpcd_eth1 /system/bin/dhcpcd -ABKL -f/system/etc/dhcpcd/dhcpcd.conf
-     class main
-     disabled
-     oneshot
-
 service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
     class main
     disabled
@@ -96,11 +117,6 @@ service iprenew_p2p /system/bin/dhcpcd -n
     oneshot
 
 service iprenew_eth0 /system/bin/dhcpcd -n
-    class main
-    disabled
-    oneshot
-
-service iprenew_eth1 /system/bin/dhcpcd -n
     class main
     disabled
     oneshot

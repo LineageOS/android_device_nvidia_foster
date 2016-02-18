@@ -50,6 +50,9 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE  := 12228902400
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2147483648
 BOARD_FLASH_BLOCK_SIZE := 4096
 
+TARGET_COPY_OUT_VENDOR := system
+BOARD_NEEDS_VENDORIMAGE_SYMLINK := true
+
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
@@ -95,7 +98,8 @@ WIFI_DRIVER_MODULE_NAME     := "bcmdhd"
 #BOARD_HARDWARE_CLASS := device/nvidia/foster/cmhw/
 
 # SELinux
-BOARD_SEPOLICY_DIRS += device/nvidia/foster/sepolicy
+BOARD_SEPOLICY_DIRS += device/nvidia/foster/sepolicy/common \
+                       device/nvidia/foster/sepolicy/product
 
 # Pro model doesn't support trim commands
 BOARD_SUPPRESS_EMMC_WIPE := true
