@@ -11,8 +11,6 @@ persist.tegra.compositor=glcomposer
 ro.sf.lcd_density=160
 
 persist.tegra.decompression = cde-client
-# WAR for bug 1536227: Restrict all ZBC clears to transparent black:
-persist.tegra.AF73C63E = 0x7ffd
 
 # disable input resampling
 ro.input.noresample=1
