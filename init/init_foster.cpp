@@ -47,13 +47,13 @@ void vendor_load_properties()
     property_get("ro.hardware", model);
     if (!strcmp(model, "foster_e")) { // check cpuinfo hardware identifier
         /* EMMC Model */
-        property_set("ro.build.fingerprint", "nvidia/foster_e/t210:5.0./LRX21M/29979_515.3274:user/release-keys");
-        property_set("ro.build.description", "foster_e-user 5.0 LRX21M 29979_515.3274 release-keys");
+        property_set("ro.build.fingerprint", "nvidia/foster_e/t210:6.0/MRA58K/41937_667.2671:user/release-keys");
+        property_set("ro.build.description", "foster_e-user 6.0 MRA58K 41937_667.2671 release-keys");
         property_set("ro.product.model", "foster_e");
     } else {
         /* SATA Model */
-        property_set("ro.build.fingerprint", "nvidia/foster_e_hdd/t210:5.0./LRX21M/29979_515.3274:user/release-keys");
-        property_set("ro.build.description", "foster_e_hdd-user 5.0 LRX21M 29979_515.3274 release-keys");
+        property_set("ro.build.fingerprint", "nvidia/foster_e_hdd/t210:6.0/MRA58K/41937_667.2671:user/release-keys");
+        property_set("ro.build.description", "foster_e_hdd-user 6.0 MRA58K 41937_667.2671 release-keys");
         property_set("ro.product.model", "foster_e_hdd");
     }
 
