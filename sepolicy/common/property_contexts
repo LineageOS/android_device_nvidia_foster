@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,8 +21,10 @@ ctl.consolemode                  u:object_r:system_prop:s0
 ro.bootanim.preload                 u:object_r:system_prop:s0
 
 persist.tegra.stb.mode           u:object_r:system_prop:s0
+persist.tegra.stb.rotate         u:object_r:system_prop:s0
 persist.tegra.idle.minimum_fps   u:object_r:system_prop:s0
 persist.tegra.hdmi.resolution    u:object_r:system_prop:s0
+persist.tegra.hdmi.range         u:object_r:system_prop:s0
 persist.tegra.hdmi.cec_volume    u:object_r:system_prop:s0
 persist.tegra.sf.enable_TB       u:object_r:system_prop:s0
 persist.tegra.panel.rotation     u:object_r:system_prop:s0

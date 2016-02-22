@@ -146,3 +146,9 @@ type sysfs_touch_log, fs_type, sysfs_type;
 
 # Filesystem type CIFS
 type cifs, sdcard_type, fs_type, mlstrustedobject;
+
+# /vendor/oem/media
+type oem_media_file, file_type;
+
+# /data/stats_share
+type stats_share_file, file_type, data_file_type;

@@ -62,6 +62,8 @@ allow system_app input_device:dir r_dir_perms;
 allow system_app input_device:chr_file r_file_perms;
 allow system_app ozmo_device:chr_file rw_file_perms;
 allow system_app sysfs_blake:file rw_file_perms;
+allow system_app oem_media_file:dir r_dir_perms;
+allow system_app oem_media_file:file rw_file_perms;
 
 # NvEsrd specific
 allow system_app sysfs_sysedp:dir r_dir_perms;
@@ -101,3 +103,7 @@ allow system_app uhid_device:chr_file rw_file_perms;
 allow system_app ctl_default_prop:property_service set;
 allow system_app dumpstate_exec:file { read getattr open execute execute_no_trans };
 allow system_app anr_data_file:dir remove_name;
+allow system_app media_rw_data_file:dir { read getattr open search };
+
+# stats share files
+r_dir_file(system_app, stats_share_file)

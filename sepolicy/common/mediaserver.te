@@ -16,6 +16,10 @@
 allow mediaserver nv_camera_data_file:dir create_dir_perms;
 allow mediaserver nv_camera_data_file:file create_file_perms;
 
+# audio stats files
+allow mediaserver stats_share_file:dir create_dir_perms;
+allow mediaserver stats_share_file:file create_file_perms;
+
 # NVSensor socket files
 allow mediaserver nvs_socket:dir rw_dir_perms;
 allow mediaserver nvs_socket:sock_file rw_file_perms;
@@ -48,3 +52,6 @@ allow mediaserver system_app_service:service_manager find;
 
 # Allow to write to nvfeedback log file
 allow mediaserver anr_data_file:file write;
+
+# Allow access to blake video files
+allow mediaserver oem_media_file:file { read getattr };

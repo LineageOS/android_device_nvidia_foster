@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2015, NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-allow drmserver gpu_device:chr_file rw_file_perms;
-
-# Allow to write to nvfeedback log file
-allow drmserver anr_data_file:file write;
-
-# Blake video files
-allow drmserver oem_media_file:file read;
+allow dumpstate self:capability sys_admin;

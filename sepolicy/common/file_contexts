@@ -155,7 +155,8 @@
 /system/bin/charon			u:object_r:charon_exec:s0
 # factory region and sku configuration
 /system/bin/factoryconfig.sh		u:object_r:factoryconfig_exec:s0
-
+# Blake video files
+(/system)?/vendor/oem/media(/.*)?	u:object_r:oem_media_file:s0
 #############################
 # Data files
 
@@ -167,6 +168,8 @@
 /data/ss(/.*)?				u:object_r:tee_data_file:s0
 # user calibration
 /data/touchscreen(/.*)?			u:object_r:user_calib_file:s0
+# stats data share folder
+/data/stats_share(/.*)?                 u:object_r:stats_share_file:s0
 
 # Misc data
 # phs data

@@ -29,6 +29,3 @@ allow untrusted_app fuseblk:file r_file_perms;
 
 # Allow chrome to access wireless stats using ioctl 8B0F
 allow untrusted_app self:udp_socket 0x8B0F;
-
-# Dont audit untrusted app accessing kernel
-dontaudit untrusted_app kernel:dir { search getattr };

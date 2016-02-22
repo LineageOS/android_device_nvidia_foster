@@ -1,4 +1,4 @@
-# Copyright (c) 2014, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
 #
 # NVIDIA CORPORATION and its licensors retain all intellectual property
 # and proprietary rights in and to this software, related documentation
@@ -11,8 +11,19 @@
 
 # gps
 /dev/ttyTHS2				u:object_r:gps_device:s0
+#GPS on Jetson super module is connected to UART1
+/dev/ttyTHS0				u:object_r:gps_device:s0
 
 # camera
 /dev/imx214				u:object_r:camera_device:s0
 /dev/ov5693.*				u:object_r:camera_device:s0
 /dev/ov7695				u:object_r:camera_device:s0
+/dev/imx132				u:object_r:camera_device:s0
+/dev/ov10823.*				u:object_r:camera_device:s0
+
+#factory reset protection
+/dev/block/platform/sdhci-tegra\.3/by-name/RP2		u:object_r:frp_block_device:s0
+/dev/block/platform/tegra-sata\.0/by-name/RP2		u:object_r:frp_block_device:s0
+
+#for fs_mgr modified metadata
+/dev/block/platform/sdhci-tegra\.3/by-name/MDA u:object_r:metadata_block_device:s0
