@@ -18,7 +18,7 @@ PRODUCT_AAPT_CONFIG += xlarge large
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
 $(call inherit-product-if-exists, vendor/nvidia/foster/foster-vendor.mk)
 
