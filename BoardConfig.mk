@@ -17,6 +17,8 @@
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
 
+-include device/nvidia/shield-common/BoardConfigCommon.mk
+
 TARGET_SPECIFIC_HEADER_PATH := device/nvidia/foster/include
 
 TARGET_CPU_ABI := arm64-v8a
@@ -40,13 +42,13 @@ TARGET_NO_RADIOIMAGE := true
 # Open Source kernel boots aosp libs, but hangs on stock blobs.
 # Only the prebuilt stock kernel will boot the stock blobs.
 KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
-TARGET_KERNEL_SOURCE := kernel/nvidia/foster
+TARGET_KERNEL_SOURCE := kernel/nvidia/shield
 TARGET_KERNEL_CONFIG := cyanogenmod_foster_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 
 TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_USERDATAIMAGE_PARTITION_SIZE  := 12228902400
+BOARD_USERDATAIMAGE_PARTITION_SIZE  := 10099646976
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2147483648
 BOARD_FLASH_BLOCK_SIZE := 4096
 
@@ -57,10 +59,6 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/nvidia/foster/bluetooth
 
 # Graphics
 USE_OPENGL_RENDERER := true
-#BOARD_DISABLE_TRIPLE_BUFFERED_DISPLAY_SURFACES := true
-
-# Renderscript
-#OVERRIDE_RS_DRIVER := libnvRSDriver.so
 
 #Audio
 BOARD_USES_GENERIC_AUDIO := false
@@ -75,8 +73,7 @@ MAX_EGL_CACHE_ENTRY_SIZE := 262144
 
 # Recovery
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
-#TARGET_RECOVERY_DEVICE_DIRS += device/nvidia/foster
-TARGET_RECOVERY_FSTAB := device/nvidia/foster/rootdir/etc/fstab.foster
+TARGET_RECOVERY_FSTAB := device/nvidia/foster/initfiles/fstab.foster
 
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
@@ -92,11 +89,8 @@ WIFI_DRIVER_FW_PATH_PARAM   := "/data/misc/wifi/firmware/firmware_path"
 WIFI_DRIVER_MODULE_ARG      := "iface_name=wlan0"
 WIFI_DRIVER_MODULE_NAME     := "bcmdhd"
 
-#BOARD_HARDWARE_CLASS := device/nvidia/foster/cmhw/
-
 # SELinux
-BOARD_SEPOLICY_DIRS += device/nvidia/foster/sepolicy/common \
-                       device/nvidia/foster/sepolicy/product
+BOARD_SEPOLICY_DIRS += device/nvidia/foster/sepolicy/
 
 # Pro model doesn't support trim commands
 BOARD_SUPPRESS_EMMC_WIPE := true

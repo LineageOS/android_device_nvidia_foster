@@ -57,6 +57,7 @@ void vendor_load_properties()
         property_set("ro.product.model", "foster_e_hdd");
     }
 
+    property_set("ro.build.product", "foster");
     property_set("ro.product.device", "foster");
     ERROR("Setting build properties for %s model\n", model);
 }

@@ -31,23 +31,11 @@ PRODUCT_PACKAGES += \
     fstab.foster \
     fstab.foster_e \
     fstab.foster_e_hdd \
-    init.comms.rc \
-    init.dualwifi.rc \
     init.foster_e.rc \
     init.foster_e_hdd.rc \
     init.recovery.foster.rc \
     init.foster_e_common.rc \
-    init.hdcp.rc \
     init.loki_foster_e_common.rc \
-    init.nv_dev_board.usb.rc \
-    init.none.rc \
-    init.t210.rc \
-    init.t210_common.rc \
-    init.tegra.rc \
-    init.tegra_emmc.rc \
-    init.tegra_sata.rc \
-    init.tlk.rc \
-    init.ussrd.rc \
     power.foster_e.rc \
     power.foster_e_hdd.rc \
     ueventd.foster_e.rc \
@@ -73,12 +61,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/com.nvidia.feature.opengl4.xml:system/etc/permissions/com.nvidia.feature.opengl4.xml \
     $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml
 
-
-# keylayout
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/keylayout/tegra-kbc.kl:system/usr/keylayout/tegra-kbc.kl \
-    $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-    $(LOCAL_PATH)/keylayout/Vendor_0955_Product_7210.kl:system/usr/keylayout/Vendor_0955_Product_7210.kl
 
 # Media config
 PRODUCT_COPY_FILES += \
@@ -140,3 +122,7 @@ PRODUCT_PACKAGES += LeanbackIme
 
 # TvSettings for android tv
 #PRODUCT_PACKAGES += TvSettings
+
+# common shield
+TARGET_TEGRA_VERSION := t210
+$(call inherit-product, device/nvidia/shield-common/shield.mk)

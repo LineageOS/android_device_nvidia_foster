@@ -1,19 +1,8 @@
 # opengles.version is 16.16 (maj.min) fixed point
 ro.opengles.version = 196609
-persist.tegra.nvmmlite = 1
-persist.wlan.ti.calibrated = 0
-ro.sf.override_lcd_density = 1
-
-# gl composition
-persist.tegra.compositor=glcomposer
 
 # Default screen density
 ro.sf.lcd_density=160
-
-persist.tegra.decompression = cde-client
-
-# disable input resampling
-ro.input.noresample=1
 
 # usb vendor and product ID definition
 ro.nv.usb.vid = 0955
@@ -24,16 +13,5 @@ ro.nv.usb.pid.rndis.adb = 7103
 ro.nv.usb.pid.ptp = 7102
 ro.nv.usb.pid.ptp.adb = 7100
 
-#Set audioflinger resampler quality to DYN_HIGH_QUALITY
-af.resampler.quality = 7
-
-# Wifi
-wifi.interface=wlan0
-wifi.Xinterface=xlan0
-ap.interface=wlan0
-
 #playback type device, for cec
 ro.hdmi.device_type=4
-
-#used to enable adb over tcpip on port 5555 from Settings app
-persist.system.adb.tcp.enable = 0
