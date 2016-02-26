@@ -6,7 +6,7 @@
 #documentation without an express license agreement from NVIDIA Corporation
 #is strictly prohibited.
 
-import init.tegra_emmc.rc
+import init.tegra.rc
 import init.t210.rc
 import init.foster_e_common.rc
 
