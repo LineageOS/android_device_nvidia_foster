@@ -24,6 +24,8 @@ on post-fs-data
     setprop persist.sys.display.resolution 1920x1080
     setprop persist.tegra.hdmi.resolution Max_60Hz
     setprop persist.tegra.composite.policy composite-yuv
+    setprop sys.wal.off external.db,iu.upload.db
+    setprop sys.wal.normal tz4,PGDatabase,launcher.db,playlog.db,music.db
     write /sys/power/wake_lock foster-staywake
     start cyupdate
 
