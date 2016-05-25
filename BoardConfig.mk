@@ -62,6 +62,7 @@ USE_OPENGL_RENDERER := true
 #Audio
 BOARD_USES_GENERIC_AUDIO := false
 BOARD_USES_ALSA_AUDIO := true
+TARGET_TINY_ALSA_IGNORE_SILENCE_SIZE := true
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
