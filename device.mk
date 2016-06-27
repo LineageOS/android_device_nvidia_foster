@@ -80,6 +80,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
+# Power
+PRODUCT_PACKAGES += power.tegra
+
 # Wireless Controller
 #$(call inherit-product-if-exists, vendor/nvidia/shield_common/blake64-blobs.mk)
 

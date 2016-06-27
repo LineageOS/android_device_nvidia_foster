@@ -95,7 +95,10 @@ BOARD_SEPOLICY_DIRS += device/nvidia/foster/sepolicy/
 # Pro model doesn't support trim commands
 BOARD_SUPPRESS_EMMC_WIPE := true
 
-# Vendor Init
+# PowerHAL                                                                                                                                                                                     |
+TARGET_POWERHAL_VARIANT := tegra
+
+## Vendor Init
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_foster
 TARGET_LIBINIT_DEFINES_FILE := device/nvidia/foster/init/init_foster.cpp
