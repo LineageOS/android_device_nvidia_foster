@@ -6,83 +6,27 @@
      use, reproduction, disclosure or distribution of this software and related
      documentation without an express license agreement from NVIDIA Corporation
      is strictly prohibited.
- */
--->
-<!DOCTYPE AudioConfigs [
-  <!ELEMENT AudioConfigs (alsa_device)>
-  <!ELEMENT alsa_device (pcm_config, playback, capture, voice-call)>
-  <!ELEMENT playback (pcm_config, device, path)>
-  <!ELEMENT capture (pcm_config, device, path)>
-  <!ELEMENT voice-call (pcm_config, device, path)>
-  <!ELEMENT device (path)>
-  <!ELEMENT path (ctl)>
-  <!ATTLIST alsa_device name (music|voice|aux|voice-call|bt-voice-call|compress_offload) #REQUIRED>
-  <!ATTLIST alsa_device card_id CDATA #REQUIRED>
-  <!ATTLIST alsa_device card_name CDATA #REQUIRED>
-  <!ATTLIST alsa_device device_id CDATA #REQUIRED>
-  <!ELEMENT pcm_config EMPTY>
-  <!ATTLIST pcm_config rate (8000|11025|16000|22050|32000|44100|48000|64000|88200|96000|176400|192000) #IMPLIED>
-  <!ATTLIST pcm_config channels (1|2|3|4|5|6|7|8) #IMPLIED>
-  <!ATTLIST pcm_config bps (16|32) #IMPLIED>
-  <!ATTLIST pcm_config period_size CDATA #IMPLIED>
-  <!ATTLIST pcm_config period_count CDATA #IMPLIED>
-  <!ATTLIST pcm_config start_threshold CDATA #IMPLIED>
-  <!ATTLIST pcm_config stop_threshold CDATA #IMPLIED>
-  <!ATTLIST pcm_config silence_threshold CDATA #IMPLIED>
-  <!ATTLIST pcm_config avail_min CDATA #IMPLIED>
-  <!ATTLIST device name (speaker|headphone|earpiece|bt-sco|aux|builtin-mic|headset-mic|bt-sco-mic|voice-call|bt-voice-call|compress_offload) #REQUIRED>
-  <!ATTLIST path name CDATA #IMPLIED>
-  <!ELEMENT param EMPTY>
-  <!ATTLIST param name CDATA #REQUIRED>
-  <!ATTLIST param val CDATA #REQUIRED>
-  <!ELEMENT ctl EMPTY>
-  <!ATTLIST ctl name CDATA #REQUIRED>
-  <!ATTLIST ctl val CDATA #REQUIRED>
-]>
-<!--
+
      This file is used to declare various board specific audio configs
 -->
 
-<AudioConfigs>
+<AudioConfigs version="2">
+  <card name="tegra-snd-t210ref-mobile-es755">
+    <pcm_config name="music-playback"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="256"
+                period_count="2"
+                start_threshold="511"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
 
-  <alsa_device name="music"
-               card_id="-1"
-               card_name="tegra-snd-t210ref-mobile-es755"
-               device_id="0">
-    <pcm_config rate="48000"
-            channels="2"
-            bps="16"
-            period_size="256"
-            period_count="2"
-            start_threshold="511"
-            stop_threshold="512"
-            silence_threshold="0"
-            avail_min="1"/>
-    <param name="ulp" val="0"/>
-    <param name="compress_offload" val="0"/>
-    <param name="ulp formats" val="mp3 aac"/>
-    <param name="ulp rates" val="48000 44100"/>
-    <param name="nvoice" val="0"/>
-    <param name="HW Rates" val="48000 44100"/>
-    <param name="flags" val="AUDIO_OUTPUT_FLAG_PRIMARY"/>
-    <param name="builtin speaker" val="0"/>
-    <param name="HDMI HW Latency" val="50"/>
-
-    <playback>
-      <device name="speaker">
-        <path name="on">
-        </path>
-        <path name="off">
-        </path>
-      </device>
-    </playback>
-  </alsa_device>
-
-  <alsa_device name="voice"
-               card_id="-1"
-               card_name="tegra-snd-t210ref-mobile-es755"
-               device_id="1">
-    <pcm_config rate="8000"
+    <pcm_config name="bt-sco-playback"
+                device_id="1"
+                rate="8000"
                 channels="1"
                 bps="16"
                 period_size="128"
@@ -91,66 +35,83 @@
                 stop_threshold="512"
                 silence_threshold="0"
                 avail_min="1"/>
-    <path>
-      <ctl name="I2S2 Mux" val="ADMAIF2"/>
-      <ctl name="ADMAIF2 Mux" val="I2S2"/>
-    </path>
 
-    <playback>
-      <device name="bt-sco"/>
-    </playback>
+    <pcm_config name="bt-sco-capture"
+                device_id="1"
+                rate="8000"
+                channels="1"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
 
-    <capture>
-      <pcm_config start_threshold="1"/>
-      <device name="bt-sco-mic"/>
-    </capture>
-  </alsa_device>
+    <param name="nvoice" val="0"/>
+    <param name="builtin speaker" val="0"/>
 
-  <alsa_device name ="aux"
-             card_id="-1"
-             card_name="Tegra"
-             device_id="3">
-    <pcm_config rate="48000"
-            channels="2"
-            bps="16"
-            period_size="256"
-            period_count="2"
-            start_threshold="511"
-            stop_threshold="512"
-            silence_threshold="0"
-            avail_min="1"/>
+    <!-- AHUB static controls -->
+    <ctl name="I2S2 Mux" val="ADMAIF2"/>
+    <ctl name="ADMAIF2 Mux" val="I2S2"/>
+  </card>
+
+  <card name="Tegra">
+    <pcm_config name ="hdmi-playback"
+                device_id="3"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="256"
+                period_count="2"
+                start_threshold="511"
+                stop_threshold="-1"
+                silence_threshold="0"
+                silence_size="-1"
+                avail_min="1"/>
+
     <param name="HW Rates" val="48000 44100 96000 192000"/>
-    <playback>
-      <device name="aux"/>
-    </playback>
-  </alsa_device>
+    <param name="HDMI HW Latency" val="50"/>
+  </card>
 
-  <alsa_device name="wfd">
-    <pcm_config rate="48000"
+  <card name="dummy">
+    <pcm_config name ="rsubmix-playback"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="1024"
+                period_count="4"/>
+    <pcm_config name ="rsubmix-capture"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="1024"
+                period_count="4"/>
+  </card>
+
+  <card name="dummy">
+    <pcm_config name="usb-blake-playback"
+                rate="32000"
                 channels="2"
                 bps="16"
                 period_size="512"
-                period_count="4"/>
-    <playback>
-      <device name="wfd"/>
-    </playback>
-  </alsa_device>
+                period_count="2"
+                start_threshold="1023"
+                stop_threshold="-1"
+                silence_threshold="0"
+                silence_size="-1"
+                avail_min="1"/>
 
-  <alsa_device name ="usb"
-             card_id="-1"
-             card_name="USB"
-             device_id="0">
-    <pcm_config rate="48000"
-            channels="2"
-            bps="16"
-            period_size="512"
-            period_count="4"
-            start_threshold="2047"
-            stop_threshold="2048"
-            silence_threshold="0"
-            avail_min="1"/>
-    <playback>
-      <device name="usbpb"/>
-    </playback>
-  </alsa_device>
+    <pcm_config name="usb-blake-capture"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="512"
+                period_count="2"
+                start_threshold="1023"
+                stop_threshold="1024"
+                avail_min="1"/>
+  </card>
 </AudioConfigs>
+
+
