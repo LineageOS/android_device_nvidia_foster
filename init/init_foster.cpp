@@ -36,16 +36,15 @@
 
 void vendor_load_properties()
 {
-    char platform[PROP_VALUE_MAX];
-    char model[PROP_VALUE_MAX];
-    int rc;
+    std::string platform = "";
+    std::string model = "";
 
-    rc = property_get("ro.board.platform", platform);
-    if (!rc || strncmp(platform, ANDROID_TARGET, PROP_VALUE_MAX))
+    platform = property_get("ro.board.platform");
+    if (strncmp(platform.c_str(), ANDROID_TARGET, PROP_VALUE_MAX))
         return;
 
-    property_get("ro.hardware", model);
-    if (!strcmp(model, "foster_e")) { // check cpuinfo hardware identifier
+    model = property_get("ro.hardware");
+    if (!model.compare("foster_e")) { // check cpuinfo hardware identifier
         /* EMMC Model */
         property_set("ro.build.fingerprint", "nvidia/foster_e/t210:6.0/MRA58K/41937_667.2671:user/release-keys");
         property_set("ro.build.description", "foster_e-user 6.0 MRA58K 41937_667.2671 release-keys");
@@ -60,5 +59,5 @@ void vendor_load_properties()
     property_set("ro.build.product", "foster");
     property_set("ro.product.device", "foster");
     property_set("ro.product.model", "SHIELD Android TV");
-    ERROR("Setting build properties for %s model\n", model);
+    ERROR("Setting build properties for %s model\n", model.c_str());
 }
