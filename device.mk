@@ -26,6 +26,8 @@ $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-he
 
 $(call inherit-product-if-exists, vendor/nvidia/foster/foster-vendor.mk)
 
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.name
+
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
     device/nvidia/foster/overlay

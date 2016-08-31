@@ -49,15 +49,16 @@ void vendor_load_properties()
         /* EMMC Model */
         property_set("ro.build.fingerprint", "nvidia/foster_e/t210:6.0/MRA58K/41937_667.2671:user/release-keys");
         property_set("ro.build.description", "foster_e-user 6.0 MRA58K 41937_667.2671 release-keys");
-        property_set("ro.product.model", "foster_e");
+        property_set("ro.product.name", "foster_e");
     } else {
         /* SATA Model */
         property_set("ro.build.fingerprint", "nvidia/foster_e_hdd/t210:6.0/MRA58K/41937_667.2671:user/release-keys");
         property_set("ro.build.description", "foster_e_hdd-user 6.0 MRA58K 41937_667.2671 release-keys");
-        property_set("ro.product.model", "foster_e_hdd");
+        property_set("ro.product.name", "foster_e_hdd");
     }
 
     property_set("ro.build.product", "foster");
     property_set("ro.product.device", "foster");
+    property_set("ro.product.model", "SHIELD Android TV");
     ERROR("Setting build properties for %s model\n", model);
 }
