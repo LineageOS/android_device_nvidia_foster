@@ -18,11 +18,12 @@ PRODUCT_CHARACTERISTICS := tv
 TARGET_TEGRA_VERSION := t210
 
 PRODUCT_AAPT_CONFIG += xlarge large
-PRODUCT_AAPT_PREF_CONFIG := xhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
-$(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
 
 $(call inherit-product-if-exists, vendor/nvidia/foster/foster-vendor.mk)
 
