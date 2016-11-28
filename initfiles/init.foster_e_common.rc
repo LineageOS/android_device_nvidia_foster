@@ -30,6 +30,8 @@ on post-fs-data
     start cyupdate
 
 on init
+    export LD_SHIM_LIBS /system/lib/libicuuc.so|libshim_icu55.so
+
     mkdir /mnt/media_rw/usbdrive2 0700 media_rw media_rw
     mkdir /storage/usbdrive2 0700 root root
     symlink /mnt/media_rw/usbdrive2 /usbdrive2
