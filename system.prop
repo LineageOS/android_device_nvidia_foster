@@ -23,3 +23,5 @@ ro.nv.usb.pid.midi.adb=710A
 
 #playback type device, for cec
 ro.hdmi.device_type=4
+
+ro.bt.bdaddr_path=/mnt/factory/bluetooth/bt_mac.txt
