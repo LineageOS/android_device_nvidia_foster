@@ -29,11 +29,6 @@ on post-fs-data
     write /sys/power/wake_lock foster-staywake
     start cyupdate
 
-on firmware_mounts_complete
-    symlink /system/vendor/firmware/bcm4354/fw_bcmdhd.bin /data/misc/wifi/firmware/fw_bcmdhd.bin
-    symlink /system/vendor/firmware/bcm4354/fw_bcmdhd.bin /data/misc/wifi/firmware/fw_bcmdhd_apsta.bin
-    symlink /system/etc/nvram_foster_e_4354.txt /data/misc/wifi/firmware/nvram.txt
-
 on init
     export LD_SHIM_LIBS /system/lib/libicuuc.so|libshim_icu55.so
 
