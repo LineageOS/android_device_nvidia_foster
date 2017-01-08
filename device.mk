@@ -38,13 +38,16 @@ PRODUCT_PACKAGES += \
     fstab.foster \
     fstab.foster_e \
     fstab.foster_e_hdd \
+    init.darcy.rc \
     init.foster_e.rc \
     init.foster_e_hdd.rc \
     init.recovery.foster.rc \
     init.foster_e_common.rc \
     init.loki_foster_e_common.rc \
+    power.darcy.rc \
     power.foster_e.rc \
     power.foster_e_hdd.rc \
+    ueventd.darcy.rc \
     ueventd.foster_e.rc \
     ueventd.foster_e_hdd.rc
 
