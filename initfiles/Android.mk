@@ -84,21 +84,21 @@ include $(CLEAR_VARS)
 LOCAL_MODULE       := power.foster_e.rc
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := power.foster_e.rc
+LOCAL_SRC_FILES    := power.foster_e_common.rc
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE       := power.foster_e_hdd.rc
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := power.foster_e_hdd.rc
+LOCAL_SRC_FILES    := power.foster_e_common.rc
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE       := ueventd.darcy.rc
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := ueventd.darcy.rc
+LOCAL_SRC_FILES    := ueventd.t210ref.rc
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
@@ -106,7 +106,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE       := ueventd.foster_e.rc
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := ueventd.foster_e.rc
+LOCAL_SRC_FILES    := ueventd.t210ref.rc
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
@@ -114,6 +114,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE       := ueventd.foster_e_hdd.rc
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := ueventd.foster_e_hdd.rc
+LOCAL_SRC_FILES    := ueventd.t210ref.rc
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)

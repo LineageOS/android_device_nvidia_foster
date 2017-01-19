@@ -17,7 +17,7 @@
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
 
--include device/nvidia/shield-common/BoardConfigCommon.mk
+include device/nvidia/shield-common/BoardConfigCommon.mk
 
 TARGET_SPECIFIC_HEADER_PATH := device/nvidia/foster/include
 
@@ -54,7 +54,7 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/nvidia/foster/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/nvidia/foster/comms
 
 # Graphics
 USE_OPENGL_RENDERER := true
@@ -93,7 +93,7 @@ BOARD_SEPOLICY_DIRS += device/nvidia/foster/sepolicy/
 # Pro model doesn't support trim commands
 BOARD_SUPPRESS_EMMC_WIPE := true
 
-# PowerHAL                                                                                                                                                                                     |
+# PowerHAL
 TARGET_POWERHAL_VARIANT := tegra
 
 ## Vendor Init

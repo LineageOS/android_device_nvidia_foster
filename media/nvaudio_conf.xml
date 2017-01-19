@@ -1,0 +1,1437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2012-2016 NVIDIA Corporation.  All Rights Reserved.
+
+     NVIDIA Corporation and its licensors retain all intellectual property and
+     proprietary rights in and to this software and related documentation.  Any
+     use, reproduction, disclosure or distribution of this software and related
+     documentation without an express license agreement from NVIDIA Corporation
+     is strictly prohibited.
+
+     This file is used to declare various board specific audio configs
+-->
+
+<AudioConfigs version="2">
+  <card name="tegra-snd-t210ref-mobile-es755">
+    <pcm_config name="music-playback"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="512"
+                period_count="4"
+                start_threshold="2047"
+                stop_threshold="-1"
+                silence_threshold="0"
+                silence_size="-1"
+                avail_min="1"/>
+
+    <pcm_config name="music-capture"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="512"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="2048"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="bt-sco-playback"
+                device_id="1"
+                rate="8000"
+                channels="1"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="511"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="bt-sco-capture"
+                device_id="1"
+                rate="8000"
+                channels="1"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="bt-sco-wb-playback"
+                device_id="1"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="256"
+                period_count="4"
+                start_threshold="1023"
+                stop_threshold="1024"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="bt-sco-wb-capture"
+                device_id="1"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="256"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="1024"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="voice-call-playback"
+                device_id="3"
+                rate="16000"
+                channels="2"
+                bps="16"
+                period_size="1024"
+                period_count="4"
+                start_threshold="4095"
+                stop_threshold="4096"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="voice-call-capture"
+                device_id="3"
+                rate="16000"
+                channels="2"
+                bps="16"
+                period_size="1024"
+                period_count="4"
+                start_threshold="4095"
+                stop_threshold="4096"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <param name="nvoice" val="0"/>
+    <param name="safe-routing" val="1"/>
+    <!--Speaker protection flag:
+      None -> Disable speaker protection
+      CPU  -> CPU based speaker protection
+      ADSP -> ADSP based speaker protection-->
+    <param name="spkprot-flag" val="CPU"/>
+
+    <!-- AHUB static controls -->
+    <!-- Codec capture & playback-->
+    <ctl name="ADMAIF1 Mux" val="I2S1"/>
+    <ctl name="Adder1 RX1" val="1"/>
+    <ctl name="Mixer Enable" val="1"/>
+    <ctl name="MIXER1-1 Mux" val="ADMAIF1"/>
+
+    <!-- BT SCO -->
+    <ctl name="I2S2 Mux" val="ADMAIF2"/>
+    <ctl name="ADMAIF2 Mux" val="I2S2"/>
+
+    <!-- I2S bit format for codec -->
+    <ctl name="I2S1 codec bit format" val="32"/>
+
+    <!-- Reset value of codec controls -->
+    <!-- Reset codec fw routes -->
+    <ctl name="Reset" val="1"/>
+    <ctl name="ES755 Power State" val="Normal"/>
+    <ctl name="PT_VP Algorithm" val="Off"/>
+    <ctl name="VP AEC" val="Off"/>
+    <ctl name="Pass AUDIN1 MUX" val="None"/>
+    <ctl name="DAC0.0 MUX" val="None"/>
+    <ctl name="Pass AUDIN2 MUX" val="None"/>
+    <ctl name="DAC0.1 MUX" val="None"/>
+    <ctl name="VP Primary MUX" val="None"/>
+    <ctl name="PCM0.0 MUX" val="None"/>
+    <ctl name="VP Secondary MUX" val="None"/>
+    <ctl name="PCM0.1 MUX" val="None"/>
+    <ctl name="VP Algorithm" val="Off"/>
+    <ctl name="DHWPT Algorithm" val="Off"/>
+    <ctl name="VP FEIN MUX" val="None"/>
+    <ctl name="VP FEIN2 MUX" val="None"/>
+    <ctl name="Algorithm Rate" val="None"/>
+
+    <ctl name="HPR MIXER DAC0R" val="0"/>
+    <ctl name="HPL MIXER DAC0L" val="0"/>
+    <ctl name="HP Gain" val="0"/>
+
+    <ctl name="SPKRR MIXER DAC0R" val="0"/>
+    <ctl name="SPKRL MIXER DAC0L" val="0"/>
+    <ctl name="SPKR Gain" val="0"/>
+    <ctl name="Int Spk Switch" val="0"/>
+
+    <ctl name="MIC0 PGA Mux" val="None"/>
+    <ctl name="MICHS Gain" val="0"/>
+    <ctl name="MICHS SEL MUX" val="MIC1_PGA"/>
+
+    <!--  Reset value of HRA controls-->
+    <ctl name="DHWPT Enable" val="0"/>
+    <ctl name="Bits per Sample" val="0"/>
+    <ctl name="I2S Channels" val="0"/>
+    <ctl name="FrameSync SEL" val="0"/>
+    <ctl name="codec-x format" val="None"/>
+    <ctl name="I2S1 input bit format" val="16"/>
+
+    <!-- Keep adsp bypass as default to avoid MIXER output floating -->
+    <ctl name="I2S1 Mux" val="MIXER1-1"/>
+    <ctl name="I2S3 Mux" val="None"/>
+
+    <!-- Route MIXER output to ADSP speaker protection -->
+    <path name="adsp-spkprot">
+      <!-- Route via ADSP -->
+      <!--ctl name="I2S3 Mux" val="MIXER1-1"/>
+      <ctl name="I2S1 Mux" val="ADMAIF4"/-->
+      <!-- Bypass ADSP -->
+      <ctl name="I2S1 Mux" val="MIXER1-1"/>
+      <ctl name="I2S3 Mux" val="None"/>
+    </path>
+
+    <!-- Route MIXER output to I2S -->
+    <path name="adsp-bypass">
+      <ctl name="I2S1 Mux" val="MIXER1-1"/>
+      <ctl name="I2S3 Mux" val="None"/>
+    </path>
+
+    <path name="es755-speaker">
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="VP AEC" val="On"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="PRI Playback Mode" val="Stereo"/>
+      <ctl name="SPKRR MIXER DAC0R" val="1"/>
+      <ctl name="SPKRL MIXER DAC0L" val="1"/>
+      <ctl name="SPKR Gain" val="26"/>
+      <ctl name="Int Spk Switch" val="1"/>
+    </path>
+
+    <path name="es755-headphone">
+      <ctl name="DHWPT Algorithm" val="On"/>
+      <ctl name="DAC0.0 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.1 MUX" val="PCM0.1"/>
+      <ctl name="HPR MIXER DAC0R" val="1"/>
+      <ctl name="HPL MIXER DAC0L" val="1"/>
+      <ctl name="HP Gain" val="15"/>
+      <ctl name="ES755 Power State" val="MP_Sleep"/>
+    </path>
+
+    <path name="es755-headset">
+      <ctl name="DHWPT Algorithm" val="On"/>
+      <ctl name="DAC0.0 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.1 MUX" val="PCM0.1"/>
+      <ctl name="HPR MIXER DAC0R" val="1"/>
+      <ctl name="HPL MIXER DAC0L" val="1"/>
+      <ctl name="HP Gain" val="15"/>
+      <ctl name="ES755 Power State" val="MP_Sleep"/>
+    </path>
+
+    <path name="voice-call-earpiece">
+      <ctl name="I2S1 Mux" val="I2S4"/>
+      <ctl name="I2S4 Mux" val="I2S1"/>
+      <at node="/dev/ttyACM2" cmd="at%iaudcnf=" val="0"/>
+      <at node="/dev/ttyACM2" cmd="at%iapvc=" val="1"/>
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="VP AEC" val="On"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="VP WPIN MUX" val="PDMI2"/>
+      <ctl name="Active Input" val="PRI"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="Bits per Sample" val="32"/>
+      <ctl name="SPKRR MIXER DAC0R" val="1"/>
+      <ctl name="SPKRL MIXER DAC0L" val="1"/>
+      <ctl name="SPKR Gain" val="20"/>
+      <ctl name="Int Spk Switch" val="1"/>
+      <ctl name="Algo Preset 1" val="918"/>
+    </path>
+
+    <path name="voice-call-speaker">
+      <ctl name="I2S1 Mux" val="I2S4"/>
+      <ctl name="I2S4 Mux" val="I2S1"/>
+      <at node="/dev/ttyACM2" cmd="at%iaudcnf=" val="2"/>
+      <at node="/dev/ttyACM2" cmd="at%iapvc=" val="1"/>
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="VP AEC" val="On"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="VP WPIN MUX" val="PDMI2"/>
+      <ctl name="Active Input" val="PRI"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="Bits per Sample" val="32"/>
+      <ctl name="SPKRR MIXER DAC0R" val="1"/>
+      <ctl name="SPKRL MIXER DAC0L" val="1"/>
+      <ctl name="SPKR Gain" val="26"/>
+      <ctl name="Int Spk Switch" val="1"/>
+      <ctl name="Algo Preset 1" val="918"/>
+    </path>
+
+    <path name="voice-call-headphone">
+      <ctl name="I2S1 Mux" val="I2S4"/>
+      <ctl name="I2S4 Mux" val="I2S1"/>
+      <at node="/dev/ttyACM2" cmd="at%iapvc=" val="1"/>
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="VP AEC" val="On"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="VP WPIN MUX" val="PDMI2"/>
+      <ctl name="Active Input" val="PRI"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="Bits per Sample" val="32"/>
+      <ctl name="HPR MIXER DAC0R" val="1"/>
+      <ctl name="HPL MIXER DAC0L" val="1"/>
+      <ctl name="HP Gain" val="15"/>
+      <ctl name="Algo Preset 1" val="918"/>
+    </path>
+
+    <path name="voice-call-headset">
+      <ctl name="I2S1 Mux" val="I2S4"/>
+      <ctl name="I2S4 Mux" val="I2S1"/>
+      <at node="/dev/ttyACM2" cmd="at%iapvc=" val="1"/>
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="VP AEC" val="On"/>
+      <ctl name="VP Primary MUX" val="ADC0"/>
+      <ctl name="VP WPIN MUX" val="PDMI0"/>
+      <ctl name="Active Input" val="PRI"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="Bits per Sample" val="32"/>
+      <ctl name="HPR MIXER DAC0R" val="1"/>
+      <ctl name="HPL MIXER DAC0L" val="1"/>
+      <ctl name="HP Gain" val="15"/>
+      <ctl name="Algo Preset 1" val="591"/>
+    </path>
+
+    <path name="voice-call-builtin-mic">
+      <ctl name="I2S1 Mux" val="I2S4"/>
+      <ctl name="I2S4 Mux" val="I2S1"/>
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="VP AEC" val="On"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="VP WPIN MUX" val="PDMI2"/>
+      <ctl name="Active Input" val="PRI"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="Bits per Sample" val="32"/>
+      <ctl name="Algo Preset 1" val="918"/>
+    </path>
+
+    <path name="voice-call-headset-mic">
+      <ctl name="I2S1 Mux" val="I2S4"/>
+      <ctl name="I2S4 Mux" val="I2S1"/>
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="VP AEC" val="On"/>
+      <ctl name="VP Primary MUX" val="ADC0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="MICHS ON Switch" val="1"/>
+      <ctl name="MICHS Gain" val="15"/>
+      <ctl name="Algo Preset 1" val="591"/>
+    </path>
+
+    <!-- Usecases paths -->
+    <path name="speaker">
+      <path name="es755-speaker"/>
+      <path name="adsp-spkprot"/>
+    </path>
+
+    <path name="voip-speaker">
+      <ctl name="VP Algorithm" val="On"/>
+      <ctl name="Algorithm Rate" val="SR_16k"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="PCM0.1 MUX" val="VP CSOUT2"/>
+      <ctl name="VP FEIN MUX" val="PCM0.0"/>
+      <ctl name="VP FEIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.0 MUX" val="VP FEOUT1"/>
+      <ctl name="DAC0.1 MUX" val="VP FEOUT2"/>
+      <ctl name="SPKRR MIXER DAC0R" val="1"/>
+      <ctl name="SPKRL MIXER DAC0L" val="1"/>
+      <ctl name="SPKR Gain" val="26"/>
+      <ctl name="Int Spk Switch" val="1"/>
+      <path name="adsp-spkprot"/>
+    </path>
+
+    <path name="headphone">
+      <path name="es755-headphone"/>
+      <path name="adsp-bypass"/>
+    </path>
+
+    <path name="voip-headphone">
+      <ctl name="VP Algorithm" val="On"/>
+      <ctl name="Algorithm Rate" val="SR_16k"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="PCM0.1 MUX" val="VP CSOUT2"/>
+      <ctl name="VP FEIN MUX" val="PCM0.0"/>
+      <ctl name="VP FEIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.0 MUX" val="VP FEOUT1"/>
+      <ctl name="DAC0.1 MUX" val="VP FEOUT2"/>
+      <ctl name="HPR MIXER DAC0R" val="1"/>
+      <ctl name="HPL MIXER DAC0L" val="1"/>
+      <ctl name="HP Gain" val="15"/>
+      <path name="adsp-bypass"/>
+    </path>
+
+    <path name="headset">
+      <path name="es755-headset"/>
+      <path name="adsp-bypass"/>
+    </path>
+
+    <path name="voip-headset">
+      <ctl name="VP Algorithm" val="On"/>
+      <ctl name="Algorithm Rate" val="SR_16k"/>
+      <ctl name="VP Primary MUX" val="ADC0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="PCM0.1 MUX" val="VP CSOUT2"/>
+      <ctl name="VP FEIN MUX" val="PCM0.0"/>
+      <ctl name="VP FEIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.0 MUX" val="VP FEOUT1"/>
+      <ctl name="DAC0.1 MUX" val="VP FEOUT2"/>
+      <ctl name="HPR MIXER DAC0R" val="1"/>
+      <ctl name="HPL MIXER DAC0L" val="1"/>
+      <ctl name="HP Gain" val="15"/>
+      <path name="adsp-bypass"/>
+    </path>
+
+    <path name="earpiece">
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="VP AEC" val="On"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="PRI Playback Mode" val="Stereo"/>
+      <ctl name="SPKRR MIXER DAC0R" val="1"/>
+      <ctl name="SPKRL MIXER DAC0L" val="1"/>
+      <ctl name="SPKR Gain" val="20"/>
+      <ctl name="Int Spk Switch" val="1"/>
+      <path name="adsp-bypass"/>
+    </path>
+
+    <path name="voip-earpiece">
+      <ctl name="VP Algorithm" val="On"/>
+      <ctl name="Algorithm Rate" val="SR_16k"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="PCM0.1 MUX" val="VP CSOUT2"/>
+      <ctl name="VP FEIN MUX" val="PCM0.0"/>
+      <ctl name="VP FEIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.0 MUX" val="VP FEOUT1"/>
+      <ctl name="DAC0.1 MUX" val="VP FEOUT2"/>
+      <ctl name="SPKRR MIXER DAC0R" val="1"/>
+      <ctl name="SPKRL MIXER DAC0L" val="1"/>
+      <ctl name="SPKR Gain" val="20"/>
+      <ctl name="Int Spk Switch" val="1"/>
+      <path name="adsp-bypass"/>
+    </path>
+
+    <path name="speaker-and-headphone">
+      <path name="es755-headphone"/>
+      <ctl name="SPKRR MIXER DAC0R" val="1"/>
+      <ctl name="SPKRL MIXER DAC0L" val="1"/>
+      <ctl name="SPKR Gain" val="26"/>
+      <ctl name="Int Spk Switch" val="1"/>
+      <path name="adsp-spkprot"/>
+    </path>
+
+    <path name="speaker-and-headset">
+      <path name="es755-headset"/>
+      <ctl name="SPKRR MIXER DAC0R" val="1"/>
+      <ctl name="SPKRL MIXER DAC0L" val="1"/>
+      <ctl name="SPKR Gain" val="26"/>
+      <ctl name="Int Spk Switch" val="1"/>
+      <path name="adsp-spkprot"/>
+    </path>
+
+    <path name="builtin-mic">
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="VP AEC" val="On"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="Algo Preset 1" val="573"/>
+    </path>
+
+    <path name="hp-builtin-mic">
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="DHWPT Enable" val="1"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="Algo Preset 1" val="573"/>
+    </path>
+
+    <path name="voip-builtin-mic">
+      <ctl name="VP Algorithm" val="On"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="PCM0.1 MUX" val="VP CSOUT2"/>
+      <ctl name="VP FEIN MUX" val="PCM0.0"/>
+      <ctl name="VP FEIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.0 MUX" val="VP FEOUT1"/>
+      <ctl name="DAC0.1 MUX" val="VP FEOUT2"/>
+      <ctl name="Algo Preset 1" val="570"/>
+    </path>
+
+    <path name="voice-rec-builtin-mic">
+      <path name="builtin-mic"/>
+      <ctl name="Algo Preset 1" val="609"/>
+    </path>
+
+    <path name="voice-rec-hp-builtin-mic">
+      <path name="hp-builtin-mic"/>
+      <ctl name="Algo Preset 1" val="609"/>
+    </path>
+
+    <path name="headset-mic">
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="DHWPT Enable" val="1"/>
+      <ctl name="VP Primary MUX" val="ADC0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="MIC0 PGA Mux" val="MIC-HS"/>
+      <ctl name="MICHS Gain" val="15"/>
+      <ctl name="MICHS SEL MUX" val="MIC0_PGA"/>
+      <ctl name="Algo Preset 1" val="591"/>
+    </path>
+
+    <path name="voip-headset-mic">
+      <ctl name="VP Algorithm" val="On"/>
+      <ctl name="VP Primary MUX" val="ADC0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="PCM0.1 MUX" val="VP CSOUT2"/>
+      <ctl name="VP FEIN MUX" val="PCM0.0"/>
+      <ctl name="VP FEIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.0 MUX" val="VP FEOUT1"/>
+      <ctl name="DAC0.1 MUX" val="VP FEOUT2"/>
+      <ctl name="MIC0 PGA Mux" val="MIC-HS"/>
+      <ctl name="MICHS Gain" val="15"/>
+      <ctl name="MICHS SEL MUX" val="MIC0_PGA"/>
+      <ctl name="Algo Preset 1" val="591"/>
+    </path>
+
+    <path name="voice-rec-headset-mic">
+      <path name="headset-mic"/>
+      <ctl name="Algo Preset 1" val="615"/>
+    </path>
+
+</card>
+
+  <card name="tegra-snd-t210ref-mobile-rt565x">
+    <pcm_config name="music-playback"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="1024"
+                period_count="4"
+                start_threshold="4095"
+                stop_threshold="-1"
+                silence_threshold="0"
+                silence_size="-1"
+                avail_min="1"
+                devices="speaker|earpiece|headset|headphone|rsubmix"/>
+
+    <pcm_config name="fast-playback"
+                device_id="5"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="128"
+                period_count="2"
+                start_threshold="255"
+                stop_threshold="-1"
+                silence_threshold="0"
+                silence_size="-1"
+                avail_min="1"
+                devices="speaker|earpiece|headset|headphone|rsubmix"/>
+
+    <pcm_config name="music-capture"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="1024"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="4096"
+                silence_threshold="0"
+                avail_min="1"
+                devices="builtin-mic|headset-mic"/>
+
+    <pcm_config name="fast-capture"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"
+                devices="builtin-mic|headset-mic"/>
+
+    <pcm_config name="rsubmix-ahub-capture"
+                device_id="3"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="512"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="2048"
+                silence_threshold="0"
+                avail_min="1"
+                devices="rsubmix-in"/>
+
+<!-- Period size and period count for compress device
+     actually mean compr_frag_size and no of fragments
+-->
+    <pcm_config name="offload-playback"
+                device_id="95"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="32768"
+                period_count="4"/>
+
+    <pcm_config name="bt-sco-playback"
+                device_id="1"
+                rate="8000"
+                channels="1"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="511"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"
+                devices="bt-sco|rsubmix"/>
+
+    <pcm_config name="bt-sco-capture"
+                device_id="1"
+                rate="8000"
+                channels="1"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"
+                devices="bt-sco-mic"/>
+
+    <pcm_config name="bt-sco-wb-playback"
+                device_id="1"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="256"
+                period_count="4"
+                start_threshold="1023"
+                stop_threshold="1024"
+                silence_threshold="0"
+                avail_min="1"
+                devices="bt-sco|rsubmix"/>
+
+    <pcm_config name="bt-sco-wb-capture"
+                device_id="1"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="256"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="1024"
+                silence_threshold="0"
+                avail_min="1"
+                devices="bt-sco-mic"/>
+
+    <pcm_config  name="hra-playback"
+                device_id="2"
+                rate="96000"
+                channels="2"
+                bps="32"
+                period_size="1024"
+                period_count="4"
+                start_threshold="4095"
+                stop_threshold="-1"
+                silence_threshold="0"
+                silence_size="-1"
+                avail_min="1"
+                devices="headset|headphone"/>
+
+    <pcm_config  name="hra-capture"
+                device_id="0"
+                rate="96000"
+                channels="2"
+                bps="32"
+                period_size="1024"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="4096"
+                silence_threshold="0"
+                avail_min="1"
+                devices="builtin-mic|headset-mic"/>
+
+    <pcm_config name="adsp-capture"
+                device_id="93"
+                rate="16000"
+                channels="2"
+                bps="16"
+                period_size="512"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="2048"
+                silence_threshold="0"
+                avail_min="1"
+                devices="builtin-mic|headset-mic"/>
+
+    <param name="capture-init-silence-hsmic" val="160"/>
+    <param name="nvoice" val="0"/>
+    <param name="aec-adsp" val="1"/>
+    <param name="safe-routing" val="1"/>
+    <!--Speaker protection flag:
+      None -> Disable speaker protection
+      CPU  -> CPU based speaker protection
+      ADSP -> ADSP based speaker protection-->
+    <param name="spkprot-flag" val="ADSP"/>
+
+    <ctl name="MIXER1-1 Mux" val="ADMAIF1"/>
+    <ctl name="Adder1 RX1" val="1"/>
+    <ctl name="Mixer Enable" val="1"/>
+    <ctl name="ADMAIF1 Mux" val="I2S1"/>
+    <ctl name="codec-x rate" val="None"/>
+
+    <!-- FAST path -->
+    <ctl name="MIXER1-6 Mux" val="ADMAIF6"/>
+    <ctl name="Adder1 RX6" val="1"/>
+
+    <!-- Visualizer control to capture pcm data-->
+    <ctl name="ADMAIF7 Mux" val="MIXER1-1"/>
+
+    <!-- Boot ADSP -->
+    <ctl name="ADSP init" val="1"/>
+
+    <!-- ADSP path for Offload (reset controls) -->
+    <!-- Maintain below order of disconnecting APM connections -->
+    <ctl name="MP3-DEC1 MUX" val="None"/>
+    <ctl name="AAC-DEC1 MUX" val="None"/>
+    <ctl name="SRC MUX" val="None"/>
+    <ctl name="ADMA3 MUX" val="None"/>
+    <ctl name="APM-OUT2 MUX" val="None"/>
+    <ctl name="ADSP-ADMAIF5 MUX" val="None"/>
+    <ctl name="APM-IN2 MUX" val="None"/>
+    <ctl name="Adder1 RX2" val="1"/>
+    <!-- Add SFC block during offload playback -->
+    <ctl name="SFC1 Mux" val="ADMAIF5"/>
+    <ctl name="MIXER1-2 Mux" val="SFC1"/>
+
+    <!-- ADSP path for speaker protection -->
+    <!-- "APM-IN1 MUX" is kept open and will
+         be closed in "adsp-spkprot" path -->
+    <ctl name="I2S3 Loopback" val="1"/>
+    <ctl name="ADMAIF3 Mux" val="I2S3"/>
+    <ctl name="APM-IN1 MUX" val="None"/>
+    <ctl name="ADMA1 MUX" val="APM-IN1"/>
+    <ctl name="SPKPROT-SW MUX" val="ADMA1"/>
+    <ctl name="ADMA2 MUX" val="SPKPROT-SW"/>
+    <ctl name="APM-OUT1 MUX" val="ADMA2"/>
+    <ctl name="ADSP-ADMAIF4 MUX" val="APM-OUT1"/>
+
+    <!-- Capture processing APM (AEC) in ADSP -->
+    <ctl name="APM-IN3 MUX" val="ADSP-ADMAIF8"/>
+    <ctl name="ADMA4 MUX" val="APM-IN3"/>
+    <ctl name="AEC MUX" val="ADMA4"/>
+    <ctl name="APM-OUT3 MUX" val="AEC"/>
+    <ctl name="ADSP-FE1 MUX" val="APM-OUT3"/>
+    <ctl name="APM3 Priority" val="49"/>
+
+    <ctl name="x Int Spk Switch" val="0"/>
+    <ctl name="x Int Mic Switch" val="0"/>
+    <ctl name="x Headphone Jack Switch" val="0"/>
+    <ctl name="x Mic Jack Switch" val="0"/>
+    <ctl name="x Stereo DAC MIXR DAC L1 Switch" val="0"/>
+    <ctl name="x Stereo DAC MIXR DAC R1 Switch" val="0"/>
+    <ctl name="x Stereo DAC MIXL DAC L1 Switch" val="0"/>
+    <ctl name="x Stereo DAC MIXL DAC R1 Switch" val="0"/>
+    <ctl name="x HPO R Playback Switch" val="0"/>
+    <ctl name="x HPO L Playback Switch" val="0"/>
+    <ctl name="x Headphone Playback Volume" val="0x1e"/>
+    <ctl name="x Speaker Playback Volume" val="0x20"/>
+
+    <ctl name="x RECMIX1L BST1 Switch" val="0"/>
+    <ctl name="x RECMIX1R BST1 Switch" val="0"/>
+    <ctl name="x Stereo1 ADC Source" val="0"/>
+    <ctl name="x Stereo1 ADC1 Source" val="0"/>
+    <ctl name="x Stereo1 ADC MIXL ADC1 Switch" val="0"/>
+    <ctl name="x Stereo1 ADC MIXR ADC1 Switch" val="0"/>
+    <ctl name="x TDM Data Mux" val="AD1:AD2:DAC:NUL"/>
+
+    <!-- BT-SCO path -->
+    <ctl name="I2S2 Mux" val="ADMAIF2"/>
+    <ctl name="ADMAIF2 Mux" val="I2S2"/>
+
+    <!--  Reset value of HRA controls-->
+    <ctl name="codec-x format" val="None"/>
+    <ctl name="SFC1 input bit format" val="16"/>
+    <ctl name="SFC2 input bit format" val="16"/>
+    <ctl name="I2S1 input bit format" val="16"/>
+
+    <!-- Keep MIXER output ready for "adsp-spkprot" or "adsp-bypass" -->
+    <ctl name="I2S1 Mux" val="MIXER1-1"/>
+    <ctl name="I2S3 Mux" val="MIXER1-1"/>
+    <!-- Reference (Rx) signal for AEC APM (ADSP) -->
+    <ctl name="SFC4 Mux" val="MIXER1-1"/>
+
+    <path name="adsp-spkprot">
+      <!-- Set ADSP clock required in MHz for speaker protection APM -->
+      <ctl name="APM1 Min ADSP Clock" val="200"/>
+      <!-- Close input/output connections of SPKPROT APM -->
+      <ctl name="I2S1 Mux" val="ADMAIF4"/>
+      <ctl name="APM-IN1 MUX" val="ADSP-ADMAIF3"/>
+      <!-- Set higher priority for speaker protection APM -->
+      <ctl name="APM1 Priority" val="49"/>
+      <!-- Reference (Rx) signal for AEC APM (ADSP) -->
+      <ctl name="SFC4 Mux" val="ADMAIF4"/>
+    </path>
+
+    <path name="adsp-bypass">
+      <!-- No specifc controls now -->
+    </path>
+
+    <!-- ADSP path for MP3 Offload -->
+    <path name="adsp-mp3dec">
+      <!-- Maintain this order to ensure proper disconnection.
+           Controls are executed in reverse order when closing. -->
+      <ctl name="APM-IN2 MUX" val="ADSP-FE3"/>
+      <ctl name="ADSP-ADMAIF5 MUX" val="APM-OUT2"/>
+      <ctl name="APM-OUT2 MUX" val="ADMA3"/>
+      <ctl name="ADMA3 MUX" val="SRC"/>
+      <ctl name="SRC MUX" val="MP3-DEC1"/>
+      <ctl name="MP3-DEC1 MUX" val="APM-IN2"/>
+      <!-- Set default priority for offload APM -->
+      <ctl name="APM2 Priority" val="48"/>
+    </path>
+
+    <!-- ADSP path for AAC Offload -->
+    <path name="adsp-aacdec">
+      <!-- Maintain this order to ensure proper disconnection.
+           Controls are executed in reverse order when closing. -->
+      <ctl name="APM-IN2 MUX" val="ADSP-FE3"/>
+      <ctl name="ADSP-ADMAIF5 MUX" val="APM-OUT2"/>
+      <ctl name="APM-OUT2 MUX" val="ADMA3"/>
+      <ctl name="ADMA3 MUX" val="SRC"/>
+      <ctl name="SRC MUX" val="AAC-DEC1"/>
+      <ctl name="AAC-DEC1 MUX" val="APM-IN2"/>
+      <!-- Set default priority for offload APM -->
+      <ctl name="APM2 Priority" val="48"/>
+    </path>
+
+    <!-- controls paths -->
+    <path name="rt565x-speaker">
+      <ctl name="x Stereo DAC MIXR DAC R1 Switch" val="1"/>
+      <ctl name="x Stereo DAC MIXL DAC L1 Switch" val="1"/>
+      <ctl name="x Int Spk Switch" val="1"/>
+    </path>
+
+    <path name="rt565x-headphone">
+      <ctl name="x Stereo DAC MIXR DAC R1 Switch" val="1"/>
+      <ctl name="x Stereo DAC MIXL DAC L1 Switch" val="1"/>
+      <ctl name="x HPO R Playback Switch" val="1"/>
+      <ctl name="x HPO L Playback Switch" val="1"/>
+      <ctl name="x Headphone Jack Switch" val="1"/>
+    </path>
+
+    <path name="rt565x-earpiece">
+      <ctl name="x Stereo DAC MIXL DAC L1 Switch" val="1"/>
+      <ctl name="x Int Spk Switch" val="1"/>
+    </path>
+
+    <path name="speaker">
+      <path name="rt565x-speaker"/>
+      <path name="adsp-spkprot"/>
+    </path>
+
+    <path name="headphone">
+      <path name="rt565x-headphone"/>
+      <path name="adsp-bypass"/>
+    </path>
+
+    <path name="headset">
+      <path name="headphone"/>
+    </path>
+
+    <path name="earpiece">
+      <path name="rt565x-earpiece"/>
+      <ctl name="x Speaker Playback Volume" val="0x11"/>
+      <path name="adsp-bypass"/>
+    </path>
+
+    <path name="speaker-and-headphone">
+      <path name="rt565x-speaker"/>
+      <path name="rt565x-headphone"/>
+      <path name="adsp-spkprot"/>
+    </path>
+
+    <path name="speaker-and-headset">
+      <path name="speaker-and-headphone"/>
+    </path>
+
+    <path name="voip-speaker">
+      <path name="rt565x-earpiece"/>
+      <path name="adsp-spkprot"/>
+    </path>
+
+    <!-- Upsample and mix other output paths with HRA -->
+    <path name="hra-routes">
+      <ctl name="SFC1 input rate" val="48000"/>
+      <ctl name="SFC2 input rate" val="48000"/>
+      <ctl name="codec-x rate" val="96kHz"/>
+      <ctl name="codec-x format" val="32"/>
+      <ctl name="SFC1 Mux" val="ADMAIF1"/>
+      <ctl name="SFC2 Mux" val="ADMAIF6"/>
+      <ctl name="MIXER1-6 Mux" val="SFC2"/>
+      <ctl name="MIXER1-1 Mux" val="SFC1"/>
+      <ctl name="MIXER1-3 Mux" val="ADMAIF3"/>
+      <ctl name="Adder1 RX3" val="1"/>
+      <path name="adsp-bypass"/>
+    </path>
+
+    <path name="hra-headphone">
+      <path name="rt565x-headphone"/>
+      <path name="hra-routes"/>
+    </path>
+
+    <path name="hra-headset">
+      <path name="hra-headphone"/>
+    </path>
+
+    <path name="hra-speaker-and-headphone">
+      <path name="rt565x-speaker"/>
+      <path name="rt565x-headphone"/>
+      <path name="hra-routes"/>
+    </path>
+
+    <path name="hra-speaker-and-headset">
+      <path name="hra-speaker-and-headphone"/>
+    </path>
+
+<!--
+    <path name="builtin-mic">
+      <ctl name="ADMAIF1 Mux" val="DMIC3"/>
+    </path>
+-->
+
+    <path name="builtin-mic">
+       <ctl name="x Stereo1 DMIC Source" val="DMIC1"/>
+       <ctl name="x Stereo1 ADC2 Source" val="DMIC"/>
+       <ctl name="x Stereo1 ADC MIXL ADC2 Switch" val="1"/>
+       <ctl name="x Stereo1 ADC MIXR ADC2 Switch" val="1"/>
+       <ctl name="x TDM Data Mux" val="AD1:AD2:DAC:NUL"/>
+       <ctl name="x STO1 ADC Boost Gain Volume" val="2"/>
+       <ctl name="x Int Mic Switch" val="1"/>
+    </path>
+
+    <path name="headset-mic">
+      <ctl name="x RECMIX1L BST1 Switch" val="1"/>
+      <ctl name="x RECMIX1R BST1 Switch" val="1"/>
+      <ctl name="x Stereo1 ADC Source" val="ADC1"/>
+      <ctl name="x Stereo1 ADC1 Source" val="ADC"/>
+      <ctl name="x Stereo1 ADC MIXL ADC1 Switch" val="1"/>
+      <ctl name="x Stereo1 ADC MIXR ADC1 Switch" val="1"/>
+      <ctl name="x IN1 Boost Volume" val="43"/>
+      <ctl name="x Mic Jack Switch" val="1"/>
+    </path>
+
+    <!-- Gamecast loopback path -->
+    <path name="rsubmix">
+      <ctl name="I2S4 Loopback" val="1"/>
+      <ctl name="I2S4 Mux" val="MIXER1-1"/>
+    </path>
+
+    <path name="rsubmix-in">
+      <ctl name="ADMAIF4 Mux" val="I2S4"/>
+    </path>
+
+    <!-- Capture & AEC via ADSP -->
+    <!--
+                                                      /- - AMX1-1 <- - SFC3 <- - I2S-IN1
+    (adsp-capture)   ADSP-FE1 <- APM3 <- ADMAIF8 - AMX1
+                                                      \- - AMX1-2 <- - SFC4 <- - ADMAIF4/MIXER1-1
+    -->
+    <path name="aec-adsp">
+      <!-- Connect MIC to AMX1-1 via SFC -->
+      <ctl name="SFC3 Mux" val="I2S1"/>
+      <ctl name="SFC3 input rate" val="48000"/>
+      <ctl name="SFC3 output rate" val="16000"/>
+      <ctl name="AMX1-1 Mux" val="SFC3"/>
+      <!-- Connect Reference to AMX1-2 via SFC -->
+      <!-- ADMAIF4/MIXER1-1 to SFC connection is already
+           made as per "adsp-spkprot" or "adsp-bypass" -->
+      <ctl name="SFC4 input rate" val="48000"/>
+      <ctl name="SFC4 output rate" val="16000"/>
+      <ctl name="SFC4 input stereo conv" val="AVG"/>
+      <ctl name="SFC4 output mono conv" val="COPY"/>
+      <ctl name="AMX1-2 Mux" val="SFC4"/>
+      <!-- Byte map for AMX1 -->
+      <ctl name="AMX1 Byte Map 0" val="0"/>
+      <ctl name="AMX1 Byte Map 1" val="1"/>
+      <ctl name="AMX1 Byte Map 2" val="0"/>
+      <ctl name="AMX1 Byte Map 3" val="0"/>
+      <ctl name="AMX1 Byte Map 4" val="4"/>
+      <ctl name="AMX1 Byte Map 5" val="5"/>
+      <ctl name="AMX1 Byte Map 6" val="0"/>
+      <ctl name="AMX1 Byte Map 7" val="0"/>
+      <ctl name="AMX1 Byte Map 8" val="64"/>
+      <ctl name="AMX1 Byte Map 9" val="65"/>
+      <ctl name="AMX1 Byte Map 10" val="0"/>
+      <ctl name="AMX1 Byte Map 11" val="0"/>
+      <!-- Connect AMX1 to ADSP (AEC APM) -->
+      <ctl name="ADMAIF8 Mux" val="AMX1"/>
+      <ctl name="AMX1 Output Channels" val="3"/>
+      <ctl name="ADMAIF8 Channels" val="3"/>
+      <!-- Setting HW capture rate to 48kHz -->
+      <ctl name="codec-x rate" val="48kHz"/>
+      <!-- ADMA configuration for AEC APM input -->
+      <nvfx_param name="ADMA4 set params" method="65538" num_values="3" val="2,2048,2"/>
+    </path>
+
+    <path name="voip-builtin-mic">
+      <path name="builtin-mic"/>
+      <path name="aec-adsp"/>
+    </path>
+
+    <path name="voip-headset-mic">
+      <path name="headset-mic"/>
+      <path name="aec-adsp"/>
+    </path>
+
+  </card>
+
+  <card name="tegra-snd-t210ref-mobile-rt5639">
+    <pcm_config name="music-playback"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="1024"
+                period_count="4"
+                start_threshold="4095"
+                stop_threshold="-1"
+                silence_threshold="0"
+                silence_size="-1"
+                avail_min="1"
+                devices="speaker|earpiece|headset|headphone|rsubmix"/>
+
+    <pcm_config name="fast-playback"
+                device_id="5"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="128"
+                period_count="2"
+                start_threshold="255"
+                stop_threshold="-1"
+                silence_threshold="0"
+                silence_size="-1"
+                avail_min="1"
+                devices="speaker|earpiece|headset|headphone|rsubmix"/>
+
+    <pcm_config name="music-capture"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="1024"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="4096"
+                silence_threshold="0"
+                avail_min="1"
+                devices="builtin-mic|headset-mic"/>
+
+    <pcm_config name="fast-capture"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"
+                devices="builtin-mic|headset-mic"/>
+
+    <pcm_config name="rsubmix-ahub-capture"
+                device_id="3"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="512"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="2048"
+                silence_threshold="0"
+                avail_min="1"
+                devices="rsubmix-in"/>
+
+<!-- Period size and period count for compress device
+     actually mean compr_frag_size and no of fragments
+-->
+    <pcm_config name="offload-playback"
+                device_id="95"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="32768"
+                period_count="4"/>
+
+    <pcm_config name="bt-sco-playback"
+                device_id="1"
+                rate="8000"
+                channels="1"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="511"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"
+                devices="bt-sco|rsubmix"/>
+
+    <pcm_config name="bt-sco-capture"
+                device_id="1"
+                rate="8000"
+                channels="1"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"
+                devices="bt-sco-mic"/>
+
+    <pcm_config name="bt-sco-wb-playback"
+                device_id="1"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="256"
+                period_count="4"
+                start_threshold="1023"
+                stop_threshold="1024"
+                silence_threshold="0"
+                avail_min="1"
+                devices="bt-sco|rsubmix"/>
+
+    <pcm_config name="bt-sco-wb-capture"
+                device_id="1"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="256"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="1024"
+                silence_threshold="0"
+                avail_min="1"
+                devices="bt-sco-mic"/>
+
+    <param name="capture-init-silence-dmic" val="60"/>
+    <param name="capture-init-silence-hsmic" val="100"/>
+    <param name="nvoice" val="0"/>
+    <param name="safe-routing" val="1"/>
+    <!--Speaker protection flag:
+      None -> Disable speaker protection
+      CPU  -> CPU based speaker protection
+      ADSP -> ADSP based speaker protection-->
+    <param name="spkprot-flag" val="ADSP"/>
+
+    <ctl name="MIXER1-1 Mux" val="ADMAIF1"/>
+    <ctl name="Adder1 RX1" val="1"/>
+    <ctl name="Mixer Enable" val="1"/>
+    <ctl name="ADMAIF1 Mux" val="I2S1"/>
+    <ctl name="codec-x rate" val="None"/>
+
+    <!-- FAST path -->
+    <ctl name="MIXER1-6 Mux" val="ADMAIF6"/>
+    <ctl name="Adder1 RX6" val="1"/>
+
+    <!-- Visualizer control to capture pcm data-->
+    <ctl name="ADMAIF7 Mux" val="MIXER1-1"/>
+
+    <!-- BT SCO -->
+    <ctl name="I2S2 Mux" val="ADMAIF2"/>
+    <ctl name="ADMAIF2 Mux" val="I2S2"/>
+
+    <!-- Boot ADSP -->
+    <ctl name="ADSP init" val="1"/>
+
+    <!-- ADSP path for Offload (reset controls) -->
+    <!-- Maintain below order of disconnecting APM connections -->
+    <ctl name="MP3-DEC1 MUX" val="None"/>
+    <ctl name="AAC-DEC1 MUX" val="None"/>
+    <ctl name="SRC MUX" val="None"/>
+    <ctl name="ADMA3 MUX" val="None"/>
+    <ctl name="APM-OUT2 MUX" val="None"/>
+    <ctl name="ADSP-ADMAIF5 MUX" val="None"/>
+    <ctl name="APM-IN2 MUX" val="None"/>
+    <ctl name="Adder1 RX2" val="1"/>
+    <!-- Add SFC block during offload playback -->
+    <ctl name="SFC1 Mux" val="ADMAIF5"/>
+    <ctl name="MIXER1-2 Mux" val="SFC1"/>
+
+    <!-- ADSP path for speaker protection -->
+    <!-- "APM-IN1 MUX" is kept open and will
+         be closed in "adsp-spkprot" path -->
+    <ctl name="I2S3 Loopback" val="1"/>
+    <ctl name="ADMAIF3 Mux" val="I2S3"/>
+    <ctl name="APM-IN1 MUX" val="None"/>
+    <ctl name="ADMA1 MUX" val="APM-IN1"/>
+    <ctl name="SPKPROT-SW MUX" val="ADMA1"/>
+    <ctl name="ADMA2 MUX" val="SPKPROT-SW"/>
+    <ctl name="APM-OUT1 MUX" val="ADMA2"/>
+    <ctl name="ADSP-ADMAIF4 MUX" val="APM-OUT1"/>
+
+    <!--playback paths-->
+    <ctl name="x Speaker Playback Volume" val="0x20"/>
+    <ctl name="x HP Playback Volume" val="0x1e"/>
+    <ctl name="x Headphone Jack Switch" val="0"/>
+    <ctl name="x Int Spk Switch" val="0"/>
+    <!--ctl name="x HP Playback Switch" val="1"/-->
+    <ctl name="x Int Mic Switch" val="0"/>
+    <ctl name="x SPK MIXR DAC R1 Switch" val="1"/>
+    <ctl name="x RECMIXL BST2 Switch" val="0"/>
+    <ctl name="x RECMIXR BST2 Switch" val="0"/>
+    <ctl name="x Stereo ADC MIXL ADC1 Switch" val="0"/>
+    <ctl name="x Stereo ADC MIXR ADC1 Switch" val="0"/>
+    <ctl name="x Mic Jack Switch" val="1"/>
+
+    <!-- Keep MIXER output ready for "adsp-spkprot" or "adsp-bypass" -->
+    <ctl name="I2S1 Mux" val="MIXER1-1"/>
+    <ctl name="I2S3 Mux" val="MIXER1-1"/>
+
+    <path name="adsp-spkprot">
+      <!-- Set ADSP clock required in MHz for speaker protection APM -->
+      <ctl name="APM1 Min ADSP Clock" val="200"/>
+      <!-- Close input/output connections of SPKPROT APM -->
+      <ctl name="I2S1 Mux" val="ADMAIF4"/>
+      <ctl name="APM-IN1 MUX" val="ADSP-ADMAIF3"/>
+      <!-- Set higher priority for speaker protection APM -->
+      <ctl name="APM1 Priority" val="49"/>
+    </path>
+
+    <path name="adsp-bypass">
+      <!-- No specifc controls now -->
+    </path>
+
+    <!-- ADSP path for MP3 Offload -->
+    <path name="adsp-mp3dec">
+      <!-- Maintain this order to ensure proper disconnection.
+           Controls are executed in reverse order when closing. -->
+      <ctl name="APM-IN2 MUX" val="ADSP-FE3"/>
+      <ctl name="ADSP-ADMAIF5 MUX" val="APM-OUT2"/>
+      <ctl name="APM-OUT2 MUX" val="ADMA3"/>
+      <ctl name="ADMA3 MUX" val="SRC"/>
+      <ctl name="SRC MUX" val="MP3-DEC1"/>
+      <ctl name="MP3-DEC1 MUX" val="APM-IN2"/>
+      <!-- Set default priority for offload APM -->
+      <ctl name="APM2 Priority" val="48"/>
+    </path>
+
+    <!-- ADSP path for AAC Offload -->
+    <path name="adsp-aacdec">
+      <!-- Maintain this order to ensure proper disconnection.
+           Controls are executed in reverse order when closing. -->
+      <ctl name="APM-IN2 MUX" val="ADSP-FE3"/>
+      <ctl name="ADSP-ADMAIF5 MUX" val="APM-OUT2"/>
+      <ctl name="APM-OUT2 MUX" val="ADMA3"/>
+      <ctl name="ADMA3 MUX" val="SRC"/>
+      <ctl name="SRC MUX" val="AAC-DEC1"/>
+      <ctl name="AAC-DEC1 MUX" val="APM-IN2"/>
+      <!-- Set default priority for offload APM -->
+      <ctl name="APM2 Priority" val="48"/>
+    </path>
+
+    <path name="rt5639-speaker">
+      <ctl name="x Int Spk Switch" val="1"/>
+      <ctl name="x Speaker Playback Volume" val="0x20"/>
+    </path>
+
+    <path name="rt5639-headphone">
+      <ctl name="x Headphone Jack Switch" val="1"/>
+    </path>
+
+    <path name="speaker">
+      <path name="rt5639-speaker"/>
+      <path name="adsp-spkprot"/>
+    </path>
+
+    <path name="voip-speaker">
+      <ctl name="x SPK MIXR DAC R1 Switch" val="0"/>
+      <path name="rt5639-speaker"/>
+      <path name="adsp-spkprot"/>
+    </path>
+
+    <path name="headphone">
+      <path name="rt5639-headphone"/>
+      <path name="adsp-bypass"/>
+    </path>
+
+    <path name="headset">
+      <path name="headphone"/>
+    </path>
+
+    <path name="earpiece">
+      <ctl name="x SPK MIXR DAC R1 Switch" val="0"/>
+      <ctl name="x Int Spk Switch" val="1"/>
+      <ctl name="x Speaker Playback Volume" val="0x11"/>
+    </path>
+
+    <path name="speaker-and-headphone">
+      <path name="rt5639-speaker"/>
+      <path name="rt5639-headphone"/>
+      <path name="adsp-spkprot"/>
+    </path>
+
+    <path name="speaker-and-headset">
+      <path name="speaker-and-headphone"/>
+    </path>
+
+    <path name="builtin-mic">
+      <ctl name="ADMAIF1 Mux" val="DMIC2"/>
+      <ctl name="DMIC2 Boost Gain" val="436"/>
+    </path>
+
+    <path name="headset-mic">
+      <ctl name="x ADC Capture Switch" val="1"/>
+      <ctl name="x RECMIXL BST1 Switch" val="0"/>
+      <ctl name="x RECMIXR BST1 Switch" val="0"/>
+      <ctl name="x RECMIXL BST2 Switch" val="1"/>
+      <ctl name="x RECMIXR BST2 Switch" val="1"/>
+      <ctl name="x Stereo ADC L1 Mux" val="ADC"/>
+      <ctl name="x Stereo ADC R1 Mux" val="ADC"/>
+      <ctl name="x Stereo ADC MIXL ADC1 Switch" val="1"/>
+      <ctl name="x Stereo ADC MIXR ADC1 Switch" val="1"/>
+      <ctl name="x Stereo ADC MIXL ADC2 Switch" val="0"/>
+      <ctl name="x Stereo ADC MIXR ADC2 Switch" val="0"/>
+      <ctl name="x IN2 Mode Control" val="Single ended"/>
+      <ctl name="x IN2 Boost" val="1"/>
+      <ctl name="x Mic Jack Switch" val="1"/>
+    </path>
+
+    <!-- Gamecast loopback path -->
+    <path name="rsubmix">
+      <ctl name="I2S4 Loopback" val="1"/>
+      <ctl name="I2S4 Mux" val="MIXER1-1"/>
+    </path>
+
+    <path name="rsubmix-in">
+      <ctl name="ADMAIF4 Mux" val="I2S4"/>
+    </path>
+
+  </card>
+
+  <card name="Tegra">
+    <pcm_config name ="hdmi-playback"
+                device_id="3"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="256"
+                period_count="8"
+                start_threshold="2047"
+                stop_threshold="-1"
+                silence_threshold="0"
+                silence_size="-1"
+                avail_min="1"
+                devices="hdmi"/>
+
+  <param name="HDMI HW Latency" val="50"/>
+  </card>
+
+  <card name="dummy">
+    <pcm_config name="usb-controller-remote-playback"
+                rate="32000"
+                channels="2"
+                bps="16"
+                period_size="256"
+                period_count="4"
+                start_threshold="1023"
+                stop_threshold="-1"
+                silence_threshold="0"
+                silence_size="-1"
+                avail_min="1"
+                devices="blake"/>
+
+    <pcm_config name="usb-controller-remote-capture"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="512"
+                period_count="2"
+                start_threshold="1023"
+                stop_threshold="1024"
+                avail_min="1"
+                devices="blake-in"/>
+  </card>
+</AudioConfigs>

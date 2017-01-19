@@ -1,4 +1,4 @@
-#Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+#Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
 #
 #NVIDIA Corporation and its licensors retain all intellectual property and
 #proprietary rights in and to this software and related documentation.  Any
@@ -10,6 +10,10 @@ import init.tegra.rc
 import init.t210.rc
 import init.foster_e_common.rc
 
+on post-fs-data
+    start cyupdate
+    start get-hddstat
+
 on fs
     write /sys/block/sda/queue/scheduler deadline
     write /sys/block/sda/queue/iosched/read_expire 1000
@@ -18,27 +22,10 @@ on fs
     mount_all /fstab.foster_e_hdd
     swapon_all /fstab.foster_e_hdd
 
-
-on post-fs-data
-    mount ext4 /dev/block/platform/tegra-sata.0/by-name/RP3 /factory/wifi_config rw nosuid noexec nodev
-    restorecon_recursive /factory/wifi_config
-    mount ext4 /dev/block/platform/tegra-sata.0/by-name/RP3 /factory/wifi_config ro nosuid noexec nodev remount
-
-on property:factory.wifi_country_code=*
-    mount ext4 /dev/block/platform/tegra-sata.0/by-name/RP3 /factory/wifi_config rw remount
-    chown system system /factory/wifi_config
-    chown system system /factory/wifi_config/FSS.txt
-    chown system system /factory/wifi_config/country_code.txt
-    chown system system /factory/wifi_config/country_code.sig
-    restorecon_recursive /factory/wifi_config
-    start factoryconfig
-
-on property:factory.sku_config=done
-    mount ext4 /dev/block/platform/tegra-sata.0/by-name/RP3 /factory/wifi_config ro nosuid noexec nodev remount
-
-service factoryconfig /system/bin/factoryconfig.sh
+service cyupdate /vendor/bin/cyupdate.sh
     class main
     user system
-    group system sdcard_rw
-    disabled
+    group system
     oneshot
+    disabled
+

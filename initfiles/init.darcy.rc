@@ -1,1 +1,34 @@
-import init.foster_e.rc
+#Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import init.tegra.rc
+import init.t210.rc
+import init.foster_e_common.rc
+
+# verified boot
+on init
+    setprop vold.linktoprimary 0
+    setprop persist.restart.veritymode logging
+
+    # Load persistent dm-verity state
+    verity_load_state
+
+on fs
+# convertible usb mode selection
+    chown system system /sys/class/extcon/ID/connect
+
+    # Adjust parameters for dm-verity devices
+    write /sys/block/dm-0/queue/read_ahead_kb 2048
+    write /sys/block/dm-1/queue/read_ahead_kb 2048
+    write /sys/module/dm_verity/parameters/prefetch_cluster 524288
+
+    # Update dm-verity state and set partition.*.verified properties
+    verity_update_state
+
+on verity-logging
+    exec u:r:slideshow:s0 root input -- /sbin/slideshow warning/verity_red_1_1080 warning/verity_red_2_1080

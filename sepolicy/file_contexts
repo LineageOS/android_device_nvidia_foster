@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
 #
 # NVIDIA CORPORATION and its licensors retain all intellectual property
 # and proprietary rights in and to this software, related documentation
@@ -27,3 +27,4 @@
 
 #for fs_mgr modified metadata
 /dev/block/platform/sdhci-tegra\.3/by-name/MDA u:object_r:metadata_block_device:s0
+/dev/block/platform/tegra-sata\.0/by-name/MDA u:object_r:metadata_block_device:s0
