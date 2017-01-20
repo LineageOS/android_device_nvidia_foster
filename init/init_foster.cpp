@@ -46,18 +46,18 @@ void vendor_load_properties()
     model = property_get("ro.hardware");
     if (!model.compare("foster_e_hdd")) { // check cpuinfo hardware identifier
         /* SATA Model */
-        property_set("ro.build.fingerprint", "nvidia/foster_e_hdd/t210:6.0/MRA58K/324774_793.8284:user/release-keys");
-        property_set("ro.build.description", "foster_e_hdd-user 6.0 MRA58K 324774_793.8284 release-keys");
+        property_set("ro.build.fingerprint", "NVIDIA/foster_e_hdd/foster:7.0/NRD90M/1749719_832.2408:user/release-keys");
+        property_set("ro.build.description", "foster_e_hdd-user 7.0 NRD90M 1749719_832.2408 release-keys");
         property_set("ro.product.name", "foster_e_hdd");
     } else if (!model.compare("darcy")) {
         /* New EMMC Model */
-        property_set("ro.build.fingerprint", "nvidia/darcy/t210:6.0/MRA58K/324774_793.8284:user/release-keys");
-        property_set("ro.build.description", "darcy-user 6.0 MRA58K 324774_793.8284 release-keys");
+        property_set("ro.build.fingerprint", "NVIDIA/darcy/darcy:7.0/NRD90M/1749719_832.2408:user/release-keys");
+        property_set("ro.build.description", "darcy-user 7.0 NRD90M 1749719_832.2408 release-keys");
         property_set("ro.product.name", "darcy");
     } else {
         /* Old EMMC Model and catch-all for unknown models */
-        property_set("ro.build.fingerprint", "nvidia/foster_e/t210:6.0/MRA58K/324774_793.8284:user/release-keys");
-        property_set("ro.build.description", "foster_e-user 6.0 MRA58K 324774_793.8284 release-keys");
+        property_set("ro.build.fingerprint", "NVIDIA/foster_e/foster:7.0/NRD90M/1749719_832.2408:user/release-keys");
+        property_set("ro.build.description", "foster_e-user 7.0 NRD90M 1749719_832.2408 release-keys");
         property_set("ro.product.name", "foster_e");
     }
 
