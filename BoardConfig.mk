@@ -43,7 +43,7 @@ TARGET_NO_RADIOIMAGE := true
 # Only the prebuilt stock kernel will boot the stock blobs.
 KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_SOURCE := kernel/nvidia/shield
-TARGET_KERNEL_CONFIG := lineageos_foster_defconfig
+TARGET_KERNEL_CONFIG := lineageos_t210_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image
 
 TARGET_USERIMAGES_USE_EXT4 := true
