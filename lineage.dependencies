@@ -6,9 +6,5 @@
  {
    "repository": "android_kernel_nvidia_shield",
    "target_path": "kernel/nvidia/shield"
- },
- {
-   "repository": "android_hardware_nvidia_power",
-   "target_path": "hardware/nvidia/power"
  }
 ]
