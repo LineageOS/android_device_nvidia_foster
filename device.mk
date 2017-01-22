@@ -41,7 +41,6 @@ PRODUCT_PACKAGES += \
     init.darcy.rc \
     init.foster_e.rc \
     init.foster_e_hdd.rc \
-    init.recovery.foster.rc \
     init.foster_e_common.rc \
     init.loki_foster_e_common.rc \
     power.darcy.rc \
