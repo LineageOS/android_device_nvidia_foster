@@ -4,7 +4,6 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 /dev/block/platform/tegra-sata.0/by-name/APP           /system             ext4      noatime,ro                                                          wait
 /dev/block/platform/tegra-sata.0/by-name/CAC           /cache              ext4      noatime,nosuid,nodev,data=ordered,nodelalloc,barrier=1              wait
-/dev/block/platform/tegra-sata.0/by-name/vendor        /vendor             ext4      noatime,ro                                                          wait
 /dev/block/platform/tegra-sata.0/by-name/LNX           /boot               emmc      defaults                                                            defaults
 /dev/block/platform/tegra-sata.0/by-name/MSC           /misc               emmc      defaults                                                            defaults
 /dev/block/platform/tegra-sata.0/by-name/UDA           /data               ext4      noatime,nosuid,nodev,data=ordered,noauto_da_alloc,discard,barrier=1,init_itable=100   wait,check,encryptable=/dev/block/platform/tegra-sata.0/by-name/MDA
@@ -19,6 +18,3 @@
 /devices/platform/tegra-xhci*                          auto                vfat      defaults                                                            voldmanaged=usbdrive:auto,encryptable=userdata
 /devices/tegra-ehci*                                   auto                vfat      defaults                                                            voldmanaged=usbdrive1:auto,encryptable=userdata
 /dev/block/zram0 none swap defaults zramsize=536870912
-/dev/block/platform/tegra-sata.0/by-name/RP2           /persistent         emmc      defaults                                                            defaults
-79a35232-07f9-4230-9df3-4256560ddbd2                    /mnt/remote         auto      defaults                                                            voldmanaged=remote:auto
-28f3f3fa-9c68-45be-bf54-7580ab57fd21                    /mnt/remote         auto      defaults                                                            voldmanaged=remote:auto
