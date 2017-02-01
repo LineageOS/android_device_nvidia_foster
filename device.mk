@@ -36,6 +36,7 @@ DEVICE_PACKAGE_OVERLAYS += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.foster \
+    fstab.darcy \
     fstab.foster_e \
     fstab.foster_e_hdd \
     init.darcy.rc \
