@@ -25,7 +25,7 @@ TARGET_SCREEN_WIDTH := 1080
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
 
-$(call inherit-product-if-exists, vendor/nvidia/foster/foster-vendor.mk)
+$(call inherit-product, vendor/nvidia/shield/foster.mk)
 
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.name
 
