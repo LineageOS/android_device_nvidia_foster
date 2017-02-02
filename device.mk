@@ -87,7 +87,7 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/comms/bt_vendor.conf:system/etc/comms/bt_vendor.conf
+    $(LOCAL_PATH)/comms/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 # Power
 PRODUCT_PACKAGES += power.tegra
