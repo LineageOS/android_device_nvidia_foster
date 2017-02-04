@@ -2,4 +2,7 @@
 <permissions>
     <feature name="com.nvidia.feature.shield"/>
     <feature name="com.nvidia.feature.built_in_controller"/>
+    <feature name="com.nvidia.feature.app.vudu"/>
+    <feature name="com.nvidia.feature.app.plex.mediaserver"/>
+    <feature name="com.nvidia.feature.app.plex.smbserver"/>
 </permissions>
