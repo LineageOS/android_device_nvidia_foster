@@ -91,11 +91,8 @@ PRODUCT_COPY_FILES += \
 # Wireless Controller
 #$(call inherit-product-if-exists, vendor/nvidia/shield_common/blake64-blobs.mk)
 
-# Leanback Keyboard
+# Leanback
 PRODUCT_PACKAGES += LeanbackIme \
                     LeanbackLauncher
-
-# TvSettings for android tv
-#PRODUCT_PACKAGES += TvSettings
 
 $(call inherit-product, device/nvidia/shield-common/shield.mk)
