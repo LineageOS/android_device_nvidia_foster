@@ -92,7 +92,8 @@ PRODUCT_COPY_FILES += \
 #$(call inherit-product-if-exists, vendor/nvidia/shield_common/blake64-blobs.mk)
 
 # Leanback Keyboard
-PRODUCT_PACKAGES += LeanbackIme
+PRODUCT_PACKAGES += LeanbackIme \
+                    LeanbackLauncher
 
 # TvSettings for android tv
 #PRODUCT_PACKAGES += TvSettings
