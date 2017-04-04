@@ -83,9 +83,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/comms/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
-# Wireless Controller
-#$(call inherit-product-if-exists, vendor/nvidia/shield_common/blake64-blobs.mk)
-
 # Leanback
 PRODUCT_PACKAGES += LeanbackIme \
                     LeanbackLauncher
