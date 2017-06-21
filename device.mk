@@ -44,12 +44,15 @@ PRODUCT_PACKAGES += \
     init.foster_e_hdd.rc \
     init.foster_e_common.rc \
     init.loki_foster_e_common.rc \
+    init.jetson_cv.rc \
     power.darcy.rc \
     power.foster_e.rc \
     power.foster_e_hdd.rc \
+    power.jetson_cv.rc \
     ueventd.darcy.rc \
     ueventd.foster_e.rc \
-    ueventd.foster_e_hdd.rc
+    ueventd.foster_e_hdd.rc \
+    ueventd.jetson_cv.rc
 
 # Permissions
 PRODUCT_COPY_FILES += \

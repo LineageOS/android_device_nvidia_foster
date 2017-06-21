@@ -54,6 +54,11 @@ void vendor_load_properties()
         property_set("ro.build.fingerprint", "NVIDIA/darcy/darcy:7.0/NRD90M/1749719_832.2408:user/release-keys");
         property_set("ro.build.description", "darcy-user 7.0 NRD90M 1749719_832.2408 release-keys");
         property_set("ro.product.name", "darcy");
+    } else if (!model.compare("jetson_cv")) {
+        /* Jetson TX1 */
+        property_set("ro.build.fingerprint", "NVIDIA/jetson_cv/jetson_cv:7.0/NRD90M/1749719_832.2408:user/release-keys");
+        property_set("ro.build.description", "jetson_cv-user 7.0 NRD90M 1749719_832.2408 release-keys");
+        property_set("ro.product.name", "jetson_cv");
     } else {
         /* Old EMMC Model and catch-all for unknown models */
         property_set("ro.build.fingerprint", "NVIDIA/foster_e/foster:7.0/NRD90M/1749719_832.2408:user/release-keys");
