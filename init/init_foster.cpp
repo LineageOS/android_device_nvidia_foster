@@ -46,26 +46,26 @@ void vendor_load_properties()
     model = property_get("ro.hardware");
     if (!model.compare("foster_e_hdd")) { // check cpuinfo hardware identifier
         /* SATA Model */
-        property_set("ro.build.fingerprint", "NVIDIA/foster_e_hdd/foster:7.0/NRD90M/1749719_832.2408:user/release-keys");
-        property_set("ro.build.description", "foster_e_hdd-user 7.0 NRD90M 1749719_832.2408 release-keys");
+        property_set("ro.build.fingerprint", "NVIDIA/foster_e_hdd/foster:7.0/NRD90M/1915764_910.7870:user/release-keys");
+        property_set("ro.build.description", "foster_e_hdd-user 7.0 NRD90M 1915764_910.7870 release-keys");
         property_set("ro.product.name", "foster_e_hdd");
         property_set("ro.product.device", "foster");
     } else if (!model.compare("darcy")) {
         /* New EMMC Model */
-        property_set("ro.build.fingerprint", "NVIDIA/darcy/darcy:7.0/NRD90M/1749719_832.2408:user/release-keys");
-        property_set("ro.build.description", "darcy-user 7.0 NRD90M 1749719_832.2408 release-keys");
+        property_set("ro.build.fingerprint", "NVIDIA/darcy/darcy:7.0/NRD90M/1915764_910.7870:user/release-keys");
+        property_set("ro.build.description", "darcy-user 7.0 NRD90M 1915764_910.7870 release-keys");
         property_set("ro.product.name", "darcy");
         property_set("ro.product.device", "darcy");
     } else if (!model.compare("jetson_cv")) {
         /* Jetson TX1 */
-        property_set("ro.build.fingerprint", "NVIDIA/jetson_cv/jetson_cv:7.0/NRD90M/1749719_832.2408:user/release-keys");
-        property_set("ro.build.description", "jetson_cv-user 7.0 NRD90M 1749719_832.2408 release-keys");
+        property_set("ro.build.fingerprint", "NVIDIA/jetson_cv/jetson_cv:7.0/NRD90M/1915764_910.7870:user/release-keys");
+        property_set("ro.build.description", "jetson_cv-user 7.0 NRD90M 1915764_910.7870 release-keys");
         property_set("ro.product.name", "jetson_cv");
         property_set("ro.product.device", "foster");
     } else {
         /* Old EMMC Model and catch-all for unknown models */
-        property_set("ro.build.fingerprint", "NVIDIA/foster_e/foster:7.0/NRD90M/1749719_832.2408:user/release-keys");
-        property_set("ro.build.description", "foster_e-user 7.0 NRD90M 1749719_832.2408 release-keys");
+        property_set("ro.build.fingerprint", "NVIDIA/foster_e/foster:7.0/NRD90M/1915764_910.7870:user/release-keys");
+        property_set("ro.build.description", "foster_e-user 7.0 NRD90M 1915764_910.7870 release-keys");
         property_set("ro.product.name", "foster_e");
         property_set("ro.product.device", "foster");
     }
