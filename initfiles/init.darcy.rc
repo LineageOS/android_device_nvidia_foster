@@ -1,4 +1,4 @@
-#Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
+#Copyright (c) 2014-2017, NVIDIA CORPORATION.  All rights reserved.
 #
 #NVIDIA Corporation and its licensors retain all intellectual property and
 #proprietary rights in and to this software and related documentation.  Any
@@ -16,3 +16,5 @@ on fs
 # convertible usb mode selection
     chown system system /sys/class/extcon/ID/connect
 
+on boot && property:persist.convertible.usb.mode=host
+    write /sys/class/extcon/ID/connect "USB-HOST"

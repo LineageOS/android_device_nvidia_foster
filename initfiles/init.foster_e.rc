@@ -24,3 +24,7 @@ service cyupdate /vendor/bin/cyupdate.sh
     oneshot
     disabled
 
+on boot
+    # Unset property inadvertently set previously
+    setprop persist.tegra.0x523dc0 ""
+

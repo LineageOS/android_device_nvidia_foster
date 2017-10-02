@@ -8,7 +8,6 @@
 #THIS IS A COMMON FILE FOR FOSTER AND LOKI
 
 import init.diag.rc
-import init.cal.rc
 
 on fs
     setprop ro.wifi.sdmmc 1
@@ -44,6 +43,16 @@ on post-fs-data
     chown system system /sys/module/tegra21_dvfs/parameters/disable_core
     chmod 664 /sys/class/net/wlan0/device/rf_test/state
     chown system system /sys/class/net/wlan0/device/rf_test/state
+    chmod 664 /sys/devices/platform/gpu.0/aelpg_enable
+    chown system system /sys/devices/platform/gpu.0/aelpg_enable
+    chmod 664 /sys/devices/platform/gpu.0/blcg_enable
+    chown system system /sys/devices/platform/gpu.0/blcg_enable
+    chmod 664 /sys/devices/platform/gpu.0/elcg_enable
+    chown system system /sys/devices/platform/gpu.0/elcg_enable
+    chmod 664 /sys/devices/platform/gpu.0/elpg_enable
+    chown system system /sys/devices/platform/gpu.0/elpg_enable
+    chmod 664 /sys/devices/platform/gpu.0/slcg_enable
+    chown system system /sys/devices/platform/gpu.0/slcg_enable
 
 on boot
     setprop persist.tegra.decompression cde-client

@@ -1,4 +1,4 @@
-#Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
+#Copyright (c) 2014-2017, NVIDIA CORPORATION.  All rights reserved.
 #
 #NVIDIA Corporation and its licensors retain all intellectual property and
 #proprietary rights in and to this software and related documentation.  Any
@@ -7,6 +7,7 @@
 #is strictly prohibited.
 
 import init.loki_foster_e_common.rc
+import init.ndiscovery.rc
 
 on boot
     chown system system /sys/class/leds/led_lightbar/brightness
@@ -33,14 +34,24 @@ on post-fs-data
     chown system system /factory/wifi_config/FSS.txt
     chown system system /factory/wifi_config/country_code.txt
     chown system system /factory/wifi_config/country_code.sig
+    chown system system /factory/wifi_config/package.txt
     restorecon_recursive /factory/wifi_config
     mkdir /data/provTest 0700 root drmrpc
+
+on post-fs-data
+# Jarvis permission
+    chmod 660 /sys/bus/hid/drivers/Jarvis/hid_miss_stats
+    chown system system /sys/bus/hid/drivers/Jarvis/hid_miss_stats
 
 on post-fs-data
     # Set SELinux security contexts for NvCPL keylayout files.
     mkdir /data/system/devices 0774 system system
     mkdir /data/system/devices/keylayout 0774 system system
     restorecon_recursive /data/system/devices/keylayout
+
+on post-fs-data
+    # Create /data/misc/frostlog to store Frost's log files
+    mkdir /data/misc/frostlog 0770 system system
 
 on init
     mkdir /mnt/media_rw/usbdrive2 0700 media_rw media_rw
@@ -65,5 +76,29 @@ service factory_tests /vendor/bin/factory_tests
     oneshot
     disabled
 
+service cac_log_dumper /vendor/bin/cac_log_dumper
+    class late_start
+    user system
+    group system
+    oneshot
+
+on post-fs-data
+    chmod 660 /cache/logs/last_boot_dmesg.txt
+    chown cache system /cache/logs/last_boot_dmesg.txt
+    chmod 660 /cache/logs/last_boot_logcat.txt
+    chown cache system /cache/logs/last_boot_logcat.txt
+
 on property:sys.boot_completed=1
     start factory_tests
+
+# Core dump
+on property:vold.post_fs_data_done=1 && property:ro.debuggable=1
+    # Core dump generation
+    mkdir /data/core
+    chmod 777 /data/core
+    # use program.pid.uid.time.core as core file name
+    write /proc/sys/kernel/core_pattern /data/core/%e.%p.%u.%t.core
+    # corefile limit
+    setrlimit 4 -1 -1
+    # create core dump file directory
+    write /proc/sys/fs/suid_dumpable 2

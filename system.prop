@@ -1,5 +1,5 @@
 # opengles.version is 16.16 (maj.min) fixed point
-ro.opengles.version = 196609
+ro.opengles.version = 196610
 
 # Default screen density
 ro.sf.lcd_density=320
@@ -25,3 +25,20 @@ ro.nv.usb.pid.midi.adb=710A
 ro.hdmi.device_type=4
 
 ro.bt.bdaddr_path=/mnt/factory/bluetooth/bt_mac.txt
+
+# Default power brick info
+persist.power.brick = PB1000
+
+# Enable audio routing to frost
+frost.route = 1
+
+# Set nrdp tags
+ro.nrdp.modelgroup=SHIELDANDROIDTV
+ro.nrdp.audio.otfs=true
+ro.nrdp.validation=ninja_4
+
+# Gamestreaming specific properties
+ro.gamestream.display.optimize = 1
+
+# Vulkan Driver settings
+tegra.0x523dd1 = 2
