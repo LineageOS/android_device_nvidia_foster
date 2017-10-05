@@ -36,6 +36,12 @@
 #include <stdio.h>
 #include <string.h>
 
+#define ANDROID_BUILD_VERSION "7.0"
+#define ANDROID_BUILD_RELEASE "NRD90M"
+#define NVIDIA_BUILD_VERSION "1915764_910.7870"
+#define FINGERPRINT_VERSION ANDROID_BUILD_VERSION "/" ANDROID_BUILD_RELEASE "/" NVIDIA_BUILD_VERSION
+#define DESCRIPTION_VERSION ANDROID_BUILD_VERSION " " ANDROID_BUILD_RELEASE " " NVIDIA_BUILD_VERSION
+
 void property_override(char const prop[], char const value[])
 {
     prop_info *pi;
@@ -51,38 +57,24 @@ void vendor_load_properties()
 {
     std::string platform = "";
     std::string model = "";
+    std::string device = "foster";
 
     platform = property_get("ro.board.platform");
     if (strncmp(platform.c_str(), ANDROID_TARGET, PROP_VALUE_MAX))
         return;
 
     model = property_get("ro.hardware");
-    if (!model.compare("foster_e_hdd")) { // check cpuinfo hardware identifier
-        /* SATA Model */
-        property_override("ro.build.fingerprint", "NVIDIA/foster_e_hdd/foster:7.0/NRD90M/1915764_910.7870:user/release-keys");
-        property_override("ro.build.description", "foster_e_hdd-user 7.0 NRD90M 1915764_910.7870 release-keys");
-        property_override("ro.product.name", "foster_e_hdd");
-        property_override("ro.product.device", "foster");
-    } else if (!model.compare("darcy")) {
-        /* New EMMC Model */
-        property_override("ro.build.fingerprint", "NVIDIA/darcy/darcy:7.0/NRD90M/1915764_910.7870:user/release-keys");
-        property_override("ro.build.description", "darcy-user 7.0 NRD90M 1915764_910.7870 release-keys");
-        property_override("ro.product.name", "darcy");
-        property_override("ro.product.device", "darcy");
-    } else if (!model.compare("jetson_cv")) {
-        /* Jetson TX1 */
-        property_override("ro.build.fingerprint", "NVIDIA/jetson_cv/jetson_cv:7.0/NRD90M/1915764_910.7870:user/release-keys");
-        property_override("ro.build.description", "jetson_cv-user 7.0 NRD90M 1915764_910.7870 release-keys");
-        property_override("ro.product.name", "jetson_cv");
-        property_override("ro.product.device", "foster");
-    } else {
-        /* Old EMMC Model and catch-all for unknown models */
-        property_override("ro.build.fingerprint", "NVIDIA/foster_e/foster:7.0/NRD90M/1915764_910.7870:user/release-keys");
-        property_override("ro.build.description", "foster_e-user 7.0 NRD90M 1915764_910.7870 release-keys");
-        property_override("ro.product.name", "foster_e");
-        property_override("ro.product.device", "foster");
-    }
+    // Darcy just had to be different
+    if (!model.compare("darcy")) {
+        device = "darcy";
+        property_override("ro.product.first_api_level", "23");
+    } else
+        property_override("ro.product.first_api_level", "21");
 
+    property_override("ro.build.fingerprint", ("NVIDIA/" + model + "/" + device + ":" + FINGERPRINT_VERSION + ":user/release-keys").c_str());
+    property_override("ro.build.description", (model + "-user " + DESCRIPTION_VERSION + " release-keys").c_str());
+    property_override("ro.product.name", model.c_str());
+    property_override("ro.product.device", device.c_str());
     property_override("ro.build.product", "foster");
     property_override("ro.product.model", "SHIELD Android TV");
     ERROR("Setting build properties for %s model\n", model.c_str());
