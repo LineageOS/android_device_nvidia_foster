@@ -1,0 +1,35 @@
+#Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import init.loki_foster_e_common.rc
+import init.cal.rc
+
+on post-fs-data
+    setprop persist.sys.display.resolution 1440x810
+    write /sys/power/wake_lock loki-stayawake
+
+service charger /charger
+    class charger
+    seclabel u:r:healthd:s0
+    group input
+    writepid /dev/cpuset/system-background/tasks
+
+service update_fw /system/bin/update_js_touch_fw.sh
+    class main
+    user system
+    group usb
+    oneshot
+
+on charger
+    mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/APP /system wait ro
+    setprop persist.sys.usb.config mtp
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
+    write /sys/devices/system/cpu/cpuquiet/current_governor runnable
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/no_lp -1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave

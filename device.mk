@@ -16,6 +16,7 @@
 
 PRODUCT_CHARACTERISTICS := tv
 TARGET_TEGRA_VERSION := t210
+TARGET_TEGRA_TOUCH := raydium
 
 PRODUCT_AAPT_CONFIG += xlarge large
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -39,25 +40,35 @@ PRODUCT_PACKAGES += \
     fstab.darcy \
     fstab.foster_e \
     fstab.foster_e_hdd \
+    fstab.loki_e_wifi \
     init.darcy.rc \
     init.foster_e.rc \
     init.foster_e_hdd.rc \
+    init.loki_e_wifi.rc \
     init.foster_e_common.rc \
+    init.loki_e_common.rc \
     init.loki_foster_e_common.rc \
     init.jetson_cv.rc \
     power.darcy.rc \
     power.foster_e.rc \
     power.foster_e_hdd.rc \
     power.jetson_cv.rc \
+    power.loki_e_wifi.rc \
     ueventd.darcy.rc \
     ueventd.foster_e.rc \
     ueventd.foster_e_hdd.rc \
-    ueventd.jetson_cv.rc
+    ueventd.jetson_cv.rc \
+    ueventd.loki_e_wifi.rc
 
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
+    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.hdmi.cec.xml:system/etc/permissions/android.hardware.hdmi.cec.xml \
+    frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
+    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.software.device_admin.xml:system/etc/permissions/android.software.device_admin.xml \
     frameworks/native/data/etc/android.software.managed_users.xml:system/etc/permissions/android.software.managed_users.xml
 
@@ -85,6 +96,25 @@ PRODUCT_COPY_FILES += \
 # Bluetooth
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/comms/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+
+# Camera
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/camera/nvcamera.conf:system/etc/nvcamera.conf \
+    $(LOCAL_PATH)/camera/model_frontal.xml:system/etc/model_frontal.xml
+
+# GPS
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/comms/gpsconfig.xml:system/etc/gps/gpsconfig.xml \
+    $(LOCAL_PATH)/comms/gps.conf:system/etc/gps.conf
+
+# Light
+PRODUCT_PACKAGES += \
+    lights.tegra
+
+# Charger
+PRODUCT_PACKAGES += \
+    charger \
+    charger_res_images
 
 # Leanback
 PRODUCT_PACKAGES += LeanbackIme \

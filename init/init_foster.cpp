@@ -68,14 +68,22 @@ void vendor_load_properties()
     if (!model.compare("darcy")) {
         device = "darcy";
         property_override("ro.product.first_api_level", "23");
-    } else
+        property_override("ro.product.model", "SHIELD Android TV");
+        property_override("ro.sf.lcd_density", "320");
+    } else if (!model.compare("loki_e_wifi")) {
         property_override("ro.product.first_api_level", "21");
+        property_override("ro.product.model", "SHIELD Portable");
+        property_override("ro.sf.lcd_density", "240");
+    } else {
+        property_override("ro.product.first_api_level", "21");
+        property_override("ro.product.model", "SHIELD Android TV");
+        property_override("ro.sf.lcd_density", "320");
+    }
 
     property_override("ro.build.fingerprint", ("NVIDIA/" + model + "/" + device + ":" + FINGERPRINT_VERSION + ":user/release-keys").c_str());
     property_override("ro.build.description", (model + "-user " + DESCRIPTION_VERSION + " release-keys").c_str());
     property_override("ro.product.name", model.c_str());
     property_override("ro.product.device", device.c_str());
     property_override("ro.build.product", "foster");
-    property_override("ro.product.model", "SHIELD Android TV");
     ERROR("Setting build properties for %s model\n", model.c_str());
 }
