@@ -28,3 +28,5 @@ on boot
     # Unset property inadvertently set previously
     setprop persist.tegra.0x523dc0 ""
 
+on firmware_mounts_complete
+    symlink /system/etc/nvram_foster_e_4354.txt /data/misc/wifi/firmware/nvram.txt

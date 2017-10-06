@@ -14,3 +14,5 @@ on fs
     mount_all /fstab.foster_e
     swapon_all /fstab.foster_e
 
+on firmware_mounts_complete
+    symlink /system/etc/nvram_foster_e_4354.txt /data/misc/wifi/firmware/nvram.txt
