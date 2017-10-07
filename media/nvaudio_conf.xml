@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (c) 2012 NVIDIA Corporation.  All Rights Reserved.
+<!-- Copyright (c) 2012-2016 NVIDIA Corporation.  All Rights Reserved.
 
      NVIDIA Corporation and its licensors retain all intellectual property and
      proprietary rights in and to this software and related documentation.  Any
@@ -21,6 +21,18 @@
                 period_count="2"
                 start_threshold="511"
                 stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="music-capture"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="512"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="2048"
                 silence_threshold="0"
                 avail_min="1"/>
 
@@ -48,12 +60,210 @@
                 silence_threshold="0"
                 avail_min="1"/>
 
+    <pcm_config name="bt-sco-wb-playback"
+                device_id="1"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="256"
+                period_count="4"
+                start_threshold="1023"
+                stop_threshold="1024"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="bt-sco-wb-capture"
+                device_id="1"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="256"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="1024"
+                silence_threshold="0"
+                avail_min="1"/>
+
     <param name="nvoice" val="0"/>
-    <param name="builtin speaker" val="0"/>
+    <param name="safe-routing" val="1"/>
+    <!--Speaker protection flag:
+      None -> Disable speaker protection
+      CPU  -> CPU based speaker protection
+      ADSP -> ADSP based speaker protection-->
+    <param name="spkprot-flag" val="CPU"/>
 
     <!-- AHUB static controls -->
+    <!-- Codec capture & playback-->
+    <ctl name="ADMAIF1 Mux" val="I2S1"/>
+    <ctl name="Adder1 RX1" val="1"/>
+    <ctl name="Mixer Enable" val="1"/>
+    <ctl name="MIXER1-1 Mux" val="ADMAIF1"/>
+
+    <!-- BT SCO -->
     <ctl name="I2S2 Mux" val="ADMAIF2"/>
     <ctl name="ADMAIF2 Mux" val="I2S2"/>
+
+    <!-- I2S bit format for codec -->
+    <ctl name="I2S1 codec bit format" val="32"/>
+
+    <!-- Reset value of codec controls -->
+    <!-- Reset codec fw routes -->
+    <ctl name="Reset" val="1"/>
+    <ctl name="ES755 Power State" val="Normal"/>
+    <ctl name="PT_VP Algorithm" val="Off"/>
+    <ctl name="VP AEC" val="Off"/>
+    <ctl name="Pass AUDIN1 MUX" val="None"/>
+    <ctl name="DAC0.0 MUX" val="None"/>
+    <ctl name="Pass AUDIN2 MUX" val="None"/>
+    <ctl name="DAC0.1 MUX" val="None"/>
+    <ctl name="VP Primary MUX" val="None"/>
+    <ctl name="PCM0.0 MUX" val="None"/>
+    <ctl name="VP Secondary MUX" val="None"/>
+    <ctl name="PCM0.1 MUX" val="None"/>
+    <ctl name="VP Algorithm" val="Off"/>
+    <ctl name="DHWPT Algorithm" val="Off"/>
+    <ctl name="VP FEIN MUX" val="None"/>
+    <ctl name="VP FEIN2 MUX" val="None"/>
+    <ctl name="Algorithm Rate" val="None"/>
+
+    <ctl name="HPR MIXER DAC0R" val="0"/>
+    <ctl name="HPL MIXER DAC0L" val="0"/>
+    <ctl name="HP Gain" val="0"/>
+
+    <ctl name="SPKRR MIXER DAC0R" val="0"/>
+    <ctl name="SPKRL MIXER DAC0L" val="0"/>
+    <ctl name="SPKR Gain" val="0"/>
+    <ctl name="Int Spk Switch" val="0"/>
+
+    <ctl name="MIC0 PGA Mux" val="None"/>
+    <ctl name="MICHS Gain" val="0"/>
+    <ctl name="MICHS SEL MUX" val="MIC1_PGA"/>
+
+    <!--  Reset value of HRA controls-->
+    <ctl name="DHWPT Enable" val="0"/>
+    <ctl name="Bits per Sample" val="0"/>
+    <ctl name="I2S Channels" val="0"/>
+    <ctl name="FrameSync SEL" val="0"/>
+    <ctl name="codec-x format" val="None"/>
+    <ctl name="I2S1 input bit format" val="16"/>
+
+    <!-- Keep adsp bypass as default to avoid MIXER output floating -->
+    <ctl name="I2S1 Mux" val="MIXER1-1"/>
+    <ctl name="I2S3 Mux" val="None"/>
+
+    <path name="speaker">
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="VP AEC" val="On"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="PRI Playback Mode" val="Stereo"/>
+      <ctl name="SPKRR MIXER DAC0R" val="1"/>
+      <ctl name="SPKRL MIXER DAC0L" val="1"/>
+      <ctl name="SPKR Gain" val="26"/>
+      <ctl name="Int Spk Switch" val="1"/>
+    </path>
+
+    <path name="headphone">
+      <ctl name="DHWPT Algorithm" val="On"/>
+      <ctl name="DAC0.0 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.1 MUX" val="PCM0.1"/>
+      <ctl name="HPR MIXER DAC0R" val="1"/>
+      <ctl name="HPL MIXER DAC0L" val="1"/>
+      <ctl name="HP Gain" val="15"/>
+      <ctl name="ES755 Power State" val="MP_Sleep"/>
+    </path>
+
+    <path name="headset">
+      <path name="headphone"/>
+    </path>
+
+    <!-- Usecases paths -->
+    <path name="earpiece">
+      <path name="speaker"/>
+      <ctl name="SPKR Gain" val="20"/>
+    </path>
+
+    <path name="speaker-and-headphone">
+      <path name="headphone"/>
+      <ctl name="SPKRR MIXER DAC0R" val="1"/>
+      <ctl name="SPKRL MIXER DAC0L" val="1"/>
+      <ctl name="SPKR Gain" val="26"/>
+      <ctl name="Int Spk Switch" val="1"/>
+    </path>
+
+    <path name="speaker-and-headset">
+      <path name="headset"/>
+      <ctl name="SPKRR MIXER DAC0R" val="1"/>
+      <ctl name="SPKRL MIXER DAC0L" val="1"/>
+      <ctl name="SPKR Gain" val="26"/>
+      <ctl name="Int Spk Switch" val="1"/>
+    </path>
+
+    <path name="builtin-mic">
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="VP AEC" val="On"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="Algo Preset 1" val="573"/>
+    </path>
+
+    <path name="hp-builtin-mic">
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="DHWPT Enable" val="1"/>
+      <ctl name="VP Primary MUX" val="PDMI0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="VP Secondary MUX" val="PDMI1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="Algo Preset 1" val="573"/>
+    </path>
+
+    <path name="voice-rec-builtin-mic">
+      <path name="builtin-mic"/>
+      <ctl name="Algo Preset 1" val="609"/>
+    </path>
+
+    <path name="voice-rec-hp-builtin-mic">
+      <path name="hp-builtin-mic"/>
+      <ctl name="Algo Preset 1" val="609"/>
+    </path>
+
+    <path name="headset-mic">
+      <ctl name="PT_VP Algorithm" val="On"/>
+      <ctl name="DHWPT Enable" val="1"/>
+      <ctl name="VP Primary MUX" val="ADC0"/>
+      <ctl name="PCM0.0 MUX" val="VP CSOUT1"/>
+      <ctl name="PCM0.1 MUX" val="VP FEOUT1"/>
+      <ctl name="Pass AUDIN1 MUX" val="PCM0.0"/>
+      <ctl name="DAC0.0 MUX" val="Pass AUDOUT1"/>
+      <ctl name="Pass AUDIN2 MUX" val="PCM0.1"/>
+      <ctl name="DAC0.1 MUX" val="Pass AUDOUT2"/>
+      <ctl name="MIC0 PGA Mux" val="MIC-HS"/>
+      <ctl name="MICHS Gain" val="15"/>
+      <ctl name="MICHS SEL MUX" val="MIC0_PGA"/>
+      <ctl name="Algo Preset 1" val="591"/>
+    </path>
+
+    <path name="voice-rec-headset-mic">
+      <path name="headset-mic"/>
+      <ctl name="Algo Preset 1" val="615"/>
+    </path>
+
   </card>
 
   <card name="Tegra">
