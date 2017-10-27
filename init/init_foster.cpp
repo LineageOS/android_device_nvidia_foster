@@ -26,13 +26,16 @@
  */
 
 #include <stdlib.h>
+#include <errno.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
+#include "init.h"
 #include "vendor_init.h"
 #include "property_service.h"
 #include "log.h"
 #include "util.h"
+#include "service.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -86,4 +89,28 @@ void vendor_load_properties()
     property_override("ro.product.device", device.c_str());
     property_override("ro.build.product", "foster");
     ERROR("Setting build properties for %s model\n", model.c_str());
+}
+
+int vendor_handle_control_message(const std::string &msg, const std::string &arg)
+{
+    Service *sf_svc = NULL;
+    Service *zg_svc = NULL;
+
+    if (!msg.compare("restart") && !arg.compare("consolemode")) {
+        sf_svc = ServiceManager::GetInstance().FindServiceByName("surfaceflinger");
+        zg_svc = ServiceManager::GetInstance().FindServiceByName("zygote");
+
+        if (sf_svc && zg_svc) {
+            zg_svc->Stop();
+            sf_svc->Stop();
+            sf_svc->Start();
+            zg_svc->Start();
+        } else {
+            ERROR("Required services not found to toggle console mode");
+        }
+
+        return 0;
+    }
+
+    return -EINVAL;
 }
