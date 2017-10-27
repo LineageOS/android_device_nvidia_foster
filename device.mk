@@ -18,6 +18,8 @@ PRODUCT_CHARACTERISTICS := tv
 TARGET_TEGRA_VERSION := t210
 TARGET_TEGRA_TOUCH := raydium
 
+$(call inherit-product, device/nvidia/shield-common/shield.mk)
+
 PRODUCT_AAPT_CONFIG += xlarge large
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 TARGET_SCREEN_HEIGHT := 1920
@@ -118,5 +120,3 @@ PRODUCT_PACKAGES += \
 # Leanback
 PRODUCT_PACKAGES += LeanbackIme \
                     LeanbackLauncher
-
-$(call inherit-product, device/nvidia/shield-common/shield.mk)
