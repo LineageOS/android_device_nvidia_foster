@@ -102,3 +102,10 @@ on property:vold.post_fs_data_done=1 && property:ro.debuggable=1
     setrlimit 4 -1 -1
     # create core dump file directory
     write /proc/sys/fs/suid_dumpable 2
+
+# Disable console mode
+service disableconsole /system/bin/pm disable com.nvidia.roth.consoleui
+    class late_start
+    user system
+    group system
+    oneshot
