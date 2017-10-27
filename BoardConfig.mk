@@ -43,8 +43,6 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Kernel
-# Open Source kernel boots aosp libs, but hangs on stock blobs.
-# Only the prebuilt stock kernel will boot the stock blobs.
 KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_SOURCE := kernel/nvidia/shield
 TARGET_KERNEL_CONFIG := lineageos_t210_defconfig
