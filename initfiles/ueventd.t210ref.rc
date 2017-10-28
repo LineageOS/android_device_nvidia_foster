@@ -127,16 +127,16 @@
 /sys/devices/platform/tegra21-i2c.0/i2c-0/0-0009/leds/led_lightbar params 0664 system system
 
 # pwm-fan
-/sys/devices/platform/pwm-fan state_cap 0664 system system
-/sys/devices/platform/pwm-fan pwm_state_map 0664 system system
-/sys/devices/platform/pwm-fan pwm_cap 0664 system system
-/sys/devices/platform/pwm-fan cur_pwm 0444 system system
-/sys/devices/platform/pwm-fan pwm_rpm_table 0444 system system
-/sys/devices/platform/pwm-fan rpm_measured 0444 system system
-/sys/devices/platform/pwm-fan step_time 0644 system system
-/sys/devices/platform/pwm-fan tach_enable 0644 system system
-/sys/devices/platform/pwm-fan target_pwm 0644 system system
-/sys/devices/platform/pwm-fan temp_control 0644 system system
+/sys/devices/platform/pwm-fan.* state_cap 0664 system system
+/sys/devices/platform/pwm-fan.* pwm_state_map 0664 system system
+/sys/devices/platform/pwm-fan.* pwm_cap 0664 system system
+/sys/devices/platform/pwm-fan.* cur_pwm 0444 system system
+/sys/devices/platform/pwm-fan.* pwm_rpm_table 0444 system system
+/sys/devices/platform/pwm-fan.* rpm_measured 0444 system system
+/sys/devices/platform/pwm-fan.* step_time 0644 system system
+/sys/devices/platform/pwm-fan.* tach_enable 0644 system system
+/sys/devices/platform/pwm-fan.* target_pwm 0644 system system
+/sys/devices/platform/pwm-fan.* temp_control 0644 system system
 
 
 # sensors
