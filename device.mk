@@ -51,6 +51,11 @@ PRODUCT_PACKAGES += \
     init.loki_e_common.rc \
     init.loki_foster_e_common.rc \
     init.jetson_cv.rc \
+    init.recovery.darcy.rc \
+    init.recovery.foster_e.rc \
+    init.recovery.foster_e_hdd.rc \
+    init.recovery.jetson_cv.rc \
+    init.recovery.loki_e_wifi.rc \
     power.darcy.rc \
     power.foster_e.rc \
     power.foster_e_hdd.rc \
