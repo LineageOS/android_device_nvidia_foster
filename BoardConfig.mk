@@ -98,3 +98,8 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 ## Vendor Init
 TARGET_INIT_VENDOR_LIB := libinit_foster
 TARGET_LIBINIT_DEFINES_FILE := device/nvidia/foster/init/init_foster.cpp
+
+# TWRP Support
+ifeq ($(WITH_TWRP),true)
+-include device/nvidia/foster/twrp/twrp.mk
+endif
