@@ -38,6 +38,8 @@
 #include "service.h"
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
+#include <vector>
 
 #define ANDROID_BUILD_VERSION "7.0"
 #define ANDROID_BUILD_RELEASE "NRD90M"
@@ -61,6 +63,8 @@ void vendor_load_properties()
     std::string platform = "";
     std::string model = "";
     std::string device = "foster";
+    std::string int_path = "";
+    std::vector<std::string> devs = { "APP", "CAC", "LNX", "MSC", "UDA", "USP", "MDA", "SOS", "BMP", "vendor" };
 
     platform = property_get("ro.board.platform");
     if (strncmp(platform.c_str(), ANDROID_TARGET, PROP_VALUE_MAX))
@@ -73,15 +77,31 @@ void vendor_load_properties()
         property_override("ro.product.first_api_level", "23");
         property_override("ro.product.model", "SHIELD Android TV");
         property_override("ro.sf.lcd_density", "320");
+        symlink("/etc/twrp.fstab.emmc", "/etc/twrp.fstab");
+        int_path = "sdhci-tegra.3";
     } else if (!model.compare("loki_e_wifi")) {
         property_override("ro.product.first_api_level", "21");
         property_override("ro.product.model", "SHIELD Portable");
         property_override("ro.sf.lcd_density", "240");
+        symlink("/etc/twrp.fstab.emmc", "/etc/twrp.fstab");
+        int_path = "sdhci-tegra.3";
+    } else if (!model.compare("foster_e_hdd")) {
+        property_override("ro.product.first_api_level", "21");
+        property_override("ro.product.model", "SHIELD Android TV");
+        property_override("ro.sf.lcd_density", "320");
+        symlink("/etc/twrp.fstab.sata", "/etc/twrp.fstab");
+        int_path = "tegra-sata.0";
     } else {
         property_override("ro.product.first_api_level", "21");
         property_override("ro.product.model", "SHIELD Android TV");
         property_override("ro.sf.lcd_density", "320");
+        symlink("/etc/twrp.fstab.emmc", "/etc/twrp.fstab");
+        int_path = "sdhci-tegra.3";
     }
+
+    // Symlink paths for unified ROM installs.
+    for(auto const& part: devs)
+        symlink(("/dev/block/platform/" + int_path + "/by-name/" + part).c_str(), ("/dev/block/" + part).c_str());
 
     property_override("ro.build.fingerprint", ("NVIDIA/" + model + "/" + device + ":" + FINGERPRINT_VERSION + ":user/release-keys").c_str());
     property_override("ro.build.description", (model + "-user " + DESCRIPTION_VERSION + " release-keys").c_str());
