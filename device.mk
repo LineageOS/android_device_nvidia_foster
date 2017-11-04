@@ -126,19 +126,31 @@ PRODUCT_PACKAGES += Snap
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/camera/nvcamera.conf:system/etc/nvcamera.conf
 
+PRODUCT_PACKAGES += \
+    camera.device@3.2-impl \
+    android.hardware.camera.provider@2.4-impl
+
 # GPS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/comms/gpsconfig.xml:system/etc/gps/gpsconfig.xml \
     $(LOCAL_PATH)/comms/gps.conf:system/etc/gps.conf
 
+PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl
+
 # Light
 PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-impl \
     lights.tegra
 
 # Charger
 PRODUCT_PACKAGES += \
     charger \
     charger_res_images
+
+# HIDL
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
 
 # Variant blobs script
 PRODUCT_COPY_FILES += \
