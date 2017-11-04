@@ -42,3 +42,5 @@ ro.gamestream.display.optimize = 1
 
 # Vulkan Driver settings
 tegra.0x523dd1 = 2
+
+persist.media.treble_omx=false
