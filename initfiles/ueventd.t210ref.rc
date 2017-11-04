@@ -82,7 +82,7 @@
 /sys/power/sysedp/consumers/icemdm state 0660 radio system
 /dev/ttyTHS0	0664	root	system
 /dev/ttyTHS2	0664	root	system
-/dev/ttyTHS3	0660	bluetooth	net_bt_stack
+/dev/ttyTHS3	0660	bluetooth	bluetooth
 /sys/devices/platform/tegra_cec cec_logical_addr_config	0660	system	system
 /dev/tegra_cec	0660	system	system
 # pmqos
