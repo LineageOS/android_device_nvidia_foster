@@ -21,9 +21,7 @@ ifeq ($(TARGET_DEVICE),foster)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := optional
-LOCAL_C_INCLUDES := system/core/init \
-                    system/core/base/include
-LOCAL_CFLAGS := -Wall -DANDROID_TARGET=\"$(TARGET_BOARD_PLATFORM)\"
+LOCAL_C_INCLUDES := device/nvidia/shield-common/init
 LOCAL_SRC_FILES := init_foster.cpp
 LOCAL_MODULE := libinit_foster
 include $(BUILD_STATIC_LIBRARY)

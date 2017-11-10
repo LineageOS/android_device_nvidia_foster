@@ -95,7 +95,7 @@ BOARD_SEPOLICY_DIRS += device/nvidia/foster/sepolicy/
 BOARD_SUPPRESS_EMMC_WIPE := true
 
 ## Vendor Init
-TARGET_INIT_VENDOR_LIB := libinit_foster
+TARGET_INIT_VENDOR_LIB := libinit_shield libinit_foster
 TARGET_LIBINIT_DEFINES_FILE := device/nvidia/foster/init/init_foster.cpp
 
 # TWRP Support

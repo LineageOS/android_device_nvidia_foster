@@ -25,112 +25,24 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <stdlib.h>
-#include <errno.h>
-#define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
-#include <sys/_system_properties.h>
-
-#include "init.h"
-#include "vendor_init.h"
-#include "property_service.h"
-#include "log.h"
-#include "util.h"
-#include "service.h"
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <vector>
-
-#define ANDROID_BUILD_VERSION "7.0"
-#define ANDROID_BUILD_RELEASE "NRD90M"
-#define NVIDIA_BUILD_VERSION "2427173_976.3748"
-#define FINGERPRINT_VERSION ANDROID_BUILD_VERSION "/" ANDROID_BUILD_RELEASE "/" NVIDIA_BUILD_VERSION
-#define DESCRIPTION_VERSION ANDROID_BUILD_VERSION " " ANDROID_BUILD_RELEASE " " NVIDIA_BUILD_VERSION
-
-void property_override(char const prop[], char const value[])
-{
-    prop_info *pi;
-
-    pi = (prop_info*) __system_property_find(prop);
-    if (pi)
-        __system_property_update(pi, value, strlen(value));
-    else
-        __system_property_add(prop, strlen(prop), value, strlen(value));
-}
+#include "init_shield.h"
+#include "service_shield.h"
 
 void vendor_load_properties()
 {
-    std::string platform = "";
-    std::string model = "";
-    std::string device = "foster";
-    std::string int_path = "";
-    std::vector<std::string> devs = { "APP", "CAC", "LNX", "MSC", "UDA", "USP", "MDA", "SOS", "BMP", "vendor" };
+	//                                              device    name            model                id  gsm support                               boot device type                 api  dpi
+	std::vector<shield_init::devices> devices = { { "foster", "foster_e",     "SHIELD Android TV", "", shield_init::gsm_support_type::NONE,      shield_init::boot_dev_type::EMMC, 21, 320 },
+	                                              { "foster", "foster_e_hdd", "SHIELD Android TV", "", shield_init::gsm_support_type::NONE,      shield_init::boot_dev_type::SATA, 21, 320 },
+	                                              { "darcy",  "darcy",        "SHIELD Android TV", "", shield_init::gsm_support_type::NONE,      shield_init::boot_dev_type::EMMC, 23, 320 },
+	                                              { "foster", "loki_e_wifi",  "SHIELD Portable",   "", shield_init::gsm_support_type::NONE,      shield_init::boot_dev_type::EMMC, 21, 240 } };
+	shield_init::build_version sav = { "7.0", "NRD90M", "2427173_976.3748" };
+	std::vector<std::string> parts = { "APP", "CAC", "LNX", "MSC", "UDA", "USP", "MDA", "SOS", "BMP", "vendor" };
 
-    platform = property_get("ro.board.platform");
-    if (strncmp(platform.c_str(), ANDROID_TARGET, PROP_VALUE_MAX))
-        return;
-
-    model = property_get("ro.hardware");
-    // Darcy just had to be different
-    if (!model.compare("darcy")) {
-        device = "darcy";
-        property_override("ro.product.first_api_level", "23");
-        property_override("ro.product.model", "SHIELD Android TV");
-        property_override("ro.sf.lcd_density", "320");
-        symlink("/etc/twrp.fstab.emmc", "/etc/twrp.fstab");
-        int_path = "sdhci-tegra.3";
-    } else if (!model.compare("loki_e_wifi")) {
-        property_override("ro.product.first_api_level", "21");
-        property_override("ro.product.model", "SHIELD Portable");
-        property_override("ro.sf.lcd_density", "240");
-        symlink("/etc/twrp.fstab.emmc", "/etc/twrp.fstab");
-        int_path = "sdhci-tegra.3";
-    } else if (!model.compare("foster_e_hdd")) {
-        property_override("ro.product.first_api_level", "21");
-        property_override("ro.product.model", "SHIELD Android TV");
-        property_override("ro.sf.lcd_density", "320");
-        symlink("/etc/twrp.fstab.sata", "/etc/twrp.fstab");
-        int_path = "tegra-sata.0";
-    } else {
-        property_override("ro.product.first_api_level", "21");
-        property_override("ro.product.model", "SHIELD Android TV");
-        property_override("ro.sf.lcd_density", "320");
-        symlink("/etc/twrp.fstab.emmc", "/etc/twrp.fstab");
-        int_path = "sdhci-tegra.3";
-    }
-
-    // Symlink paths for unified ROM installs.
-    for(auto const& part: devs)
-        symlink(("/dev/block/platform/" + int_path + "/by-name/" + part).c_str(), ("/dev/block/" + part).c_str());
-
-    property_override("ro.build.fingerprint", ("NVIDIA/" + model + "/" + device + ":" + FINGERPRINT_VERSION + ":user/release-keys").c_str());
-    property_override("ro.build.description", (model + "-user " + DESCRIPTION_VERSION + " release-keys").c_str());
-    property_override("ro.product.name", model.c_str());
-    property_override("ro.product.device", device.c_str());
-    property_override("ro.build.product", "foster");
-    ERROR("Setting build properties for %s model\n", model.c_str());
+	shield_init si(devices, true, sav, parts);
+	si.set_properties();
 }
 
 int vendor_handle_control_message(const std::string &msg, const std::string &arg)
 {
-    Service *sf_svc = NULL;
-    Service *zg_svc = NULL;
-
-    if (!msg.compare("restart") && !arg.compare("consolemode")) {
-        sf_svc = ServiceManager::GetInstance().FindServiceByName("surfaceflinger");
-        zg_svc = ServiceManager::GetInstance().FindServiceByName("zygote");
-
-        if (sf_svc && zg_svc) {
-            zg_svc->Stop();
-            sf_svc->Stop();
-            sf_svc->Start();
-            zg_svc->Start();
-        } else {
-            ERROR("Required services not found to toggle console mode");
-        }
-
-        return 0;
-    }
-
-    return -EINVAL;
+    return shield_handle_control_message(msg, arg);
 }
