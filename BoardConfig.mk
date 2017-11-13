@@ -98,6 +98,9 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 TARGET_INIT_VENDOR_LIB := libinit_shield libinit_foster
 TARGET_LIBINIT_DEFINES_FILE := device/nvidia/foster/init/init_foster.cpp
 
+# Override common releasetools
+TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
+
 # TWRP Support
 ifeq ($(WITH_TWRP),true)
 -include device/nvidia/foster/twrp/twrp.mk
