@@ -74,6 +74,9 @@ MAX_EGL_CACHE_ENTRY_SIZE := 262144
 # Recovery
 TARGET_RECOVERY_FSTAB := device/nvidia/foster/initfiles/fstab.foster
 
+# RenderScript
+OVERRIDE_RS_DRIVER := libnvRSDriver.so
+
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
