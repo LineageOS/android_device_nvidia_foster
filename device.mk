@@ -122,10 +122,6 @@ PRODUCT_PACKAGES += \
     charger \
     charger_res_images
 
-# Leanback
-PRODUCT_PACKAGES += LeanbackIme \
-                    LeanbackLauncher
-
 # Variant blobs script
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/releasetools/variant_blobs.sh:install/bin/variant_blobs.sh
