@@ -106,6 +106,7 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/media/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.conf \
     $(LOCAL_PATH)/media/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/media/nvaudio_conf.xml:system/etc/nvaudio_conf.xml
 
