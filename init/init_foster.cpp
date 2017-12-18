@@ -35,7 +35,7 @@ void vendor_load_properties()
 	                                              { "foster", "foster_e_hdd", "SHIELD Android TV", "", shield_init::gsm_support_type::NONE,      shield_init::boot_dev_type::SATA, 21, 320 },
 	                                              { "darcy",  "darcy",        "SHIELD Android TV", "", shield_init::gsm_support_type::NONE,      shield_init::boot_dev_type::EMMC, 23, 320 },
 	                                              { "foster", "loki_e_wifi",  "SHIELD Portable",   "", shield_init::gsm_support_type::NONE,      shield_init::boot_dev_type::EMMC, 21, 240 } };
-	shield_init::build_version sav = { "7.0", "NRD90M", "2427173_976.3748" };
+	shield_init::build_version sav = { "7.0", "NRD90M", "2427173_1007.9973" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "MSC", "UDA", "USP", "MDA", "SOS", "BMP", "vendor" };
 
 	shield_init si(devices, true, sav, parts);
