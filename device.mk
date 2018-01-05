@@ -105,6 +105,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/comms/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 # Camera
+PRODUCT_PACKAGES += Snap
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/camera/nvcamera.conf:system/etc/nvcamera.conf
 
