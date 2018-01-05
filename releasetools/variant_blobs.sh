@@ -18,9 +18,20 @@
 LD_LIBRARY_PATH=/system/lib64
 
 if [ "$(getprop ro.hardware)" == "loki_e_wifi" ]; then
+  /system/bin/toybox rm "/system/vendor/app/eks2/eks2_darcy.dat"
   /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.so"
+  /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.darcy.so"
   /system/bin/toybox mv "/system/vendor/lib/liboemcrypto.loki.so" "/system/vendor/lib/liboemcrypto.so"
+elif [ "$(getprop ro.hardware)" == "darcy" ]; then
+  /system/bin/toybox rm "/system/vendor/app/eks2/eks2.dat"
+  /system/bin/toybox mv "/system/vendor/app/eks2/eks2_darcy.dat" "/system/vendor/app/eks2/eks2.dat"
+  /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.so"
+  /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.loki.so"
+  /system/bin/toybox mv "/system/vendor/lib/liboemcrypto.darcy.so" "/system/vendor/lib/liboemcrypto.so"
+  /system/bin/toybox rm -rf "/system/vendor/app/ConsoleUI"
 else
+  /system/bin/toybox rm "/system/vendor/app/eks2/eks2_darcy.dat"
+  /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.darcy.so"
   /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.loki.so"
   /system/bin/toybox rm -rf "/system/vendor/app/ConsoleUI"
 fi;
