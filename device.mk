@@ -85,6 +85,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/com.nvidia.feature.opengl4.xml:system/etc/permissions/com.nvidia.feature.opengl4.xml \
     $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml
 
+# Define Netflix nrdp properties 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/permissions/nrdp.modelgroup.xml:system/etc/permissions/nrdp.modelgroup.xml
 
 # Media config
 PRODUCT_COPY_FILES += \
