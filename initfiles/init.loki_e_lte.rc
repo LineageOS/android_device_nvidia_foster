@@ -1,0 +1,24 @@
+#Copyright (c) 2014-2015, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import init.tegra_emmc.rc
+import init.t210.rc
+import init.loki_e_common.rc
+import init.ray_touch.rc
+
+on fs
+    mount_all /fstab.loki_e_lte
+    swapon_all /fstab.loki_e_lte
+
+    setprop ro.gps.gpio 66
+
+on post-fs-data
+    start start-gps
+
+on firmware_mounts_complete
+    symlink /system/etc/nvram_loki_e_4354.txt /data/misc/wifi/firmware/nvram.txt

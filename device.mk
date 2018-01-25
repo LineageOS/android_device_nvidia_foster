@@ -17,6 +17,7 @@
 PRODUCT_CHARACTERISTICS := tv
 TARGET_TEGRA_VERSION := t210
 TARGET_TEGRA_TOUCH := raydium
+TARGET_TEGRA_MODEM := icera
 
 $(call inherit-product, device/nvidia/shield-common/shield.mk)
 
@@ -42,10 +43,12 @@ PRODUCT_PACKAGES += \
     fstab.darcy \
     fstab.foster_e \
     fstab.foster_e_hdd \
+    fstab.loki_e_lte \
     fstab.loki_e_wifi \
     init.darcy.rc \
     init.foster_e.rc \
     init.foster_e_hdd.rc \
+    init.loki_e_lte.rc \
     init.loki_e_wifi.rc \
     init.foster_e_common.rc \
     init.loki_e_common.rc \
@@ -55,16 +58,19 @@ PRODUCT_PACKAGES += \
     init.recovery.foster_e.rc \
     init.recovery.foster_e_hdd.rc \
     init.recovery.jetson_cv.rc \
+    init.recovery.loki_e_lte.rc \
     init.recovery.loki_e_wifi.rc \
     power.darcy.rc \
     power.foster_e.rc \
     power.foster_e_hdd.rc \
     power.jetson_cv.rc \
+    power.loki_e_lte.rc \
     power.loki_e_wifi.rc \
     ueventd.darcy.rc \
     ueventd.foster_e.rc \
     ueventd.foster_e_hdd.rc \
     ueventd.jetson_cv.rc \
+    ueventd.loki_e_lte.rc \
     ueventd.loki_e_wifi.rc
 
 # Permissions
@@ -129,3 +135,6 @@ PRODUCT_PACKAGES += \
 # Variant blobs script
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/releasetools/variant_blobs.sh:install/bin/variant_blobs.sh
+
+# Radio Interface
+PRODUCT_PACKAGES += rild

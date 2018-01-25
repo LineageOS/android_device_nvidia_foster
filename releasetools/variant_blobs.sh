@@ -17,7 +17,7 @@
 
 LD_LIBRARY_PATH=/system/lib64
 
-if [ "$(getprop ro.hardware)" == "loki_e_wifi" ]; then
+if [ "$(getprop ro.hardware)" == "loki_e_wifi" -o "$(getprop ro.hardware)" == "loki_e_lte" ]; then
   /system/bin/toybox rm "/system/vendor/app/eks2/eks2_darcy.dat"
   /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.so"
   /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.darcy.so"
