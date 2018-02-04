@@ -19,8 +19,6 @@
 
 include device/nvidia/shield-common/BoardConfigCommon.mk
 
-TARGET_SPECIFIC_HEADER_PATH := device/nvidia/foster/include
-
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
 TARGET_CPU_SMP := true
@@ -106,6 +104,9 @@ TARGET_LIBINIT_DEFINES_FILE := device/nvidia/foster/init/init_foster.cpp
 
 # Override common releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
+
+# Zygote whitelist extra paths
+ZYGOTE_WHITELIST_PATH_EXTRA := \"/dev/nvhost-ctrl\",
 
 # TWRP Support
 ifeq ($(WITH_TWRP),true)
