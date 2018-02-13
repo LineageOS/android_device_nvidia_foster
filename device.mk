@@ -36,7 +36,13 @@ endif
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
 
+ifneq ("$(wildcard vendor/nvidia/shield/foster.mk)","")
 $(call inherit-product, vendor/nvidia/shield/foster.mk)
+else ifneq ("$(wildcard vendor/nvidia/foster/foster-vendor.mk)","")
+$(call inherit-product, vendor/nvidia/foster/foster-vendor.mk)
+else
+$(error "No proprietary vendor found.")
+endif
 
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.name
 
