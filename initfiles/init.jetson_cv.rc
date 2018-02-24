@@ -11,8 +11,8 @@ import init.t210.rc
 import init.foster_e_common.rc
 
 on fs
-    mount_all /fstab.foster_e
-    swapon_all /fstab.foster_e
+    mount_all /fstab.jetson_cv
+    swapon_all /fstab.jetson_cv
 
 on firmware_mounts_complete
     symlink /system/etc/nvram_foster_e_4354.txt /data/misc/wifi/firmware/nvram.txt

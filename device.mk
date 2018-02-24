@@ -52,6 +52,7 @@ PRODUCT_PACKAGES += \
     fstab.foster_e_hdd \
     fstab.loki_e_lte \
     fstab.loki_e_wifi \
+    fstab.jetson_cv \
     init.darcy.rc \
     init.foster_e.rc \
     init.foster_e_hdd.rc \
