@@ -17,6 +17,11 @@
 
 LD_LIBRARY_PATH=/system/lib64
 
+# If variant blobs not available, likely due to using extract scripts, this isn't needed.
+if [ ! -f "/system/vendor/lib/liboemcrypto.darcy.so" ]; then
+  exit 0;
+fi;
+
 if [ "$(getprop ro.hardware)" == "loki_e_wifi" -o "$(getprop ro.hardware)" == "loki_e_lte" ]; then
   /system/bin/toybox rm "/system/vendor/app/eks2/eks2_darcy.dat"
   /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.so"
