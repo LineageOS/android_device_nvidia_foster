@@ -34,9 +34,11 @@ elif [ "$(getprop ro.hardware)" == "darcy" ]; then
   /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.loki.so"
   /system/bin/toybox mv "/system/vendor/lib/liboemcrypto.darcy.so" "/system/vendor/lib/liboemcrypto.so"
   /system/bin/toybox rm -rf "/system/vendor/app/ConsoleUI"
+  /system/bin/toybox sed -i 's/AUDIO_DEVICE_IN_BUILTIN_MIC|//' "/system/etc/audio_policy.conf"
 else
   /system/bin/toybox rm "/system/vendor/app/eks2/eks2_darcy.dat"
   /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.darcy.so"
   /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.loki.so"
   /system/bin/toybox rm -rf "/system/vendor/app/ConsoleUI"
+  /system/bin/toybox sed -i 's/AUDIO_DEVICE_IN_BUILTIN_MIC|//' "/system/etc/audio_policy.conf"
 fi;
