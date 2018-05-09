@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
-PRODUCT_CHARACTERISTICS := tv
 TARGET_TEGRA_VERSION := t210
 TARGET_TEGRA_TOUCH := raydium
 TARGET_TEGRA_MODEM := icera
