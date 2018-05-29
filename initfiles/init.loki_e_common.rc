@@ -7,17 +7,23 @@
 #is strictly prohibited.
 
 import init.loki_foster_e_common.rc
-import init.cal.rc
 
-on post-fs-data
-    setprop persist.sys.display.resolution 1440x810
-    write /sys/power/wake_lock loki-stayawake
+on init
+    # Load persistent dm-verity state
+    verity_load_state
+
+on fs
+    # factory reset protection
+    mkdir /persistent 0660 system system
+    setprop ro.frp.pst /dev/block/platform/sdhci-tegra.3/by-name/RP2
+
+    # Update dm-verity state and set partition.*.verified properties
+    verity_update_state
 
 service charger /charger
     class charger
     seclabel u:r:healthd:s0
     group input
-    writepid /dev/cpuset/system-background/tasks
 
 service update_fw /system/bin/update_js_touch_fw.sh
     class main
