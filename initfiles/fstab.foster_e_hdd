@@ -1,3 +1,5 @@
+#Copyright (c) 2015-2017 NVIDIA Corporation.  All Rights Reserved.
+
 # Android fstab file.
 #<src>                                                  <mnt_point>         <type>    <mnt_flags>                                                                         <fs_mgr_flags>
 # The filesystem that contains the filesystem checker binary (typically /system) cannot

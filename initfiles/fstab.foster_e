@@ -1,3 +1,5 @@
+#Copyright (c) 2015-2017 NVIDIA Corporation.  All Rights Reserved.
+
 # Android fstab file.
 #<src>                                                  <mnt_point>         <type>    <mnt_flags>                                                                         <fs_mgr_flags>
 # The filesystem that contains the filesystem checker binary (typically /system) cannot
@@ -17,6 +19,6 @@
 /devices/platform/tegra-xhci*                           auto                vfat      defaults                                                            voldmanaged=usbdrive:auto,encryptable=userdata
 /devices/tegra-ehci*                                    auto                vfat      defaults                                                            voldmanaged=usbdrive1:auto,encryptable=userdata
 /dev/block/platform/sdhci-tegra.0/by-num/p1             /sdcard             vfat      defaults                                                            recoveryonly
-/dev/block/platform/tegra-xhci/by-num/p1                /usbdrive           vfat      defaults                                                            recoveryonly
 /dev/block/platform/sdhci-tegra.3/by-name/BMP           /bmps               emmc      defaults                                                            recoveryonly
+/dev/block/platform/tegra-xhci/by-num/p1                /usbdrive           vfat      defaults                                                            recoveryonly
 /dev/block/zram0 none swap defaults zramsize=536870912

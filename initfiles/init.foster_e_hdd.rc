@@ -1,4 +1,4 @@
-#Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2017, NVIDIA CORPORATION.  All rights reserved.
 #
 #NVIDIA Corporation and its licensors retain all intellectual property and
 #proprietary rights in and to this software and related documentation.  Any
@@ -10,9 +10,12 @@ import init.tegra_sata.rc
 import init.t210.rc
 import init.foster_e_common.rc
 
-on post-fs-data
-    start cyupdate
-    start get-hddstat
+on init
+    # support old sdcard features (apps on sdcard and migrated apps)
+    setprop vold.linktoprimary 1
+
+    # Use Keymaster 0 HAL
+    setprop ro.hardware.keystore v0.tegra
 
 on fs
     write /sys/block/sda/queue/scheduler deadline
@@ -22,16 +25,16 @@ on fs
     mount_all /fstab.foster_e_hdd
     swapon_all /fstab.foster_e_hdd
 
+on post-fs-data
+    start cyupdate
+    start get-hddstat
+
 service cyupdate /vendor/bin/cyupdate.sh
     class main
     user system
     group system
     oneshot
     disabled
-
-on boot
-    # Unset property inadvertently set previously
-    setprop persist.tegra.0x523dc0 ""
 
 on firmware_mounts_complete
     symlink /system/etc/nvram_foster_e_4354.txt /data/misc/wifi/firmware/nvram.txt
