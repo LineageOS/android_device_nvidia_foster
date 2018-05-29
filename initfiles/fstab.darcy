@@ -1,4 +1,4 @@
-#Copyright (c) 2015-2016 NVIDIA Corporation.  All Rights Reserved.
+#Copyright (c) 2015-2017 NVIDIA Corporation.  All Rights Reserved.
 
 # Android fstab file.
 #<src>                                                  <mnt_point>         <type>    <mnt_flags>                                                                         <fs_mgr_flags>
@@ -15,7 +15,9 @@
 /dev/block/platform/sdhci-tegra.3/by-name/SOS           /recovery           emmc      defaults                                               defaults
 /dev/block/platform/sdhci-tegra.3/by-name/RP3           /factory/wifi_config  ext4    rw,noatime,nosuid,nodev,noexec                                      wait,check,formattable
 /devices/platform/tegra-xhci*                           auto                vfat      defaults                                                            voldmanaged=usbdrive:auto,encryptable=userdata
+/devices/70090000.xusb/usb*                             auto                vfat      defaults                                                            voldmanaged=usbdrive:auto,encryptable=userdata
 /devices/tegra-ehci*                                    auto                vfat      defaults                                                            voldmanaged=usbdrive:auto,encryptable=userdata
 /dev/block/platform/tegra-xhci/by-num/p1                /usbdrive           vfat      defaults                                                            recoveryonly
+/dev/block/platform/70090000.xusb/by-num/p1             /usbdrive           vfat      defaults                                                            recoveryonly
 /dev/block/platform/sdhci-tegra.3/by-name/BMP           /bmps               emmc      defaults                                                            recoveryonly
 /dev/block/zram0 none swap defaults zramsize=536870912

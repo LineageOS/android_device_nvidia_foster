@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2017, NVIDIA CORPORATION.  All rights reserved.
 #
 # NVIDIA CORPORATION and its licensors retain all intellectual property
 # and proprietary rights in and to this software, related documentation
@@ -11,7 +11,7 @@
 
 # gps
 /dev/ttyTHS2				u:object_r:gps_device:s0
-#GPS on Jetson super module is connected to UART1
+# GPS on Jetson super module is connected to UART1
 /dev/ttyTHS0				u:object_r:gps_device:s0
 
 # camera
@@ -21,10 +21,39 @@
 /dev/imx132				u:object_r:camera_device:s0
 /dev/ov10823.*				u:object_r:camera_device:s0
 
-#factory reset protection
+# factory reset protection
 /dev/block/platform/sdhci-tegra\.3/by-name/RP2		u:object_r:frp_block_device:s0
-/dev/block/platform/tegra-sata\.0/by-name/RP2		u:object_r:frp_block_device:s0
+/dev/block/platform/tegra-sata\.0/by-name/RP2           u:object_r:frp_block_device:s0
 
-#for fs_mgr modified metadata
+# for fs_mgr modified metadata
 /dev/block/platform/sdhci-tegra\.3/by-name/MDA u:object_r:metadata_block_device:s0
 /dev/block/platform/tegra-sata\.0/by-name/MDA u:object_r:metadata_block_device:s0
+
+# storage daemon
+/system/bin/storageproxyd 		u:object_r:tee_exec:s0
+
+# lkm
+/vendor/bin/lkm_loader.sh		u:object_r:lkm_loader_exec:s0
+
+# Cluster debugfs
+/sys/kernel/debug/cpuidle_t210/fast_cluster_states_enable	u:object_r:debugfs_cluster:s0
+
+# Nodes used by GL driver
+/sys/devices/platform/gpu\.0/ptimer_scale_factor	u:object_r:sysfs_gpu:s0
+
+# GPU power knobs exposed to system app
+/sys/devices/platform/gpu\.0/(.*)_enable		u:object_r:sysfs_gpu_power_knobs:s0
+/sys/devices/platform/gpu\.0/pmu_state		u:object_r:sysfs_gpu_power_knobs:s0
+/sys/devices/platform/gpu\.0/devfreq/gpu\.0(/.*)?	u:object_r:sysfs_devfreq:s0
+
+# Tegra DVFS
+/sys/module/tegra21_dvfs/parameters/disable_core	u:object_r:sysfs_tegra_dvfs:s0
+
+# Ethernet power
+/sys/kernel/rt8168_power/mode		u:object_r:sysfs_ethernet_power:s0
+
+# Tegra cpu emc ratio table src
+/sys/kernel/tegra_cpu_emc/table_src	u:object_r:sysfs_tegra_cpuemc:s0
+
+# Input device sysfs
+/sys/devices/platform/gpio-keys.48/input/input0(/.*)?	u:object_r:sysfs_input_dev:s0

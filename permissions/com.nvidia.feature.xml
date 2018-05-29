@@ -5,4 +5,5 @@
     <feature name="com.nvidia.feature.app.vudu"/>
     <feature name="com.nvidia.feature.app.plex.mediaserver"/>
     <feature name="com.nvidia.feature.app.plex.smbserver"/>
+    <feature name="com.nvidia.feature.network_attached_storage"/>
 </permissions>

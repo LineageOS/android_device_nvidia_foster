@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Copyright (c) 2017 NVIDIA Corporation.  All Rights Reserved.
+
+     NVIDIA Corporation and its licensors retain all intellectual property and
+     proprietary rights in and to this software and related documentation.  Any
+     use, reproduction, disclosure or distribution of this software and related
+     documentation without an express license agreement from NVIDIA Corporation
+     is strictly prohibited.
+
+     This file is used to declare nv platform permissions
+-->
+
+<!-- This file is used to define the mappings between lower-level system
+     user and group IDs and the higher-level permission names managed
+     by the platform.
+
+     Be VERY careful when editing this file!  Mistakes made here can open
+     big security holes.
+-->
+<permissions>
+
+    <!-- ================================================================== -->
+    <!-- ================================================================== -->
+    <!-- ================================================================== -->
+
+    <!-- The following tags are associating low-level group IDs with
+         permission names.  By specifying such a mapping, you are saying
+         that any application process granted the given permission will
+         also be running with the given group ID attached to its process,
+         so it can perform any filesystem (read, write, execute) operations
+         allowed for that group. -->
+
+    <permission name="nvidia.permission.NET_BIND_SERVICE" >
+        <group gid="net_bind_service" />
+    </permission>
+
+    <permission name="nvidia.permission.NV_REMOTE_WRITE" >
+        <group gid="nv_remote_write" />
+    </permission>
+
+</permissions>
