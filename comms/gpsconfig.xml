@@ -12,7 +12,7 @@
     LtoFileName="lto.dat"
     LtoDir="/data/system/gps/"
     CtrlPipe="/data/system/gps/glgpsctrl"
-    GpioNStdbyPath="/sys/class/gpio/gpio66/value"
+    GpioNStdbyPath="/sys/class/gps_wake/gps_device/gps_enable"
     SensorsEnable="false"
     SensorsLog="false"
     SensorsDebugLog="false"
@@ -21,6 +21,9 @@
     LbsEnable="false"
     SuplEnable="false"
 />
+<!--
+    SuplServer="192.168.0.35"
+-->
 
 <!-- GPS configuration with standalone 16.8 MHz TCXO  -->
 <gll

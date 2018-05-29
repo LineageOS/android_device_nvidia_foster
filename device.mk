@@ -45,10 +45,6 @@ endif
 
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.name
 
-# Overlay
-DEVICE_PACKAGE_OVERLAYS += \
-    device/nvidia/foster/overlay
-
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.foster \
@@ -102,7 +98,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/com.nvidia.feature.xml:system/etc/permissions/com.nvidia.feature.xml \
     $(LOCAL_PATH)/permissions/com.nvidia.feature.opengl4.xml:system/etc/permissions/com.nvidia.feature.opengl4.xml \
-    $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml
+    $(LOCAL_PATH)/permissions/com.nvidia.nvsi.xml:system/etc/permissions/com.nvidia.nvsi.xml \
+    $(LOCAL_PATH)/permissions/com.nvidia.shieldnext.xml:system/etc/permissions/com.nvidia.shieldnext.xml
 
 # Define Netflix nrdp properties 
 PRODUCT_COPY_FILES += \

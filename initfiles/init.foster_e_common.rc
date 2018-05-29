@@ -1,4 +1,4 @@
-#Copyright (c) 2014-2017, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2018, NVIDIA CORPORATION.  All rights reserved.
 #
 #NVIDIA Corporation and its licensors retain all intellectual property and
 #proprietary rights in and to this software and related documentation.  Any
@@ -16,9 +16,17 @@ on boot
     chown system system /sys/class/leds/led_lightbar/effects
     chown system system /sys/class/leds/led_lightbar/params
     write /sys/devices/system/cpu/cpuquiet/runnable_threads/nr_run_thresholds "6 10 18"
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 0
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+
 
     # Lower console loglevel to reduce number of printk messages to console
     write /proc/sys/kernel/printk "4 7 1 7 3"
+
+on fs
+    setprop ro.config.size_override 1920,1080
 
 on post-fs-data
 # Set Foster as console mode
@@ -36,10 +44,8 @@ on post-fs-data
     chown system system /factory/wifi_config/country_code.sig
     chown system system /factory/wifi_config/package.txt
     restorecon_recursive /factory/wifi_config
-    mkdir /data/provTest 0700 root drmrpc
 
 on post-fs-data
-# Jarvis permission
     chmod 660 /sys/bus/hid/drivers/Jarvis/hid_miss_stats
     chown system system /sys/bus/hid/drivers/Jarvis/hid_miss_stats
 
@@ -48,10 +54,7 @@ on post-fs-data
     mkdir /data/system/devices 0774 system system
     mkdir /data/system/devices/keylayout 0774 system system
     restorecon_recursive /data/system/devices/keylayout
-
-on post-fs-data
-    # Create /data/misc/frostlog to store Frost's log files
-    mkdir /data/misc/frostlog 0770 system system
+    mkdir /data/provTest 0700 root drmrpc
 
 on init
     mkdir /mnt/media_rw/usbdrive2 0700 media_rw media_rw
@@ -87,18 +90,24 @@ on post-fs-data
     chown cache system /cache/logs/last_boot_dmesg.txt
     chmod 660 /cache/logs/last_boot_logcat.txt
     chown cache system /cache/logs/last_boot_logcat.txt
+    setprop persist.sys.disable_rescue true
 
 on property:sys.boot_completed=1
     start factory_tests
 
-# Core dump
-on property:vold.post_fs_data_done=1 && property:ro.debuggable=1
-    # Core dump generation
-    mkdir /data/core
-    chmod 777 /data/core
-    # use program.pid.uid.time.core as core file name
-    write /proc/sys/kernel/core_pattern /data/core/%e.%p.%u.%t.core
-    # corefile limit
-    setrlimit 4 -1 -1
-    # create core dump file directory
-    write /proc/sys/fs/suid_dumpable 2
+# override cpuset cpus to 0-3, mems to 0
+on init
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/mems 0
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/foreground/boost/mems 0
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/background/mems 0
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/system-background/mems 0
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/top-app/mems 0
+
+service mossignerd /vendor/bin/mossignerd
+    class late_start
+    user system
