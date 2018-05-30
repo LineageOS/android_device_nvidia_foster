@@ -37,7 +37,7 @@ void vendor_load_properties()
 	                                              { "foster", "jetson_cv",    "Jetson TX1",        "", shield_init::gsm_support_type::NONE,      shield_init::boot_dev_type::EMMC, 21, 320 },
 	                                              { "foster", "loki_e_lte",   "SHIELD Portable",   "", shield_init::gsm_support_type::DATA_ONLY, shield_init::boot_dev_type::EMMC, 21, 240 },
 	                                              { "foster", "loki_e_wifi",  "SHIELD Portable",   "", shield_init::gsm_support_type::NONE,      shield_init::boot_dev_type::EMMC, 21, 240 } };
-	shield_init::build_version sav = { "7.0", "NRD90M", "2427173_1038.2788" };
+	shield_init::build_version sav = { "8.0.0", "OPR6.170623.010", "3019194_1174.8512" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "MSC", "UDA", "USP", "MDA", "SOS", "BMP", "vendor" };
 
 	shield_init si(devices, true, sav, parts);
