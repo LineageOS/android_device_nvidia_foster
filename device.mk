@@ -164,3 +164,7 @@ PRODUCT_COPY_FILES += \
 # Variant blobs script
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/releasetools/variant_blobs.sh:install/bin/variant_blobs.sh
+
+# Vendor security patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lineage.build.vendor_security_patch=2018-05-05
