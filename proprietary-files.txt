@@ -77,18 +77,10 @@ vendor/lib/libtlk_secure_hdcp_up.so
 vendor/lib/libtsechdcp.so
 vendor/lib/libtsec_wrapper.so
 
-# Icera modem
-vendor/bin/downloader
-vendor/bin/icera-switcherd
-vendor/bin/modemnic
-vendor/lib64/libril-icera.so
-vendor/lib/libril-icera.so
-
 # GPS
 vendor/bin/glgps_nvidiaTegra2android
 vendor/bin/gps_select.sh
 vendor/lib64/hw/gps.brcm.so
-vendor/lib/hw/gps.brcm.so
 
 # Power
 vendor/bin/pbc2
