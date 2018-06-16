@@ -158,6 +158,3 @@ PRODUCT_COPY_FILES += \
 # Variant blobs script
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/releasetools/variant_blobs.sh:install/bin/variant_blobs.sh
-
-# Radio Interface
-PRODUCT_PACKAGES += rild
