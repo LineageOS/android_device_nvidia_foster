@@ -34,7 +34,6 @@ $(call inherit-product, device/nvidia/foster/device_atv.mk)
 endif
 
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
 
 ifneq ("$(wildcard vendor/nvidia/shield/foster.mk)","")
 $(call inherit-product, vendor/nvidia/shield/foster.mk)
