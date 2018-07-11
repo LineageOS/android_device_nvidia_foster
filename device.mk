@@ -146,6 +146,12 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
     lights.tegra
 
+# Thermal
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/thermal/thermalhal.jetson_e.xml:$(TARGET_OUT_VENDOR_ETC)/thermalhal.jetson_cv.xml \
+    $(LOCAL_PATH)/thermal/thermalhal.jetson_e.xml:$(TARGET_OUT_VENDOR_ETC)/thermalhal.loki_e_lte.xml \
+    $(LOCAL_PATH)/thermal/thermalhal.jetson_e.xml:$(TARGET_OUT_VENDOR_ETC)/thermalhal.loki_e_wifi.xml
+
 # Charger
 PRODUCT_PACKAGES += \
     charger \
