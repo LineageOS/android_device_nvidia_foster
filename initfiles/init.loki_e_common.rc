@@ -9,16 +9,7 @@
 import init.loki_foster_e_common.rc
 
 on init
-    # Load persistent dm-verity state
-    verity_load_state
-
-on fs
-    # factory reset protection
-    mkdir /persistent 0660 system system
-    setprop ro.frp.pst /dev/block/platform/sdhci-tegra.3/by-name/RP2
-
-    # Update dm-verity state and set partition.*.verified properties
-    verity_update_state
+    setprop ro.boot.secureos tlk
 
 service charger /charger
     class charger
@@ -30,6 +21,19 @@ service update_fw /system/bin/update_js_touch_fw.sh
     user system
     group usb
     oneshot
+
+# override cpuset cpus to 0-3, mems to 0
+on init
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/mems 0
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/foreground/boost/mems 0
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/background/mems 0
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/system-background/mems 0
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/top-app/mems 0
 
 on charger
     mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/APP /system wait ro
