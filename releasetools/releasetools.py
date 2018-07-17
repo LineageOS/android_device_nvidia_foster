@@ -13,11 +13,14 @@
 # limitations under the License.
 #
 
-""" Custom OTA commands for klte devices """
+""" Custom OTA commands for foster devices """
 
 import common
 import re
 import os
+
+TARGET_DIR = os.getenv('OUT')
+STAGING_PART = '/dev/block/USP'
 
 def FullOTA_InstallEnd(info):
   info.script.Mount("/system")
@@ -25,3 +28,53 @@ def FullOTA_InstallEnd(info):
   info.script.AppendExtra('assert(run_program("/tmp/install/bin/variant_blobs.sh") == 0);')
   info.script.Unmount("/system")
   info.script.Unmount("/vendor")
+
+def FullOTA_Assertions(info):
+  if 'RADIO/foster_e.bin' in info.input_zip.namelist():
+    CopyBlobs(info.input_zip, info.output_zip)
+    AddBootloaderFlash(info, info.input_zip)
+  else:
+    AddBootloaderAssertion(info, info.input_zip)
+
+def IncrementalOTA_Assertions(info):
+  FullOTA_Assertions(info)
+
+def CopyBlobs(input_zip, output_zip):
+  for info in input_zip.infolist():
+    f = info.filename
+    if f.startswith("RADIO/") and (f.__len__() > len("RADIO/")):
+      fn = f[6:]
+      common.ZipWriteStr(output_zip, "firmware-update/" + fn, input_zip.read(f))
+
+def AddBootloaderAssertion(info, input_zip):
+  android_info = input_zip.read("OTA/android-info.txt")
+  m = re.search(r"require\s+version-bootloader\s*=\s*(\S+)", android_info)
+  if m:
+    bootloaders = m.group(1).split("|")
+    if "*" not in bootloaders:
+      info.script.AssertSomeBootloader(*bootloaders)
+    info.metadata["pre-bootloader"] = m.group(1)
+
+def AddBootloaderFlash(info, input_zip):
+  android_info = input_zip.read("OTA/android-info.txt")
+  m = re.search(r"require\s+version-bootloader\s*=\s*(\S+)", android_info)
+  if m:
+    bootloaders = m.group(1).split("|")
+    info.metadata["pre-bootloader"] = m.group(1)
+    if "*" not in bootloaders:
+      info.script.AppendExtra('ifelse(')
+      info.script.AppendExtra('  getprop("ro.hardware") == "foster_e" || getprop("ro.hardware") == "foster_e_hdd" || getprop("ro.hardware") == "darcy",')
+      info.script.AppendExtra('  ifelse(')
+      info.script.AppendExtra('    ' + ' || '.join(['getprop("ro.bootloader") == "%s"' % (b,) for b in bootloaders]) + ',')
+      info.script.AppendExtra('    (')
+      info.script.AppendExtra('      ui_print("Correct bootloader already installed");')
+      info.script.AppendExtra('    ),')
+      info.script.AppendExtra('    (')
+      info.script.AppendExtra('      ui_print("Flashing updated bootloader");')
+      info.script.AppendExtra('      package_extract_file("firmware-update/" + getprop(ro.hardware) + ".bin", "' + STAGING_PART + '");')
+      info.script.AppendExtra('    )')
+      info.script.AppendExtra('  ),')
+      info.script.AppendExtra('  assert(' + ' || '.join(['getprop("ro.bootloader") == "%s"' % (b,) for b in bootloaders]) +
+                                 ' || abort("This package supports bootloader(s): ' + ', '.join(["%s" % (b,) for b in bootloaders]) +
+                                 '; this device has bootloader " + getprop("ro.bootloader") + ".");' + ');')
+      info.script.AppendExtra(');')

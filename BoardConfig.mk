@@ -39,6 +39,7 @@ TARGET_OTA_ASSERT_DEVICE := darcy,foster,loki
 TARGET_BOARD_PLATFORM := tegra
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
+TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
 
 # Kernel
 KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
