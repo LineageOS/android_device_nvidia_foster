@@ -1,0 +1,1 @@
+require version-bootloader=24.00.2015.42-t210-39c6cadc|24.00.2015.42-t210-b142fead
