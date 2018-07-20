@@ -2,6 +2,7 @@
 /boot           emmc            /dev/block/platform/sdhci-tegra.3/by-name/LNX
 /system         ext4            /dev/block/platform/sdhci-tegra.3/by-name/APP
 /cache          ext4            /dev/block/platform/sdhci-tegra.3/by-name/CAC
+/vendor         ext4            /dev/block/platform/sdhci-tegra.3/by-name/vendor
 /misc           emmc            /dev/block/platform/sdhci-tegra.3/by-name/MSC
 /staging        emmc            /dev/block/platform/sdhci-tegra.3/by-name/USP
 /metadata       emmc            /dev/block/platform/sdhci-tegra.3/by-name/MDA
