@@ -21,5 +21,7 @@ import os
 
 def FullOTA_InstallEnd(info):
   info.script.Mount("/system")
+  info.script.Mount("/vendor")
   info.script.AppendExtra('assert(run_program("/tmp/install/bin/variant_blobs.sh") == 0);')
   info.script.Unmount("/system")
+  info.script.Unmount("/vendor")
