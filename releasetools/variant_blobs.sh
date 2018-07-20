@@ -18,29 +18,33 @@
 LD_LIBRARY_PATH=/system/lib64
 
 # If variant blobs not available, likely due to using extract scripts, this isn't needed.
-if [ ! -f "/system/vendor/lib/liboemcrypto.darcy.so" ]; then
+if [ ! -f "/vendor/lib/liboemcrypto.darcy.so" ]; then
   exit 0;
 fi;
 
 if [ "$(getprop ro.hardware)" == "loki_e_wifi" -o "$(getprop ro.hardware)" == "loki_e_lte" ]; then
-  /system/bin/toybox rm "/system/vendor/app/eks2/eks2_darcy.dat"
-  /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.so"
-  /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.darcy.so"
-  /system/bin/toybox mv "/system/vendor/lib/liboemcrypto.loki.so" "/system/vendor/lib/liboemcrypto.so"
+  /system/bin/toybox rm "/vendor/app/eks2/eks2_darcy.dat"
+  /system/bin/toybox rm "/vendor/lib/liboemcrypto.so"
+  /system/bin/toybox rm "/vendor/lib/liboemcrypto.darcy.so"
+  /system/bin/toybox mv "/vendor/lib/liboemcrypto.loki.so" "/vendor/lib/liboemcrypto.so"
+  /system/bin/toybox rm "/vendor/firmware/fw_bcmdhd.bin"
+  /system/bin/toybox mv "/vendor/firmware/fw_bcmdhd-4354-N.bin" "/vendor/firmware/fw_bcmdhd.bin"
 elif [ "$(getprop ro.hardware)" == "darcy" ]; then
-  /system/bin/toybox rm "/system/vendor/app/eks2/eks2.dat"
-  /system/bin/toybox mv "/system/vendor/app/eks2/eks2_darcy.dat" "/system/vendor/app/eks2/eks2.dat"
-  /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.so"
-  /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.loki.so"
-  /system/bin/toybox mv "/system/vendor/lib/liboemcrypto.darcy.so" "/system/vendor/lib/liboemcrypto.so"
-  /system/bin/toybox rm -rf "/system/vendor/app/ConsoleUI"
+  /system/bin/toybox rm "/vendor/app/eks2/eks2.dat"
+  /system/bin/toybox mv "/vendor/app/eks2/eks2_darcy.dat" "/vendor/app/eks2/eks2.dat"
+  /system/bin/toybox rm "/vendor/lib/liboemcrypto.so"
+  /system/bin/toybox rm "/vendor/lib/liboemcrypto.loki.so"
+  /system/bin/toybox mv "/vendor/lib/liboemcrypto.darcy.so" "/vendor/lib/liboemcrypto.so"
+  /system/bin/toybox rm "/vendor/firmware/fw_bcmdhd-4354-N.bin"
+  /system/bin/toybox rm -rf "/vendor/app/ConsoleUI"
   /system/bin/toybox sed -i 's/AUDIO_DEVICE_IN_BUILTIN_MIC|//' "/system/etc/audio_policy.conf"
   /system/bin/toybox sed -i 's/builtin speaker" val="1"/builtin speaker" val="0"/' "/system/etc/nvaudio_conf.xml"
 else
-  /system/bin/toybox rm "/system/vendor/app/eks2/eks2_darcy.dat"
-  /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.darcy.so"
-  /system/bin/toybox rm "/system/vendor/lib/liboemcrypto.loki.so"
-  /system/bin/toybox rm -rf "/system/vendor/app/ConsoleUI"
+  /system/bin/toybox rm "/vendor/app/eks2/eks2_darcy.dat"
+  /system/bin/toybox rm "/vendor/lib/liboemcrypto.darcy.so"
+  /system/bin/toybox rm "/vendor/lib/liboemcrypto.loki.so"
+  /system/bin/toybox rm -rf "/vendor/app/ConsoleUI"
+  /system/bin/toybox rm "/vendor/firmware/fw_bcmdhd-4354-N.bin"
   /system/bin/toybox sed -i 's/AUDIO_DEVICE_IN_BUILTIN_MIC|//' "/system/etc/audio_policy.conf"
   /system/bin/toybox sed -i 's/builtin speaker" val="1"/builtin speaker" val="0"/' "/system/etc/nvaudio_conf.xml"
 fi;
