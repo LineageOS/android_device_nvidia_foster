@@ -23,11 +23,11 @@ etc/firmware/tegra21x/nvhost_tsec.fw
 etc/firmware/tegra21x/vic04_ucode.bin
 etc/firmware/tegra21x_xusb_firmware
 etc/firmware/tegra_xusb_firmware
-etc/nvram_darcy_a00.txt
-etc/nvram_foster_e_4354.txt
-etc/nvram_foster_e_antenna_tuned_4354.txt
-etc/nvram_loki_e_4354.txt
-etc/nvram_loki_e_antenna_tuned_4354.txt
+vendor/firmware/nvram_darcy_a00.txt
+vendor/firmware/nvram_foster_e_4354.txt
+vendor/firmware/nvram_foster_e_antenna_tuned_4354.txt
+vendor/firmware/nvram_loki_e_4354.txt
+vendor/firmware/nvram_loki_e_antenna_tuned_4354.txt
 vendor/firmware/adsp.elf
 vendor/firmware/fw_bcmdhd.bin
 vendor/firmware/libnvaecfx.elf
