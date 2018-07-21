@@ -35,4 +35,4 @@ service cyupdate /vendor/bin/cyupdate.sh
     disabled
 
 on firmware_mounts_complete
-    symlink /system/etc/nvram_foster_e_4354.txt /data/misc/wifi/firmware/nvram.txt
+    symlink /vendor/firmware/nvram_foster_e_4354.txt /data/misc/wifi/firmware/nvram.txt

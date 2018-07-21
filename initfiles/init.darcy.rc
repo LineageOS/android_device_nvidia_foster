@@ -27,4 +27,4 @@ on boot && property:persist.convertible.usb.mode=host
     write /sys/class/extcon/ID/connect "USB-HOST"
 
 on firmware_mounts_complete
-    symlink /system/etc/nvram_darcy_a00.txt /data/misc/wifi/firmware/nvram.txt
+    symlink /vendor/firmware/nvram_darcy_a00.txt /data/misc/wifi/firmware/nvram.txt
