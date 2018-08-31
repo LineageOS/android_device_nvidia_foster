@@ -55,4 +55,13 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal>
+        <name>vendor.nvidia.hardware.flynn</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IFlynn</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 </manifest>
