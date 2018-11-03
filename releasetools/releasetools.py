@@ -30,13 +30,21 @@ def FullOTA_InstallEnd(info):
   info.script.Unmount("/vendor")
 
 def FullOTA_Assertions(info):
-  if 'INSTALL/foster_e.blob' in info.input_zip.namelist():
+  if 'RADIO/foster_e.blob' in info.input_zip.namelist():
+    CopyBlobs(info.input_zip, info.output_zip)
     AddBootloaderFlash(info, info.input_zip)
   else:
     AddBootloaderAssertion(info, info.input_zip)
 
 def IncrementalOTA_Assertions(info):
   FullOTA_Assertions(info)
+
+def CopyBlobs(input_zip, output_zip):
+  for info in input_zip.infolist():
+    f = info.filename
+    if f.startswith("RADIO/") and (f.__len__() > len("RADIO/")):
+      fn = f[6:]
+      common.ZipWriteStr(output_zip, "firmware-update/" + fn, input_zip.read(f))
 
 def AddBootloaderAssertion(info, input_zip):
   android_info = input_zip.read("OTA/android-info.txt")
@@ -63,7 +71,7 @@ def AddBootloaderFlash(info, input_zip):
       info.script.AppendExtra('    ),')
       info.script.AppendExtra('    (')
       info.script.AppendExtra('      ui_print("Flashing updated bootloader");')
-      info.script.AppendExtra('      package_extract_file("install/" + getprop(ro.hardware) + ".blob", "' + STAGING_PART + '");')
+      info.script.AppendExtra('      package_extract_file("firmware-update/" + getprop(ro.hardware) + ".blob", "' + STAGING_PART + '");')
       info.script.AppendExtra('    )')
       info.script.AppendExtra('  ),')
       info.script.AppendExtra('  assert(' + ' || '.join(['getprop("ro.bootloader") == "%s"' % (b,) for b in bootloaders]) +
