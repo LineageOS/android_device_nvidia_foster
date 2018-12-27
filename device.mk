@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+TARGET_REFERENCE_DEVICE ?= foster
+TARGET_TEGRA_VARIANT    ?= common
+
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 
 PRODUCT_CHARACTERISTICS  := tv
