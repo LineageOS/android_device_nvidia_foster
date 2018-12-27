@@ -1,0 +1,6 @@
+[
+ {
+   "repository": "android_device_nvidia_t210-common",
+   "target_path": "device/nvidia/t210-common"
+ }
+]
