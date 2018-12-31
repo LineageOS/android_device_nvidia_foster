@@ -117,6 +117,11 @@ PRODUCT_PACKAGES += \
     nvaudio_fx.xml
 endif
 
+# Charger
+PRODUCT_PACKAGES += \
+    charger \
+    charger_res_images
+
 # Kernel
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 PRODUCT_COPY_FILES += \
