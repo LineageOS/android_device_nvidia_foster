@@ -6,6 +6,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.bt.bdaddr_path=/mnt/factory/bluetooth/bt_mac.txt
 
+# Charger
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.NV_ECO.IF.CHARGING=false
+
 # Gamestreaming specific properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.gamestream.display.optimize=1
