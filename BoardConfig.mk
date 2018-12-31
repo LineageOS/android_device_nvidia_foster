@@ -56,3 +56,4 @@ BOARD_VNDK_VERSION                     := current
 PRODUCT_FULL_TREBLE_OVERRIDE           := true
 
 include device/nvidia/t210-common/BoardConfigCommon.mk
+include vendor/nvidia/foster/BoardConfigVendor.mk
