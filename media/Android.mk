@@ -117,3 +117,31 @@ LOCAL_MODULE_CLASS  := ETC
 LOCAL_SRC_FILES     := nvaudio_fx.xml
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := media_codecs.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+ifneq ($(filter $(TARGET_TEGRA_OMX), nvmm nvmm64),)
+LOCAL_SRC_FILES     := media_codecs.xml
+else
+LOCAL_SRC_FILES     := media_codecs_sw.xml
+endif
+LOCAL_ODM_MODULE    := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := media_codecs_performance.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := media_codecs_performance.xml
+LOCAL_ODM_MODULE    := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := media_profiles_V1_0.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := media_profiles_V1_0.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
