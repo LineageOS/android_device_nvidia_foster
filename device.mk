@@ -92,6 +92,11 @@ PRODUCT_PACKAGES += \
     nvaudio_fx.xml
 endif
 
+# Charger
+PRODUCT_PACKAGES += \
+    charger \
+    charger_res_images
+
 # Fingerprint override
 BUILD_FINGERPRINT := NVIDIA/foster_e/foster:8.0.0/OPR6.170623.010/3507953_1441.7411:user/release-keys
 
