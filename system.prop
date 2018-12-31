@@ -1,3 +1,6 @@
+# AV
+persist.sys.media.avsync=true
+
 # Bluetooth
 ro.bt.bdaddr_path=/mnt/factory/bluetooth/bt_mac.txt
 
