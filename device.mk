@@ -24,6 +24,9 @@ TARGET_TEGRA_WIFI     ?= bcm
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 
+# System properties
+include $(LOCAL_PATH)/system_prop.mk
+
 PRODUCT_CHARACTERISTICS  := tv
 PRODUCT_AAPT_CONFIG      := xlarge large
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -147,6 +150,10 @@ PRODUCT_PACKAGES += \
     media_codecs_performance.xml \
     media_profiles_V1_0.xml
 endif
+
+# Netflix nrdp
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/permissions/nrdp.modelgroup.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/nrdp.modelgroup.xml
 
 # Thermal
 PRODUCT_PACKAGES += \
