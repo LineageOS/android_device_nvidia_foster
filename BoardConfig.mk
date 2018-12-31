@@ -60,6 +60,11 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2019-07-05
 
+# TWRP Support
+ifeq ($(WITH_TWRP),true)
+include device/nvidia/foster/twrp/twrp.mk
+endif
+
 # Vendor Init
 TARGET_INIT_VENDOR_LIB := libinit_tegra libinit_shield libinit_foster
 
