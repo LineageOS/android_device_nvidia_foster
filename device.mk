@@ -102,6 +102,10 @@ PRODUCT_PACKAGES += \
     nvaudio_fx.xml
 endif
 
+# Audio shim
+PRODUCT_PACKAGES += \
+    libicu_shim
+
 # Bluetooth
 PRODUCT_PACKAGES += \
     libbt-vendor \
