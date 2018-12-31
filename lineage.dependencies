@@ -2,5 +2,9 @@
  {
    "repository": "android_device_nvidia_t210-common",
    "target_path": "device/nvidia/t210-common"
+ },
+ {
+   "repository": "android_kernel_nvidia_linux-4.9_kernel_kernel-4.9",
+   "target_path": "kernel/nvidia/linux-4.9/kernel/kernel-4.9"
  }
 ]
