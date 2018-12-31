@@ -1,6 +1,9 @@
 # Bluetooth
 ro.bt.bdaddr_path=/mnt/factory/bluetooth/bt_mac.txt
 
+# Gamestreaming specific properties
+ro.gamestream.display.optimize=1
+
 # HDMI
 ro.hdmi.device_type=4
 ro.hdmi.one_touch_play_on_home=0
