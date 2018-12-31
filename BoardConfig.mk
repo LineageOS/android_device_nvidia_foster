@@ -26,6 +26,11 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR             := vendor
 BOARD_BUILD_SYSTEM_ROOT_IMAGE      := true
 
+# Kernel
+TARGET_KERNEL_SOURCE    := kernel/nvidia/linux-4.9/kernel/kernel-4.9
+TARGET_KERNEL_CONFIG    := tegra_android_defconfig
+BOARD_KERNEL_IMAGE_NAME := zImage
+
 # Recovery
 TARGET_RECOVERY_FSTAB    := device/nvidia/foster/initfiles/fstab.foster
 BOARD_SUPPRESS_EMMC_WIPE := true
