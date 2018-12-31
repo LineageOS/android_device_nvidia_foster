@@ -21,6 +21,9 @@ ro.nrdp.validation=ninja_6
 # OMX
 persist.media.treble_omx=false
 
+# Power brick info
+persist.power.brick=PB1000
+
 # USB configfs
 sys.usb.udc=700d0000.xudc
 sys.usb.controller=700d0000.xudc
