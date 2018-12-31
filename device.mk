@@ -26,3 +26,9 @@ TARGET_SCREEN_HEIGHT     := 1920
 TARGET_SCREEN_WIDTH      := 1080
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
+
+# Kernel
+ifneq ($(TARGET_PREBUILT_KERNEL),)
+PRODUCT_COPY_FILES += \
+    $(TARGET_PREBUILT_KERNEL):kernel
+endif
