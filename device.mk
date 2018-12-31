@@ -16,6 +16,7 @@
 
 TARGET_TEGRA_AUDIO    ?= nvaudio
 TARGET_TEGRA_CAMERA   ?= nvcamera
+TARGET_TEGRA_CEC      ?= nvhdmi
 TARGET_TEGRA_OMX      ?= nvmm
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
