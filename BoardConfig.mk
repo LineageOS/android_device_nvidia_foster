@@ -56,6 +56,9 @@ BOARD_KERNEL_PAGESIZE   := 4096
 TARGET_RECOVERY_FSTAB    := device/nvidia/foster/initfiles/fstab.foster
 BOARD_SUPPRESS_EMMC_WIPE := true
 
+# Releasetools
+TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
+
 # Treble
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 BOARD_VNDK_VERSION                     := current
