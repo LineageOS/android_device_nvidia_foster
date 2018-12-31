@@ -16,7 +16,7 @@
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 
-PRODUCT_CHARACTERISTICS  := tv
+PRODUCT_CHARACTERISTICS  ?= tv
 PRODUCT_AAPT_CONFIG      := xlarge large
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 TARGET_SCREEN_HEIGHT     := 1920
