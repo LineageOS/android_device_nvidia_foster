@@ -2,6 +2,10 @@
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.bt.bdaddr_path=/mnt/factory/bluetooth/bt_mac.txt
 
+# Gamestreaming specific properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.gamestream.display.optimize=1
+
 # HDMI
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hdmi.device_type=4 \
