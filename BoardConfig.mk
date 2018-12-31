@@ -66,6 +66,11 @@ BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 BOARD_VNDK_VERSION                     := current
 PRODUCT_FULL_TREBLE_OVERRIDE           := true
 
+# TWRP Support
+ifeq ($(WITH_TWRP),true)
+include device/nvidia/foster/twrp/twrp.mk
+endif
+
 # Wifi
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
