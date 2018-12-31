@@ -21,6 +21,11 @@ TARGET_TEGRA_OMX      ?= nvmm64
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 
+# Only include Shield apps for actual foster variants
+ifneq ($(filter $(word 2,$(subst _, ,$(TARGET_PRODUCT))), foster foster_tab),)
+$(call inherit-product, device/nvidia/shield-common/shield.mk)
+endif
+
 # System properties
 include $(LOCAL_PATH)/system_prop.mk
 
