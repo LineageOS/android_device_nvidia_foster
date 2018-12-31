@@ -29,6 +29,7 @@ TARGET_TEGRA_OMX      ?= nvmm
 TARGET_TEGRA_WIFI     ?= bcm
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
+$(call inherit-product, device/nvidia/touch/raydium.mk)
 
 # System properties
 include $(LOCAL_PATH)/system_prop.mk
