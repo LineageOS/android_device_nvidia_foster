@@ -43,3 +43,27 @@ LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_CLASS  := ETC
 LOCAL_SRC_FILES     := nvaudio_fx.xml
 include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := media_codecs.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := media_codecs.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := media_codecs_performance.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := media_codecs_performance.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := media_profiles.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := media_profiles.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
