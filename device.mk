@@ -17,6 +17,7 @@
 TARGET_TEGRA_AUDIO ?= nvaudio
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
+$(call inherit-product, device/nvidia/touch/raydium.mk)
 $(call inherit-product, device/nvidia/shield-common/shield.mk)
 
 PRODUCT_CHARACTERISTICS  ?= tv
