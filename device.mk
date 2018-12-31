@@ -18,6 +18,7 @@ TARGET_REFERENCE_DEVICE ?= foster
 TARGET_TEGRA_VARIANT    ?= common
 
 TARGET_TEGRA_AUDIO    ?= nvaudio
+TARGET_TEGRA_OMX      ?= nvmm
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 
@@ -120,4 +121,16 @@ endif
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 PRODUCT_COPY_FILES += \
     $(TARGET_PREBUILT_KERNEL):kernel
+endif
+
+# Media config
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_ODM)/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_ODM)/etc/media_codecs_google_video.xml
+PRODUCT_PACKAGES += \
+    media_codecs.xml
+ifeq ($(TARGET_TEGRA_OMX),nvmm)
+PRODUCT_PACKAGES += \
+    media_codecs_performance.xml \
+    media_profiles_V1_0.xml
 endif
