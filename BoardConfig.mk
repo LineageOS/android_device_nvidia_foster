@@ -59,6 +59,9 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
 
+# Security Patch Level
+VENDOR_SECURITY_PATCH := 2020-07-05
+
 # Treble
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 BOARD_VNDK_VERSION                     := current
