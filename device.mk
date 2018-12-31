@@ -20,6 +20,7 @@ TARGET_TEGRA_CEC      ?= nvhdmi
 TARGET_TEGRA_OMX      ?= nvmm
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
+$(call inherit-product, device/nvidia/shield-common/shield.mk)
 
 # System properties
 include $(LOCAL_PATH)/system_prop.mk
