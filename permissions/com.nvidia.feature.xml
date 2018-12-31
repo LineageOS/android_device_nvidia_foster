@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+    <feature name="com.nvidia.feature.shield"/>
+    <feature name="com.nvidia.feature.built_in_controller"/>
+    <feature name="com.nvidia.feature.app.vudu"/>
+    <feature name="com.nvidia.feature.app.plex.mediaserver"/>
+    <feature name="com.nvidia.feature.app.plex.smbserver"/>
+    <feature name="com.nvidia.feature.usb.tvtuners"/>
+    <feature name="com.nvidia.feature.network_attached_storage"/>
+    <feature name="com.nvidia.feature.shield_ask"/>
+    <feature name="com.nvidia.feature.beyonder"/>
+</permissions>
