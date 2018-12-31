@@ -113,3 +113,11 @@ else
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/media_codecs_sw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml
 endif
+
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-service-nvidia \
+    thermalhal.jetson_cv.xml \
+    thermalhal.jetson_e.xml \
+    thermalhal.loki_e_lte.xml \
+    thermalhal.loki_e_wifi.xml
