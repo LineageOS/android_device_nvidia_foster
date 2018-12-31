@@ -52,3 +52,4 @@ PRODUCT_FULL_TREBLE_OVERRIDE           := true
 TARGET_INIT_VENDOR_LIB := libinit_tegra libinit_foster
 
 include device/nvidia/t210-common/BoardConfigCommon.mk
+include vendor/nvidia/foster/BoardConfigVendor.mk

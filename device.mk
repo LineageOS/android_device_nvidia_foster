@@ -24,6 +24,8 @@ TARGET_SCREEN_WIDTH      := 1080
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
+$(call inherit-product, vendor/nvidia/foster/foster-vendor.mk)
+
 PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
     ro.product.vendor.device \
     ro.product.vendor.model \
