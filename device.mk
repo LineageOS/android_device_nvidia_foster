@@ -110,3 +110,10 @@ PRODUCT_PACKAGES += \
     media_codecs.xml \
     media_codecs_performance.xml \
     media_profiles.xml
+
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-service-nvidia \
+    thermalhal.jetson_cv.xml \
+    thermalhal.loki_e_lte.xml \
+    thermalhal.loki_e_wifi.xml
