@@ -41,6 +41,7 @@ TARGET_TEGRA_WIREGUARD ?= compat
 endif
 
 include device/nvidia/t210-common/t210.mk
+include device/nvidia/touch/raydium.mk
 
 # Properties
 include $(LOCAL_PATH)/properties.mk
