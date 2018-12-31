@@ -27,6 +27,9 @@ persist.media.treble_omx=false
 # Power brick info
 persist.power.brick=PB1000
 
+# Sensor hal
+ro.hardware.sensors=t210ref.api_v1.4.mpl530.nvs
+
 # USB configfs
 sys.usb.udc=700d0000.xudc
 sys.usb.controller=700d0000.xudc
