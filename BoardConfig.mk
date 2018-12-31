@@ -57,6 +57,11 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
 
+# TWRP Support
+ifeq ($(WITH_TWRP),true)
+include device/nvidia/foster/twrp/twrp.mk
+endif
+
 # Vendor Init
 TARGET_INIT_VENDOR_LIB := libinit_tegra libinit_shield libinit_foster
 
