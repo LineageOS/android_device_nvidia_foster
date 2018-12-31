@@ -8,6 +8,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.nrdp.audio.otfs=true \
     ro.nrdp.validation=ninja_6
 
+# USB configfs
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.sys.usb.udc=700d0000.xudc \
+    sys.usb.controller=700d0000.xudc
+
 # WiFi
 PRODUCT_PROPERTY_OVERRIDES += \
    ap.interface=wlan0 \
