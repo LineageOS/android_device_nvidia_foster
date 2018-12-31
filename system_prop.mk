@@ -1,3 +1,9 @@
+# NRDP
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.nrdp.modelgroup=SHIELDANDROIDTV \
+    ro.nrdp.audio.otfs=true \
+    ro.nrdp.validation=ninja_6
+
 # WiFi
 PRODUCT_PROPERTY_OVERRIDES += \
    ap.interface=wlan0 \
