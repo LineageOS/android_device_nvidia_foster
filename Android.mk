@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifneq ($(filter $(TARGET_DEVICE), foster),)
+ifneq ($(filter $(TARGET_DEVICE), foster foster_tab foster_r29 foster_mainline),)
 
 LOCAL_PATH := $(call my-dir)
 
