@@ -124,6 +124,10 @@ PRODUCT_PACKAGES += \
     media_codecs_performance.xml \
     media_profiles.xml
 
+# Netflix nrdp
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/permissions/nrdp.modelgroup.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/nrdp.modelgroup.xml
+
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-service-nvidia \
