@@ -72,3 +72,4 @@ WIFI_DRIVER_MODULE_ARG           := "iface_name=wlan0"
 WIFI_DRIVER_MODULE_NAME          := "bcmdhd"
 
 include device/nvidia/t210-common/BoardConfigCommon.mk
+include device/nvidia/touch/BoardConfigTouch.mk
