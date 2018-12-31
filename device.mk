@@ -15,6 +15,7 @@
 #
 
 TARGET_TEGRA_AUDIO ?= nvaudio
+TARGET_TEGRA_OMX   ?= nvmm
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 
@@ -103,3 +104,17 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl \
     gps.conf \
     gpsconfig.xml
+
+# Media config
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml
+ifeq ($(TARGET_TEGRA_OMX),nvmm)
+PRODUCT_PACKAGES += \
+    media_codecs.xml \
+    media_codecs_performance.xml \
+    media_profiles.xml
+else
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/media/media_codecs_sw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml
+endif
