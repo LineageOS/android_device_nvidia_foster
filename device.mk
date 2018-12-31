@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+TARGET_TEGRA_AUDIO ?= nvaudio
+
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 
 PRODUCT_CHARACTERISTICS  ?= tv
@@ -68,6 +70,19 @@ PRODUCT_PACKAGES += \
     power.loki_e_lte.rc \
     power.loki_e_wifi.rc \
     power.sif.rc
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml
+
+# Audio
+ifeq ($(TARGET_TEGRA_AUDIO),nvaudio)
+PRODUCT_PACKAGES += \
+    audio_effects.conf \
+    audio_policy.conf \
+    nvaudio_conf.xml \
+    nvaudio_fx.xml
+endif
 
 # Fingerprint override
 BUILD_FINGERPRINT := NVIDIA/foster_e/foster:8.0.0/OPR6.170623.010/3507953_1441.7411:user/release-keys
