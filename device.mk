@@ -37,6 +37,7 @@ TARGET_TEGRA_WIFI     ?= bcm
 TARGET_TEGRA_WIREGUARD ?= compat
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
+$(call inherit-product, device/nvidia/touch/raydium.mk)
 
 # System properties
 include $(LOCAL_PATH)/system_prop.mk

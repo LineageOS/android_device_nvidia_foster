@@ -77,4 +77,5 @@ include device/nvidia/foster/twrp/twrp.mk
 endif
 
 include device/nvidia/t210-common/BoardConfigCommon.mk
+include device/nvidia/touch/BoardConfigTouch.mk
 include vendor/nvidia/foster/BoardConfigVendor.mk
