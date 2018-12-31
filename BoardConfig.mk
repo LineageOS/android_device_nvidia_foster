@@ -48,6 +48,9 @@ TARGET_KERNEL_SOURCE    := kernel/nvidia/linux-4.9/kernel/kernel-4.9
 TARGET_KERNEL_CONFIG    := tegra_android_defconfig
 BOARD_KERNEL_IMAGE_NAME := zImage
 
+# Lineage Hardware Support
+JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|device/nvidia/foster/lineagehw|**/*.java
+
 # Manifest
 DEVICE_MANIFEST_FILE := device/nvidia/foster/manifest.xml
 
