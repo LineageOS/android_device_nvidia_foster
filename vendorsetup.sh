@@ -1,0 +1,2 @@
+add_lunch_combo lineage_foster-eng
+add_lunch_combo lineage_foster-userdebug
