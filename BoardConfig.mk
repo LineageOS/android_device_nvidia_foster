@@ -33,6 +33,12 @@ TARGET_OTA_ASSERT_DEVICE := foster,darcy,mdarcy,sif,jetson,porg,loki,icosa
 # Bootloader versions
 TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
 
+# Bluetooth
+ifeq ($(TARGET_TEGRA_BT),bcm)
+BOARD_CUSTOM_BT_CONFIG := device/nvidia/foster/comms/vnd_foster.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/nvidia/foster/comms
+endif
+
 # Kernel
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 BOARD_VENDOR_KERNEL_MODULES += $(wildcard $(dir $(TARGET_PREBUILT_KERNEL))/*.ko)
