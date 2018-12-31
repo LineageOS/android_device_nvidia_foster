@@ -18,6 +18,7 @@ TARGET_REFERENCE_DEVICE ?= foster
 TARGET_TEGRA_VARIANT    ?= common
 
 TARGET_TEGRA_AUDIO    ?= nvaudio
+TARGET_TEGRA_CEC      ?= nvhdmi
 TARGET_TEGRA_OMX      ?= nvmm
 TARGET_TEGRA_WIFI     ?= bcm
 
