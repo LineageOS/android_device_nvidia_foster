@@ -51,6 +51,9 @@ DEVICE_MANIFEST_FILE += device/nvidia/foster/manifest.xml
 TARGET_RECOVERY_FSTAB    := device/nvidia/foster/initfiles/fstab.foster
 BOARD_SUPPRESS_EMMC_WIPE := true
 
+# Releasetools
+TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
+
 # Vendor Init
 TARGET_INIT_VENDOR_LIB := libinit_tegra libinit_shield libinit_foster
 
