@@ -12,6 +12,9 @@ ro.nrdp.modelgroup=SHIELDANDROIDTV
 ro.nrdp.audio.otfs=true
 ro.nrdp.validation=ninja_6
 
+# Vendor security level
+ro.lineage.build.vendor_security_patch=2018-12-05
+
 # WiFi
 ap.interface=wlan0
 wifi.direct.interface=p2p-dev-wlan0
