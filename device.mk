@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+TARGET_TEGRA_AUDIO    ?= nvaudio
+
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 
 PRODUCT_CHARACTERISTICS  := tv
@@ -85,3 +87,17 @@ PRODUCT_PACKAGES += \
     power.porg.rc \
     power.porg_sd.rc \
     power.sif.rc
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml
+
+# Audio
+ifeq ($(TARGET_TEGRA_AUDIO),nvaudio)
+PRODUCT_PACKAGES += \
+    audio_effects.xml \
+    audio_policy_configuration.xml \
+    icosa_nvaudio_conf.xml \
+    nvaudio_conf.xml \
+    nvaudio_fx.xml
+endif
