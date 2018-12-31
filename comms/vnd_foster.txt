@@ -1,0 +1,2 @@
+BLUETOOTH_UART_DEVICE_PORT = "/dev/ttyTHS3"
+FW_PATCHFILE_LOCATION = "/vendor/firmware/"
