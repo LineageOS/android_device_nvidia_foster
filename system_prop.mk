@@ -12,6 +12,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.nrdp.audio.otfs=true \
     ro.vendor.nrdp.validation=ninja_6
 
+# Power brick info
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.power.brick=PB1000
+
 # USB configfs
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.sys.usb.udc=700d0000.xudc \
