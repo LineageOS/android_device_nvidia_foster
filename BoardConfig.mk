@@ -52,6 +52,9 @@ endif
 BOARD_KERNEL_BASE       := 0x80080000
 BOARD_KERNEL_PAGESIZE   := 4096
 
+# Lineage Hardware Support
+JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|device/nvidia/foster/lineagehw|**/*.java
+
 # Recovery
 TARGET_RECOVERY_FSTAB    := device/nvidia/foster/initfiles/fstab.foster
 BOARD_SUPPRESS_EMMC_WIPE := true
