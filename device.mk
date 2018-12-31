@@ -15,6 +15,7 @@
 #
 
 TARGET_TEGRA_AUDIO    ?= nvaudio
+TARGET_TEGRA_CAMERA   ?= nvcamera
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 
@@ -85,7 +86,8 @@ PRODUCT_PACKAGES += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml
+    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml \
+    frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml
 
 # Audio
 ifeq ($(TARGET_TEGRA_AUDIO),nvaudio)
