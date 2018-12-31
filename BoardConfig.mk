@@ -29,6 +29,9 @@ BOARD_BUILD_SYSTEM_ROOT_IMAGE      := true
 # Assert
 TARGET_OTA_ASSERT_DEVICE := foster,darcy,sif,jetson,porg,loki,icosa
 
+# Audio
+USE_XML_AUDIO_POLICY_CONF := 1
+
 # Bootloader versions
 TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
 
