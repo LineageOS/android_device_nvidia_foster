@@ -126,3 +126,14 @@ PRODUCT_PACKAGES += \
     thermalhal.jetson_e.xml \
     thermalhal.loki_e_lte.xml \
     thermalhal.loki_e_wifi.xml
+
+# Wifi
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
+PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
+    hostapd \
+    wificond \
+    libwpa_client \
+    wpa_supplicant \
+    wpa_supplicant.conf \
+    wifi_scan_config.conf
