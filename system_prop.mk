@@ -5,6 +5,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.hdmi.keep_awake=0 \
     ro.hdmi.wake_on_hotplug=0
 
+# NRDP
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.nrdp.modelgroup=SHIELDANDROIDTV \
+    ro.nrdp.audio.otfs=true \
+    ro.nrdp.validation=ninja_6
+
 # WiFi
 PRODUCT_PROPERTY_OVERRIDES += \
    ap.interface=wlan0 \
