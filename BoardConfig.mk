@@ -37,6 +37,9 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_CUSTOM_BT_CONFIG   := device/nvidia/foster/comms/vnd_foster.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/nvidia/foster/comms
 
+# Forced shims
+TARGET_LD_SHIM_LIBS := /vendor/lib/hw/audio.primary.tegra.so|libicu_shim.so
+
 # Kernel
 KERNEL_TOOLCHAIN        := $(shell pwd)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-gnu-6.4.1/bin
 KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-gnu-
