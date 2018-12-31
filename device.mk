@@ -105,6 +105,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml
 
+# ATV specific stuff
+ifeq ($(PRODUCT_IS_ATV),true)
+    $(call inherit-product-if-exists, vendor/google/atv/atv-common.mk)
+
+    PRODUCT_PACKAGES += \
+        android.hardware.tv.input@1.0-impl
+endif
+
 # Audio
 ifeq ($(TARGET_TEGRA_AUDIO),nvaudio)
 PRODUCT_PACKAGES += \
