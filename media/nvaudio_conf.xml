@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2012 NVIDIA Corporation.  All Rights Reserved.
+
+     NVIDIA Corporation and its licensors retain all intellectual property and
+     proprietary rights in and to this software and related documentation.  Any
+     use, reproduction, disclosure or distribution of this software and related
+     documentation without an express license agreement from NVIDIA Corporation
+     is strictly prohibited.
+
+     This file is used to declare various board specific audio configs
+-->
+
+<AudioConfigs version="2">
+  <card name="tegra-snd-t210ref-mobile-es755">
+    <pcm_config name="music-playback"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="256"
+                period_count="2"
+                start_threshold="511"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="music-capture"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="256"
+                period_count="2"
+                start_threshold="1"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="bt-sco-playback"
+                device_id="1"
+                rate="8000"
+                channels="1"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="511"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="bt-sco-capture"
+                device_id="1"
+                rate="8000"
+                channels="1"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <param name="nvoice" val="0"/>
+    <param name="builtin speaker" val="0"/>
+
+    <!-- AHUB static controls -->
+    <ctl name="I2S2 Mux" val="ADMAIF2"/>
+    <ctl name="ADMAIF2 Mux" val="I2S2"/>
+    <ctl name="I2S1 Mux" val="ADMAIF1"/>
+    <ctl name="ADMAIF1 Mux" val="I2S1"/>
+  </card>
+
+  <card name="tegra-snd-t210ref-mobile-rt565x">
+    <pcm_config name="music-playback"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="256"
+                period_count="2"
+                start_threshold="511"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="music-capture"
+                device_id="0"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="256"
+                period_count="2"
+                start_threshold="1"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="bt-sco-playback"
+                device_id="1"
+                rate="8000"
+                channels="1"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="511"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <pcm_config name="bt-sco-capture"
+                device_id="1"
+                rate="8000"
+                channels="1"
+                bps="16"
+                period_size="128"
+                period_count="4"
+                start_threshold="1"
+                stop_threshold="512"
+                silence_threshold="0"
+                avail_min="1"/>
+
+    <param name="nvoice" val="0"/>
+    <param name="builtin speaker" val="0"/>
+
+    <!-- AHUB static controls -->
+    <ctl name="I2S2 Mux" val="ADMAIF2"/>
+    <ctl name="ADMAIF2 Mux" val="I2S2"/>
+    <ctl name="I2S1 Mux" val="ADMAIF1"/>
+    <ctl name="ADMAIF1 Mux" val="I2S1"/>
+  </card>
+
+  <card name="Tegra">
+    <pcm_config name ="hdmi-playback"
+                device_id="3"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="256"
+                period_count="2"
+                start_threshold="511"
+                stop_threshold="4294967295"
+                silence_threshold="0"
+                silence_size="4294967295"
+                avail_min="1"/>
+
+    <param name="HW Rates" val="48000 44100 96000 192000"/>
+    <param name="HDMI HW Latency" val="50"/>
+  </card>
+
+  <card name="tegra-hda">
+    <pcm_config name ="hdmi-playback"
+                device_id="3"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="256"
+                period_count="2"
+                start_threshold="511"
+                stop_threshold="4294967295"
+                silence_threshold="0"
+                silence_size="4294967295"
+                avail_min="1"/>
+
+    <param name="HW Rates" val="48000 44100 96000 192000"/>
+    <param name="HDMI HW Latency" val="50"/>
+  </card>
+
+  <card name="dummy">
+    <pcm_config name ="rsubmix-playback"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="1024"
+                period_count="4"/>
+    <pcm_config name ="rsubmix-capture"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="1024"
+                period_count="4"/>
+  </card>
+
+  <card name="dummy">
+    <pcm_config name="usb-controller-remote-playback"
+                rate="32000"
+                channels="2"
+                bps="16"
+                period_size="512"
+                period_count="2"
+                start_threshold="1023"
+                stop_threshold="4294967295"
+                silence_threshold="0"
+                silence_size="4294967295"
+                avail_min="1"/>
+
+    <pcm_config name="usb-controller-remote-capture"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="512"
+                period_count="2"
+                start_threshold="1023"
+                stop_threshold="1024"
+                avail_min="1"/>
+
+    <pcm_config name="hotword-capture"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="320"
+                period_count="8"
+                start_threshold="2559"
+                stop_threshold="2560"
+                avail_min="1"/>
+  </card>
+
+  <card name="dummy">
+    <pcm_config name ="beyonder-capture"
+                rate="16000"
+                channels="1"
+                bps="16"
+                period_size="1024"
+                period_count="4"/>
+  </card>
+</AudioConfigs>
