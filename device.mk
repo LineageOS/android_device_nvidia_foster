@@ -77,7 +77,8 @@ PRODUCT_PACKAGES += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml
+    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml \
+    frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml
 
 # Audio
 ifeq ($(TARGET_TEGRA_AUDIO),nvaudio)
@@ -87,6 +88,11 @@ PRODUCT_PACKAGES += \
     nvaudio_conf.xml \
     nvaudio_fx.xml
 endif
+
+# Camera
+PRODUCT_PACKAGES += \
+    camera.device@3.2-impl \
+    android.hardware.camera.provider@2.4-impl
 
 # Fingerprint override
 BUILD_FINGERPRINT := NVIDIA/foster_e/foster:8.0.0/OPR6.170623.010/3507953_1441.7411:user/release-keys
