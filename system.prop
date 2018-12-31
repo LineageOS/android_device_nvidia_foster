@@ -4,6 +4,9 @@ persist.sys.media.avsync=true
 # Bluetooth
 ro.bt.bdaddr_path=/mnt/factory/bluetooth/bt_mac.txt
 
+# Charger
+persist.sys.NV_ECO.IF.CHARGING=false
+
 # Gamestreaming specific properties
 ro.gamestream.display.optimize=1
 
