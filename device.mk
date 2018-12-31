@@ -20,6 +20,9 @@ TARGET_TEGRA_OMX      ?= nvmm64
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 
+# System properties
+include $(LOCAL_PATH)/system_prop.mk
+
 PRODUCT_CHARACTERISTICS  := tv
 PRODUCT_AAPT_CONFIG      := xlarge large
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -94,7 +97,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
-    frameworks/native/data/etc/android.hardware.location.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.xml
+    frameworks/native/data/etc/android.hardware.location.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.xml \
+    frameworks/native/data/etc/android.hardware.wifi.direct.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.direct.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml
 
 # ATV specific stuff
 ifeq ($(PRODUCT_IS_ATV),true)
@@ -144,3 +149,14 @@ PRODUCT_PACKAGES += \
     thermalhal.jetson_e.xml \
     thermalhal.loki_e_lte.xml \
     thermalhal.loki_e_wifi.xml
+
+# Wifi
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
+PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
+    hostapd \
+    wificond \
+    libwpa_client \
+    wpa_supplicant \
+    wpa_supplicant.conf \
+    wifi_scan_config.conf

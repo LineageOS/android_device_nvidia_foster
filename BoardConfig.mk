@@ -39,6 +39,9 @@ TARGET_KERNEL_SOURCE    := kernel/nvidia/linux-4.9/kernel/kernel-4.9
 TARGET_KERNEL_CONFIG    := tegra_android_defconfig
 BOARD_KERNEL_IMAGE_NAME := zImage
 
+# Manifest
+DEVICE_MANIFEST_FILE := device/nvidia/foster/manifest.xml
+
 # Recovery
 TARGET_RECOVERY_FSTAB    := device/nvidia/foster/initfiles/fstab.foster
 BOARD_SUPPRESS_EMMC_WIPE := true
@@ -47,6 +50,20 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 BOARD_VNDK_VERSION                     := current
 PRODUCT_FULL_TREBLE_OVERRIDE           := true
+
+# Wifi
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
+BOARD_WLAN_DEVICE                := bcmdhd
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
+WIFI_DRIVER_FW_PATH_STA          := "/vendor/firmware/fw_bcmdhd.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/vendor/firmware/fw_bcmdhd.bin"
+WIFI_DRIVER_FW_PATH_P2P          := "/vendor/firmware/fw_bcmdhd.bin"
+WIFI_DRIVER_FW_PATH_PARAM        := "/data/vendor/wifi/fw_path"
+WIFI_DRIVER_MODULE_ARG           := "iface_name=wlan0"
+WIFI_DRIVER_MODULE_NAME          := "bcmdhd"
 
 #Vendor Init
 TARGET_INIT_VENDOR_LIB := libinit_tegra libinit_foster
