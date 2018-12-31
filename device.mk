@@ -95,6 +95,11 @@ PRODUCT_PACKAGES += \
     nvaudio_fx.xml
 endif
 
+# Bluetooth
+PRODUCT_PACKAGES += \
+    libbt-vendor \
+    android.hardware.bluetooth@1.0-impl
+
 # Camera
 PRODUCT_PACKAGES += \
     camera.device@3.2-impl \
