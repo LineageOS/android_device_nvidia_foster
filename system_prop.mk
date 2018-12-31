@@ -1,3 +1,7 @@
+# Gamestreaming specific properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.gamestream.display.optimize=1
+
 # NRDP
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.nrdp.modelgroup=SHIELDANDROIDTV \
