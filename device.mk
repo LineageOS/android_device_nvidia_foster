@@ -19,6 +19,7 @@ TARGET_TEGRA_VARIANT    ?= common
 
 TARGET_TEGRA_AUDIO    ?= nvaudio
 TARGET_TEGRA_OMX      ?= nvmm
+TARGET_TEGRA_WIFI     ?= bcm
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 
@@ -157,3 +158,9 @@ PRODUCT_PACKAGES += \
     thermalhal.loki_e_lte.xml \
     thermalhal.loki_e_wifi.xml \
     thermalhal.sif.xml
+
+# WiFi
+ifeq ($(TARGET_TEGRA_WIFI),bcm)
+PRODUCT_PACKAGES += \
+    wifi_scan_config.conf
+endif
