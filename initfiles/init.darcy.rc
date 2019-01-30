@@ -6,9 +6,9 @@
 #documentation without an express license agreement from NVIDIA Corporation
 #is strictly prohibited.
 
-import init.tegra_emmc.rc
-import init.t210.rc
-import init.foster_e_common.rc
+import /vendor/etc/init/hw/init.tegra_emmc.rc
+import /vendor/etc/init/hw/init.t210.rc
+import /vendor/etc/init/hw/init.foster_e_common.rc
 
 # verified boot
 on init
@@ -27,8 +27,8 @@ on verity-logging
 exec u:r:slideshow:s0 root input -- /sbin/slideshow warning/verity_red_1_720p warning/verity_red_2_720p
 
 on fs
-    mount_all /fstab${ro.boot.bootsource}.darcy
-    swapon_all /fstab${ro.boot.bootsource}.darcy
+    mount_all /vendor/etc/fstab${ro.boot.bootsource}.darcy
+    swapon_all /vendor/etc/fstab${ro.boot.bootsource}.darcy
 # convertible usb mode selection
     chown system system /sys/class/extcon/extcon0/state
     write /sys/block/mmcblk0/queue/iosched/slice_idle 0
