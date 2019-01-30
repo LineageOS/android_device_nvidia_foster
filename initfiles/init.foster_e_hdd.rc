@@ -6,9 +6,9 @@
 #documentation without an express license agreement from NVIDIA Corporation
 #is strictly prohibited.
 
-import init.tegra_sata.rc
-import init.t210.rc
-import init.foster_e_common.rc
+import /vendor/etc/init/hw/init.tegra_sata.rc
+import /vendor/etc/init/hw/init.t210.rc
+import /vendor/etc/init/hw/init.foster_e_common.rc
 
 on init
     # support old sdcard features (apps on sdcard and migrated apps)
@@ -25,8 +25,8 @@ on fs
     write /sys/block/sda/queue/iosched/read_expire 1000
     write /sys/block/sda/queue/iosched/write_expire 40000
     write /sys/block/sda/queue/iosched/writes_starved 16
-    mount_all /fstab.foster_e_hdd
-    swapon_all /fstab.foster_e_hdd
+    mount_all /vendor/etc/fstab.foster_e_hdd
+    swapon_all /vendor/etc/fstab.foster_e_hdd
 
 on post-fs-data
     start cyupdate
