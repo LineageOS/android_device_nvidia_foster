@@ -25,6 +25,12 @@ TARGET_USERIMAGES_USE_EXT4         := true
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR             := vendor
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := foster
+
+# Bootloader versions
+TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
+
 # Kernel
 KERNEL_TOOLCHAIN        := $(shell pwd)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-gnu-6.4.1/bin
 KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-gnu-
@@ -35,5 +41,8 @@ BOARD_KERNEL_IMAGE_NAME := zImage
 # Recovery
 TARGET_RECOVERY_FSTAB    := device/nvidia/foster/initfiles/fstab.foster
 BOARD_SUPPRESS_EMMC_WIPE := true
+
+# Vendor Init
+TARGET_INIT_VENDOR_LIB := libinit_tegra libinit_shield libinit_foster
 
 include device/nvidia/t210-common/BoardConfigCommon.mk
