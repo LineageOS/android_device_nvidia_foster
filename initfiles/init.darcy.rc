@@ -29,10 +29,6 @@ on fs
     write /sys/block/mmcblk0/queue/iostats 0
     write /sys/block/mmcblk0/queue/nr_requests 256
 
-# factory reset protection
-    mkdir /persistent 0660 system system
-    setprop ro.frp.pst /dev/block/platform/sdhci-tegra.3/by-name/RP2
-
     # Adjust parameters for dm-verity devices
     write /sys/block/dm-0/queue/read_ahead_kb 2048
     write /sys/block/dm-1/queue/read_ahead_kb 2048
