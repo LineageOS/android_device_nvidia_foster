@@ -59,7 +59,7 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B43F";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B43A";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B43B";
-	} else if (ti->is_model("darcy")) {
+	} else if (ti->is_model("darcy") || ti->is_model("sif")) {
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "B43C";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "B43D";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "B43E";
@@ -88,7 +88,8 @@ void vendor_load_properties()
 	std::vector<tegra_init::devices> devices = { { "foster", "foster_e",     "SHIELD Android TV", 2530,  930, tegra_init::boot_dev_type::EMMC, 21, 320 },
 	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, tegra_init::boot_dev_type::SATA, 21, 320 },
 	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, tegra_init::boot_dev_type::EMMC, 23, 320 },
-	                                             { "mdarcy", "mdarcy",       "SHIELD Android TV", 2894, 2551, tegra_init::boot_dev_type::EMMC, 28, 320 } };
+	                                             { "mdarcy", "mdarcy",       "SHIELD Android TV", 2894, 2551, tegra_init::boot_dev_type::EMMC, 28, 320 },
+	                                             { "sif",    "sif",          "SHIELD Android TV", 3425,  500, tegra_init::boot_dev_type::EMMC, 28, 320 } };
 	tegra_init::build_version tav = { "9", "PPR1.180610.011", "4199485_1739.5219" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "SOS", "UDA", "USP", "vendor" };
 
@@ -112,7 +113,7 @@ void vendor_load_properties()
 		ti.property_set("ro.product.vendor.manufacturer", ti.property_get("ro.product.manufacturer"));
 
 		// Unset avb flags. This is to ignore compatibility checks on unified builds
-		if (ti.is_model("mdarcy"))
+		if (ti.is_model("mdarcy") || ti.is_model("sif"))
 			ti.property_set("ro.boot.avb_version", "");
 	}
 
