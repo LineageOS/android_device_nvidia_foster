@@ -45,7 +45,6 @@ on fs
 
 on post-fs-data
 # Set Foster as console mode
-    setprop persist.sys.display.resolution 1920x1080
     setprop persist.tegra.composite.policy composite-yuv
     setprop persist.tegra.composite.range Auto
     setprop sys.wal.off external.db,iu.upload.db
