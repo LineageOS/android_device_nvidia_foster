@@ -32,15 +32,22 @@ PRODUCT_PACKAGES += \
     fstab.foster_e_hdd \
     fstab.jetson_cv \
     fstab.jetson_e \
+    fstab.loki_e_base \
+    fstab.loki_e_lte \
+    fstab.loki_e_wifi \
     fstab.porg \
     fstab.sif \
     init.darcy.rc \
     init.foster_e.rc \
     init.foster_e_hdd.rc \
     init.foster_e_common.rc \
+    init.loki_e_common.rc \
     init.loki_foster_e_common.rc \
     init.jetson_cv.rc \
     init.jetson_e.rc \
+    init.loki_e_base.rc \
+    init.loki_e_lte.rc \
+    init.loki_e_wifi.rc \
     init.porg.rc \
     init.sif.rc \
     init.recovery.darcy.rc \
@@ -48,6 +55,9 @@ PRODUCT_PACKAGES += \
     init.recovery.foster_e_hdd.rc \
     init.recovery.jetson_cv.rc \
     init.recovery.jetson_e.rc \
+    init.recovery.loki_e_base.rc \
+    init.recovery.loki_e_lte.rc \
+    init.recovery.loki_e_wifi.rc \
     init.recovery.porg.rc \
     init.recovery.sif.rc \
     power.darcy.rc \
@@ -55,5 +65,8 @@ PRODUCT_PACKAGES += \
     power.foster_e_hdd.rc \
     power.jetson_cv.rc \
     power.jetson_e.rc \
+    power.loki_e_base.rc \
+    power.loki_e_lte.rc \
+    power.loki_e_wifi.rc \
     power.porg.rc \
     power.sif.rc
