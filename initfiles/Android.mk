@@ -15,6 +15,14 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE        := fstab.darcy
+LOCAL_MODULE_TAGS   := optional eng
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := fstab.darcy
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE        := fstab.foster
 LOCAL_MODULE_TAGS   := optional eng
 LOCAL_MODULE_CLASS  := ETC
@@ -39,6 +47,15 @@ LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE               := init.darcy.rc
+LOCAL_MODULE_TAGS          := optional eng
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_SRC_FILES            := init.darcy.rc
+LOCAL_VENDOR_MODULE        := true
+LOCAL_MODULE_RELATIVE_PATH := init/hw
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE               := init.foster_e.rc
 LOCAL_MODULE_TAGS          := optional eng
 LOCAL_MODULE_CLASS         := ETC
@@ -54,6 +71,14 @@ LOCAL_MODULE_CLASS         := ETC
 LOCAL_SRC_FILES            := init.foster_e_hdd.rc
 LOCAL_VENDOR_MODULE        := true
 LOCAL_MODULE_RELATIVE_PATH := init/hw
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := init.recovery.darcy.rc
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := init.recovery.foster.rc
+LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -88,6 +113,14 @@ LOCAL_MODULE_CLASS         := ETC
 LOCAL_SRC_FILES            := init.loki_foster_e_common.rc
 LOCAL_VENDOR_MODULE        := true
 LOCAL_MODULE_RELATIVE_PATH := init/hw
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := power.darcy.rc
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := ETC
+LOCAL_ODM_MODULE   := true
+LOCAL_SRC_FILES    := power.darcy.rc
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
