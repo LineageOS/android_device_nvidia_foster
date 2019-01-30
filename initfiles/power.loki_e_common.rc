@@ -1,0 +1,106 @@
+# FORMAT:
+#  panelresolution=[xres]X[yres], such as panelresolution=1280X720
+#  powernode1 maxperf optimized maxbatterylife
+#  powernode2 maxperf optimized maxbatterylife
+#  ......
+#  powernoden maxperf optimized maxbatterylife
+#  panelresolution=[xres]X[yres], such as panelresolution=1920X1080
+#  powernode1 maxperf optimized maxbatterylife
+#  powernode2 maxperf optimized maxbatterylife
+#  ......
+#  powernoden maxperf optimized maxbatterylife
+#  ......
+#  ......
+#  panelresolution=[xres]X[yres], such as panelresolution=1920X1200
+#  powernode1 maxperf optimized maxbatterylife
+#  powernode2 maxperf optimized maxbatterylife
+#  ......
+#  powernoden maxperf optimized maxbatterylife
+#
+# NOTES:
+#  The panelresolution is the lcd panel resolution.
+#  No space should exist in panelresolution=[xres]X[yres].
+#  panelresolution=720X1280 equals with panelresolution=1280X720.
+#  For panelresolution=-1X-1, it should be the last set of power settings in this file.
+#  When your panel resolution is found in this file,
+#  it will use the set of power settings followed by your panel resolution.
+#  When your panel resolution is not found in this file, it will use the default power settings.
+#  The power settings followed by panelresolution=-1X-1 is the default power settings.
+#  powernode is the sysfs or variable we need to write and it is followed by three ints.
+#  maxperf, optimized, maxbatterylife are the three ints for different power modes.
+#
+# Default power mode: can be set to 0, 1, or 2
+NV_DEFAULT_MODE 0
+panelresolution=1280X720
+NV_FPSLIMIT 0 0 0
+NV_MAX_CORES 0 0 0
+NV_MIN_CORES 2 2 2
+NV_MAX_FREQ 0 0 0
+NV_MIN_FREQ 1100000 0 0
+NV_MAX_GPU_FREQ 0 0 0
+NV_MIN_GPU_FREQ 0 0 0
+NV_APM_CPU_BOOST 5 0 0
+NV_APM_GPU_BOOST 5 0 0
+NV_APM_FRT_BOOST 5 0 0
+NV_APM_FRT_MIN 20 15 15
+NV_APM_LOADAPPFRT 0 0 0
+NV_PBC_SYSPOWER_CAP 15000 11000 8500
+NV_PBC_BATCURRENT_CAP 5000 5000 4100
+NV_FAN_STATE_MAP 80/110/150/200/255 80/110/150/200/255 80/110/150/200/255
+NV_FAN_STATE_CAP 4 4 4
+NV_ECO_MAX_FREQ 1400000 1400000 1400000
+NV_ECO_MAX_GPU_FREQ 700000 700000 700000
+NV_ECO_PBC_LIMIT 8500 8500 8500
+NV_ECO_THRESHOLD 5 5 5
+NV_ECO_THRESHYST 5 5 5
+NV_ECO_CPU_CORE_CAP 2 2 2
+/sys/devices/platform/host1x/tegradc.0/smartdimmer/aggressiveness 27 27 29
+panelresolution=1440X810
+NV_FPSLIMIT 0 0 0
+NV_MAX_CORES 0 0 0
+NV_MIN_CORES 2 2 2
+NV_MAX_FREQ 0 0 0
+NV_MIN_FREQ 1100000 0 0
+NV_MAX_GPU_FREQ 0 0 0
+NV_MIN_GPU_FREQ 0 0 0
+NV_APM_CPU_BOOST 5 0 0
+NV_APM_GPU_BOOST 5 0 0
+NV_APM_FRT_BOOST 5 0 0
+NV_APM_FRT_MIN 20 15 15
+NV_APM_LOADAPPFRT 0 0 0
+NV_PBC_SYSPOWER_CAP 15000 11000 8500
+NV_PBC_BATCURRENT_CAP 5000 5000 4100
+NV_FAN_STATE_MAP 80/110/150/200/255 80/110/150/200/255 80/110/150/200/255
+NV_FAN_STATE_CAP 4 4 4
+NV_ECO_MAX_FREQ 1400000 1400000 1400000
+NV_ECO_MAX_GPU_FREQ 700000 700000 700000
+NV_ECO_PBC_LIMIT 8500 8500 8500
+NV_ECO_THRESHOLD 5 5 5
+NV_ECO_THRESHYST 5 5 5
+NV_ECO_CPU_CORE_CAP 2 2 2
+/sys/devices/platform/host1x/tegradc.0/smartdimmer/aggressiveness 27 27 29
+panelresolution=-1X-1
+NV_FPSLIMIT 0 0 0
+NV_MAX_CORES 0 0 0
+NV_MIN_CORES 2 2 2
+NV_MAX_FREQ 0 0 0
+NV_MIN_FREQ 1100000 0 0
+NV_MAX_GPU_FREQ 0 0 0
+NV_MIN_GPU_FREQ 0 0 0
+NV_APM_CPU_BOOST 5 0 0
+NV_APM_GPU_BOOST 5 0 0
+NV_APM_FRT_BOOST 5 0 0
+NV_APM_FRT_MIN 20 15 15
+NV_APM_LOADAPPFRT 0 0 0
+NV_PBC_SYSPOWER_CAP 15000 11000 8500
+NV_PBC_BATCURRENT_CAP 5000 5000 4100
+NV_FAN_STATE_MAP 80/110/150/200/255 80/110/150/200/255 80/110/150/200/255
+NV_FAN_STATE_CAP 4 4 4
+NV_FAN_STATE_CAP 4 4 4
+NV_ECO_MAX_FREQ 1400000 1400000 1400000
+NV_ECO_MAX_GPU_FREQ 700000 700000 700000
+NV_ECO_PBC_LIMIT 8500 8500 8500
+NV_ECO_THRESHOLD 5 5 5
+NV_ECO_THRESHYST 5 5 5
+NV_ECO_CPU_CORE_CAP 2 2 2
+/sys/devices/platform/host1x/tegradc.0/smartdimmer/aggressiveness 27 27 29
