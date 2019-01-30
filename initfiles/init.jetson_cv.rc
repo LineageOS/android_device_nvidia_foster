@@ -1,0 +1,61 @@
+#Copyright (c) 2014-2018, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import init.tegra_emmc.rc
+import init.t210.rc
+import init.cal.rc
+import init.ray_touch.rc
+import init.lkm.rc
+
+on init
+    # Load persistent dm-verity state
+    verity_load_state
+    # Use Keymaster 1 HAL
+    setprop ro.hardware.keystore v1.tegra
+
+on fs
+    setprop ro.wifi.sdmmc 1
+    setprop audio.custompolicy 1
+    setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
+    setprop ro.crypto.umount_sd false
+    setprop ro.crypto.fuse_sdcard true
+    mount_all /fstab.jetson_cv
+    swapon_all /fstab.jetson_cv
+
+    # Update dm-verity state and set partition.*.verified properties
+    verity_update_state
+
+    # start Early Loadable Kernel Module service
+    exec /vendor/bin/lkm_loader.sh early
+
+on verity-logging
+    exec u:r:slideshow:s0 root input -- /sbin/slideshow -p warning/verity_red_2
+
+on post-fs-data
+    chown root system /sys/class/gps_wake/gps_device/gps_enable
+    chmod 0664 /sys/class/gps_wake/gps_device/gps_enable
+
+on boot
+    # start Loadable Kernel Module service
+    start lkm_loader
+
+on property:persist.gps.present=true
+    symlink /system/etc/android.hardware.location.gps.xml /data/android.hardware.location.gps.xml
+
+on property:persist.gps.present=false
+    rm /data/android.hardware.location.gps.xml
+
+#start pbc daemon
+service pbc2 /system/vendor/bin/pbc2
+    class main
+    user system
+    group system
+
+on property:sys.boot_completed=1
+    write /sys/devices/virtual/android_usb/android0/uevent_in_suspend N
+    write /sys/devices/usb_cd/extcon/extcon1/uevent_in_suspend N
