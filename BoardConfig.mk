@@ -26,6 +26,12 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR             := vendor
 BOARD_BUILD_SYSTEM_ROOT_IMAGE      := true
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := foster
+
+# Bootloader versions
+TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
+
 # Kernel
 KERNEL_TOOLCHAIN        := $(shell pwd)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-gnu-6.4.1/bin
 KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-gnu-
@@ -41,5 +47,8 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 BOARD_VNDK_VERSION                     := current
 PRODUCT_FULL_TREBLE_OVERRIDE           := true
+
+#Vendor Init
+TARGET_INIT_VENDOR_LIB := libinit_tegra libinit_foster
 
 include device/nvidia/t210-common/BoardConfigCommon.mk
