@@ -8,14 +8,6 @@
 
 import /vendor/etc/init/hw/init.loki_foster_e_common.rc
 
-on init
-    # Load persistent dm-verity state
-    verity_load_state
-
-on fs
-    # Update dm-verity state and set partition.*.verified properties
-    verity_update_state
-
 service charger /charger
     class charger
     seclabel u:r:healthd:s0
