@@ -1,0 +1,64 @@
+#Copyright (c) 2014-2018, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+#THIS IS A COMMON FILE FOR FOSTER AND LOKI
+
+on fs
+    setprop ro.wifi.sdmmc 1
+    setprop persist.vendor.sys.dpy0.prism 0
+    setprop camera.disable_zsl_mode 1
+    setprop ro.config.media_vol_default 15
+    setprop ro.config.size_override 1920,1080
+
+#start pbc daemon
+service pbc2 /system/vendor/bin/pbc2
+    class main
+    user system
+    group system
+    disabled
+
+on post-fs-data
+    setprop persist.vendor.sys.display.resolution 1920x1080
+    chmod 664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 664 /sys/kernel/debug/cpuidle_t210/fast_cluster_states_enable
+    chown system system /sys/kernel/debug/cpuidle_t210/fast_cluster_states_enable
+    chmod 664 /sys/devices/gpu.0/railgate_enable
+    chown system system /sys/devices/gpu.0/railgate_enable
+    chmod 664 /sys/module/tegra210_dvfs/parameters/disable_core
+    chown system system /sys/module/tegra210_dvfs/parameters/disable_core
+    chmod 664 /sys/class/net/wlan0/device/rf_test/state
+    chown system system /sys/class/net/wlan0/device/rf_test/state
+    chmod 664 /sys/devices/gpu.0/aelpg_enable
+    chown system system /sys/devices/gpu.0/aelpg_enable
+    chmod 664 /sys/devices/gpu.0/blcg_enable
+    chown system system /sys/devices/gpu.0/blcg_enable
+    chmod 664 /sys/devices/gpu.0/elcg_enable
+    chown system system /sys/devices/gpu.0/elcg_enable
+    chmod 664 /sys/devices/gpu.0/elpg_enable
+    chown system system /sys/devices/gpu.0/elpg_enable
+    chmod 664 /sys/devices/gpu.0/slcg_enable
+    chown system system /sys/devices/gpu.0/slcg_enable
+
+on boot
+    restorecon_recursive /sys/devices/system/cpu/cpufreq/interactive
+    setprop persist.vendor.tegra.decompression cde-client
+
+on property:init.svc.vendor.lkm_loader=stopped
+    chmod 664 /sys/kernel/rt8168_power/mode
+    chown system system /sys/kernel/rt8168_power/mode
+    wait /sys/devices/57000000.gpu/devfreq/57000000.gpu/available_frequencies 10
+    chmod 664 /sys/devices/57000000.gpu/devfreq/57000000.gpu/min_freq
+    chown system system /sys/devices/57000000.gpu/devfreq/57000000.gpu/min_freq
+    chmod 664 /sys/devices/57000000.gpu/devfreq/57000000.gpu/available_frequencies
+    chown system system /sys/devices/57000000.gpu/devfreq/57000000.gpu/available_frequencies
+    enable pbc2
+
+on init
+    setprop ro.hardware.gatekeeper tlk.tegra
