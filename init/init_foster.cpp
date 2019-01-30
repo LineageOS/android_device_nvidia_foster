@@ -81,7 +81,7 @@ void set_usb_props(tegra_init *ti)
 	} else if (ti->is_model("foster_e_hdd")) {
 		for (auto const& nvusb : mfoster_e_hdd)
 			ti->property_set(nvusb.first, nvusb.second);
-	} else if (ti->is_model("darcy")) {
+	} else if (ti->is_model("darcy") || ti->is_model("sif")) {
 		for (auto const& nvusb : mdarcy)
 			ti->property_set(nvusb.first, nvusb.second);
 	} else {
@@ -95,7 +95,8 @@ void vendor_load_properties()
 	//                                              device    name            model               id    sku   boot device type                api  dpi
 	std::vector<tegra_init::devices> devices = { { "foster", "foster_e",     "SHIELD Android TV", 2530,  930, tegra_init::boot_dev_type::EMMC, 21, 320 },
 	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, tegra_init::boot_dev_type::SATA, 21, 320 },
-	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, tegra_init::boot_dev_type::EMMC, 23, 320 } };
+	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, tegra_init::boot_dev_type::EMMC, 23, 320 },
+	                                             { "sif",    "sif",          "SHIELD Android TV", 3425,  500, tegra_init::boot_dev_type::EMMC, 23, 320 } };
 	tegra_init::build_version sav = { "8.0.0", "OPR6.170623.010", "3507953_1441.7411" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "MSC", "UDA", "USP", "MDA", "SOS", "BMP", "vendor" };
 
