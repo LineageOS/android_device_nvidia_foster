@@ -26,7 +26,7 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR             := vendor
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := foster,darcy,sif
+TARGET_OTA_ASSERT_DEVICE := foster,darcy,sif,jetson
 
 # Bootloader versions
 TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
