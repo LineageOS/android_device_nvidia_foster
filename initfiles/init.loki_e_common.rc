@@ -13,10 +13,6 @@ on init
     verity_load_state
 
 on fs
-    # factory reset protection
-    mkdir /persistent 0660 system system
-    setprop ro.frp.pst /dev/block/platform/sdhci-tegra.3/by-name/RP2
-
     # Update dm-verity state and set partition.*.verified properties
     verity_update_state
 
