@@ -1,0 +1,131 @@
+# Copyright (c) 2014-2019, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import /vendor/etc/init/hw/init.loki_foster_e_common.rc
+import /vendor/etc/init/hw/init.lkm.rc
+
+on fs
+    # start Early Loadable Kernel Module service
+    exec /vendor/bin/lkm_loader.sh early
+    restorecon_recursive /sys
+
+on boot
+    write /sys/devices/system/cpu/cpuquiet/runnable_threads/nr_run_thresholds "6 10 18"
+    # start Loadable Kernel Module service
+    start vendor.lkm_loader
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 0
+
+    # CPU and GPU governor scaling settings
+    write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 0
+    write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 2000
+    write /sys/devices/system/cpu/cpufreq/schedutil/capacity_margin 256
+    write /sys/devices/57000000.gpu/submit_boost_freq 691200
+    write /sys/devices/57000000.gpu/submit_boost_time 500
+
+    # Lower console loglevel to reduce number of printk messages to console
+    write /proc/sys/kernel/printk "4 7 1 7 3"
+
+on boot && property:ro.build.type=user
+    # Disable console logs in user build, print KERN_EMERG messages only
+    setprop vendor.debug.enable_console_logs false
+    write /dev/kmsg "Disabling kernel console prints. Prints can be enabled via the developer menu"
+
+on fs
+    # Assuming system takes 1GB runtime RAM, dedeuct it from GPU comptag memory allocation
+    write /sys/devices/57000000.gpu/comptag_mem_deduct 1024
+
+on post-fs-data
+# Set Foster as console mode
+    setprop persist.vendor.sys.display.resolution 1920x1080
+    setprop persist.vendor.tegra.composite.policy composite-yuv
+    setprop persist.vendor.tegra.composite.range Auto
+    setprop sys.wal.off external.db,iu.upload.db
+    setprop sys.wal.normal tz4,PGDatabase,launcher.db,playlog.db,music.db
+    write /sys/power/wake_lock foster-staywake
+
+    # Disable rescue feature. This needs to be in vendor init, so that it
+    # works on GSI images.
+    setprop persist.sys.disable_rescue true
+
+on post-fs-data
+    chown system system /mnt/venodr/wifi_config
+    chown system system /mnt/vendor/wifi_config/FSS.txt
+    chown system system /mnt/vendor/wifi_config/country_code.txt
+    chown system system /mnt/vendor/wifi_config/country_code.sig
+    chown system system /mnt/vendor/wifi_config/package.txt
+    restorecon_recursive /mnt/vendor/wifi_config
+
+on post-fs-data
+    chmod 0444 /sys/devices/platform/tegra-fuse/aid
+
+on property:init.svc.vendor.lkm_loader=stopped
+    chown system system /sys/class/leds/led_lightbar/brightness
+    chown system system /sys/class/leds/led_lightbar/boot_mode
+    chown system system /sys/class/leds/led_lightbar/version
+    chown system system /sys/class/leds/led_lightbar/effects
+    chown system system /sys/class/leds/led_lightbar/params
+    chmod 660 /sys/bus/hid/drivers/Jarvis/hid_miss_stats
+    chown system system /sys/bus/hid/drivers/Jarvis/hid_miss_stats
+    chmod 660 /sys/bus/hid/drivers/Jarvis/ts_joystick_stats
+    chown system system /sys/bus/hid/drivers/Jarvis/ts_joystick_stats
+
+on property:vendor.debug.enable_console_logs=true && property:ro.build.type=user
+    write /proc/sys/kernel/printk "4 7 1 7 3"
+
+on property:vendor.debug.enable_console_logs=false && property:ro.build.type=user
+    write /proc/sys/kernel/printk "1 7 1 7 3"
+
+# override cpuset cpus to 0-3, mems to 0
+on init
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/mems 0
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/foreground/boost/mems 0
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/background/mems 0
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/system-background/mems 0
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/top-app/mems 0
+
+    # ZRAM setup
+    write /sys/block/zram0/comp_algorithm lz4
+
+    # KSM setup
+    write /sys/kernel/mm/ksm/sleep_millisecs 250
+    write /sys/kernel/mm/ksm/pages_to_scan 100
+    write /sys/kernel/mm/ksm/run 1
+
+service mossignerd /vendor/bin/mossignerd
+    class late_start
+    user system
+
+on early-init
+    # Disable Transparent HUGEPAGE
+    write /sys/kernel/mm/transparent_hugepage/enabled "never"
+
+# LMK tunables
+on property:sys.boot_completed=1
+    chown system system /sys/module/lowmemorykiller/parameters/minfree
+    write /sys/module/lowmemorykiller/parameters/minfree 18432,23040,27648,80640,100000,124000
+    chown system system /sys/module/lowmemorykiller/parameters/adj
+    write /sys/module/lowmemorykiller/parameters/adj 0,100,200,300,600,800
+
+# Free Memory tunables
+on property:sys.boot_completed=1
+    write /proc/sys/vm/extra_free_kbytes 0
+    write /proc/sys/vm/min_free_kbytes 16384
+
+# Ease any memory pressure based on power hints
+on property:vendor.powerhal.reclaim_compact_mem=*
+    # Purge inode, dentry and page caches
+    write /proc/sys/vm/drop_caches 3
+    # Try to compact memory
+    write /proc/sys/vm/compact_memory 1
+    # Try to compact the zRAM footprint
+    write /sys/block/zram0/compact 1
