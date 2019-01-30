@@ -1,1 +1,1 @@
-require version-bootloader=00.00.2018.01-t210-4954eb9e|00.00.2018.01-t210-a772cebd
+require version-bootloader=00.00.2018.01-t210-4954eb9e|00.00.2018.01-t210-a772cebd|24.00.2015.42-t210-39c6cadc
