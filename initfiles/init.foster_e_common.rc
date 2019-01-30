@@ -1,0 +1,166 @@
+# Copyright (c) 2014-2018, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import init.loki_foster_e_common.rc
+import init.ndiscovery.rc
+import init.lkm.rc
+
+on early-init
+    # start Early Loadable Kernel Module service
+    exec /vendor/bin/lkm_loader.sh early
+
+on boot
+    write /sys/devices/system/cpu/cpuquiet/runnable_threads/nr_run_thresholds "6 10 18"
+    # start Loadable Kernel Module service
+    start lkm_loader
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 0
+
+    # improve CPU and GPU governor reactiveness
+    write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 0
+    write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 2000
+    write /sys/devices/system/cpu/cpufreq/schedutil/capacity_margin 256
+    write /sys/devices/57000000.gpu/submit_boost_freq 691200
+    write /sys/devices/57000000.gpu/submit_boost_time 500
+
+    # Lower console loglevel to reduce number of printk messages to console
+    write /proc/sys/kernel/printk "4 7 1 7 3"
+
+    # Allow system group to read /dev/kmsg
+    chmod 640 /dev/kmsg
+    chown root system /dev/kmsg
+
+on boot && property:ro.build.type=user
+    # Disable console logs in user build, print KERN_EMERG messages only
+    setprop debug.kernel.enable_console_logs false
+    write /dev/kmsg "Disabling kernel console prints. Prints can be enabled via the developer menu"
+
+on fs
+    # Assuming system takes 1GB runtime RAM, dedeuct it from GPU comptag memory allocation
+    write /sys/devices/57000000.gpu/comptag_mem_deduct 1024
+
+on post-fs-data
+# Set Foster as console mode
+    setprop persist.sys.display.resolution 1920x1080
+    setprop persist.tegra.composite.policy composite-yuv
+    setprop persist.tegra.composite.range Auto
+    setprop sys.wal.off external.db,iu.upload.db
+    setprop sys.wal.normal tz4,PGDatabase,launcher.db,playlog.db,music.db
+    write /sys/power/wake_lock foster-staywake
+
+on post-fs-data
+    chown system system /factory/wifi_config
+    chown system system /factory/wifi_config/FSS.txt
+    chown system system /factory/wifi_config/country_code.txt
+    chown system system /factory/wifi_config/country_code.sig
+    chown system system /factory/wifi_config/package.txt
+    restorecon_recursive /factory/wifi_config
+
+on post-fs-data
+    chmod 0444 /sys/devices/platform/tegra-fuse/aid
+
+on post-fs-data
+    # Set SELinux security contexts for NvCPL keylayout files.
+    mkdir /data/system/devices 0774 system system
+    mkdir /data/system/devices/keylayout 0774 system system
+    restorecon_recursive /data/system/devices/keylayout
+    mkdir /data/provTest 0700 root drmrpc
+
+on init
+    mkdir /mnt/media_rw/usbdrive2 0700 media_rw media_rw
+    mkdir /storage/usbdrive2 0700 root root
+    symlink /mnt/media_rw/usbdrive2 /usbdrive2
+
+    mkdir /mnt/media_rw/usbdrive3 0700 media_rw media_rw
+    mkdir /storage/usbdrive3 0700 root root
+    symlink /mnt/media_rw/usbdrive3 /usbdrive3
+
+    # ZRAM setup
+    write /sys/block/zram0/comp_algorithm lz4
+    write /proc/sys/vm/page-cluster 0
+
+service fuse_usbdrive2 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbdrive2 /storage/usbdrive2
+    class late_start
+    disabled
+
+service fuse_usbdrive3 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/usbdrive3 /storage/usbdrive3
+    class late_start
+    disabled
+
+service factory_tests /vendor/bin/factory_tests
+    class main
+    group drmrpc
+    oneshot
+    disabled
+
+service cac_log_dumper /vendor/bin/cac_log_dumper
+    class late_start
+    user system
+    group system
+    oneshot
+
+on post-fs-data
+    chmod 660 /cache/logs/last_boot_dmesg.txt
+    chown cache system /cache/logs/last_boot_dmesg.txt
+    chmod 660 /cache/logs/last_boot_logcat.txt
+    chown cache system /cache/logs/last_boot_logcat.txt
+    setprop persist.sys.disable_rescue true
+
+on property:sys.boot_completed=1
+    start factory_tests
+
+on property:init.svc.lkm_loader=stopped
+    chown system system /sys/class/leds/led_lightbar/brightness
+    chown system system /sys/class/leds/led_lightbar/boot_mode
+    chown system system /sys/class/leds/led_lightbar/version
+    chown system system /sys/class/leds/led_lightbar/effects
+    chown system system /sys/class/leds/led_lightbar/params
+    chmod 660 /sys/bus/hid/drivers/Jarvis/hid_miss_stats
+    chown system system /sys/bus/hid/drivers/Jarvis/hid_miss_stats
+
+on property:debug.kernel.enable_console_logs=true && property:ro.build.type=user
+    write /proc/sys/kernel/printk "4 7 1 7 3"
+
+on property:debug.kernel.enable_console_logs=false && property:ro.build.type=user
+    write /proc/sys/kernel/printk "1 7 1 7 3"
+
+# override cpuset cpus to 0-3, mems to 0
+on init
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/mems 0
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/foreground/boost/mems 0
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/background/mems 0
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/system-background/mems 0
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/top-app/mems 0
+
+service mossignerd /vendor/bin/mossignerd
+    class late_start
+    user system
+
+# Core dump
+on property:vold.post_fs_data_done=1 && property:ro.debuggable=1
+    # Core dump generation
+    mkdir /data/cores
+    chmod 777 /data/cores
+    # use program.core as core file name
+    write /proc/sys/kernel/core_pattern /data/cores/%e.core
+    # corefile limit
+    setrlimit 4 -1 -1
+    # create core dump file directory
+    write /proc/sys/fs/suid_dumpable 2
+
+# LMK tunables
+on property:sys.boot_completed=1
+    chown system system /sys/module/lowmemorykiller/parameters/minfree
+    write /sys/module/lowmemorykiller/parameters/minfree 18432,23040,27648,80640,100000,124000
+
+on property:ro.persistent_properties.ready=true
+    write /sys/devices/70090000.xusb/downgrade_usb3 ${persist.sys.vold.downgrade_usb}
