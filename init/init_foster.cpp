@@ -58,6 +58,13 @@ void set_usb_props(tegra_init *ti)
 	                                                     { "ro.nv.usb.pid.ptp",              "B43E" },
 	                                                     { "ro.nv.usb.pid.ptp.adb",          "B43F" } };
 
+	std::map<std::string, std::string> mdarcy        = { { "ro.nv.usb.pid.mtp",              "B43C" },
+	                                                     { "ro.nv.usb.pid.mtp.adb",          "B43D" },
+	                                                     { "ro.nv.usb.pid.rndis",            "B440" },
+	                                                     { "ro.nv.usb.pid.rndis.adb",        "B441" },
+	                                                     { "ro.nv.usb.pid.ptp",              "B43E" },
+	                                                     { "ro.nv.usb.pid.ptp.adb",          "B43F" } };
+
 	std::map<std::string, std::string> mt210ref      = { { "ro.nv.usb.pid.mtp",              "EE02" },
 	                                                     { "ro.nv.usb.pid.mtp.adb",          "EE03" },
 	                                                     { "ro.nv.usb.pid.rndis",            "EE08" },
@@ -74,6 +81,9 @@ void set_usb_props(tegra_init *ti)
 	} else if (ti->is_model("foster_e_hdd")) {
 		for (auto const& nvusb : mfoster_e_hdd)
 			ti->property_set(nvusb.first, nvusb.second);
+	} else if (ti->is_model("darcy")) {
+		for (auto const& nvusb : mdarcy)
+			ti->property_set(nvusb.first, nvusb.second);
 	} else {
 		for (auto const& nvusb : mt210ref)
 			ti->property_set(nvusb.first, nvusb.second);
@@ -84,7 +94,8 @@ void vendor_load_properties()
 {
 	//                                              device    name            model               id    sku   boot device type                api  dpi
 	std::vector<tegra_init::devices> devices = { { "foster", "foster_e",     "SHIELD Android TV", 2530,  930, tegra_init::boot_dev_type::EMMC, 21, 320 },
-	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, tegra_init::boot_dev_type::SATA, 21, 320 } };
+	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, tegra_init::boot_dev_type::SATA, 21, 320 },
+	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, tegra_init::boot_dev_type::EMMC, 23, 320 } };
 	tegra_init::build_version sav = { "8.0.0", "OPR6.170623.010", "3507953_1441.7411" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "MSC", "UDA", "USP", "MDA", "SOS", "BMP", "vendor" };
 
