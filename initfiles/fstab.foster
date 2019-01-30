@@ -1,0 +1,16 @@
+# Android fstab file.
+#<src>                                                  <mnt_point>         <type>    <mnt_flags>                                                                         <fs_mgr_flags>
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+# This fstab is only used for the updater script. Assumes the recovery has made appropriate symlinks
+
+/dev/block/APP            /                   ext4      ro,noatime                                                          wait
+/dev/block/CAC            /cache              ext4      noatime,nosuid,nodev,data=ordered,nodelalloc,errors=panic           wait,formattable
+/dev/block/vendor         /vendor             ext4      ro,noatime                                                          wait
+/dev/block/LNX            /boot               emmc      defaults                                                            defaults
+/dev/block/MSC            /misc               emmc      defaults                                                            defaults
+/dev/block/UDA            /data               ext4      noatime,nosuid,nodev,data=ordered,noauto_da_alloc,errors=panic      wait,check,formattable,encryptable=/dev/block/MDA
+/dev/block/USP            /staging            emmc      defaults                                                            defaults
+/dev/block/MDA            /metadata           emmc      defaults                                                            defaults
+/dev/block/SOS            /recovery           emmc      defaults                                                            defaults
+/dev/block/BMP            /bmps               emmc      defaults                                                            recoveryonly
