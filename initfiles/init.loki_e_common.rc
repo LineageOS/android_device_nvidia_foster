@@ -1,0 +1,41 @@
+#Copyright (c) 2014-2018, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import /vendor/etc/init/hw/init.loki_foster_e_common.rc
+
+on init
+    # Load persistent dm-verity state
+    verity_load_state
+
+on fs
+    # factory reset protection
+    mkdir /persistent 0660 system system
+    setprop ro.frp.pst /dev/block/platform/sdhci-tegra.3/by-name/RP2
+
+    # Update dm-verity state and set partition.*.verified properties
+    verity_update_state
+
+service charger /charger
+    class charger
+    seclabel u:r:healthd:s0
+    group input
+
+service update_fw /vendor/bin/update_js_touch_fw.sh
+    class main
+    user system
+    group usb
+    oneshot
+
+on charger
+    mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/APP /system wait ro
+    setprop persist.sys.usb.config mtp
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
+    write /sys/devices/system/cpu/cpuquiet/current_governor runnable
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/no_lp -1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
