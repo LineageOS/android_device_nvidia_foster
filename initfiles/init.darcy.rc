@@ -1,0 +1,56 @@
+# Copyright (c) 2014-2018, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import /vendor/etc/init/hw/init.tegra_emmc.rc
+import /vendor/etc/init/hw/init.t210.rc
+import /vendor/etc/init/hw/init.foster_e_common.rc
+
+# verified boot
+on init
+    # Load persistent dm-verity state
+    verity_load_state
+
+on fs
+# Update dm-verity state and set partition.*.verified properties
+verity_update_state
+
+on verity-logging
+exec u:r:slideshow:s0 root input -- /sbin/slideshow warning/verity_red_1_720p warning/verity_red_2_720p
+
+on fs
+    mount_all /vendor/etc/fstab.darcy
+    swapon_all /vendor/etc/fstab.darcy
+    write /sys/block/mmcblk0/queue/iosched/slice_idle 0
+    write /sys/block/mmcblk0/queue/iostats 0
+    write /sys/block/mmcblk0/queue/nr_requests 256
+
+# factory reset protection
+    mkdir /persistent 0660 system system
+    setprop ro.frp.pst /dev/block/platform/sdhci-tegra.3/by-name/RP2
+
+    # Adjust parameters for dm-verity devices
+    write /sys/block/dm-0/queue/read_ahead_kb 2048
+    write /sys/block/dm-1/queue/read_ahead_kb 2048
+    write /sys/module/dm_verity/parameters/prefetch_cluster 524288
+
+on post-fs
+    # Create symlinks for VTS compatibility (must be after fstab mounting)
+    symlink /dev/block/platform/sdhci-tegra.3/by-name/DTB /dev/block/platform/sdhci-tegra.3/by-name/dtbo
+    symlink /dev/block/platform/sdhci-tegra.3/by-name/LNX /dev/block/platform/sdhci-tegra.3/by-name/boot
+    symlink /dev/block/platform/sdhci-tegra.3/by-name/SOS /dev/block/platform/sdhci-tegra.3/by-name/recovery
+
+on verity-logging
+    exec u:r:slideshow:s0 root input -- /sbin/slideshow warning/verity_red_1_1080 warning/verity_red_2_1080
+
+# override cpuset cpus to 0-3
+on init
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/top-app/cpus 0-3

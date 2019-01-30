@@ -31,7 +31,8 @@ void vendor_load_properties()
 {
 	//                                              device    name            model               id    sku   boot device type                api  dpi
 	std::vector<tegra_init::devices> devices = { { "foster", "foster_e",     "SHIELD Android TV", 2530,  930, tegra_init::boot_dev_type::EMMC, 21, 320 },
-	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, tegra_init::boot_dev_type::SATA, 21, 320 } };
+	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, tegra_init::boot_dev_type::SATA, 21, 320 },
+	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, tegra_init::boot_dev_type::EMMC, 23, 320 } };
 	tegra_init::build_version tav = { "9", "PPR1.180610.011", "4199485_1739.5219" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "UDA", "SOS", "vendor" };
 

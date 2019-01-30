@@ -31,14 +31,18 @@ PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
 
 # Init related
 PRODUCT_PACKAGES += \
+    fstab.darcy \
     fstab.foster \
     fstab.foster_e \
     fstab.foster_e_hdd \
+    init.darcy.rc \
     init.foster_e.rc \
     init.foster_e_hdd.rc \
     init.foster_e_common.rc \
     init.loki_foster_e_common.rc \
+    init.recovery.darcy.rc \
     init.recovery.foster_e.rc \
     init.recovery.foster_e_hdd.rc \
+    power.darcy.rc \
     power.foster_e.rc \
     power.foster_e_hdd.rc

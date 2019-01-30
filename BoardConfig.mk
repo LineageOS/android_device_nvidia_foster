@@ -27,7 +27,7 @@ TARGET_COPY_OUT_VENDOR             := vendor
 BOARD_BUILD_SYSTEM_ROOT_IMAGE      := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := foster
+TARGET_OTA_ASSERT_DEVICE := foster,darcy
 
 # Bootloader versions
 TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
