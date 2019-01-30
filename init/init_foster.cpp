@@ -73,6 +73,13 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B42D";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B42E";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B42F";
+	} else {
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "EE02";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "EE03";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "EE04";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "EE05";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "EE08";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "EE09";
 	}
 
 	for (auto const& id : mDeviceUsbIds)
@@ -89,7 +96,9 @@ void vendor_load_properties()
 	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, tegra_init::boot_dev_type::SATA, 21, 320 },
 	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, tegra_init::boot_dev_type::EMMC, 23, 320 },
 	                                             { "mdarcy", "mdarcy",       "SHIELD Android TV", 2894, 2551, tegra_init::boot_dev_type::EMMC, 28, 320 },
-	                                             { "sif",    "sif",          "SHIELD Android TV", 3425,  500, tegra_init::boot_dev_type::EMMC, 28, 320 } };
+	                                             { "sif",    "sif",          "SHIELD Android TV", 3425,  500, tegra_init::boot_dev_type::EMMC, 28, 320 },
+	                                             { "jetson", "jetson_cv",    "Jetson TX1",        2597, 2180, tegra_init::boot_dev_type::EMMC, 21, 320 },
+	                                             { "jetson", "jetson_e",     "Jetson TX1",        2595,    0, tegra_init::boot_dev_type::EMMC, 21, 320 } };
 	tegra_init::build_version tav = { "9", "PPR1.180610.011", "4199485_1739.5219" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "SOS", "UDA", "USP", "vendor" };
 
