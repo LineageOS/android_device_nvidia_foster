@@ -18,6 +18,5 @@
 /dev/block/platform/tegra-sata.0/by-name/BMP           /bmps               emmc      defaults                                                            recoveryonly
 /devices/70090000.xusb/usb*                            auto                vfat      defaults                                                            voldmanaged=usbdrive:auto,encryptable=userdata
 /dev/block/zram0 none swap defaults zramsize=536870912
-/dev/block/platform/tegra-sata.0/by-name/RP2           /persistent         emmc      defaults                                                            defaults
 79a35232-07f9-4230-9df3-4256560ddbd2                   /mnt/remote         auto      defaults                                                            voldmanaged=remote:auto
 28f3f3fa-9c68-45be-bf54-7580ab57fd21                   /mnt/remote         auto      defaults                                                            voldmanaged=remote:auto

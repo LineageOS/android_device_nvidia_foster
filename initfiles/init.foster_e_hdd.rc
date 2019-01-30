@@ -28,10 +28,6 @@ on fs
     mount_all /fstab.foster_e_hdd
     swapon_all /fstab.foster_e_hdd
 
-    # factory reset protection
-    mkdir /persistent 0660 system system
-    setprop ro.frp.pst /dev/block/platform/tegra-sata.0/by-name/RP2
-
 on post-fs-data
     start cyupdate
     start get-hddstat
