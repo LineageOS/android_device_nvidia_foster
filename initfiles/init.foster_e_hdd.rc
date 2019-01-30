@@ -1,0 +1,39 @@
+# Copyright (c) 2014-2019, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import /vendor/etc/init/hw/init.tegra_sata.rc
+import /vendor/etc/init/hw/init.t210.rc
+import /vendor/etc/init/hw/init.foster_e_common.rc
+
+on init
+    # support old sdcard features (apps on sdcard and migrated apps)
+    setprop vendor.vold.linktoprimary 1
+
+on fs
+    write /sys/block/sda/queue/scheduler deadline
+    write /sys/block/sda/queue/iosched/read_expire 1000
+    write /sys/block/sda/queue/iosched/write_expire 40000
+    write /sys/block/sda/queue/iosched/writes_starved 16
+    mount_all /vendor/etc/fstab.foster_e_hdd
+    swapon_all /vendor/etc/fstab.foster_e_hdd
+
+    # factory reset protection
+    mkdir /persistent 0660 system system
+    setprop ro.frp.pst /dev/block/platform/tegra-sata.0/by-name/RP2
+
+on post-fs-data
+    start cyupdate
+    start get-hddstat
+
+service cyupdate /vendor/bin/cyupdate.sh
+    class main
+    user system
+    group system
+    oneshot
+    disabled
+

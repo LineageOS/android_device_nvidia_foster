@@ -1,0 +1,37 @@
+# Copyright (c) 2014-2019, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import /vendor/etc/init/hw/init.tegra_emmc.rc
+import /vendor/etc/init/hw/init.t210.rc
+import /vendor/etc/init/hw/init.foster_e_common.rc
+
+on init
+    # support old sdcard features (apps on sdcard and migrated apps)
+    setprop vendor.vold.linktoprimary 1
+
+on fs
+    mount_all /vendor/etc/fstab.foster_e
+    swapon_all /vendor/etc/fstab.foster_e
+    write /sys/block/mmcblk0/queue/iosched/slice_idle 0
+    write /sys/block/mmcblk0/queue/iostats 0
+    write /sys/block/mmcblk0/queue/nr_requests 256
+
+    # factory reset protection
+    mkdir /persistent 0660 system system
+    setprop ro.frp.pst /dev/block/platform/sdhci-tegra.3/by-name/RP2
+
+on post-fs-data
+    start cyupdate
+
+service cyupdate /vendor/bin/cyupdate.sh
+    class main
+    user system
+    group system
+    oneshot
+    disabled
+
