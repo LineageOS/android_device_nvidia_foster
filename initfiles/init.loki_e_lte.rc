@@ -6,11 +6,11 @@
 #documentation without an express license agreement from NVIDIA Corporation
 #is strictly prohibited.
 
-import init.tegra_emmc.rc
-import init.t210.rc
-import init.loki_e_common.rc
-import init.ray_touch.rc
+import /vendor/etc/init/hw/init.tegra_emmc.rc
+import /vendor/etc/init/hw/init.t210.rc
+import /vendor/etc/init/hw/init.loki_e_common.rc
+import /vendor/etc/init/hw/init.ray_touch.rc
 
 on fs
-    mount_all /fstab.loki_e_lte
-    swapon_all /fstab.loki_e_lte
+    mount_all /vendor/etc/fstab.loki_e_lte
+    swapon_all /vendor/etc/fstab.loki_e_lte

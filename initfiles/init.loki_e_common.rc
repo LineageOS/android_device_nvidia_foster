@@ -6,7 +6,7 @@
 #documentation without an express license agreement from NVIDIA Corporation
 #is strictly prohibited.
 
-import init.loki_foster_e_common.rc
+import /vendor/etc/init/hw/init.loki_foster_e_common.rc
 
 on init
     # Load persistent dm-verity state
