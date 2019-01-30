@@ -26,6 +26,12 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR             := vendor
 BOARD_BUILD_SYSTEM_ROOT_IMAGE      := true
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := foster
+
+# Bootloader versions
+TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
+
 # Kernel
 KERNEL_TOOLCHAIN        := $(shell pwd)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-gnu-6.4.1/bin
 KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-gnu-
