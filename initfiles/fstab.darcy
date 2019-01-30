@@ -18,7 +18,5 @@
 /dev/block/platform/70090000.xusb/by-num/p1             /usbdrive           vfat      defaults                                                            recoveryonly
 /dev/block/platform/sdhci-tegra.3/by-name/BMP           /bmps               emmc      defaults                                                            recoveryonly
 /dev/block/zram0 none swap defaults zramsize=536870912
-/dev/block/platform/sdhci-tegra.3/by-name/RP2           /persistent         emmc      defaults                                                            defaults
-/dev/block/platform/sdhci-tegra.3/by-name/RP6           /persistent         emmc      defaults                                                            defaults
 79a35232-07f9-4230-9df3-4256560ddbd2                    /mnt/remote         auto      defaults                                                            voldmanaged=remote:auto
 28f3f3fa-9c68-45be-bf54-7580ab57fd21                    /mnt/remote         auto      defaults                                                            voldmanaged=remote:auto
