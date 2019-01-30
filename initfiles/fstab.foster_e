@@ -1,0 +1,25 @@
+#Copyright (c) 2015-2018 NVIDIA Corporation.  All Rights Reserved.
+
+# Android fstab file.
+#<src>                                                  <mnt_point>         <type>    <mnt_flags>                                                                         <fs_mgr_flags>
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+/dev/block/platform/sdhci-tegra.3/by-name/APP           /                   ext4      ro,noatime                                                          wait
+/dev/block/platform/sdhci-tegra.3/by-name/CAC           /cache              ext4      noatime,nosuid,nodev,data=ordered,barrier=1,nodelalloc              wait,formattable
+/dev/block/platform/sdhci-tegra.3/by-name/LNX           /boot               emmc      defaults                                                            defaults
+/dev/block/platform/sdhci-tegra.3/by-name/MSC           /misc               emmc      defaults                                                            defaults
+/dev/block/platform/sdhci-tegra.3/by-name/UDA           /data               ext4      noatime,nosuid,nodev,data=ordered,barrier=0,noauto_da_alloc           wait,check,formattable,encryptable=/dev/block/platform/sdhci-tegra.3/by-name/MDA,quota
+/dev/block/platform/sdhci-tegra.3/by-name/USP           /staging            emmc      defaults                                                            defaults
+/dev/block/platform/sdhci-tegra.3/by-name/MDA           /metadata           emmc      defaults                                                            defaults
+/dev/block/platform/sdhci-tegra.3/by-name/SOS           /recovery           emmc      defaults                                               defaults
+/dev/block/platform/sdhci-tegra.3/by-name/RP3           /mnt/vendor/wifi_config  ext4    rw,noatime,nosuid,nodev,noexec                                   wait,check
+/devices/sdhci-tegra.0/mmc_host*                        auto                vfat      defaults                                                            voldmanaged=sdcard1:auto,encryptable=userdata
+/devices/70090000.xusb/usb*                             auto                vfat      defaults                                                            voldmanaged=usbdrive:auto,encryptable=userdata
+/dev/block/platform/sdhci-tegra.0/by-num/p1             /sdcard             vfat      defaults                                                            recoveryonly
+/dev/block/platform/sdhci-tegra.3/by-name/BMP           /bmps               emmc      defaults                                                            recoveryonly
+/dev/block/platform/70090000.xusb/by-num/p1             /usbdrive           vfat      defaults                                                            recoveryonly
+/dev/block/zram0 none swap defaults zramsize=536870912
+/dev/block/platform/sdhci-tegra.3/by-name/RP2           /persistent         emmc      defaults                                                            defaults
+79a35232-07f9-4230-9df3-4256560ddbd2                    /mnt/remote         auto      defaults                                                            voldmanaged=remote:auto
+28f3f3fa-9c68-45be-bf54-7580ab57fd21                    /mnt/remote         auto      defaults                                                            voldmanaged=remote:auto
