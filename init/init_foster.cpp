@@ -59,6 +59,13 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B43F";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B43A";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B43B";
+	} else if (ti->is_model("darcy")) {
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "B43C";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "B43D";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "B43E";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B43F";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B440";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B441";
 	}
 
 	for (auto const& id : mDeviceUsbIds)
@@ -72,13 +79,14 @@ void vendor_load_properties()
 {
 	//                                              device    name            model               id    sku   boot device type                api  dpi
 	std::vector<tegra_init::devices> devices = { { "foster", "foster_e",     "SHIELD Android TV", 2530,  930, tegra_init::boot_dev_type::EMMC, 21, 320 },
-	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, tegra_init::boot_dev_type::SATA, 21, 320 } };
+	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, tegra_init::boot_dev_type::SATA, 21, 320 },
+	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, tegra_init::boot_dev_type::EMMC, 23, 320 } };
 	tegra_init::build_version tav = { "9", "PPR1.180610.011", "4199485_1739.5219" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "SOS", "UDA", "USP", "vendor" };
 
 	tegra_init ti(devices);
 
-	if (ti.is_model("foster_e") || ti.is_model("foster_e_hdd")) {
+	if (ti.is_model("foster_e") || ti.is_model("foster_e_hdd") || ti.is_model("darcy")) {
 		tav.nvidia_version = "4086637_1873.3004";
 
 		if (ti.vendor_context()) {
