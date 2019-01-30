@@ -65,6 +65,13 @@ void set_usb_props(tegra_init *ti)
 	                                                     { "ro.nv.usb.pid.ptp",              "B43E" },
 	                                                     { "ro.nv.usb.pid.ptp.adb",          "B43F" } };
 
+	std::map<std::string, std::string> mloki_e       = { { "ro.nv.usb.pid.mtp",              "B424" },
+	                                                     { "ro.nv.usb.pid.mtp.adb",          "B425" },
+	                                                     { "ro.nv.usb.pid.rndis",            "B428" },
+	                                                     { "ro.nv.usb.pid.rndis.adb",        "B429" },
+	                                                     { "ro.nv.usb.pid.ptp",              "B426" },
+	                                                     { "ro.nv.usb.pid.ptp.adb",          "B427" } };
+
 	std::map<std::string, std::string> mt210ref      = { { "ro.nv.usb.pid.mtp",              "EE02" },
 	                                                     { "ro.nv.usb.pid.mtp.adb",          "EE03" },
 	                                                     { "ro.nv.usb.pid.rndis",            "EE08" },
@@ -84,6 +91,9 @@ void set_usb_props(tegra_init *ti)
 	} else if (ti->is_model("darcy") || ti->is_model("sif")) {
 		for (auto const& nvusb : mdarcy)
 			ti->property_set(nvusb.first, nvusb.second);
+	} else if (ti->is_model("loki_e_base") || ti->is_model("loki_e_lte") || ti->is_model("loki_e_wifi")) {
+		for (auto const& nvusb : mloki_e)
+			ti->property_set(nvusb.first, nvusb.second);
 	} else {
 		for (auto const& nvusb : mt210ref)
 			ti->property_set(nvusb.first, nvusb.second);
@@ -98,7 +108,10 @@ void vendor_load_properties()
 	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, tegra_init::boot_dev_type::EMMC, 23, 320 },
 	                                             { "sif",    "sif",          "SHIELD Android TV", 3425,  500, tegra_init::boot_dev_type::EMMC, 23, 320 },
 	                                             { "jetson", "jetson_cv",    "Jetson TX1",        2597, 2180, tegra_init::boot_dev_type::EMMC, 21, 320 },
-	                                             { "jetson", "jetson_e",     "Jetson TX1",        2595,    0, tegra_init::boot_dev_type::EMMC, 21, 320 } };
+	                                             { "jetson", "jetson_e",     "Jetson TX1",        2595,    0, tegra_init::boot_dev_type::EMMC, 21, 320 },
+	                                             { "loki",   "loki_e_base",  "SHIELD Portable",   2530,  131, tegra_init::boot_dev_type::EMMC, 21, 320 },
+	                                             { "loki",   "loki_e_lte",   "SHIELD Portable",   2530,   31, tegra_init::boot_dev_type::EMMC, 21, 320 },
+	                                             { "loki",   "loki_e_wifi",  "SHIELD Portable",   2530,   30, tegra_init::boot_dev_type::EMMC, 21, 320 } };
 	tegra_init::build_version sav = { "8.0.0", "OPR6.170623.010", "3507953_1441.7411" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "MSC", "UDA", "USP", "MDA", "SOS", "BMP", "vendor" };
 
