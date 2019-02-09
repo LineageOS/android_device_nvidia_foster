@@ -26,6 +26,8 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR             := vendor
 
 # Kernel
+KERNEL_TOOLCHAIN        := $(shell pwd)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-gnu-6.4.1/bin
+KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-gnu-
 TARGET_KERNEL_SOURCE    := kernel/nvidia/linux-4.9/kernel/kernel-4.9
 TARGET_KERNEL_CONFIG    := tegra_android_defconfig
 BOARD_KERNEL_IMAGE_NAME := zImage
