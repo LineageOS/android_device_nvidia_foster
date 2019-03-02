@@ -116,6 +116,10 @@ PRODUCT_PACKAGES += \
     camera.device@3.2-impl \
     android.hardware.camera.provider@2.4-impl
 
+# Camera shim
+PRODUCT_PACKAGES += \
+    libcamera_shim
+
 # CEC
 PRODUCT_PACKAGES += \
     android.hardware.tv.cec@1.0-impl
