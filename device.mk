@@ -146,6 +146,11 @@ PRODUCT_PACKAGES += \
     cypress-fmac
 endif
 
+# Loadable kernel modules
+PRODUCT_PACKAGES += \
+    init.lkm.rc \
+    lkm_loader
+
 # Media config
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_ODM)/etc/media_codecs_google_audio.xml \
