@@ -52,6 +52,9 @@ endif
 BOARD_KERNEL_BASE       := 0x80080000
 BOARD_KERNEL_PAGESIZE   := 4096
 
+# Light
+include hardware/nvidia/light/BoardLight.mk
+
 # Lineage Hardware Support
 JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|device/nvidia/foster/lineagehw|**/*.java
 
