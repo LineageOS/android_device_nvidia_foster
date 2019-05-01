@@ -156,6 +156,10 @@ PRODUCT_PACKAGES += \
     media_profiles.xml
 endif
 
+# Memtrack
+PRODUCT_PACKAGES += \
+    android.hardware.memtrack@1.0-service-nvidia
+
 # Netflix nrdp
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/nrdp.modelgroup.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/nrdp.modelgroup.xml
