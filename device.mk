@@ -150,6 +150,10 @@ PRODUCT_PACKAGES += \
     cypress-fmac
 endif
 
+# Light
+PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-service-nvidia
+
 # Loadable kernel modules
 PRODUCT_PACKAGES += \
     init.lkm.rc \
