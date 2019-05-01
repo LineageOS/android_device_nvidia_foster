@@ -19,6 +19,7 @@ TARGET_TEGRA_CAMERA   ?= nvcamera
 TARGET_TEGRA_CEC      ?= nvhdmi
 TARGET_TEGRA_MEMTRACK ?= nvmemtrack
 TARGET_TEGRA_OMX      ?= nvmm64
+TARGET_TEGRA_POWER    ?= lineage
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 $(call inherit-product, device/nvidia/touch/raydium.mk)
@@ -180,6 +181,13 @@ PRODUCT_COPY_FILES += \
 # NVIDIA specific permissions
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/com.nvidia.feature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nvidia.feature.xml
+
+# Power
+ifeq ($(TARGET_TEGRA_POWER),lineage)
+TARGET_POWERHAL_VARIANT := tegra
+PRODUCT_PACKAGES += \
+    android.hardware.power@1.0-service-nvidia
+endif
 
 # Thermal
 PRODUCT_PACKAGES += \
