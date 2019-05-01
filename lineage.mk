@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+TARGET_TEGRA_POWER ?= lineage
+
 # Unified device support
 TARGET_INIT_VENDOR_LIB := libinit_foster
 PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
