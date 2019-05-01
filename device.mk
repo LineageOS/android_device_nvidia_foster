@@ -139,6 +139,10 @@ PRODUCT_PACKAGES += \
     gps.conf \
     gpsconfig.xml
 
+# Light
+PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-service-nvidia
+
 # Loadable kernel modules
 PRODUCT_PACKAGES += \
     init.lkm.rc \
