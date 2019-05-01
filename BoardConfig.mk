@@ -52,6 +52,9 @@ endif
 BOARD_KERNEL_BASE       := 0x80080000
 BOARD_KERNEL_PAGESIZE   := 4096
 
+# Light
+include hardware/nvidia/light/BoardLight.mk
+
 # Recovery
 TARGET_RECOVERY_FSTAB    := device/nvidia/foster/initfiles/fstab.foster
 BOARD_SUPPRESS_EMMC_WIPE := true
