@@ -181,6 +181,10 @@ PRODUCT_PACKAGES += \
     thermalhal.loki_e_lte.xml \
     thermalhal.loki_e_wifi.xml
 
+# Trust HAL
+PRODUCT_PACKAGES += \
+    vendor.lineage.trust@1.0-service
+
 # Variant blobs script
 PRODUCT_COPY_FILES += \
      $(LOCAL_PATH)/releasetools/variant_blobs.sh:install/bin/variant_blobs.sh
