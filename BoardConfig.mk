@@ -33,6 +33,9 @@ TARGET_OTA_ASSERT_DEVICE := foster,darcy,mdarcy,sif,jetson,porg,loki,icosa
 # Bootloader versions
 TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
 
+# Manifest
+DEVICE_MANIFEST_FILE := device/nvidia/foster/manifest.xml
+
 # Bluetooth
 ifeq ($(TARGET_TEGRA_BT),bcm)
 BOARD_CUSTOM_BT_CONFIG := device/nvidia/foster/comms/vnd_foster.txt
