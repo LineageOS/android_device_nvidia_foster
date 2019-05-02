@@ -187,6 +187,10 @@ PRODUCT_PACKAGES += \
     thermalhal.loki_e_wifi.xml \
     thermalhal.sif.xml
 
+# Trust HAL
+PRODUCT_PACKAGES += \
+    vendor.lineage.trust@1.0-service
+
 # WiFi
 ifeq ($(TARGET_TEGRA_WIFI),bcm)
 PRODUCT_PACKAGES += \
