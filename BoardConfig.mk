@@ -105,6 +105,9 @@ BOARD_SEPOLICY_DIRS += device/nvidia/foster/sepolicy/
 # Pro model doesn't support trim commands
 BOARD_SUPPRESS_EMMC_WIPE := true
 
+# Forced shims
+TARGET_LD_SHIM_LIBS := /vendor/bin/glgps_nvidiaTegra2android|/system/lib/libsensor.so
+
 ## Vendor Init
 TARGET_INIT_VENDOR_LIB := libinit_shield libinit_foster
 TARGET_LIBINIT_DEFINES_FILE := device/nvidia/foster/init/init_foster.cpp
