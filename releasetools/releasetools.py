@@ -22,6 +22,11 @@ import os
 TARGET_DIR = os.getenv('OUT')
 STAGING_PART = '/dev/block/USP'
 
+def FullOTA_InstallEnd(info):
+  info.script.Mount("/vendor")
+  info.script.AppendExtra('assert(run_program("/tmp/install/bin/variant_blobs.sh") == 0);')
+  info.script.Unmount("/vendor")
+
 def FullOTA_Assertions(info):
   if 'RADIO/foster_e.blob' in info.input_zip.namelist():
     CopyBlobs(info.input_zip, info.output_zip)
