@@ -135,6 +135,15 @@ PRODUCT_PACKAGES += \
     charger \
     charger_res_images
 
+# EKS
+ifeq ($(TARGET_TEGRA_KEYSTORE),nvkeystore)
+PRODUCT_PACKAGES += \
+    eks.dat \
+    eks_darcy.dat \
+    eks_mdarcy.dat \
+    eks_public.dat
+endif
+
 # Fingerprint override
 BUILD_FINGERPRINT := NVIDIA/foster_e/foster:8.0.0/OPR6.170623.010/3507953_1441.7411:user/release-keys
 
