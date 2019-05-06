@@ -126,6 +126,15 @@ PRODUCT_PACKAGES += \
     charger \
     charger_res_images
 
+# EKS
+ifeq ($(TARGET_TEGRA_KEYSTORE),nvkeystore)
+PRODUCT_PACKAGES += \
+    eks.dat \
+    eks_darcy.dat \
+    eks_mdarcy.dat \
+    eks_public.dat
+endif
+
 # GPS
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl \
