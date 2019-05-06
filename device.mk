@@ -25,6 +25,7 @@ TARGET_TEGRA_VARIANT    ?= common
 TARGET_TEGRA_AUDIO    ?= nvaudio
 TARGET_TEGRA_BT       ?= bcm
 TARGET_TEGRA_CEC      ?= nvhdmi
+TARGET_TEGRA_KEYSTORE ?= nvkeystore
 TARGET_TEGRA_MEMTRACK ?= nvmemtrack
 TARGET_TEGRA_OMX      ?= nvmm
 TARGET_TEGRA_PHS      ?= nvphs
@@ -146,6 +147,17 @@ endif
 PRODUCT_PACKAGES += \
     charger \
     charger_res_images
+
+# EKS
+ifeq ($(TARGET_TEGRA_KEYSTORE),nvkeystore)
+PRODUCT_PACKAGES += \
+    init.eks2.rc \
+    eks2_darcy.dat \
+    eks2_foster.dat \
+    eks2_mdarcy.dat \
+    eks2_public.dat \
+    eks2_sif.dat
+endif
 
 # Joycon daemon
 PRODUCT_PACKAGES += \

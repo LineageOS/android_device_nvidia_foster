@@ -502,3 +502,11 @@ LOCAL_MODULE_SUFFIX := .sh
 LOCAL_MODULE_CLASS  := EXECUTABLES
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := init.eks2.rc
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_SRC_FILES            := init.eks2.rc
+LOCAL_VENDOR_MODULE        := true
+LOCAL_MODULE_RELATIVE_PATH := init
+include $(BUILD_PREBUILT)
