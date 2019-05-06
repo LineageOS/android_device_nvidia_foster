@@ -20,3 +20,18 @@ LD_LIBRARY_PATH=/vendor/lib64
 if ! [ "$(getprop ro.hardware)" == "loki_e_wifi" -o "$(getprop ro.hardware)" == "loki_e_lte" -o "$(getprop ro.hardware)" == "loki_e_base" ]; then
   /vendor/bin/toybox_vendor rm -rf "/vendor/app/ConsoleUI"
 fi;
+
+if [ "$(getprop ro.hardware)" == "darcy" -o "$(getprop ro.hardware)" == "sif" ]; then
+  /vendor/bin/toybox_vendor rm "/vendor/app/eks2/eks2.dat"
+  /vendor/bin/toybox_vendor rm "/vendor/app/eks2/eks2_public.dat"
+  /vendor/bin/toybox_vendor mv "/vendor/app/eks2/eks2_darcy.dat" "/vendor/app/eks2/eks2.dat"
+elif [ "$(getprop ro.hardware)" == "jetson_cv" -o "$(getprop ro.hardware)" == "jetson_e" ]; then
+  /vendor/bin/toybox_vendor rm "/vendor/app/eks2/eks2.dat"
+  /vendor/bin/toybox_vendor rm "/vendor/app/eks2/eks2_darcy.dat"
+  /vendor/bin/toybox_vendor rm "/vendor/app/eks2/eks2_mdarcy.dat"
+  /vendor/bin/toybox_vendor mv "/vendor/app/eks2/eks2_public.dat" "/vendor/app/eks2/eks2.dat"
+else
+  /vendor/bin/toybox_vendor rm "/vendor/app/eks2/eks2_darcy.dat"
+  /vendor/bin/toybox_vendor rm "/vendor/app/eks2/eks2_mdarcy.dat"
+  /vendor/bin/toybox_vendor rm "/vendor/app/eks2/eks2_public.dat"
+fi;
