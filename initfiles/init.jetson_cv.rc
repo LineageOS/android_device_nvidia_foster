@@ -16,7 +16,7 @@ on init
     # Load persistent dm-verity state
     verity_load_state
     # Use Keymaster 1 HAL
-    setprop ro.hardware.keystore v1.tegra
+    setprop ro.hardware.keystore v0.tegra
 
 on fs
     setprop ro.wifi.sdmmc 1

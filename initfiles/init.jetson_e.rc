@@ -14,7 +14,7 @@ import /vendor/etc/init/hw/init.lkm.rc
 
 # Use Keymaster 1 HAL
 on init
-    setprop ro.hardware.keystore v1.tegra
+    setprop ro.hardware.keystore v0.tegra
 
 on fs
     setprop ro.wifi.sdmmc 1
