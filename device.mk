@@ -17,6 +17,7 @@
 TARGET_TEGRA_AUDIO    ?= nvaudio
 TARGET_TEGRA_CAMERA   ?= nvcamera
 TARGET_TEGRA_CEC      ?= nvhdmi
+TARGET_TEGRA_KEYSTORE ?= nvkeystore
 TARGET_TEGRA_OMX      ?= nvmm
 TARGET_TEGRA_PHS      ?= nvphs
 
@@ -134,6 +135,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     charger \
     charger_res_images
+
+# EKS
+ifeq ($(TARGET_TEGRA_KEYSTORE),nvkeystore)
+PRODUCT_PACKAGES += \
+    eks2.dat \
+    eks2_darcy.dat \
+    eks2_mdarcy.dat \
+    eks2_public.dat
+endif
 
 # Fingerprint override
 BUILD_FINGERPRINT := NVIDIA/foster_e/foster:8.0.0/OPR6.170623.010/3507953_1441.7411:user/release-keys
