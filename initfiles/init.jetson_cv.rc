@@ -16,6 +16,18 @@ on init
     # Use Keymaster 1 HAL
     setprop ro.hardware.keystore v1.tegra
 
+# override cpuset cpus to 0-3, mems to 0
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/mems 0
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/foreground/boost/mems 0
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/background/mems 0
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/system-background/mems 0
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/top-app/mems 0
+
 on fs
     setprop ro.wifi.sdmmc 1
     setprop audio.custompolicy 1
