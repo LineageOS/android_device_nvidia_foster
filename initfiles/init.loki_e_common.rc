@@ -21,6 +21,12 @@ on init
     write /dev/cpuset/top-app/cpus 0-3
     write /dev/cpuset/top-app/mems 0
 
+    # Use Keymaster 0 HAL
+    setprop ro.hardware.keystore v0.tegra
+
+    # TLK SecureOS
+    setprop ro.boot.secureos tlk
+
 service charger /charger
     class charger
     seclabel u:r:healthd:s0
