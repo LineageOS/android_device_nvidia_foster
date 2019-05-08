@@ -8,6 +8,19 @@
 
 import /vendor/etc/init/hw/init.loki_foster_e_common.rc
 
+# override cpuset cpus to 0-3, mems to 0
+on init
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/mems 0
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/foreground/boost/mems 0
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/background/mems 0
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/system-background/mems 0
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/top-app/mems 0
+
 service charger /charger
     class charger
     seclabel u:r:healthd:s0
