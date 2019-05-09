@@ -50,6 +50,10 @@ PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
     ro.product.vendor.model \
     ro.product.vendor.name
 
+# Overlays
+DEVICE_PACKAGE_OVERLAYS += \
+    device/nvidia/foster/overlay
+
 # Init related
 PRODUCT_PACKAGES += \
     fstab.darcy \
