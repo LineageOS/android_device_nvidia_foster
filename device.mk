@@ -32,6 +32,8 @@ PRODUCT_PACKAGES += \
     fstab.foster_e_hdd \
     fstab.jetson_cv \
     fstab.jetson_e \
+    fstab.porg \
+    fstab.porg_sd \
     fstab.sif \
     init.darcy.rc \
     init.foster_e.rc \
@@ -40,16 +42,22 @@ PRODUCT_PACKAGES += \
     init.loki_foster_e_common.rc \
     init.jetson_cv.rc \
     init.jetson_e.rc \
+    init.porg.rc \
+    init.porg_sd.rc \
     init.sif.rc \
     init.recovery.darcy.rc \
     init.recovery.foster_e.rc \
     init.recovery.foster_e_hdd.rc \
     init.recovery.jetson_cv.rc \
     init.recovery.jetson_e.rc \
+    init.recovery.porg.rc \
+    init.recovery.porg_sd.rc \
     init.recovery.sif.rc \
     power.darcy.rc \
     power.foster_e.rc \
     power.foster_e_hdd.rc \
     power.jetson_cv.rc \
     power.jetson_e.rc \
+    power.porg.rc \
+    power.porg_sd.rc \
     power.sif.rc
