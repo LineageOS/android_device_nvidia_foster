@@ -1,0 +1,39 @@
+# Copyright (c) 2018, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import /vendor/etc/init/hw/init.tegra_sd.rc
+import /vendor/etc/init/hw/init.t210.rc
+import /vendor/etc/init/hw/init.foster_e_common.rc
+
+on fs
+    mount_all /vendor/etc/fstab.porg_sd
+    swapon_all /vendor/etc/fstab.porg_sd
+
+    # Create symlinks for VTS compatibility (must be after fstab mounting)
+    symlink /dev/block/platform/sdhci-tegra.0/by-name/DTB /dev/block/platform/sdhci-tegra.0/by-name/dtbo
+    symlink /dev/block/platform/sdhci-tegra.0/by-name/LNX /dev/block/platform/sdhci-tegra.0/by-name/boot
+    symlink /dev/block/platform/sdhci-tegra.0/by-name/SOS /dev/block/platform/sdhci-tegra.0/by-name/recovery
+
+    write /sys/block/mmcblk0/queue/iosched/slice_idle 0
+    write /sys/block/mmcblk0/queue/iostats 0
+    write /sys/block/mmcblk0/queue/nr_requests 256
+
+# override cpuset cpus to 0-3
+on init
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/top-app/cpus 0-3
+
+    setprop ro.vendor.nv.usb.pid.mtp EE02
+    setprop ro.vendor.nv.usb.pid.mtp.adb EE03
+    setprop ro.vendor.nv.usb.pid.ptp EE04
+    setprop ro.vendor.nv.usb.pid.ptp.adb EE05
+    setprop ro.vendor.nv.usb.pid.rndis EE08
+    setprop ro.vendor.nv.usb.pid.rndis.adb EE09
