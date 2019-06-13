@@ -87,6 +87,14 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "CF0C";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "7103";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "7103";
+	} else if (ti->is_model("icosa") || ti->is_model("icosa_emmc")) {
+		mDeviceUsbIds["ro.vendor.nv.usb.vid"]           = "057E";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "2000";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "2000";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "2000";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "2000";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "2000";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "2000";
 	} else {
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "EE02";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "EE03";
@@ -118,7 +126,9 @@ void vendor_load_properties()
 	                                             { "jetson", "jetson_cv",    "Jetson TX1",        2597, 2180, tegra_init::boot_dev_type::EMMC, 21, 320 },
 	                                             { "jetson", "jetson_e",     "Jetson TX1",        2595,    0, tegra_init::boot_dev_type::EMMC, 21, 320 },
 	                                             { "porg",   "porg_sd",      "Jetson Nano",       3448,    0, tegra_init::boot_dev_type::SD,   28, 320 },
-	                                             { "porg",   "porg",         "Jetson Nano",       3448,    2, tegra_init::boot_dev_type::EMMC, 28, 320 } };
+	                                             { "porg",   "porg",         "Jetson Nano",       3448,    2, tegra_init::boot_dev_type::EMMC, 28, 320 },
+	                                             { "icosa",  "icosa_emmc",   "Switch",              20,    1, tegra_init::boot_dev_type::EMMC, 27, 192 },
+	                                             { "icosa",  "icosa",        "Switch",              20,    0, tegra_init::boot_dev_type::SD,   27, 192 } };
 	tegra_init::build_version tav = { "9", "PPR1.180610.011", "4199485_1739.5219" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "SOS", "UDA", "USP", "vendor" };
 
@@ -131,6 +141,8 @@ void vendor_load_properties()
 			ti.property_set("ro.product.vendor.device", "t210");
 			ti.property_set("ro.product.vendor.model", ti.get_model());
 		}
+	} else if (ti.is_model("icosa") || ti.is_model("icosa_emmc")) {
+		parts.erase(std::remove(parts.begin(), parts.end(), "USP"), parts.end()); 
 	}
 
 	ti.set_properties();
