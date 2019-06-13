@@ -79,8 +79,31 @@ void set_usb_props(tegra_init *ti)
 	                                                     { "ro.nv.usb.pid.ptp",              "EE04" },
 	                                                     { "ro.nv.usb.pid.ptp.adb",          "EE05" } };
 
-	for (auto const& nvusb : mcommon)
-		ti->property_set(nvusb.first, nvusb.second);
+	std::map<std::string, std::string> micosa        = { { "ro.nv.usb.vid",                  "057E" },
+	                                                     { "ro.nv.usb.pid.rndis.acm.adb",    "2000" },
+	                                                     { "ro.nv.usb.pid.adb",              "2000" },
+	                                                     { "ro.nv.usb.pid.accessory.adb",    "2000" },
+	                                                     { "ro.nv.usb.pid.audio_source.adb", "2000" },
+	                                                     { "ro.nv.usb.pid.ncm",              "2000" },
+	                                                     { "ro.nv.usb.pid.ncm.adb",          "2000" },
+	                                                     { "ro.nv.usb.pid.ecm",              "2000" },
+	                                                     { "ro.nv.usb.pid.ecm.adb",          "2000" },
+	                                                     { "ro.nv.usb.pid.midi",             "2000" },
+	                                                     { "ro.nv.usb.pid.midi.adb",         "2000" },
+	                                                     { "ro.nv.usb.pid.mtp",              "2000" },
+	                                                     { "ro.nv.usb.pid.mtp.adb",          "2000" },
+	                                                     { "ro.nv.usb.pid.rndis",            "2000" },
+	                                                     { "ro.nv.usb.pid.rndis.adb",        "2000" },
+	                                                     { "ro.nv.usb.pid.ptp",              "2000" },
+	                                                     { "ro.nv.usb.pid.ptp.adb",          "2000" } };
+
+	if (ti->is_model("icosa")) {
+		for (auto const& nvusb : micosa)
+			ti->property_set(nvusb.first, nvusb.second);
+	} else {
+		for (auto const& nvusb : mcommon)
+			ti->property_set(nvusb.first, nvusb.second);
+	}
 
 	if (ti->is_model("foster_e")) {
 		for (auto const& nvusb : mfoster_e)
@@ -113,7 +136,8 @@ void vendor_load_properties()
 	                                             { "jetson", "jetson_cv",    "Jetson TX1",        2597, 2180, tegra_init::boot_dev_type::EMMC, 21, 320 },
 	                                             { "jetson", "jetson_e",     "Jetson TX1",        2595,    0, tegra_init::boot_dev_type::EMMC, 21, 320 },
 	                                             { "porg",   "porg_sd",      "Jetson Nano",       3448,    0, tegra_init::boot_dev_type::SD,   23, 320 },
-	                                             { "porg",   "porg",         "Jetson Nano",       3448,    2, tegra_init::boot_dev_type::EMMC, 23, 320 } };
+	                                             { "porg",   "porg",         "Jetson Nano",       3448,    2, tegra_init::boot_dev_type::EMMC, 23, 320 },
+	                                             { "icosa",  "icosa",        "Switch",               0,    0, tegra_init::boot_dev_type::SD,   23, 320 } };
 	tegra_init::build_version sav = { "8.0.0", "OPR6.170623.010", "3507953_1441.7411" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "MSC", "UDA", "USP", "MDA", "SOS", "BMP", "vendor" };
 

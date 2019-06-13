@@ -47,6 +47,14 @@ LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE        := fstab.icosa
+LOCAL_MODULE_TAGS   := optional eng
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := fstab.porg_sd
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE        := fstab.jetson_e
 LOCAL_MODULE_TAGS   := optional eng
 LOCAL_MODULE_CLASS  := ETC
@@ -133,6 +141,15 @@ LOCAL_MODULE               := init.foster_e_hdd.rc
 LOCAL_MODULE_TAGS          := optional eng
 LOCAL_MODULE_CLASS         := ETC
 LOCAL_SRC_FILES            := init.foster_e_hdd.rc
+LOCAL_VENDOR_MODULE        := true
+LOCAL_MODULE_RELATIVE_PATH := init/hw
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := init.icosa.rc
+LOCAL_MODULE_TAGS          := optional eng
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_SRC_FILES            := init.icosa.rc
 LOCAL_VENDOR_MODULE        := true
 LOCAL_MODULE_RELATIVE_PATH := init/hw
 include $(BUILD_PREBUILT)
@@ -227,6 +244,14 @@ include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE       := init.recovery.foster_e_hdd.rc
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := init.recovery.foster.rc
+LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := init.recovery.icosa.rc
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := init.recovery.foster.rc
@@ -346,6 +371,13 @@ LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
 LOCAL_ODM_MODULE   := true
 LOCAL_SRC_FILES    := power.foster_e_common.rc
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := power.icosa.rc
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := power.loki_e_common.rc
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
