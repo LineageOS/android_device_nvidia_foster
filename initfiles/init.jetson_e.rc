@@ -48,3 +48,10 @@ on init
 
     setprop ro.product.first_api_level 21
     setprop ro.vendor.product.config.shipped_with_full_treble false
+
+    setprop ro.vendor.nv.usb.pid.mtp EE02
+    setprop ro.vendor.nv.usb.pid.mtp.adb EE03
+    setprop ro.vendor.nv.usb.pid.ptp EE04
+    setprop ro.vendor.nv.usb.pid.ptp.adb EE05
+    setprop ro.vendor.nv.usb.pid.rndis EE08
+    setprop ro.vendor.nv.usb.pid.rndis.adb EE09
