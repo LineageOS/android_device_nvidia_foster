@@ -21,3 +21,11 @@ on init
 
     setprop ro.product.first_api_level 27
     setprop ro.vendor.product.config.shipped_with_full_treble false
+
+    setprop ro.vendor.nv.usb.vid 057E
+    setprop ro.vendor.nv.usb.pid.mtp 2000
+    setprop ro.vendor.nv.usb.pid.mtp.adb 2000
+    setprop ro.vendor.nv.usb.pid.ptp 2000
+    setprop ro.vendor.nv.usb.pid.ptp.adb 2000
+    setprop ro.vendor.nv.usb.pid.rndis 2000
+    setprop ro.vendor.nv.usb.pid.rndis.adb 2000
