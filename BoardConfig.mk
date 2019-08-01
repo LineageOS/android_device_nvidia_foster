@@ -24,9 +24,15 @@ BOARD_VENDORIMAGE_PARTITION_SIZE   := 805306368
 TARGET_USERIMAGES_USE_EXT4         := true
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR             := vendor
+BOARD_BUILD_SYSTEM_ROOT_IMAGE      := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB    := device/nvidia/foster/initfiles/fstab.foster
 BOARD_SUPPRESS_EMMC_WIPE := true
+
+# Treble
+BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+BOARD_VNDK_VERSION                     := current
+PRODUCT_FULL_TREBLE_OVERRIDE           := true
 
 include device/nvidia/t210-common/BoardConfigCommon.mk
