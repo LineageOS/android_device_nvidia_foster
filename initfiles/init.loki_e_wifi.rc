@@ -14,3 +14,6 @@ import /vendor/etc/init/hw/init.ray_touch.rc
 on fs
     mount_all /vendor/etc/fstab.loki_e_wifi
     swapon_all /vendor/etc/fstab.loki_e_wifi
+
+on init
+    setprop ro.product.vendor.name loki_e_wifi
