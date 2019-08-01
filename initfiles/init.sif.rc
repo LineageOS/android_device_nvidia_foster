@@ -55,3 +55,7 @@ on init
     write /dev/cpuset/background/cpus 0-3
     write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/top-app/cpus 0-3
+
+    setprop ro.product.vendor.device sif
+    setprop ro.product.vendor.model "SHIELD Android TV"
+    setprop ro.product.vendor.name sif
