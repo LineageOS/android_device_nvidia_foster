@@ -43,3 +43,6 @@ on charger
 on init
     setprop ro.product.vendor.device loki
     setprop ro.product.vendor.model "SHIELD Portable"
+
+    setprop ro.product.first_api_level 21
+    setprop ro.vendor.product.config.shipped_with_full_treble false
