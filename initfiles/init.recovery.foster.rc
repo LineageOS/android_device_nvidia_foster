@@ -14,3 +14,8 @@
 
 import init.recovery.xusb.configfs.usb.rc
 import init.recovery.usb.configfs.rc
+
+on init
+    setprop ro.product.vendor.device foster
+    setprop ro.product.vendor.model "SHIELD Android TV"
+    setprop ro.product.vendor.name foster_e
