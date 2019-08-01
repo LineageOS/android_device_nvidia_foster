@@ -19,3 +19,8 @@ on init
     setprop ro.product.vendor.device foster
     setprop ro.product.vendor.model "SHIELD Android TV"
     setprop ro.product.vendor.name foster_e
+
+    setprop ro.vendor.nv.usb.vid 0955
+    setprop ro.vendor.nv.usb.pid.adb 7104
+    setprop ro.vendor.nv.usb.pid.mtp B430
+    setprop ro.vendor.nv.usb.pid.mtp.adb B431
