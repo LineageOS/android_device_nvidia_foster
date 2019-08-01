@@ -40,3 +40,8 @@ on property:sys.boot_completed=1
 on boot
     # start Loadable Kernel Module service
     start lkm_loader
+
+on init
+    setprop ro.product.vendor.device jetson
+    setprop ro.product.vendor.model "Jetson P2530"
+    setprop ro.product.vendor.name jetson_e
