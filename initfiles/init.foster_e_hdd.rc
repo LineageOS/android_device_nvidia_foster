@@ -41,3 +41,6 @@ on init
     setprop ro.product.vendor.device foster
     setprop ro.product.vendor.model "SHIELD Android TV"
     setprop ro.product.vendor.name foster_e_hdd
+
+    setprop ro.product.first_api_level 21
+    setprop ro.vendor.product.config.shipped_with_full_treble false
