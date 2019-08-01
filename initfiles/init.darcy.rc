@@ -58,3 +58,6 @@ on init
     setprop ro.product.vendor.device darcy
     setprop ro.product.vendor.model "SHIELD Android TV"
     setprop ro.product.vendor.name darcy
+
+    setprop ro.product.first_api_level 23
+    setprop ro.vendor.product.config.shipped_with_full_treble false
