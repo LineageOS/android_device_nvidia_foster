@@ -37,3 +37,7 @@ service cyupdate /vendor/bin/cyupdate.sh
     oneshot
     disabled
 
+on init
+    setprop ro.product.vendor.device foster
+    setprop ro.product.vendor.model "SHIELD Android TV"
+    setprop ro.product.vendor.name foster_e_hdd
