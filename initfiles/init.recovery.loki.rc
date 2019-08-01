@@ -21,6 +21,11 @@ on init
     setprop ro.product.vendor.model "SHIELD Portable"
     setprop ro.product.vendor.name loki_e_wifi
 
+    setprop ro.vendor.nv.usb.vid 0955
+    setprop ro.vendor.nv.usb.pid.adb 7104
+    setprop ro.vendor.nv.usb.pid.mtp B424
+    setprop ro.vendor.nv.usb.pid.mtp.adb B425
+
 on post-fs
     # touchscreen
     mkdir /mnt/vendor/factory
