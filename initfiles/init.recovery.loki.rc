@@ -16,6 +16,11 @@ import init.recovery.ray_touch.rc
 import init.recovery.xusb.configfs.usb.rc
 import init.recovery.usb.configfs.rc
 
+on init
+    setprop ro.product.vendor.device loki
+    setprop ro.product.vendor.model "SHIELD Portable"
+    setprop ro.product.vendor.name loki_e_wifi
+
 on post-fs
     # touchscreen
     mkdir /mnt/vendor/factory
