@@ -13,3 +13,8 @@ import /vendor/etc/init/hw/init.foster_e_common.rc
 on fs
     mount_all /vendor/etc/fstab.icosa
     swapon_all /vendor/etc/fstab.icosa
+
+on init
+    setprop ro.product.vendor.device icosa
+    setprop ro.product.vendor.model "Switch"
+    setprop ro.product.vendor.name icosa
