@@ -59,3 +59,6 @@ on init
     setprop ro.product.vendor.device sif
     setprop ro.product.vendor.model "SHIELD Android TV"
     setprop ro.product.vendor.name sif
+
+    setprop ro.product.first_api_level 28
+    setprop ro.vendor.product.config.shipped_with_full_treble true
