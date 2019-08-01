@@ -62,3 +62,15 @@ on property:init.svc.vendor.lkm_loader=stopped
 
 on init
     setprop ro.hardware.gatekeeper tlk.tegra
+
+    setprop ro.vendor.nv.usb.vid 0955
+    setprop ro.vendor.nv.usb.pid.rndis.acm.adb AF00
+    setprop ro.vendor.nv.usb.pid.adb 7104
+    setprop ro.vendor.nv.usb.pid.accessory.adb 7105
+    setprop ro.vendor.nv.usb.pid.audio_source.adb 7106
+    setprop ro.vendor.nv.usb.pid.ncm 7107
+    setprop ro.vendor.nv.usb.pid.ncm.adb 7108
+    setprop ro.vendor.nv.usb.pid.midi 7109
+    setprop ro.vendor.nv.usb.pid.midi.adb 710A
+    setprop ro.vendor.nv.usb.pid.ecm 710B
+    setprop ro.vendor.nv.usb.pid.ecm.adb 710C
