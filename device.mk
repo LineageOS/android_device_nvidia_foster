@@ -21,6 +21,7 @@ TARGET_TEGRA_KEYSTORE ?= nvkeystore
 TARGET_TEGRA_MEMTRACK ?= nvmemtrack
 TARGET_TEGRA_OMX      ?= nvmm
 TARGET_TEGRA_PHS      ?= nvphs
+TARGET_TEGRA_WIDEVINE ?= true
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 $(call inherit-product, device/nvidia/touch/raydium.mk)
