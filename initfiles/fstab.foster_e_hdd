@@ -6,7 +6,7 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 /dev/block/platform/tegra-sata.0/by-name/APP           /                   ext4      ro,noatime                                                          wait
-/dev/block/platform/tegra-sata.0/by-name/CAC           /cache              ext4      noatime,nosuid,nodev,data=ordered,nodelalloc,barrier=1              wait,formattable
+/dev/block/platform/tegra-sata.0/by-name/CAC           /cache              ext4      noatime,nosuid,nodev,data=ordered,nodelalloc,barrier=1              wait,formattable,recoveryonly
 /dev/block/platform/tegra-sata.0/by-name/LNX           /boot               emmc      defaults                                                            defaults
 /dev/block/platform/tegra-sata.0/by-name/MSC           /misc               emmc      defaults                                                            defaults
 /dev/block/platform/tegra-sata.0/by-name/UDA           /data               ext4      noatime,nosuid,nodev,data=ordered,noauto_da_alloc,discard,barrier=0,init_itable=100   wait,check,formattable,encryptable=/dev/block/platform/tegra-sata.0/by-name/MDA,quota
