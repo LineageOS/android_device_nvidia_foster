@@ -54,10 +54,6 @@
         <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                  samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
     </devicePort>
-    <devicePort tagName="Gamecast-Out" type="AUDIO_DEVICE_OUT_GAMECAST" role="sink">
-        <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
-                 samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
-    </devicePort>
 
     <!-- Input devices declaration, i.e. Source DEVICE PORT -->
     <devicePort tagName="Built-In Mic" type="AUDIO_DEVICE_IN_BUILTIN_MIC" role="source">
@@ -75,11 +71,6 @@
                  samplingRates="8000,16000" channelMasks="AUDIO_CHANNEL_IN_MONO"/>
     </devicePort>
     <devicePort tagName="Digital Dock HS Mic" type="AUDIO_DEVICE_IN_DGTL_DOCK_HEADSET" role="source">
-        <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
-                 samplingRates="8000,11025,12000,16000,22050,24000,32000,44100,48000"
-                 channelMasks="AUDIO_CHANNEL_IN_MONO,AUDIO_CHANNEL_IN_STEREO"/>
-    </devicePort>
-    <devicePort tagName="Gamecast-In" type="AUDIO_DEVICE_IN_GAMECAST" role="source">
         <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                  samplingRates="8000,11025,12000,16000,22050,24000,32000,44100,48000"
                  channelMasks="AUDIO_CHANNEL_IN_MONO,AUDIO_CHANNEL_IN_STEREO"/>
