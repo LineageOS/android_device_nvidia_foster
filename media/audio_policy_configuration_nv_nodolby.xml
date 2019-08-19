@@ -48,7 +48,6 @@
         <module name="primary" halVersion="2.0">
             <attachedDevices>
                 <item>Speaker</item>
-                <item>Gamecast-In</item>
                 <item>Built-In Mic</item>
             </attachedDevices>
             <defaultOutputDevice>Speaker</defaultOutputDevice>
@@ -72,12 +71,10 @@
                        sources="primary_output,multichannel,passthrough,hra"/>
                 <route type="mix" sink="Digital Dock HS"
                        sources="primary_output"/>
-                <route type="mix" sink="Gamecast-Out"
-                       sources="primary_output,multichannel"/>
 
                 <!-- Capture routes -->
                 <route type="mix" sink="primary_input"
-                       sources="Built-In Mic,BT SCO Headset Mic,Digital Dock HS Mic,Gamecast-In,AudioIP-In"/>
+                       sources="Built-In Mic,BT SCO Headset Mic,Digital Dock HS Mic,AudioIP-In"/>
             </routes>
 
         </module>
