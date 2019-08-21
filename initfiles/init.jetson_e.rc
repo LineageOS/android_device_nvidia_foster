@@ -12,9 +12,8 @@ import /vendor/etc/init/hw/init.ray_touch.rc
 import /vendor/etc/init/hw/init.cal.rc
 import /vendor/etc/init/hw/init.lkm.rc
 
-# Use Keymaster 1 HAL
 on init
-    setprop ro.hardware.keystore v1.tegra
+    setprop ro.hardware.gatekeeper trusty.tegra
 
 # override cpuset cpus to 0-3, mems to 0
     write /dev/cpuset/foreground/cpus 0-3
