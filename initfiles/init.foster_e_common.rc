@@ -42,7 +42,7 @@ on fs
 on post-fs-data
 # Set Foster as console mode
     setprop persist.vendor.sys.display.resolution 1920x1080
-    setprop persist.vendor.tegra.composite.policy composite-yuv
+    setprop persist.vendor.tegra.composite.policy assign-windows
     setprop persist.vendor.tegra.composite.range Auto
     setprop sys.wal.off external.db,iu.upload.db
     setprop sys.wal.normal tz4,PGDatabase,launcher.db,playlog.db,music.db
