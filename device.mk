@@ -144,6 +144,10 @@ PRODUCT_PACKAGES += \
     charger \
     charger_res_images
 
+# Joycon daemon
+PRODUCT_PACKAGES += \
+	joycond
+
 # Kernel
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 PRODUCT_COPY_FILES += \
