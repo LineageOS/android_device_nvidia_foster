@@ -20,6 +20,10 @@
    "target_path": "kernel/nvidia/wireguard"
  },
  {
+   "repository": "android_hardware_nintendo_joycond",
+   "target_path": "hardware/nintendo/joycond"
+ },
+ {
    "repository": "android_hardware_nvidia_interfaces",
    "target_path": "hardware/nvidia/interfaces"
  },
