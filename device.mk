@@ -170,6 +170,10 @@ PRODUCT_PACKAGES += \
     eks2_sif.dat
 endif
 
+# Joycon daemon
+PRODUCT_PACKAGES += \
+	joycond
+
 # Kernel
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 PRODUCT_COPY_FILES += \
