@@ -7,17 +7,9 @@
 #is strictly prohibited.
 
 import /vendor/etc/init/hw/init.loki_foster_e_common.rc
-import /vendor/etc/init/hw/init.lkm.rc
-
-on fs
-    # start Early Loadable Kernel Module service
-    exec /vendor/bin/lkm_loader.sh early
-    restorecon_recursive /sys
 
 on boot
     write /sys/devices/system/cpu/cpuquiet/runnable_threads/nr_run_thresholds "6 10 18"
-    # start Loadable Kernel Module service
-    start vendor.lkm_loader
     write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 0
 
     # CPU and GPU governor scaling settings
@@ -68,10 +60,6 @@ on property:init.svc.vendor.lkm_loader=stopped
     chown system system /sys/class/leds/led_lightbar/version
     chown system system /sys/class/leds/led_lightbar/effects
     chown system system /sys/class/leds/led_lightbar/params
-    chmod 660 /sys/bus/hid/drivers/Jarvis/hid_miss_stats
-    chown system system /sys/bus/hid/drivers/Jarvis/hid_miss_stats
-    chmod 660 /sys/bus/hid/drivers/Jarvis/ts_joystick_stats
-    chown system system /sys/bus/hid/drivers/Jarvis/ts_joystick_stats
 
 on property:vendor.debug.enable_console_logs=true && property:ro.build.type=user
     write /proc/sys/kernel/printk "4 7 1 7 3"
