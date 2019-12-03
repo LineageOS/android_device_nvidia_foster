@@ -7,11 +7,17 @@
 #is strictly prohibited.
 #THIS IS A COMMON FILE FOR FOSTER AND LOKI
 
+import /vendor/etc/init/hw/init.lkm.rc
+
 on fs
     setprop ro.wifi.sdmmc 1
     setprop persist.vendor.sys.dpy0.prism 0
     setprop camera.disable_zsl_mode 1
     setprop ro.config.media_vol_default 15
+
+    # start Early Loadable Kernel Module service
+    exec /vendor/bin/lkm_loader.sh early
+    restorecon_recursive /sys
 
 #start pbc daemon
 service pbc2 /system/vendor/bin/pbc2
@@ -45,6 +51,9 @@ on post-fs-data
     chown system system /sys/devices/gpu.0/slcg_enable
 
 on boot
+    # start Loadable Kernel Module service
+    start vendor.lkm_loader
+
     restorecon_recursive /sys/devices/system/cpu/cpufreq/interactive
     setprop persist.vendor.tegra.decompression cde-client
 
@@ -57,6 +66,10 @@ on property:init.svc.vendor.lkm_loader=stopped
     chmod 664 /sys/devices/57000000.gpu/devfreq/57000000.gpu/available_frequencies
     chown system system /sys/devices/57000000.gpu/devfreq/57000000.gpu/available_frequencies
     enable pbc2
+    chmod 660 /sys/bus/hid/drivers/Jarvis/hid_miss_stats
+    chown system system /sys/bus/hid/drivers/Jarvis/hid_miss_stats
+    chmod 660 /sys/bus/hid/drivers/Jarvis/ts_joystick_stats
+    chown system system /sys/bus/hid/drivers/Jarvis/ts_joystick_stats
 
 on init
     setprop ro.hardware.gatekeeper tlk.tegra
