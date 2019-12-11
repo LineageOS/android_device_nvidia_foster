@@ -84,6 +84,8 @@ do_insmod /vendor/lib/modules/snd-soc-tegra210-alt-amx.ko
 do_insmod /vendor/lib/modules/snd-soc-tegra210-alt-dmic.ko
 do_insmod /vendor/lib/modules/snd-soc-tegra210-alt-mvc.ko
 do_insmod /vendor/lib/modules/snd-soc-tegra210-alt-ope.ko
+do_insmod /vendor/lib/modules/snd-soc-rt5640.ko
+do_insmod /vendor/lib/modules/snd-soc-tegra-machine-driver-mobile.ko
 /vendor/bin/log -t "$scriptName" -p i "loading vendor audio modules completed"
 
 do_insmod /vendor/lib/modules/cpufreq_schedutil.ko
