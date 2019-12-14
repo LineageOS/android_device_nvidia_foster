@@ -54,6 +54,9 @@ $(call inherit-product, vendor/nvidia/foster/foster-vendor.mk)
 DEVICE_PACKAGE_OVERLAYS += \
     device/nvidia/foster/overlay
 
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += device/nvidia/foster
+
 # Init related
 PRODUCT_PACKAGES += \
     fstab.batuu \

@@ -15,7 +15,7 @@
 TARGET_TEGRA_POWER ?= lineage
 
 # Unified device support
-TARGET_INIT_VENDOR_LIB := libinit_foster
+TARGET_INIT_VENDOR_LIB := //device/nvidia/foster:libinit_foster
 PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
     ro.product.vendor.device \
     ro.product.vendor.model \
