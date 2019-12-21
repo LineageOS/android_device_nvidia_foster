@@ -51,4 +51,4 @@ on property:sys.boot_completed=1
 
 on boot
     # start Loadable Kernel Module service
-    start lkm_loader
+    start vendor.lkm_loader
