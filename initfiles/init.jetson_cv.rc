@@ -46,7 +46,7 @@ on post-fs-data
 
 on boot
     # start Loadable Kernel Module service
-    start lkm_loader
+    start vendor.lkm_loader
 
 on property:persist.gps.present=true
     symlink /system/etc/android.hardware.location.gps.xml /data/android.hardware.location.gps.xml
