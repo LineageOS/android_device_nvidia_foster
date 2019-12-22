@@ -13,7 +13,7 @@
 /dev/block/platform/tegra-sata.0/by-name/USP           /staging            emmc      defaults                                                            defaults
 /dev/block/platform/tegra-sata.0/by-name/MDA           /metadata           emmc      defaults                                                            defaults
 /dev/block/platform/tegra-sata.0/by-name/SOS           /recovery           emmc      defaults                                                            defaults
-/dev/block/platform/tegra-sata.0/by-name/RP3           /mnt/vendor/wifi_config  ext4    rw,noatime,nosuid,nodev,noexec                                   wait,check
+/dev/block/platform/tegra-sata.0/by-name/RP3           /mnt/vendor/wifi_config  ext4    rw,noatime,nosuid,nodev,noexec                                   wait,check,formattable
 /devices/sdhci-tegra.0/mmc_host*                       auto                vfat      defaults                                                            voldmanaged=sdcard1:auto,encryptable=userdata
 /dev/block/platform/sdhci-tegra.0/by-num/p1            /sdcard             vfat      defaults                                                            recoveryonly
 /dev/block/platform/70090000.xusb/by-num/p1            /usbdrive           vfat      defaults                                                            recoveryonly
