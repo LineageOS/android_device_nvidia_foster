@@ -8,8 +8,6 @@
 
 import /vendor/etc/init/hw/init.tegra_emmc.rc
 import /vendor/etc/init/hw/init.t210.rc
-import /vendor/etc/init/hw/init.cal.rc
-import /vendor/etc/init/hw/init.ray_touch.rc
 import /vendor/etc/init/hw/init.lkm.rc
 
 on init
