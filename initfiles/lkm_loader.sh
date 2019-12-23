@@ -51,6 +51,10 @@ if [ "`cat /proc/device-tree/brcmfmac_pcie_wlan/status`" = "okay" ]; then
         do_insmod /vendor/lib/modules/cy_cfg80211.ko
         do_insmod /vendor/lib/modules/brcmutil.ko
         do_insmod /vendor/lib/modules/brcmfmac.ko
+elif [ "`cat /proc/device-tree/bcmdhd_pcie_wlan/status`" = "okay" ]; then
+        /vendor/bin/log -t "wifiloader" -p i " Loading bcmdhd_pcie driver for wlan"
+        do_insmod /vendor/lib/modules/cfg80211.ko
+        do_insmod /vendor/lib/modules/bcmdhd_pcie.ko
 else
         /vendor/bin/log -t "wifiloader" -p i " Loading bcmdhd driver for wlan"
         do_insmod /vendor/lib/modules/cfg80211.ko
