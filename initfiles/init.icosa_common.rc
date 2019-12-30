@@ -21,3 +21,4 @@ on init
 
 on post-fs
     write /sys/bus/platform/drivers/tegra-reboot2payload/r2p/default_payload_ready 1
+    stop watchdogd
