@@ -16,3 +16,4 @@ import init.recovery.foster_common.rc
 
 on init
     setprop persist.twrp.rotation 270
+    write /sys/bus/platform/drivers/tegra-reboot2payload/r2p/default_payload_ready 1
