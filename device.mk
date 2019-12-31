@@ -129,6 +129,9 @@ PRODUCT_PACKAGES += \
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 PRODUCT_COPY_FILES += \
     $(TARGET_PREBUILT_KERNEL):kernel
+else
+PRODUCT_PACKAGES += \
+    cypress-fmac
 endif
 
 # Media config
