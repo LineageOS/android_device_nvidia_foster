@@ -57,6 +57,7 @@ endif
 TARGET_RECOVERY_FSTAB    := device/nvidia/foster/initfiles/fstab.foster
 BOARD_SUPPRESS_EMMC_WIPE := true
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
+TARGET_RECOVERY_UPDATER_LIBS := librecoveryupdater_tegra
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
