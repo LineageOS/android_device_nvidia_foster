@@ -66,6 +66,13 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B43F";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B440";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B441";
+	} else if (ti->is_model("mdarcy")) {
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "B42A";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "B42B";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "B42C";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B42D";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B42E";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B42F";
 	}
 
 	for (auto const& id : mDeviceUsbIds)
@@ -80,7 +87,8 @@ void vendor_load_properties()
 	//                                              device    name            model               id    sku   boot device type                api  dpi
 	std::vector<tegra_init::devices> devices = { { "foster", "foster_e",     "SHIELD Android TV", 2530,  930, tegra_init::boot_dev_type::EMMC, 21, 320 },
 	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, tegra_init::boot_dev_type::SATA, 21, 320 },
-	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, tegra_init::boot_dev_type::EMMC, 23, 320 } };
+	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, tegra_init::boot_dev_type::EMMC, 23, 320 },
+	                                             { "mdarcy", "mdarcy",       "SHIELD Android TV", 2894, 2551, tegra_init::boot_dev_type::EMMC, 28, 320 } };
 	tegra_init::build_version tav = { "9", "PPR1.180610.011", "4199485_1739.5219" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "SOS", "UDA", "USP", "vendor" };
 
@@ -102,6 +110,10 @@ void vendor_load_properties()
 		ti.recovery_links(parts);
 		ti.property_set("ro.product.vendor.model", ti.property_get("ro.product.model"));
 		ti.property_set("ro.product.vendor.manufacturer", ti.property_get("ro.product.manufacturer"));
+
+		// Unset avb flags. This is to ignore compatibility checks on unified builds
+		if (ti.is_model("mdarcy"))
+			ti.property_set("ro.boot.avb_version", "");
 	}
 
 	if (ti.vendor_context() || ti.recovery_context())
