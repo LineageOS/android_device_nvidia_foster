@@ -61,6 +61,10 @@
                 <!-- Playback routes -->
                 <route type="mix" sink="Speaker"
                        sources="primary_output"/>
+                <route type="mix" sink="Wired Headset"
+                       sources="primary_output"/>
+                <route type="mix" sink="Wired Headphones"
+                       sources="primary_output"/>
                 <route type="mix" sink="BT SCO"
                        sources="primary_output"/>
                 <route type="mix" sink="BT SCO Headset"
