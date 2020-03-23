@@ -21,7 +21,17 @@ import os
 
 TARGET_DIR = os.getenv('OUT')
 STAGING_PART = '/dev/block/USP'
+APP_PART = '/dev/block/APP'
+VENDOR_PART = '/dev/block/vendor'
 ICOSA_SD = '/external_sd/switchroot/android/'
+
+def FullOTA_PostValidate(info):
+  info.script.AppendExtra('run_program("/sbin/e2fsck", "-fy", "' + APP_PART + '");');
+  info.script.AppendExtra('run_program("/sbin/e2fsck", "-fy", "' + VENDOR_PART + '");');
+  info.script.AppendExtra('run_program("/sbin/resize2fs", "' + APP_PART + '");');
+  info.script.AppendExtra('run_program("/sbin/resize2fs", "' + VENDOR_PART + '");');
+  info.script.AppendExtra('run_program("/sbin/e2fsck", "-fy", "' + APP_PART + '");');
+  info.script.AppendExtra('run_program("/sbin/e2fsck", "-fy", "' + VENDOR_PART + '");');
 
 def FullOTA_Assertions(info):
   if 'RADIO/foster_e.blob' in info.input_zip.namelist():
