@@ -159,44 +159,45 @@ fi
 
 # list of ODM modules
 # insmod /odm/lib/modules/example2.ko
+# Upstream has these on odm, but we put all modules on vendor
 /vendor/bin/log -t "$scriptName" -p i "Early Loading LKM Board-ODM modules started"
 
 # Note: load backlight drivers at the earliest.
 # backlight driver
 if [[ "$hardwareName" != +(*foster*|*darcy*|sif) ]]; then
-    do_insmod /odm/lib/modules/lp855x_bl.ko
+    do_insmod /vendor/lib/modules/lp855x_bl.ko
 fi
 
 /vendor/bin/log -t "$scriptName" -p i "loading odm audio modules started"
-do_insmod /odm/lib/modules/snd-soc-tegra-machine-driver-mobile.ko
+do_insmod /vendor/lib/modules/snd-soc-tegra-machine-driver-mobile.ko
 /vendor/bin/log -t "$scriptName" -p i "loading odm audio modules completed"
 
 if [[ "$hardwareName" != +(*foster*|*darcy*|sif) ]]; then
     # Load Touchscreen module before touch service is invoked
-    do_insmod /odm/lib/modules/rm31080a_ctrl.ko
-    do_insmod /odm/lib/modules/rm31080a_ts.ko
+    do_insmod /vendor/lib/modules/rm31080a_ctrl.ko
+    do_insmod /vendor/lib/modules/rm31080a_ts.ko
 
     # Load Sharp touch
-    do_insmod /odm/lib/modules/lr388k7_ts.ko
+    do_insmod /vendor/lib/modules/lr388k7_ts.ko
 fi
 
 # Peripheral
-do_insmod /odm/lib/modules/ina230.ko
-do_insmod /odm/lib/modules/ina3221.ko
+do_insmod /vendor/lib/modules/ina230.ko
+do_insmod /vendor/lib/modules/ina3221.ko
 
 # Camera sensors
 /vendor/bin/log -t "$scriptName" -p i "loading ODM Camera started"
 if [[ "$hardwareName" != +(*foster*|*darcy*|sif) ]]; then
-    do_insmod /odm/lib/modules/pca9570.ko
-    do_insmod /odm/lib/modules/tc358840.ko
-    do_insmod /odm/lib/modules/ov5693.ko
-    do_insmod /odm/lib/modules/ov9281.ko
-    do_insmod /odm/lib/modules/ov10823.ko
-    do_insmod /odm/lib/modules/ov23850.ko
-    do_insmod /odm/lib/modules/lc898212.ko
-    do_insmod /odm/lib/modules/imx185.ko
-    do_insmod /odm/lib/modules/imx219.ko
-    do_insmod /odm/lib/modules/imx274.ko
+    do_insmod /vendor/lib/modules/pca9570.ko
+    do_insmod /vendor/lib/modules/tc358840.ko
+    do_insmod /vendor/lib/modules/ov5693.ko
+    do_insmod /vendor/lib/modules/ov9281.ko
+    do_insmod /vendor/lib/modules/ov10823.ko
+    do_insmod /vendor/lib/modules/ov23850.ko
+    do_insmod /vendor/lib/modules/lc898212.ko
+    do_insmod /vendor/lib/modules/imx185.ko
+    do_insmod /vendor/lib/modules/imx219.ko
+    do_insmod /vendor/lib/modules/imx274.ko
 fi
 /vendor/bin/log -t "$scriptName" -p i "loading ODM Camera completed"
 
@@ -206,18 +207,18 @@ do_insmod /vendor/lib/modules/gpio_timed_keys.ko
 
 # TV tuner drivers
 if [ "$hardwareName" != "sif" ]; then
-    do_insmod /odm/lib/modules/lgdt3306a.ko
-    do_insmod /odm/lib/modules/si2168.ko
-    do_insmod /odm/lib/modules/si2157.ko
-    do_insmod /odm/lib/modules/lgdt3305.ko
-    do_insmod /odm/lib/modules/tda18272.ko
-    do_insmod /odm/lib/modules/em28xx.ko
-    do_insmod /odm/lib/modules/em28xx-dvb.ko
-    do_insmod /odm/lib/modules/em28xx-rc.ko
-    do_insmod /odm/lib/modules/cx25840.ko
-    do_insmod /odm/lib/modules/cx2341x.ko
-    do_insmod /odm/lib/modules/cx231xx.ko
-    do_insmod /odm/lib/modules/cx231xx-dvb.ko
+    do_insmod /vendor/lib/modules/lgdt3306a.ko
+    do_insmod /vendor/lib/modules/si2168.ko
+    do_insmod /vendor/lib/modules/si2157.ko
+    do_insmod /vendor/lib/modules/lgdt3305.ko
+    do_insmod /vendor/lib/modules/tda18272.ko
+    do_insmod /vendor/lib/modules/em28xx.ko
+    do_insmod /vendor/lib/modules/em28xx-dvb.ko
+    do_insmod /vendor/lib/modules/em28xx-rc.ko
+    do_insmod /vendor/lib/modules/cx25840.ko
+    do_insmod /vendor/lib/modules/cx2341x.ko
+    do_insmod /vendor/lib/modules/cx231xx.ko
+    do_insmod /vendor/lib/modules/cx231xx-dvb.ko
     /vendor/bin/log -t "$scriptName" -p i "Early loading ODM TV tuner modules completed"
 fi
 
@@ -253,24 +254,25 @@ do_insmod /vendor/lib/modules/hid-betopff.ko
 
 # list of ODM modules
 # insmod /odm/lib/modules/example2.ko
+# Upstream has these on odm, but we put all modules on vendor
 /vendor/bin/log -t "$scriptName" -p i "Loading LKM Board-ODM modules started"
 
 # Load Sensor modules
 /vendor/bin/log -t "$scriptName" -p i "loading ODM sensor started"
 if [[ "$hardwareName" != +(*foster*|*darcy*|sif) ]]; then
-    do_insmod /odm/lib/modules/nvs.ko
-    do_insmod /odm/lib/modules/nvi-mpu.ko
-    do_insmod /odm/lib/modules/nvi-ak89xx.ko
-    do_insmod /odm/lib/modules/nvi-bmpX80.ko
-    do_insmod /odm/lib/modules/nvs_a3g4250d.ko
-    do_insmod /odm/lib/modules/nvs_ais328dq.ko
-    do_insmod /odm/lib/modules/nvs_bh1730fvc.ko
-    do_insmod /odm/lib/modules/nvs_cm3218.ko
-    do_insmod /odm/lib/modules/nvs_dfsh.ko
+    do_insmod /vendor/lib/modules/nvs.ko
+    do_insmod /vendor/lib/modules/nvi-mpu.ko
+    do_insmod /vendor/lib/modules/nvi-ak89xx.ko
+    do_insmod /vendor/lib/modules/nvi-bmpX80.ko
+    do_insmod /vendor/lib/modules/nvs_a3g4250d.ko
+    do_insmod /vendor/lib/modules/nvs_ais328dq.ko
+    do_insmod /vendor/lib/modules/nvs_bh1730fvc.ko
+    do_insmod /vendor/lib/modules/nvs_cm3218.ko
+    do_insmod /vendor/lib/modules/nvs_dfsh.ko
 fi
 /vendor/bin/log -t "$scriptName" -p i "loading ODM sensor completed"
 
-do_insmod /odm/lib/modules/gps_wake.ko
+do_insmod /vendor/lib/modules/gps_wake.ko
 /vendor/bin/log -t "$scriptName" -p i "loading comms modules completed"
 
 /vendor/bin/log -t "$scriptName" -p i "Loading LKM Board-ODM modules completed"
