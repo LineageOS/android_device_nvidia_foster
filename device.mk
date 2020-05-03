@@ -30,6 +30,7 @@ $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-he
 # Init related
 PRODUCT_PACKAGES += \
     fstab.darcy \
+    fstab.dragon \
     fstab.foster \
     fstab.foster_e \
     fstab.foster_e_hdd \
@@ -44,6 +45,7 @@ PRODUCT_PACKAGES += \
     fstab.porg_sd \
     fstab.sif \
     init.darcy.rc \
+    init.dragon.rc \
     init.foster_e.rc \
     init.foster_e_hdd.rc \
     init.foster_e_common.rc \
@@ -61,6 +63,7 @@ PRODUCT_PACKAGES += \
     init.porg_sd.rc \
     init.sif.rc \
     init.recovery.darcy.rc \
+    init.recovery.dragon.rc \
     init.recovery.foster_e.rc \
     init.recovery.foster_e_hdd.rc \
     init.recovery.foster_common.rc \
@@ -75,6 +78,7 @@ PRODUCT_PACKAGES += \
     init.recovery.porg_sd.rc \
     init.recovery.sif.rc \
     power.darcy.rc \
+    power.dragon.rc \
     power.foster_e.rc \
     power.foster_e_hdd.rc \
     power.icosa.rc \
