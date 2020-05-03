@@ -88,6 +88,20 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "2000";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "2000";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "2000";
+	} else if (ti->is_model("dragon")) {
+		mDeviceUsbIds["ro.vendor.nv.usb.vid"]                  = "18D1";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]              = "5202";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]          = "5203";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]              = "5206";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]          = "5207";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]            = "5204";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"]        = "5205";
+		mCommonUsbIds["ro.vendor.nv.usb.pid.adb"]              = "5208";
+		mCommonUsbIds["ro.vendor.nv.usb.pid.accessory.adb"]    = "2D01";
+		mCommonUsbIds["ro.vendor.nv.usb.pid.audio_source.adb"] = "2D03";
+		mCommonUsbIds["ro.vendor.nv.usb.pid.midi"]             = "5209";
+		mCommonUsbIds["ro.vendor.nv.usb.pid.midi.adb"]         = "520A";
+
 	} else {
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "EE02";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "EE03";
@@ -120,7 +134,8 @@ void vendor_load_properties()
 	                                             { "porg",   "porg_sd",      "Jetson Nano",       3448,    0, tegra_init::boot_dev_type::SD,   28, 320 },
 	                                             { "porg",   "porg",         "Jetson Nano",       3448,    2, tegra_init::boot_dev_type::EMMC, 28, 320 },
 	                                             { "icosa",  "icosa_emmc",   "Switch",              20,    1, tegra_init::boot_dev_type::EMMC, 27, 192 },
-	                                             { "icosa",  "icosa",        "Switch",              20,    0, tegra_init::boot_dev_type::SD,   27, 192 } };
+	                                             { "icosa",  "icosa",        "Switch",              20,    0, tegra_init::boot_dev_type::SD,   27, 192 },
+	                                             { "dragon", "dragon",       "Pixel C",              3,    0, tegra_init::boot_dev_type::EMMC, 23, 320 } };
 	tegra_init::build_version tav = { "9", "PPR1.180610.011", "4199485_1739.5219" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "SOS", "UDA", "USP", "vendor" };
 
@@ -135,6 +150,24 @@ void vendor_load_properties()
 		}
 	} else if (ti.is_model("icosa") || ti.is_model("icosa_emmc")) {
 		parts.erase(std::remove(parts.begin(), parts.end(), "USP"), parts.end()); 
+	} else if (ti.is_model("dragon")) {
+		tav = { "8.1.0", "OPM8.190605.005", "5749003" };
+		ti.property_set("ro.product.name", "ryu");
+
+		if (ti.recovery_context()) {
+			std::map<std::string,std::string> dragon_parts;
+			dragon_parts.emplace("KERN-A", "LNX");
+			dragon_parts.emplace("recovery", "SOS");
+			dragon_parts.emplace("VNR", "vendor");
+			ti.recovery_links(dragon_parts);
+
+			parts.erase(std::remove(parts.begin(), parts.end(), "LNX"), parts.end()); 
+			parts.erase(std::remove(parts.begin(), parts.end(), "SOS"), parts.end()); 
+			parts.erase(std::remove(parts.begin(), parts.end(), "USP"), parts.end()); 
+			parts.erase(std::remove(parts.begin(), parts.end(), "vendor"), parts.end());
+		} else if (ti.vendor_context()) {
+			ti.property_set("ro.product.vendor.name", "ryu");
+		}
 	}
 
 	ti.set_properties();
