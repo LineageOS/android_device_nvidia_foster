@@ -1,0 +1,150 @@
+#Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+import init.fscheck.rc
+import init.t210.rc
+import init.cal.rc
+import init.touch.${ro.boot.touch_vendor_id}.rc
+import init.nv_touch.rc
+
+import init.he2290.usb.rc
+import init.factory.rc
+import init.ndiscovery.rc
+
+on early-init
+    # create /oem symbol link
+    symlink /system/vendor/oem /oem
+    chmod 0755 /oem
+    chown root system /oem
+
+on init
+    setprop ro.feature.stylus 1
+    setprop ro.feature.quickmenu 1
+    setprop persist.tegra.cursor.enable 1
+    setprop sf.async.cursor.enable 1
+    setprop input.gaming_mode_enabled 1
+    setprop input.tch_blk.enabled 1
+    setprop input.tch_blk.ext_for_ptrs 1
+    setprop input.tch_blk.timeout_ms 500
+    setprop input.tch_prs.ebc 0.9
+    setprop input.tch_blk.edgeremap_left 10
+    setprop input.tch_blk.edgeremap_top 5
+    setprop input.tch_blk.edgeremap_right 15
+    setprop input.tch_blk.edgeremap_bottom 5
+    setprop input.ptr_trk.toolswitch_time 400
+    setprop input.ptr_trk.toolswitch_range 200
+    setprop input.ptr_trk.eraserlatch_range 10
+    setprop input.ptr_trk.eraserdelay_time 250
+    setprop input.ptr_trk.pinchtozoom_time 1000
+    setprop input.ptr_trk.pinchtozoom_range 1100
+    setprop input.ptr_trk.pinchtozoom_rectX 800
+    setprop input.ptr_trk.pinchtozoom_rectY 1400
+    setprop input.ptr_trk.pinchtozoom_cenX 600
+    setprop input.ptr_trk.pinchtozoom_cenY 960
+    setprop input.nonwhitelistedmode 3
+    setprop input.quick_menu_enabled 1
+    setprop input.quick_menu_sound_enabled 1
+    setprop sys.esrd.powermon_path /sys/bus/i2c/devices/1-0040/iio_device
+    setprop sys.esrd.powermon_channel 0
+    setprop sys.esrd.min_esr 95
+    setprop sys.esrd.max_esr 160
+    setprop sys.esrd.margin 35
+    setprop sys.esrd.nwindow 200
+    setprop sys.esrd.ntry 600
+    setprop sys.esrd.tsample 20
+    setprop sys.esrd.delay_start 900
+    setprop sys.esrd.delay_retry 900
+    setprop sys.esrd.delay_ok 604800
+    setprop sys.esrd.needed_coeff 0.97
+    setprop sys.esrd.needed_var 300
+    setprop sys.esrd.battery_thresh_high 60
+    setprop sys.esrd.battery_thresh_low 15
+    setprop sys.esrd.load_burst_duration 3
+    setprop sys.esrd.check_screen_off 1
+    setprop persist.tegra.didim.enable 0
+    chown system system /sys/power/sysedp/batmon/esr
+    chown system system /sys/bus/i2c/devices/1-0040/iio_device/running_mode
+    chmod 0664 /sys/bus/i2c/devices/1-0040/iio_device/running_mode
+    chown system system /sys/bus/i2c/devices/1-0040/iio_device/warn_current_limit_0
+    chown system audio /sys/devices/platform/sound.17/dmicinput
+    chmod 0664 /sys/devices/platform/sound.17/dmicinput
+
+    # Load persistent dm-verity state
+    verity_load_state
+
+on fs
+    setprop ro.wifi.sdmmc 1
+    setprop audio.custompolicy 1
+    setprop ro.gps.gpio 66
+    setprop ro.gpsstatus.changed true
+    setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
+    setprop ro.crypto.umount_sd false
+    setprop ro.crypto.fuse_sdcard true
+    fscheck /fstab.he2290
+    mount_all /fstab.he2290
+    swapon_all /fstab.he2290
+
+    # Adjust parameters for dm-verity devices
+    write /sys/block/dm-0/queue/read_ahead_kb 2048
+    write /sys/block/dm-1/queue/read_ahead_kb 2048
+    write /sys/module/dm_verity/parameters/prefetch_cluster 524288
+
+    # Update dm-verity state and set partition.*.verified properties
+    verity_update_state
+
+on verity-logging
+    exec u:r:slideshow:s0 root input -- /sbin/slideshow -p warning/verity_red_2
+
+#start pbc daemon
+service pbc2 /system/vendor/bin/pbc2
+    class main
+    user system
+    group system
+    writepid /dev/cpuset/system-background/tasks
+
+service ShTouch    /vendor/bin/shtouch64
+    class main
+    user system
+    group system input
+    writepid /dev/cpuset/foreground/tasks
+
+on post-fs-data
+    write /sys/class/gpio/export 66
+    write /sys/class/gpio/gpio66/direction out
+    write /sys/class/gpio/gpio66/value 0
+    chown root system /sys/class/gpio/gpio66/value
+    chmod 0664 /sys/class/gpio/gpio66/value
+    setprop persist.gps.present false
+
+on property:persist.gps.present=true
+    symlink /system/etc/android.hardware.location.gps.xml /data/android.hardware.location.gps.xml
+    start start-gps
+
+on property:persist.gps.present=false
+    rm /data/android.hardware.location.gps.xml
+
+service charger /charger
+    class charger
+    seclabel u:r:healthd:s0
+    group input
+    writepid /dev/cpuset/system-background/tasks
+
+on charger
+    mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/APP /system wait ro
+    setprop persist.sys.usb.config mtp
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
+    write /sys/devices/system/cpu/cpuquiet/current_governor runnable
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/no_lp -1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
+
+on property:sys.boot_completed=1
+    write /sys/class/tty/ttyS0/console_write_enable 0
+
+on property:ro.debuggable=0
+    write /sys/devices/platform/7000d000.i2c/i2c-4/4-003c/max77620-rtc.1/time_display_suspend 0

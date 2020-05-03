@@ -43,6 +43,13 @@ LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE        := fstab.he2290
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := fstab.foster_e
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE        := fstab.jetson_e
 LOCAL_MODULE_CLASS  := ETC
 LOCAL_SRC_FILES     := fstab.foster_e
@@ -118,6 +125,14 @@ include $(CLEAR_VARS)
 LOCAL_MODULE               := init.foster_e_hdd.rc
 LOCAL_MODULE_CLASS         := ETC
 LOCAL_SRC_FILES            := init.foster_e_hdd.rc
+LOCAL_VENDOR_MODULE        := true
+LOCAL_MODULE_RELATIVE_PATH := init/hw
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := init.he2290.rc
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_SRC_FILES            := init.he2290.rc
 LOCAL_VENDOR_MODULE        := true
 LOCAL_MODULE_RELATIVE_PATH := init/hw
 include $(BUILD_PREBUILT)
@@ -204,6 +219,13 @@ include $(CLEAR_VARS)
 LOCAL_MODULE       := init.recovery.foster_e_hdd.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := init.recovery.foster.rc
+LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := init.recovery.he2290.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := init.recovery.he2290.rc
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
@@ -313,6 +335,13 @@ LOCAL_MODULE       := power.foster_e_hdd.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_ODM_MODULE   := true
 LOCAL_SRC_FILES    := power.foster_e_common.rc
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := power.he2290.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_ODM_MODULE   := true
+LOCAL_SRC_FILES    := power.he2290.rc
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)

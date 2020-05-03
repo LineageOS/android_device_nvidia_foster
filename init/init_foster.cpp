@@ -80,6 +80,13 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B427";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B428";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B429";
+	} else if (ti->is_model("he2290")) {
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "CF0A";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "CF0B";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "CF0C";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "CF0C";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "7103";
+		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "7103";
 	} else {
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "EE02";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "EE03";
@@ -107,6 +114,7 @@ void vendor_load_properties()
 	                                             { "loki",   "loki_e_base",  "SHIELD Portable",   2530,  131, tegra_init::boot_dev_type::EMMC, 21, 192 },
 	                                             { "loki",   "loki_e_lte",   "SHIELD Portable",   2530,   31, tegra_init::boot_dev_type::EMMC, 21, 240 },
 	                                             { "loki",   "loki_e_wifi",  "SHIELD Portable",   2530,   30, tegra_init::boot_dev_type::EMMC, 21, 240 },
+	                                             { "he2290", "he_un_do",     "SHIELD Tablet Pro", 2290, 3304, tegra_init::boot_dev_type::EMMC, 23, 320 },
 	                                             { "jetson", "jetson_cv",    "Jetson TX1",        2597, 2180, tegra_init::boot_dev_type::EMMC, 21, 320 },
 	                                             { "jetson", "jetson_e",     "Jetson TX1",        2595,    0, tegra_init::boot_dev_type::EMMC, 21, 320 },
 	                                             { "porg",   "porg_sd",      "Jetson Nano",       3448,    0, tegra_init::boot_dev_type::SD,   28, 320 },
