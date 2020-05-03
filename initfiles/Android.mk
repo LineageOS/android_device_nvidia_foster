@@ -22,6 +22,13 @@ LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE        := fstab.dragon
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := fstab.dragon
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE        := fstab.foster
 LOCAL_MODULE_CLASS  := ETC
 LOCAL_SRC_FILES     := fstab.foster
@@ -116,6 +123,14 @@ include $(CLEAR_VARS)
 LOCAL_MODULE               := init.darcy.rc
 LOCAL_MODULE_CLASS         := ETC
 LOCAL_SRC_FILES            := init.darcy.rc
+LOCAL_VENDOR_MODULE        := true
+LOCAL_MODULE_RELATIVE_PATH := init/hw
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := init.dragon.rc
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_SRC_FILES            := init.dragon.rc
 LOCAL_VENDOR_MODULE        := true
 LOCAL_MODULE_RELATIVE_PATH := init/hw
 include $(BUILD_PREBUILT)
@@ -228,6 +243,13 @@ include $(CLEAR_VARS)
 LOCAL_MODULE       := init.recovery.darcy.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := init.recovery.darcy.rc
+LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := init.recovery.dragon.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := init.recovery.foster.rc
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
@@ -351,6 +373,13 @@ LOCAL_MODULE       := power.darcy.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_ODM_MODULE   := true
 LOCAL_SRC_FILES    := power.darcy.rc
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := power.dragon.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_ODM_MODULE   := true
+LOCAL_SRC_FILES    := power.abca.rc
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
