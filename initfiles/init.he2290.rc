@@ -6,21 +6,10 @@
 #documentation without an express license agreement from NVIDIA Corporation
 #is strictly prohibited.
 
-import init.fscheck.rc
-import init.t210.rc
-import init.cal.rc
-import init.touch.${ro.boot.touch_vendor_id}.rc
-import init.nv_touch.rc
-
-import init.he2290.usb.rc
-import init.factory.rc
-import init.ndiscovery.rc
-
-on early-init
-    # create /oem symbol link
-    symlink /system/vendor/oem /oem
-    chmod 0755 /oem
-    chown root system /oem
+import /vendor/etc/init/hw/init.tegra_emmc.rc
+import /vendor/etc/init/hw/init.t210.rc
+import /vendor/etc/init/hw/init.loki_e_common.rc
+import /vendor/etc/init/hw/init.sharp_touch.rc
 
 on init
     setprop ro.feature.stylus 1
@@ -78,14 +67,8 @@ on init
     verity_load_state
 
 on fs
-    setprop ro.wifi.sdmmc 1
-    setprop audio.custompolicy 1
     setprop ro.gps.gpio 66
     setprop ro.gpsstatus.changed true
-    setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
-    setprop ro.crypto.umount_sd false
-    setprop ro.crypto.fuse_sdcard true
-    fscheck /fstab.he2290
     mount_all /fstab.he2290
     swapon_all /fstab.he2290
 
@@ -99,19 +82,6 @@ on fs
 
 on verity-logging
     exec u:r:slideshow:s0 root input -- /sbin/slideshow -p warning/verity_red_2
-
-#start pbc daemon
-service pbc2 /system/vendor/bin/pbc2
-    class main
-    user system
-    group system
-    writepid /dev/cpuset/system-background/tasks
-
-service ShTouch    /vendor/bin/shtouch64
-    class main
-    user system
-    group system input
-    writepid /dev/cpuset/foreground/tasks
 
 on post-fs-data
     write /sys/class/gpio/export 66
@@ -127,24 +97,3 @@ on property:persist.gps.present=true
 
 on property:persist.gps.present=false
     rm /data/android.hardware.location.gps.xml
-
-service charger /charger
-    class charger
-    seclabel u:r:healthd:s0
-    group input
-    writepid /dev/cpuset/system-background/tasks
-
-on charger
-    mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/APP /system wait ro
-    setprop persist.sys.usb.config mtp
-    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
-    write /sys/devices/system/cpu/cpuquiet/current_governor runnable
-    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/no_lp -1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
-
-on property:sys.boot_completed=1
-    write /sys/class/tty/ttyS0/console_write_enable 0
-
-on property:ro.debuggable=0
-    write /sys/devices/platform/7000d000.i2c/i2c-4/4-003c/max77620-rtc.1/time_display_suspend 0
