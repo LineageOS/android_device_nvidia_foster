@@ -63,25 +63,11 @@ on init
     chown system audio /sys/devices/platform/sound.17/dmicinput
     chmod 0664 /sys/devices/platform/sound.17/dmicinput
 
-    # Load persistent dm-verity state
-    verity_load_state
-
 on fs
     setprop ro.gps.gpio 66
     setprop ro.gpsstatus.changed true
     mount_all /fstab.he2290
     swapon_all /fstab.he2290
-
-    # Adjust parameters for dm-verity devices
-    write /sys/block/dm-0/queue/read_ahead_kb 2048
-    write /sys/block/dm-1/queue/read_ahead_kb 2048
-    write /sys/module/dm_verity/parameters/prefetch_cluster 524288
-
-    # Update dm-verity state and set partition.*.verified properties
-    verity_update_state
-
-on verity-logging
-    exec u:r:slideshow:s0 root input -- /sbin/slideshow -p warning/verity_red_2
 
 on post-fs-data
     write /sys/class/gpio/export 66
