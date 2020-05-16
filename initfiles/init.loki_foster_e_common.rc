@@ -10,6 +10,9 @@
 import /vendor/etc/init/hw/init.lkm.rc
 
 on fs
+    # Assuming system takes 1GB runtime RAM, dedeuct it from GPU comptag memory allocation
+    write /sys/devices/57000000.gpu/comptag_mem_deduct 1024
+
     setprop ro.wifi.sdmmc 1
     setprop persist.vendor.sys.dpy0.prism 0
     setprop camera.disable_zsl_mode 1
@@ -54,6 +57,13 @@ on post-fs-data
     chmod 0444 /sys/devices/platform/tegra-fuse/aid
 
 on boot
+    # CPU and GPU governor scaling settings
+    write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 0
+    write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 2000
+    write /sys/devices/system/cpu/cpufreq/schedutil/capacity_margin 256
+    write /sys/devices/57000000.gpu/submit_boost_freq 691200
+    write /sys/devices/57000000.gpu/submit_boost_time 500
+
     # start Loadable Kernel Module service
     start vendor.lkm_loader
 
@@ -75,4 +85,48 @@ on property:init.svc.vendor.lkm_loader=stopped
     chown system system /sys/bus/hid/drivers/Jarvis/ts_joystick_stats
 
 on init
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/mems 0
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/foreground/boost/mems 0
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/background/mems 0
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/system-background/mems 0
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/top-app/mems 0
+
+    # ZRAM setup
+    write /sys/block/zram0/comp_algorithm lz4
+
+    # KSM setup
+    write /sys/kernel/mm/ksm/sleep_millisecs 250
+    write /sys/kernel/mm/ksm/pages_to_scan 100
+    write /sys/kernel/mm/ksm/run 1
+
     setprop ro.hardware.gatekeeper tlk.tegra
+
+on early-init
+    # Disable Transparent HUGEPAGE
+    write /sys/kernel/mm/transparent_hugepage/enabled "never"
+
+# LMK tunables
+on property:sys.boot_completed=1
+    chown system system /sys/module/lowmemorykiller/parameters/minfree
+    write /sys/module/lowmemorykiller/parameters/minfree 18432,23040,27648,80640,100000,124000
+    chown system system /sys/module/lowmemorykiller/parameters/adj
+    write /sys/module/lowmemorykiller/parameters/adj 0,100,200,300,600,800
+
+# Free Memory tunables
+on property:sys.boot_completed=1
+    write /proc/sys/vm/extra_free_kbytes 0
+    write /proc/sys/vm/min_free_kbytes 16384
+
+# Ease any memory pressure based on power hints
+on property:vendor.powerhal.reclaim_compact_mem=*
+    # Purge inode, dentry and page caches
+    write /proc/sys/vm/drop_caches 3
+    # Try to compact memory
+    write /proc/sys/vm/compact_memory 1
+    # Try to compact the zRAM footprint
+    write /sys/block/zram0/compact 1
