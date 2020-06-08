@@ -50,6 +50,9 @@ on post-fs-data
     chmod 664 /sys/devices/gpu.0/slcg_enable
     chown system system /sys/devices/gpu.0/slcg_enable
 
+on post-fs-data
+    chmod 0444 /sys/devices/platform/tegra-fuse/aid
+
 on boot
     # start Loadable Kernel Module service
     start vendor.lkm_loader

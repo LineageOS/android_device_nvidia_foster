@@ -50,9 +50,6 @@ on post-fs-data
     chown system system /mnt/vendor/wifi_config/package.txt
     restorecon_recursive /mnt/vendor/wifi_config
 
-on post-fs-data
-    chmod 0444 /sys/devices/platform/tegra-fuse/aid
-
 on property:init.svc.vendor.lkm_loader=stopped
     chown system system /sys/class/leds/led_lightbar/brightness
     chown system system /sys/class/leds/led_lightbar/boot_mode
