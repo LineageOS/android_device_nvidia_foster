@@ -170,6 +170,10 @@ fi
 
 /vendor/bin/log -t "$scriptName" -p i "loading odm audio modules started"
 do_insmod /vendor/lib/modules/snd-soc-rt5640.ko
+do_insmod /vendor/lib/modules/snd-soc-rt5677-spi.ko
+do_insmod /vendor/lib/modules/snd-soc-rt5677.ko
+do_insmod /vendor/lib/modules/snd-soc-max98357a.ko
+do_insmod /vendor/lib/modules/snd-soc-nau8825.ko
 do_insmod /vendor/lib/modules/snd-soc-tegra-machine-driver-mobile.ko
 /vendor/bin/log -t "$scriptName" -p i "loading odm audio modules completed"
 
