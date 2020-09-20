@@ -53,9 +53,6 @@ TARGET_KERNEL_CONFIG    := tegra_android_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 endif
 
-# Light
-include hardware/nvidia/light/BoardLight.mk
-
 # Recovery
 TARGET_RECOVERY_FSTAB    := device/nvidia/foster/initfiles/fstab.foster
 BOARD_SUPPRESS_EMMC_WIPE := true
@@ -77,4 +74,3 @@ include device/nvidia/foster/twrp/twrp.mk
 endif
 
 include device/nvidia/t210-common/BoardConfigCommon.mk
-include vendor/nvidia/foster/BoardConfigVendor.mk
