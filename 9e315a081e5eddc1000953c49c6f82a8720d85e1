@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9d85ccd_68374481",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2020-10-01T17:24:39Z",
+      "side": 1,
+      "message": "Supported?",
+      "revId": "9e315a081e5eddc1000953c49c6f82a8720d85e1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
