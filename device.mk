@@ -33,6 +33,8 @@ PRODUCT_PACKAGES += \
     fstab.foster \
     fstab.foster_e \
     fstab.foster_e_hdd \
+    fstab.icosa \
+    fstab.icosa_emmc \
     fstab.jetson_cv \
     fstab.jetson_e \
     fstab.loki_e_base \
@@ -47,6 +49,9 @@ PRODUCT_PACKAGES += \
     init.foster_e_common.rc \
     init.loki_e_common.rc \
     init.loki_foster_e_common.rc \
+    init.icosa.rc \
+    init.icosa_common.rc \
+    init.icosa_emmc.rc \
     init.jetson_cv.rc \
     init.jetson_e.rc \
     init.loki_e_base.rc \
@@ -59,6 +64,8 @@ PRODUCT_PACKAGES += \
     init.recovery.foster_e.rc \
     init.recovery.foster_e_hdd.rc \
     init.recovery.foster_common.rc \
+    init.recovery.icosa.rc \
+    init.recovery.icosa_emmc.rc \
     init.recovery.jetson_cv.rc \
     init.recovery.jetson_e.rc \
     init.recovery.loki_e_base.rc \
@@ -70,6 +77,8 @@ PRODUCT_PACKAGES += \
     power.darcy.rc \
     power.foster_e.rc \
     power.foster_e_hdd.rc \
+    power.icosa.rc \
+    power.icosa_emmc.rc \
     power.jetson_cv.rc \
     power.jetson_e.rc \
     power.loki_e_base.rc \
