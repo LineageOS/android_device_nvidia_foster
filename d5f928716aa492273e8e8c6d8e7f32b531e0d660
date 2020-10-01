@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2fef12c_5ef9fd07",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2020-10-01T17:31:41Z",
+      "side": 1,
+      "message": "Nitpick. The partition is there, but it isn\u0027t formatted. My wording was bad, but this is worse.",
+      "revId": "d5f928716aa492273e8e8c6d8e7f32b531e0d660",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
