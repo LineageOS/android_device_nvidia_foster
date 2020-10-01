@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "332229d6_9001e62e",
+        "filename": "device.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2020-10-01T03:07:06Z",
+      "side": 1,
+      "message": "dead",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 70
+      },
+      "revId": "2ecd938968052225cafa104e1768294888cd034f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bfb3f69_e4f82bbd",
+        "filename": "device.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2020-10-01T03:07:06Z",
+      "side": 1,
+      "message": "maybe don\u0027t guard? lets discuss",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 42
+      },
+      "revId": "2ecd938968052225cafa104e1768294888cd034f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
