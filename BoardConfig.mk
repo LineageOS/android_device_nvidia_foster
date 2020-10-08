@@ -51,6 +51,7 @@ KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-gnu-
 TARGET_KERNEL_SOURCE    := kernel/nvidia/linux-4.9/kernel/kernel-4.9
 TARGET_KERNEL_CONFIG    := tegra_android_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image.gz
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 endif
 BOARD_KERNEL_BASE       := 0x80080000
 BOARD_KERNEL_PAGESIZE   := 4096
