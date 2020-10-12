@@ -60,6 +60,12 @@ else
         do_insmod /vendor/lib/modules/cfg80211.ko
         do_insmod /vendor/lib/modules/bcmdhd.ko
 fi
+if [[ "$hardwareName" = +(porg*) ]]; then
+	do_insmod /vendor/lib/modules/btbcm.ko
+	do_insmod /vendor/lib/modules/btintel.ko
+	do_insmod /vendor/lib/modules/btrtl.ko
+	do_insmod /vendor/lib/modules/btusb.ko
+fi
 
 # USB-to-serial driver
 if [ "$hardwareName" != "sif" ]; then
