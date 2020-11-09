@@ -56,6 +56,7 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 # Init related
 PRODUCT_PACKAGES += \
+    fstab.batuu \
     fstab.darcy \
     fstab.dragon \
     fstab.foster \
@@ -71,6 +72,7 @@ PRODUCT_PACKAGES += \
     fstab.porg \
     fstab.porg_sd \
     fstab.sif \
+    init.batuu.rc \
     init.darcy.rc \
     init.dragon.rc \
     init.foster_e.rc \
@@ -89,6 +91,7 @@ PRODUCT_PACKAGES += \
     init.porg.rc \
     init.porg_sd.rc \
     init.sif.rc \
+    init.recovery.batuu.rc \
     init.recovery.darcy.rc \
     init.recovery.dragon.rc \
     init.recovery.foster_e.rc \
@@ -105,6 +108,7 @@ PRODUCT_PACKAGES += \
     init.recovery.porg.rc \
     init.recovery.porg_sd.rc \
     init.recovery.sif.rc \
+    power.batuu.rc \
     power.darcy.rc \
     power.dragon.rc \
     power.foster_e.rc \

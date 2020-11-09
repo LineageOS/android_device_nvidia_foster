@@ -15,6 +15,13 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE        := fstab.batuu
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := fstab.porg_sd
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE        := fstab.darcy
 LOCAL_MODULE_CLASS  := ETC
 LOCAL_SRC_FILES     := fstab.darcy
@@ -117,6 +124,14 @@ LOCAL_MODULE        := fstab.sif
 LOCAL_MODULE_CLASS  := ETC
 LOCAL_SRC_FILES     := fstab.foster_e
 LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := init.batuu.rc
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_SRC_FILES            := init.batuu.rc
+LOCAL_VENDOR_MODULE        := true
+LOCAL_MODULE_RELATIVE_PATH := init/hw
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -237,6 +252,13 @@ LOCAL_MODULE_CLASS         := ETC
 LOCAL_SRC_FILES            := init.sif.rc
 LOCAL_VENDOR_MODULE        := true
 LOCAL_MODULE_RELATIVE_PATH := init/hw
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := init.recovery.batuu.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := init.recovery.foster.rc
+LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -373,6 +395,13 @@ LOCAL_MODULE_CLASS         := ETC
 LOCAL_SRC_FILES            := init.loki_foster_e_common.rc
 LOCAL_VENDOR_MODULE        := true
 LOCAL_MODULE_RELATIVE_PATH := init/hw
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := power.batuu.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_ODM_MODULE   := true
+LOCAL_SRC_FILES    := power.darcy.rc
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
