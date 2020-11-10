@@ -66,6 +66,10 @@ if [[ "$hardwareName" = +(porg*) ]]; then
 	do_insmod /vendor/lib/modules/btrtl.ko
 	do_insmod /vendor/lib/modules/btusb.ko
 fi
+if [[ "$hardwareName" = "batuu" ]]; then
+        do_insmod /vendor/lib/modules/cfg80211.ko
+	do_insmod /vendor/lib/modules/rtl8821cu.ko
+fi
 
 # USB-to-serial driver
 if [ "$hardwareName" != "sif" ]; then
