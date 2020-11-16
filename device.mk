@@ -16,7 +16,7 @@
 
 # Only include Shield apps for first party targets
 ifneq ($(filter $(word 2,$(subst _, ,$(TARGET_PRODUCT))), foster foster_tab),)
-$(call inherit-product, device/nvidia/shield-common/shield.mk)
+include device/nvidia/shield-common/shield.mk
 endif
 
 TARGET_REFERENCE_DEVICE ?= foster
@@ -35,7 +35,7 @@ TARGET_TEGRA_WIDEVINE ?= true
 TARGET_TEGRA_WIFI     ?= bcm
 TARGET_TEGRA_WIREGUARD ?= compat
 
-$(call inherit-product, device/nvidia/t210-common/t210.mk)
+include device/nvidia/t210-common/t210.mk
 
 # System properties
 include $(LOCAL_PATH)/system_prop.mk
@@ -48,7 +48,7 @@ TARGET_SCREEN_WIDTH      := 1080
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
-$(call inherit-product, vendor/nvidia/foster/foster-vendor.mk)
+$(call inherit-product, device/nvidia/foster/vendor/foster-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
