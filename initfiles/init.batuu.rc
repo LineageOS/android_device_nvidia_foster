@@ -22,3 +22,6 @@ on fs
     write /sys/block/mmcblk0/queue/iosched/slice_idle 0
     write /sys/block/mmcblk0/queue/iostats 0
     write /sys/block/mmcblk0/queue/nr_requests 256
+
+on post-fs-data
+    setprop atv.setup.bt_remote_pairing false
