@@ -33,6 +33,7 @@ TARGET_TEGRA_PHS      ?= nvphs
 TARGET_TEGRA_POWER    ?= aosp
 TARGET_TEGRA_WIDEVINE ?= true
 TARGET_TEGRA_WIFI     ?= bcm
+TARGET_TEGRA_WIREGUARD ?= compat
 
 $(call inherit-product, device/nvidia/t210-common/t210.mk)
 
