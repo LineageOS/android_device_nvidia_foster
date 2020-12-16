@@ -1,0 +1,7 @@
+# Key   Docked Perf   Docked Opt / Undocked Perf   Undocked Opt
+NV_DEFAULT_MODE 0
+panelresolution=-1X-1
+NV_MAX_FREQ 1785000 1785000 1428000
+NV_MIN_FREQ 0 0 0
+NV_MAX_GPU_FREQ 921600 768000 460800
+NV_MIN_GPU_FREQ 0 0 0

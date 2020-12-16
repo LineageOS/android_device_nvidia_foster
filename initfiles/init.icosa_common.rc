@@ -21,3 +21,8 @@ on init
 
 on post-fs
     write /sys/bus/platform/drivers/tegra-reboot2payload/r2p/default_payload_ready 1
+
+on boot
+    write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/57000000.gpu/submit_boost_freq 460800
+    write /sys/module/input_cfboost/parameters/boost_gpu 460800

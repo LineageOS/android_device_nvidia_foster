@@ -440,14 +440,14 @@ include $(CLEAR_VARS)
 LOCAL_MODULE       := power.icosa.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_ODM_MODULE   := true
-LOCAL_SRC_FILES    := power.abca.rc
+LOCAL_SRC_FILES    := power.icosa.rc
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE       := power.icosa_emmc.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_ODM_MODULE   := true
-LOCAL_SRC_FILES    := power.abca.rc
+LOCAL_SRC_FILES    := power.icosa.rc
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
