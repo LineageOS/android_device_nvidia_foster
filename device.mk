@@ -26,6 +26,7 @@ TARGET_TEGRA_AUDIO    ?= nvaudio
 TARGET_TEGRA_BT       ?= bcm
 TARGET_TEGRA_CAMERA   ?= nvcamera
 TARGET_TEGRA_CEC      ?= nvhdmi
+TARGET_TEGRA_KERNEL   ?= 49
 TARGET_TEGRA_KEYSTORE ?= nvkeystore
 TARGET_TEGRA_MEMTRACK ?= nvmemtrack
 TARGET_TEGRA_OMX      ?= nvmm
@@ -173,7 +174,7 @@ endif
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 PRODUCT_COPY_FILES += \
     $(TARGET_PREBUILT_KERNEL):kernel
-else
+else ifneq ($(TARGET_TEGRA_KERNEL),310)
 PRODUCT_PACKAGES += \
     cypress-fmac
 endif
