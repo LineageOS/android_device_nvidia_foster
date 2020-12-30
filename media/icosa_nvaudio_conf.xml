@@ -48,8 +48,7 @@
                 devices="speaker|headphone|headset"/>
 
     <param name="nvoice" val="0"/>
-    <param name="builtin speaker" val="0"/>
-    <param name="nvoice" val="0"/>
+    <param name="builtin speaker" val="1"/>
     <param name="safe-routing" val="1"/>
     <param name="spkprot-flag" val="CPU"/>
 
