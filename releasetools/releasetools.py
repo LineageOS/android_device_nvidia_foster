@@ -23,6 +23,7 @@ APP_PART     = '/dev/block/by-name/APP'
 DTB_PART     = '/dev/block/by-name/DTB'
 STAGING_PART = '/dev/block/by-name/USP'
 VENDOR_PART  = '/dev/block/by-name/vendor'
+ICOSA_SD     = '/external_sd/switchroot/android/'
 
 PUBLIC_KEY_PATH     = '/sys/devices/7000f800.efuse/7000f800.efuse:efuse-burn/public_key'
 FUSED_PATH          = '/sys/devices/7000f800.efuse/7000f800.efuse:efuse-burn/odm_production_mode'
@@ -39,6 +40,9 @@ LOKI_E_BL_VERSION   = '24.00.2015.42-t210-39c6cadc' # the last released signed b
 
 DARCY_PUBLIC_KEY    = '0x435a807e9187c53eae50e2dcab521e0ea41458a9b18d31db553ceb711c21fb52\n'
 DARCY_BL_VERSION    = '32.00.2019.50-t210-79558a05'
+
+ICOSA_PUBLIC_KEY    = '0x7e39e100d1135918ceedfe5d66e66496eed21ecb3486d72095cc0b7c60b8bd4f\n'
+ICOSA_BL_VERSION    = '2020.04-03755-gf4d532d00d-rev3'
 
 def FullOTA_PostValidate(info):
   if 'INSTALL/bin/resize2fs_static' in info.input_zip.namelist():
@@ -189,6 +193,34 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('      )')
   info.script.AppendExtra('    );')
 
+  """ Fused icosa """
+  info.script.AppendExtra('    ifelse(')
+  info.script.AppendExtra('      getprop("ro.hardware") == "icosa" || getprop("ro.hardware") == "icosa_emmc",')
+  info.script.AppendExtra('      (')
+  info.script.AppendExtra('        ifelse(')
+  info.script.AppendExtra('          getprop("ro.bootloader") == "' + ICOSA_BL_VERSION + '",')
+  info.script.AppendExtra('          (')
+  info.script.AppendExtra('            ui_print("Correct bootloader already installed for fused " + getprop(ro.hardware));')
+  info.script.AppendExtra('          ),')
+  info.script.AppendExtra('          ifelse(')
+  info.script.AppendExtra('            read_file("' + PUBLIC_KEY_PATH + '") == "' + ICOSA_PUBLIC_KEY + '",')
+  info.script.AppendExtra('            (')
+  info.script.AppendExtra('              ui_print("Flashing updated bootloader for fused " + getprop(ro.hardware));')
+  info.script.AppendExtra('              package_extract_file("firmware-update/coreboot.rom", "' + ICOSA_SD + 'coreboot.rom");')
+  info.script.AppendExtra('              package_extract_file("firmware-update/common.scr", "' + ICOSA_SD + 'common.scr");')
+  info.script.AppendExtra('              package_extract_file("firmware-update/" + getprop(ro.hardware) + ".scr", "' + ICOSA_SD + 'boot.scr");')
+  info.script.AppendExtra('            ),')
+  info.script.AppendExtra('            (')
+  info.script.AppendExtra('              ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for icosa detected.");')
+  info.script.AppendExtra('              ui_print("This is not supported. Please report to LineageOS Maintainer.");')
+  info.script.AppendExtra('              abort();')
+  info.script.AppendExtra('            )')
+  info.script.AppendExtra('          )')
+  info.script.AppendExtra('        );')
+  info.script.AppendExtra('        package_extract_file("install/" + tegra_get_dtbname(), "' + DTB_PART + '");')
+  info.script.AppendExtra('      )')
+  info.script.AppendExtra('    );')
+
   info.script.AppendExtra('  ),')
 
   """ If not fused """
@@ -275,6 +307,25 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('          (')
   info.script.AppendExtra('            ui_print("Flashing updated bootloader for unfused Jetson TX1");')
   info.script.AppendExtra('            package_extract_file("firmware-update/jetson_cv.blob", "' + STAGING_PART + '");')
+  info.script.AppendExtra('          )')
+  info.script.AppendExtra('        );')
+  info.script.AppendExtra('        package_extract_file("install/" + tegra_get_dtbname(), "' + DTB_PART + '");')
+  info.script.AppendExtra('      )')
+  info.script.AppendExtra('    );')
+
+  """ Unfused icosa """
+  info.script.AppendExtra('    ifelse(')
+  info.script.AppendExtra('      getprop("ro.hardware") == "icosa" || getprop("ro.hardware") == "icosa_emmc",')
+  info.script.AppendExtra('      (')
+  info.script.AppendExtra('        ifelse(')
+  info.script.AppendExtra('          getprop("ro.bootloader") == "' + ICOSA_BL_VERSION + '",')
+  info.script.AppendExtra('          (')
+  info.script.AppendExtra('            ui_print("Correct bootloader already installed for unfused " + getprop(ro.hardware));')
+  info.script.AppendExtra('          ),')
+  info.script.AppendExtra('          (')
+  info.script.AppendExtra('            ui_print("This is an unfused icosa. Many devlopers would kill for this unit.");')
+  info.script.AppendExtra('            ui_print("This is not supported. Please report to LineageOS Maintainer.");')
+  info.script.AppendExtra('            abort();')
   info.script.AppendExtra('          )')
   info.script.AppendExtra('        );')
   info.script.AppendExtra('        package_extract_file("install/" + tegra_get_dtbname(), "' + DTB_PART + '");')
