@@ -158,6 +158,10 @@ do_insmod /vendor/lib/modules/pwm-tegra-pmc-blink.ko
 do_insmod /vendor/lib/modules/pwm_fan.ko
 do_insmod /vendor/lib/modules/therm_fan_est.ko
 
+# Joycons (make sure to load after pwm_fan to avoid excessive fanspin!)
+do_insmod /vendor/lib/modules/crc8.ko
+do_insmod /vendor/lib/modules/joycon-serdev.ko
+
 # TV tuner drivers
 if [ "$hardwareName" != "sif" ]; then
     do_insmod /vendor/lib/modules/videobuf-core.ko
