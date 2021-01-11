@@ -20,4 +20,5 @@ LOCAL_MODULE_TAGS          := optional
 LOCAL_MODULE_CLASS         := ETC
 LOCAL_SRC_FILES            := wifi_scan_config.conf
 LOCAL_MODULE_RELATIVE_PATH := wifi
+LOCAL_VENDOR_MODULE        := true
 include $(BUILD_PREBUILT)
