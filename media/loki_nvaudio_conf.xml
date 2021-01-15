@@ -209,6 +209,7 @@ BT SCO
             devices="builtin-mic|headset-mic"/>
 
     <param name="nvoice" val="0"/>
+    <param name="builtin speaker" val="1"/>
     <param name="safe-routing" val="1"/>
     <!--Speaker protection flag:
       None -> Disable speaker protection
@@ -742,11 +743,27 @@ BT SCO
                 avail_min="1"
                 devices="hdmi"/>
 
+    <param name="HW Rates" val="48000 44100 96000 192000"/>
     <param name="HDMI HW Latency" val="50"/>
   </card>
 
   <card name="dummy">
-    <pcm_config name="usb-blake-playback"
+    <pcm_config name ="rsubmix-playback"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="1024"
+                period_count="4"/>
+    <pcm_config name ="rsubmix-capture"
+                rate="48000"
+                channels="2"
+                bps="16"
+                period_size="1024"
+                period_count="4"/>
+  </card>
+
+  <card name="dummy">
+    <pcm_config name="usb-controller-remote-playback"
                 rate="32000"
                 channels="2"
                 bps="16"
@@ -759,7 +776,7 @@ BT SCO
                 avail_min="1"
                 devices="blake"/>
 
-    <pcm_config name="usb-blake-capture"
+    <pcm_config name="usb-controller-remote-capture"
                 rate="16000"
                 channels="1"
                 bps="16"
