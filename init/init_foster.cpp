@@ -137,7 +137,7 @@ void vendor_load_properties()
 	                                             { "icosa",  "icosa",        "Switch",              20,    0, tegra_init::boot_dev_type::SD,   27, 192 },
 	                                             { "dragon", "dragon",       "Pixel C",              3,    0, tegra_init::boot_dev_type::EMMC, 23, 320 } };
 	tegra_init::build_version tav = { "9", "PPR1.180610.011", "4199485_1739.5219" };
-	std::vector<std::string> parts = { "APP", "CAC", "LNX", "SOS", "UDA", "USP", "vendor" };
+	std::vector<std::string> parts = { "APP", "CAC", "LNX", "SOS", "UDA", "USP", "vendor", "DTB" };
 
 	tegra_init ti(devices);
 
