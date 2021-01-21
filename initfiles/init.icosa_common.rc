@@ -16,9 +16,6 @@ import /vendor/etc/init/hw/init.tegra.rc
 import /vendor/etc/init/hw/init.t210.rc
 import /vendor/etc/init/hw/init.loki_e_common.rc
 
-on init
-    setprop ro.surface_flinger.primary_display_orientation "ORIENTATION_270"
-
 on post-fs
     write /sys/bus/platform/drivers/tegra-reboot2payload/r2p/default_payload_ready 1
 
