@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Inherit device configuration for foster.
-$(call inherit-product, device/nvidia/foster/lineage.mk)
-$(call inherit-product, device/nvidia/foster/full_foster.mk)
-
 # Inherit some common lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_tv.mk)
+
+# Inherit device configuration for foster.
+include device/nvidia/foster/lineage.mk
+$(call inherit-product, device/nvidia/foster/full_foster.mk)
 
 PRODUCT_NAME := lineage_foster
 PRODUCT_DEVICE := foster
