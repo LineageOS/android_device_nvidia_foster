@@ -1,4 +1,4 @@
-<manifest version="1.0" type="device">
+<manifest version="1.0" type="device" target-level="3">
     <hal format="hidl">
         <name>vendor.lineage.trust</name>
         <transport>hwbinder</transport>
