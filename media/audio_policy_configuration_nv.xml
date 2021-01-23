@@ -48,7 +48,6 @@
         <module name="primary" halVersion="2.0">
             <attachedDevices>
                 <item>Speaker</item>
-                <item>Built-In Mic</item>
             </attachedDevices>
             <defaultOutputDevice>Speaker</defaultOutputDevice>
 
@@ -78,7 +77,7 @@
 
                 <!-- Capture routes -->
                 <route type="mix" sink="primary_input"
-                       sources="Built-In Mic,BT SCO Headset Mic,Digital Dock HS Mic,AudioIP-In"/>
+                       sources="BT SCO Headset Mic,Digital Dock HS Mic,AudioIP-In"/>
             </routes>
 
         </module>
