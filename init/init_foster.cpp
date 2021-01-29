@@ -126,7 +126,7 @@ void vendor_load_properties()
 	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, tegra_init::boot_dev_type::EMMC, 23, 320 },
 	                                             { "mdarcy", "mdarcy",       "SHIELD Android TV", 2894, 2551, tegra_init::boot_dev_type::EMMC, 28, 320 },
 	                                             { "sif",    "sif",          "SHIELD Android TV", 3425,  500, tegra_init::boot_dev_type::EMMC, 28, 320 },
-	                                             { "loki",   "loki_e_base",  "SHIELD Portable",   2530,  131, tegra_init::boot_dev_type::EMMC, 21, 192 },
+	                                             { "loki",   "loki_e_base",  "SHIELD Portable",   2530,  131, tegra_init::boot_dev_type::EMMC, 21, 214 },
 	                                             { "loki",   "loki_e_lte",   "SHIELD Portable",   2530,   31, tegra_init::boot_dev_type::EMMC, 21, 240 },
 	                                             { "loki",   "loki_e_wifi",  "SHIELD Portable",   2530,   30, tegra_init::boot_dev_type::EMMC, 21, 240 },
 	                                             { "jetson", "jetson_cv",    "Jetson TX1",        2597, 2180, tegra_init::boot_dev_type::EMMC, 21, 320 },
@@ -134,8 +134,8 @@ void vendor_load_properties()
 	                                             { "porg",   "batuu",        "Jetson Nano 2GB",   3448,    3, tegra_init::boot_dev_type::SD,   28, 320 },
 	                                             { "porg",   "porg_sd",      "Jetson Nano",       3448,    0, tegra_init::boot_dev_type::SD,   28, 320 },
 	                                             { "porg",   "porg",         "Jetson Nano",       3448,    2, tegra_init::boot_dev_type::EMMC, 28, 320 },
-	                                             { "icosa",  "icosa_emmc",   "Switch",              20,    1, tegra_init::boot_dev_type::EMMC, 27, 192 },
-	                                             { "icosa",  "icosa",        "Switch",              20,    0, tegra_init::boot_dev_type::SD,   27, 192 },
+	                                             { "icosa",  "icosa_emmc",   "Switch",              20,    1, tegra_init::boot_dev_type::EMMC, 27, 214 },
+	                                             { "icosa",  "icosa",        "Switch",              20,    0, tegra_init::boot_dev_type::SD,   27, 214 },
 	                                             { "dragon", "dragon",       "Pixel C",              3,    0, tegra_init::boot_dev_type::EMMC, 23, 320 } };
 	tegra_init::build_version tav = { "9", "PPR1.180610.011", "4079208_2740.7538" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "SOS", "UDA", "USP", "vendor", "DTB" };
