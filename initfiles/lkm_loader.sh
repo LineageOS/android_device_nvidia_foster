@@ -55,7 +55,7 @@ elif [ "`cat /proc/device-tree/bcmdhd_pcie_wlan/status`" = "okay" ]; then
         /vendor/bin/log -t "wifiloader" -p i " Loading bcmdhd_pcie driver for wlan"
         do_insmod /vendor/lib/modules/cfg80211.ko
         do_insmod /vendor/lib/modules/bcmdhd_pcie.ko
-else
+elif [ "`cat /proc/device-tree/bcmdhd_wlan/status`" = "okay" ]; then
         /vendor/bin/log -t "wifiloader" -p i " Loading bcmdhd driver for wlan"
         do_insmod /vendor/lib/modules/cfg80211.ko
         do_insmod /vendor/lib/modules/bcmdhd.ko
