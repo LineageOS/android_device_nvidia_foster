@@ -52,8 +52,6 @@ TARGET_KERNEL_SOURCE    := kernel/nvidia/linux-4.9/kernel/kernel-4.9
 TARGET_KERNEL_CONFIG    := tegra_android_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 endif
-BOARD_KERNEL_BASE       := 0x80080000
-BOARD_KERNEL_PAGESIZE   := 4096
 
 # Light
 include hardware/nvidia/light/BoardLight.mk
