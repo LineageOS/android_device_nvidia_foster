@@ -230,6 +230,9 @@ PRODUCT_PACKAGES += \
     thermalhal.loki_e_wifi.xml \
     thermalhal.sif.xml
 
+# Treble workaround
+PRODUCT_PACKAGES += $(PRODUCT_PACKAGES_SHIPPING_API_LEVEL_29)
+
 # Trust HAL
 PRODUCT_PACKAGES += \
     vendor.lineage.trust@1.0-service
