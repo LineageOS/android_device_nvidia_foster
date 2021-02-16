@@ -219,6 +219,8 @@ endif
 PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-service-nvidia \
     thermalhal.darcy.xml \
+    thermalhal.icosa.xml \
+    thermalhal.icosa_emmc.xml \
     thermalhal.jetson_cv.xml \
     thermalhal.jetson_e.xml \
     thermalhal.loki_e_lte.xml \
