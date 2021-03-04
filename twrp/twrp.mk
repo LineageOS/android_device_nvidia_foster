@@ -17,6 +17,8 @@ BOARD_KERNEL_CMDLINE            := androidboot.selinux=permissive
 
 PRODUCT_COPY_FILES += \
     device/nvidia/foster/twrp/twrp.fstab.emmc:recovery/root/etc/twrp.fstab.emmc \
+    device/nvidia/foster/twrp/twrp.fstab.icosa_emmc:recovery/root/etc/twrp.fstab.icosa_emmc \
+    device/nvidia/foster/twrp/twrp.fstab.icosa_sd:recovery/root/etc/twrp.fstab.icosa_sd \
     device/nvidia/foster/twrp/twrp.fstab.sata:recovery/root/etc/twrp.fstab.sata \
     device/nvidia/foster/twrp/twrp.fstab.sd:recovery/root/etc/twrp.fstab.sd
 

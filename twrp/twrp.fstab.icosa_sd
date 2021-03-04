@@ -11,3 +11,4 @@
 /data           ext4            /dev/block/platform/sdhci-tegra.0/by-name/UDA			 flags=encryptable=/dev/block/platform/sdhci-tegra.0/by-name/MDA
 /bmps           emmc            /dev/block/platform/sdhci-tegra.0/by-name/IMG
 /usb-otg        vfat            /dev/block/sda1	  /dev/block/sda				 flags=removable;storage;display=USB-OTG
+/external_sd    vfat            /dev/block/platform/sdhci-tegra.0/mmcblk0p1			 flags=display="Micro SDcard";storage;removable

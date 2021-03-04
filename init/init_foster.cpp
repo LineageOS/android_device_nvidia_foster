@@ -150,6 +150,15 @@ void vendor_load_properties()
 		}
 	} else if (ti.is_model("icosa") || ti.is_model("icosa_emmc")) {
 		parts.erase(std::remove(parts.begin(), parts.end(), "USP"), parts.end()); 
+
+		if (ti.recovery_context()) {
+			std::map<std::string,std::string> icosa_twrp_fstab;
+			if (ti.is_model("icosa_emmc"))
+				icosa_twrp_fstab.emplace("/etc/twrp.fstab.icosa_emmc", "/etc/twrp.fstab");
+			else
+				icosa_twrp_fstab.emplace("/etc/twrp.fstab.icosa_sd", "/etc/twrp.fstab");
+			ti.make_symlinks(icosa_twrp_fstab);
+		}
 	} else if (ti.is_model("dragon")) {
 		tav = { "8.1.0", "OPM8.190605.005", "5749003" };
 		ti.property_set("ro.product.name", "ryu");
