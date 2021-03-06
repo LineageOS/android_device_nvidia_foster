@@ -517,3 +517,11 @@ LOCAL_SRC_FILES            := init.eks2.rc
 LOCAL_VENDOR_MODULE        := true
 LOCAL_MODULE_RELATIVE_PATH := init
 include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := shield_dtbo.rc
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_SRC_FILES            := shield_dtbo.rc
+LOCAL_VENDOR_MODULE        := true
+LOCAL_MODULE_RELATIVE_PATH := init
+include $(BUILD_PREBUILT)
