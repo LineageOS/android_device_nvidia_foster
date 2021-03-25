@@ -20,9 +20,9 @@ import re
 import os
 
 TARGET_DIR = os.getenv('OUT')
-STAGING_PART = '/dev/block/USP'
-APP_PART = '/dev/block/APP'
-VENDOR_PART = '/dev/block/vendor'
+STAGING_PART = '/dev/block/by-name/USP'
+APP_PART = '/dev/block/by-name/APP'
+VENDOR_PART = '/dev/block/by-name/vendor'
 ICOSA_SD = '/external_sd/switchroot/android/'
 
 def FullOTA_PostValidate(info):
