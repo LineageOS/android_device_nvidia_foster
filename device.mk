@@ -98,6 +98,7 @@ PRODUCT_PACKAGES += \
     init.recovery.icosa_emmc.rc \
     init.recovery.jetson_cv.rc \
     init.recovery.jetson_e.rc \
+    init.recovery.lkm.rc \
     init.recovery.loki_e_base.rc \
     init.recovery.loki_e_lte.rc \
     init.recovery.loki_e_wifi.rc \

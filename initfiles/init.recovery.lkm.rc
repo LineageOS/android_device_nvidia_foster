@@ -1,4 +1,4 @@
-# Copyright (C) 2020 The LineageOS Project
+# Copyright (C) 2021 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import init.recovery.lkm.rc
-import init.recovery.xusb.configfs.usb.rc
-import init.recovery.usb.configfs.rc
+on boot
+    # Additional controller support
+    insmod /lib/modules/hid-nvidia-blake.ko
+    insmod /lib/modules/hid-jarvis-remote.ko
 
-on init
-    setprop sys.usb.configfs 1
+    restorecon_recursive /sys
