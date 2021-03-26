@@ -26,12 +26,9 @@ VENDOR_PART = '/dev/block/by-name/vendor'
 ICOSA_SD = '/external_sd/switchroot/android/'
 
 def FullOTA_PostValidate(info):
-  info.script.AppendExtra('run_program("/sbin/e2fsck", "-fy", "' + APP_PART + '");');
-  info.script.AppendExtra('run_program("/sbin/e2fsck", "-fy", "' + VENDOR_PART + '");');
-  info.script.AppendExtra('run_program("/sbin/resize2fs", "' + APP_PART + '");');
-  info.script.AppendExtra('run_program("/sbin/resize2fs", "' + VENDOR_PART + '");');
-  info.script.AppendExtra('run_program("/sbin/e2fsck", "-fy", "' + APP_PART + '");');
-  info.script.AppendExtra('run_program("/sbin/e2fsck", "-fy", "' + VENDOR_PART + '");');
+  if 'INSTALL/bin/resize2fs_static' in info.input_zip.namelist():
+    info.script.AppendExtra('run_program("/tmp/install/bin/resize2fs_static", "' + APP_PART + '");');
+    info.script.AppendExtra('run_program("/tmp/install/bin/resize2fs_static", "' + VENDOR_PART + '");');
 
 def FullOTA_Assertions(info):
   if 'RADIO/foster_e.blob' in info.input_zip.namelist():
