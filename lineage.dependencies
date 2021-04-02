@@ -16,6 +16,10 @@
    "target_path": "kernel/nvidia/linux-4.9/kernel/kernel-4.9"
  },
  {
+   "repository": "android_kernel_nvidia_wireguard",
+   "target_path": "kernel/nvidia/wireguard"
+ },
+ {
    "repository": "android_hardware_nvidia_interfaces",
    "target_path": "hardware/nvidia/interfaces"
  },
