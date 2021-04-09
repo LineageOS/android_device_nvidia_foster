@@ -19,7 +19,7 @@ on fs
     setprop ro.config.media_vol_default 15
 
     # start Early Loadable Kernel Module service
-    exec /vendor/bin/lkm_loader.sh early
+    exec_start vendor.lkm_loader_early
     restorecon_recursive /sys
 
 #start pbc daemon
