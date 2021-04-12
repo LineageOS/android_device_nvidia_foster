@@ -125,8 +125,7 @@ PRODUCT_PACKAGES += \
     power.loki_e_wifi.rc \
     power.porg.rc \
     power.porg_sd.rc \
-    power.sif.rc \
-    shield_dtbo.rc
+    power.sif.rc
 
 # Permissions
 PRODUCT_COPY_FILES += \
