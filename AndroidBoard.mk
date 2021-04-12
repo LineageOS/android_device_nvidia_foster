@@ -37,15 +37,7 @@ $(INSTALLED_DTB_TARGETS): $(INSTALLED_KERNEL_TARGET) | $(ACP)
 	@mkdir -p $(PRODUCT_OUT)/install
 	cp $(@F:%=$(KERNEL_OUT)/arch/arm64/boot/dts/%) $(PRODUCT_OUT)/install/
 
-DTBO_TARGETS := tegra210-foster-e-p2530-audio-overlay.dtbo \
-                tegra210b01-darcy-p2894-audio-overlay.dtbo
-INSTALLED_DTBO_TARGETS := $(DTBO_TARGETS:%=$(TARGET_OUT_VENDOR)/firmware/dtb/%)
-$(INSTALLED_DTBO_TARGETS): $(INSTALLED_KERNEL_TARGET) | $(ACP)
-	echo -e ${CL_GRN}"Copying individual DTBOs"${CL_RST}
-	@mkdir -p $(TARGET_OUT_VENDOR)/firmware/dtb
-	cp $(@F:%=$(KERNEL_OUT)/arch/arm64/boot/dts/%) $(TARGET_OUT_VENDOR)/firmware/dtb/
-
-ALL_DEFAULT_INSTALLED_MODULES += $(INSTALLED_DTB_TARGETS) $(INSTALLED_DTBO_TARGETS)
+ALL_DEFAULT_INSTALLED_MODULES += $(INSTALLED_DTB_TARGETS)
 
 RECOVERY_KMOD_TARGETS := \
     hid-jarvis-remote.ko \
