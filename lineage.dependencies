@@ -12,8 +12,9 @@
    "target_path": "kernel/nvidia/cypress-fmac"
  },
  {
-   "repository": "android_kernel_nvidia_linux-4.9_kernel_kernel-4.9",
-   "target_path": "kernel/nvidia/linux-4.9/kernel/kernel-4.9"
+   "repository": "android_kernel_nvidia_kernel",
+   "target_path": "kernel/nvidia/kernel-4.9",
+   "branch": "lineage-18.1_4.9"
  },
  {
    "repository": "android_kernel_nvidia_wireguard",
