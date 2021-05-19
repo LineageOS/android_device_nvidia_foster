@@ -1,5 +1,4 @@
-#
-# Copyright (C) 2018 The LineageOS Project
+# Copyright (C) 2021 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,9 +11,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_foster.mk \
-    $(LOCAL_DIR)/lineage_foster.mk \
-    $(LOCAL_DIR)/omni_foster.mk
+# Inherit some common omni stuff.
+$(call inherit-product, vendor/omni/config/common.mk)
+
+# Inherit device configuration for foster.
+include device/nvidia/foster/omni.mk
+$(call inherit-product, device/nvidia/foster/full_foster.mk)
+
+PRODUCT_NAME := omni_foster
+PRODUCT_DEVICE := foster
