@@ -200,8 +200,9 @@ PRODUCT_PACKAGES += \
     media_profiles_V1_0.xml
 endif
 
-# Netflix nrdp
+# Netflix
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/permissions/netflix.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/netflix.xml \
     $(LOCAL_PATH)/permissions/nrdp.modelgroup.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/nrdp.modelgroup.xml
 
 # NVIDIA specific permissions
