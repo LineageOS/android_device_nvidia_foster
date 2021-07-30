@@ -23,4 +23,4 @@ LOCAL_MODULE_CLASS         := ETC
 LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware/
 LOCAL_MODULE_TAGS          := optional
 LOCAL_MODULE_OWNER         := nvidia
-include $(BUILD_NVIDIA_ARCH_PREBUILT)
+include $(BUILD_NVIDIA_PREBUILT)
