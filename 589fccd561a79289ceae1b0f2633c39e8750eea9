@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "514b657d_61bf2a12",
+        "filename": "device.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 22675
+      },
+      "writtenOn": "2021-08-04T12:32:46Z",
+      "side": 1,
+      "message": "This should probably not be tab indented",
+      "revId": "589fccd561a79289ceae1b0f2633c39e8750eea9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
