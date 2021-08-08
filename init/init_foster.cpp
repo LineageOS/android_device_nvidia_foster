@@ -144,8 +144,8 @@ void vendor_load_properties()
 
 	if (ti.is_model("foster_e") || ti.is_model("foster_e_hdd") || ti.is_model("darcy")) {
 		if (ti.vendor_context()) {
-			ti.property_set("ro.product.vendor.device", "t210");
-			ti.property_set("ro.product.vendor.model", ti.get_model());
+			ti.property_set("ro.vendor.lineage.tegra.device", "t210");
+			ti.property_set("ro.vendor.lineage.tegra.model", ti.get_model());
 		}
 	} else if (ti.is_model("icosa") || ti.is_model("icosa_emmc")) {
 		parts.erase(std::remove(parts.begin(), parts.end(), "USP"), parts.end()); 
@@ -161,6 +161,7 @@ void vendor_load_properties()
 	} else if (ti.is_model("dragon")) {
 		tav = { "8.1.0", "OPM8.190605.005", "5749003" };
 		ti.property_set("ro.product.name", "ryu");
+		ti.property_set("ro.product.system.name", "ryu");
 
 		if (ti.recovery_context()) {
 			std::map<std::string,std::string> dragon_parts;
@@ -174,7 +175,7 @@ void vendor_load_properties()
 			parts.erase(std::remove(parts.begin(), parts.end(), "USP"), parts.end()); 
 			parts.erase(std::remove(parts.begin(), parts.end(), "vendor"), parts.end());
 		} else if (ti.vendor_context()) {
-			ti.property_set("ro.product.vendor.name", "ryu");
+			ti.property_set("ro.vendor.lineage.tegra.name", "ryu");
 		}
 	}
 
