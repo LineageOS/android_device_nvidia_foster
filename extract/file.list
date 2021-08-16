@@ -13,3 +13,8 @@ nv-tegra-t210	3rdparty/cypress/bcm4354a1/wlan/atv/foster.clm_blob				foster/bcm_
 nv-tegra-t210	3rdparty/cypress/bcm4354a1/wlan/atv/flynn-hp.clm_blob				foster/bcm_firmware/bcm4354/flynn-hp.clm_blob
 nv-tegra-t210	3rdparty/cypress/bcm4356a3/wlan/fw_4356a3_prod.clm_blob				foster/bcm_firmware/bcm4356/fw_4356a3_prod.clm_blob
 nv-tegra-t210	3rdparty/cypress/bcm4356a3/wlan/brcmfmac4356-pcie.clm_blob			foster/bcm_firmware/bcm4356/brcmfmac4356-pcie.clm_blob
+
+l4t-t210	Linux_for_Tegra/bootloader/t210ref/BCT/P2180_A00_LP4_DSC_204Mhz.cfg	foster/BCT/P2180_A00_LP4_DSC_204Mhz.cfg
+l4t-t210	Linux_for_Tegra/bootloader/t210ref/BCT/P3448_A00_lpddr4_204Mhz_P987.cfg	foster/BCT/P3448_A00_lpddr4_204Mhz_P987.cfg
+
+nv-tegra-t210	tnspec_data/t210/tnspec.json	foster/tnspec/foster.json
