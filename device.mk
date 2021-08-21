@@ -153,11 +153,6 @@ PRODUCT_PACKAGES += \
     nvaudio_fx.xml
 endif
 
-# Charger
-PRODUCT_PACKAGES += \
-    charger \
-    charger_res_images
-
 # EKS
 ifeq ($(TARGET_TEGRA_KEYSTORE),nvkeystore)
 PRODUCT_PACKAGES += \

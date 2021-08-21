@@ -42,6 +42,9 @@ BOARD_CUSTOM_BT_CONFIG := device/nvidia/foster/comms/vnd_foster.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/nvidia/foster/comms
 endif
 
+# Charger
+WITH_LINEAGE_CHARGER := false
+
 # Kernel
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 BOARD_VENDOR_KERNEL_MODULES += $(wildcard $(dir $(TARGET_PREBUILT_KERNEL))/*.ko)
