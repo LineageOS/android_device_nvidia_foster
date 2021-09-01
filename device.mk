@@ -201,6 +201,9 @@ PRODUCT_PACKAGES += \
 endif
 
 # Netflix
+PRODUCT_PACKAGES += \
+    NetflixConfig \
+    NetflixConfigOverlay
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/netflix.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/netflix.xml \
     $(LOCAL_PATH)/permissions/nrdp.modelgroup.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/nrdp.modelgroup.xml
