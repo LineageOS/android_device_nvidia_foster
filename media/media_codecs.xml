@@ -196,44 +196,6 @@ Only the three quirks included above are recognized at this point:
         </MediaCodec>
     </Decoders>
 
-    <Encoders>
-        <MediaCodec name="OMX.Nvidia.h264.encoder" type="video/avc" >
-            <Limit name="size" min="48x48" max="3840x2176" />
-            <Limit name="alignment" value="2x2" />
-            <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="783360" />
-            <Limit name="bitrate" range="1-50000000" />
-            <Feature name="bitrate-modes" value="VBR,CBR" />
-        </MediaCodec>
-        <MediaCodec name="OMX.Nvidia.h265.encoder" >
-            <Type name="video/hevc" >
-                <Limit name="size" min="96x96" max="3840x2176" />
-                <Limit name="alignment" value="2x2" />
-                <Limit name="block-size" value="16x16" />
-                <Limit name="blocks-per-second" min="1" max="783360" />
-                <Limit name="bitrate" range="1-50000000" />
-                <Limit name="quality" range="0-100" default="45" />
-                <Feature name="bitrate-modes" value="VBR,CBR,CQ" />
-            </Type>
-            <Type name="image/vnd.android.heic" >
-                <Limit name="size" min="96x96" max="3840x2176" />
-                <Limit name="alignment" value="2x2" />
-                <Limit name="block-size" value="16x16" />
-                <Limit name="blocks-per-second" min="1" max="783360" />
-                <Limit name="bitrate" range="1-50000000" />
-                <Limit name="quality" range="0-100" default="45" />
-                <Feature name="bitrate-modes" value="VBR,CBR,CQ" />
-            </Type>
-        </MediaCodec>
-        <MediaCodec name="OMX.Nvidia.vp8.encoder" type="video/x-vnd.on2.vp8" >
-            <Limit name="size" min="48x48" max="3840x2176" />
-            <Limit name="alignment" value="2x2" />
-            <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="783360" />
-            <Limit name="bitrate" range="1-50000000" />
-            <Feature name="bitrate-modes" value="VBR,CBR" />
-        </MediaCodec>
-    </Encoders>
     <Include href="media_codecs_google_audio.xml" />
     <Include href="media_codecs_google_video.xml" />
 </MediaCodecs>
