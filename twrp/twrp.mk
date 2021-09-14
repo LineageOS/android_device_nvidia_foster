@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TARGET_KERNEL_ADDITIONAL_CONFIG := tegra_android_recovery_defconfig
-BOARD_KERNEL_CMDLINE            := androidboot.selinux=permissive
-LZMA_RAMDISK_TARGETS            := recovery
+TARGET_KERNEL_CONFIG := tegra_android_recovery_defconfig
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
+LZMA_RAMDISK_TARGETS := recovery
 
 PRODUCT_COPY_FILES += \
     device/nvidia/foster/twrp/twrp.fstab.emmc:recovery/root/etc/twrp.fstab.emmc \
