@@ -39,17 +39,6 @@ $(INSTALLED_DTB_TARGETS): $(INSTALLED_KERNEL_TARGET) | $(ACP)
 	cp $(@F:%=$(KERNEL_OUT)/arch/arm64/boot/dts/%) $(PRODUCT_OUT)/install/
 
 ALL_DEFAULT_INSTALLED_MODULES += $(INSTALLED_DTB_TARGETS)
-
-RECOVERY_KMOD_TARGETS := \
-    hid-jarvis-remote.ko \
-    hid-nvidia-blake.ko
-INSTALLED_RECOVERY_KMOD_TARGETS := $(RECOVERY_KMOD_TARGETS:%=$(TARGET_RECOVERY_ROOT_OUT)/lib/modules/%)
-$(INSTALLED_RECOVERY_KMOD_TARGETS): $(INSTALLED_KERNEL_TARGET)
-	echo -e ${CL_GRN}"Copying kernel modules to recovery"${CL_RST}
-	@mkdir -p $(dir $@)
-	cp $(@F:%=$(TARGET_OUT_VENDOR)/lib/modules/%) $(TARGET_RECOVERY_ROOT_OUT)/lib/modules/
-
-$(INSTALLED_RECOVERYIMAGE_TARGET): $(INSTALLED_RECOVERY_KMOD_TARGETS)
 endif
 
 EKS_DAT_SYMLINK := $(TARGET_OUT_VENDOR)/app/eks2/eks2.dat
