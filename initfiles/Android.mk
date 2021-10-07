@@ -371,13 +371,6 @@ LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE       := init.recovery.lkm.rc
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := init.recovery.lkm.rc
-LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE               := init.foster_e_common.rc
 LOCAL_MODULE_CLASS         := ETC
 LOCAL_SRC_FILES            := init.foster_e_common.rc

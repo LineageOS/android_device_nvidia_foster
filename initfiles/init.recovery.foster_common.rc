@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import init.recovery.lkm.rc
 import init.recovery.xusb.configfs.usb.rc
 import init.recovery.usb.configfs.rc
 
