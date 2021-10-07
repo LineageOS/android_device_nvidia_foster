@@ -115,7 +115,7 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('          is_substring("tegra210b01", read_file("' + DTSFILENAME_PATH + '")),')
   """ mdarcy """
   info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("MDarcy is not supported in this build.");')
+  info.script.AppendExtra('            ui_print("MDarcy is not supported in this build. Please install a `mdarcy` build instead.");')
   info.script.AppendExtra('            abort();')
   info.script.AppendExtra('          ),')
   """ darcy """
@@ -253,7 +253,7 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('          is_substring("tegra210b01", read_file("' + DTSFILENAME_PATH + '")),')
   """ mdarcy """
   info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("MDarcy is not supported in this build.");')
+  info.script.AppendExtra('            ui_print("MDarcy is not supported in this build. Please install a `mdarcy` build instead.");')
   info.script.AppendExtra('            abort();')
   info.script.AppendExtra('          ),')
   """ darcy """
