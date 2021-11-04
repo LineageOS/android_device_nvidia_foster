@@ -22,3 +22,6 @@ PRODUCT_PACKAGES += public.libraries
 
 # Switch reboot2payload hekate
 PRODUCT_PACKAGES += reboot_payload
+
+# USB convertible hal, for darcy
+PRODUCT_PACKAGES += vendor.nvidia.hardware.convertibleport@1.0-service
