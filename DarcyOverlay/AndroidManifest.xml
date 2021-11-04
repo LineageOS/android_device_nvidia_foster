@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.lineage.overlay.darcy">
+    <application android:hasCode="false" />
+    <overlay android:targetPackage="com.android.tv.settings"
+             android:requiredSystemPropertyName="ro.hardware"
+             android:requiredSystemPropertyValue="darcy"
+             android:isStatic="true"
+             android:priority="1" />
+</manifest>
