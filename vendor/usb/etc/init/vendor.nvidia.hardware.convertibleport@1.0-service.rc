@@ -1,0 +1,5 @@
+service vendor_nvidia_hardware_convertibleport /vendor/bin/hw/vendor.nvidia.hardware.convertibleport@1.0-service
+    class hal
+    user system
+    group system
+    seclabel u:r:hal_convertibleport_default:s0
