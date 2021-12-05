@@ -10,5 +10,5 @@
 /metadata       emmc            /dev/block/platform/sdhci-tegra.3/by-name/MDA
 /data           ext4            /dev/block/platform/sdhci-tegra.3/by-name/UDA			 flags=encryptable=/dev/block/platform/sdhci-tegra.3/by-name/MDA
 /bmps           emmc            /dev/block/platform/sdhci-tegra.3/by-name/IMG
-/external_sd    vfat            /dev/block/platform/sdhci-tegra.0/mmcblk2p1 /dev/block/mmcblk1	 flags=display="Micro SDcard";storage;wipeingui;removable
+/external_sd    vfat            /dev/block/platform/sdhci-tegra.0/mmcblk2p1 /dev/block/mmcblk2	 flags=display="Micro SDcard";storage;wipeingui;removable
 /usb-otg        vfat            /dev/block/sda1	  /dev/block/sda				 flags=removable;storage;display=USB-OTG
