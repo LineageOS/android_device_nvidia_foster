@@ -177,6 +177,12 @@ void vendor_load_properties()
 		} else if (ti.vendor_context()) {
 			ti.property_set("ro.vendor.lineage.tegra.name", "ryu");
 		}
+	} else if (ti.is_model("loki_e_base") || ti.is_model("loki_e_lte") || ti.is_model("loki_e_wifi")) {
+		if (ti.recovery_context()) {
+			std::map<std::string,std::string> loki_twrp_fstab;
+			loki_twrp_fstab.emplace("/etc/twrp.fstab.icosa_emmc", "/etc/twrp.fstab");
+			ti.make_symlinks(loki_twrp_fstab);
+		}
 	}
 
 	ti.set_properties();
