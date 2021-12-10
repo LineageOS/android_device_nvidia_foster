@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Inherit some common omni stuff.
-$(call inherit-product, vendor/omni/config/common.mk)
+# Inherit some common twrp stuff.
+$(call inherit-product, vendor/twrp/config/common.mk)
 
 # Inherit device configuration for foster.
-include device/nvidia/foster/omni.mk
+include device/nvidia/foster/lineage.mk
 $(call inherit-product, device/nvidia/foster/full_foster.mk)
 
-PRODUCT_NAME := omni_foster
+PRODUCT_NAME := twrp_foster
 PRODUCT_DEVICE := foster
