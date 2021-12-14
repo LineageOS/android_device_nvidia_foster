@@ -148,16 +148,13 @@ void vendor_load_properties()
 	                                             { "icosa",  "icosa_emmc",   "Switch",              20,    1, tegra_init::boot_dev_type::EMMC, 27, 214 },
 	                                             { "icosa",  "icosa",        "Switch",              20,    0, tegra_init::boot_dev_type::SD,   27, 214 },
 	                                             { "dragon", "dragon",       "Pixel C",              3,    0, tegra_init::boot_dev_type::EMMC, 23, 320 } };
-	tegra_init::build_version tav = { "9", "PPR1.180610.011", "4079208_2740.7538" };
+	tegra_init::build_version tav = { "11", "RQ1A.210105.003", "7094531_2914.3416" };
 	std::vector<std::string> parts = { "APP", "CAC", "LNX", "SOS", "UDA", "USP", "vendor", "DTB" };
 
 	tegra_init ti(devices);
 
-	if (ti.is_model("foster_e") || ti.is_model("foster_e_hdd") || ti.is_model("darcy")) {
-		if (ti.vendor_context()) {
-			ti.property_set("ro.vendor.lineage.tegra.device", "t210");
-			ti.property_set("ro.vendor.lineage.tegra.model", ti.get_model());
-		}
+	if (ti.is_model("sif")) {
+		tav = { "11", "RQ1A.210105.003", "7094503_2914.3416" };
 	} else if (ti.is_model("icosa") || ti.is_model("icosa_emmc")) {
 		parts.erase(std::remove(parts.begin(), parts.end(), "USP"), parts.end()); 
 
