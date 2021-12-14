@@ -171,8 +171,7 @@ endif
 
 # Kernel
 ifneq ($(TARGET_PREBUILT_KERNEL),)
-PRODUCT_COPY_FILES += \
-    $(TARGET_PREBUILT_KERNEL):kernel
+TARGET_FORCE_PREBUILT_KERNEL := true
 else ifneq ($(TARGET_TEGRA_KERNEL),310)
 PRODUCT_PACKAGES += \
     cypress-fmac
