@@ -30,6 +30,7 @@ early_load()
 # insmod /vendor/lib/modules/example1.ko
 /vendor/bin/log -t "$scriptName" -p i "Early Loading LKM SoC-Vendor modules started"
 
+do_insmod /vendor/lib/modules/pcie-tegra-dw.ko
 do_insmod /vendor/lib/modules/pci-tegra.ko
 
 /vendor/bin/log -t "$scriptName" -p i "Loading LKM nvgpu started"
