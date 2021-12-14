@@ -13,7 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<!-- Copyright (C) 2018-2019 NVIDIA Corporation.  All rights reserved. -->
+<!-- Copyright (C) 2018-2021 NVIDIA Corporation.  All rights reserved. -->
 
 <audioPolicyConfiguration version="1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <!-- version section contains a “version” tag in the form “major.minor” e.g version=”1.0” -->
@@ -47,38 +47,27 @@
         <!-- Primary Audio HAL -->
         <module name="primary" halVersion="2.0">
             <attachedDevices>
-                <item>Speaker</item>
+                <item>DummySpeaker</item>
                 <item>Built-In Mic</item>
             </attachedDevices>
-            <defaultOutputDevice>Speaker</defaultOutputDevice>
+            <defaultOutputDevice>DummySpeaker</defaultOutputDevice>
 
             <!-- Primary HAL mixPorts and devicePorts -->
             <xi:include href="primary_module_mixports.xml"/>
-            <xi:include href="primary_module_deviceports.xml"/>
+            <xi:include href="primary_module_deviceports_tv.xml"/>
 
             <!-- route declaration, i.e. list all available sources for a given sink -->
             <routes>
                 <!-- Playback routes -->
-                <route type="mix" sink="Speaker"
-                       sources="primary_output"/>
-                <route type="mix" sink="Wired Headset"
-                       sources="primary_output"/>
-                <route type="mix" sink="Wired Headphones"
-                       sources="primary_output"/>
-                <route type="mix" sink="BT SCO"
-                       sources="primary_output"/>
-                <route type="mix" sink="BT SCO Headset"
-                       sources="primary_output"/>
-                <route type="mix" sink="BT SCO Car Kit"
+                <route type="mix" sink="DummySpeaker"
                        sources="primary_output"/>
                 <route type="mix" sink="AUX Digital"
                        sources="primary_output,multichannel,passthrough,hra"/>
                 <route type="mix" sink="Digital Dock HS"
                        sources="primary_output"/>
-
                 <!-- Capture routes -->
                 <route type="mix" sink="primary_input"
-                       sources="Built-In Mic,BT SCO Headset Mic,Digital Dock HS Mic,AudioIP-In"/>
+                       sources="Built-In Mic,Digital Dock HS Mic"/>
             </routes>
 
         </module>
@@ -127,5 +116,11 @@
     <xi:include href="ne_default_volume_tables.xml"/>
 
     <!-- End of Volume section -->
+
+    <!-- Surround Sound configuration -->
+
+    <xi:include href="surround_sound_configuration_5_0.xml"/>
+
+    <!-- End of Surround Sound configuration -->
 
 </audioPolicyConfiguration>

@@ -19,9 +19,7 @@
                          VideoEncoderCap+,
                          AudioEncoderCap+,
                          VideoDecoderCap,
-                         AudioDecoderCap,
-                         VideoEditorCap,
-                         ExportVideoProfile+)>
+                         AudioDecoderCap)>
   <!ELEMENT CamcorderProfiles (EncoderProfile+, ImageEncoding+, ImageDecoding, Camera)>
   <!ELEMENT EncoderProfile (Video, Audio)>
   <!ATTLIST EncoderProfile quality (timelapse1080p|timelapse720p|timelapse480p|timelapsehigh|timelapselow|480p|qcif|high|low|1080p) #REQUIRED>
@@ -33,9 +31,6 @@
   <!ATTLIST Video width CDATA #REQUIRED>
   <!ATTLIST Video height CDATA #REQUIRED>
   <!ATTLIST Video frameRate CDATA #REQUIRED>
-  <!ATTLIST Video profile CDATA #REQUIRED>
-  <!ATTLIST Video level CDATA #REQUIRED>
-  <!ATTLIST Video numBFrames CDATA #REQUIRED>
   <!ELEMENT Audio EMPTY>
   <!ATTLIST Audio codec (amrnb|amrwb|aac) #REQUIRED>
   <!ATTLIST Audio bitRate CDATA #REQUIRED>
@@ -75,15 +70,6 @@
   <!ELEMENT AudioDecoderCap EMPTY>
   <!ATTLIST AudioDecoderCap name (wma) #REQUIRED>
   <!ATTLIST AudioDecoderCap enabled (true|false) #REQUIRED>
-  <!ATTLIST VideoEditorCap maxInputFrameWidth CDATA #REQUIRED>
-  <!ATTLIST VideoEditorCap maxInputFrameHeight CDATA #REQUIRED>
-  <!ATTLIST VideoEditorCap maxOutputFrameWidth CDATA #REQUIRED>
-  <!ATTLIST VideoEditorCap maxOutputFrameHeight CDATA #REQUIRED>
-  <!ATTLIST VideoEditorCap maxPrefetchYUVFrames CDATA #REQUIRED>
-  <!ELEMENT ExportVideoProfile EMPTY>
-  <!ATTLIST ExportVideoProfile name (h264) #REQUIRED>
-  <!ATTLIST ExportVideoProfile profile CDATA #REQUIRED>
-  <!ATTLIST ExportVideoProfile level CDATA #REQUIRED>
 ]>
 <!--
      This file is used to declare the multimedia profiles and capabilities
@@ -99,10 +85,7 @@
              bitRate="384000"
              width="176"
              height="144"
-             frameRate="30"
-             profile="8"
-             level="1"
-             numBFrames="0" />
+             frameRate="30" />
 
       <Audio codec="amrnb"
              bitRate="12200"
@@ -115,10 +98,7 @@
              bitRate="14000000"
              width="1920"
              height="1080"
-             frameRate="30"
-             profile="8"
-             level="4096"
-             numBFrames="0" />
+             frameRate="30" />
 
       <Audio codec="aac"
              bitRate="96000"
@@ -131,10 +111,7 @@
              bitRate="384000"
              width="176"
              height="144"
-             frameRate="30"
-             profile="8"
-             level="1"
-             numBFrames="0" />
+             frameRate="30" />
 
       <Audio codec="amrnb"
              bitRate="12200"
@@ -147,10 +124,7 @@
              bitRate="1536000"
              width="352"
              height="288"
-             frameRate="30"
-             profile="8"
-             level="32"
-             numBFrames="0" />
+             frameRate="30" />
 
       <Audio codec="amrnb"
              bitRate="12200"
@@ -163,10 +137,7 @@
              bitRate="4000000"
              width="640"
              height="480"
-             frameRate="30"
-             profile="8"
-             level="256"
-             numBFrames="0" />
+             frameRate="30" />
 
       <Audio codec="aac"
              bitRate="96000"
@@ -179,10 +150,7 @@
              bitRate="8000000"
              width="1280"
              height="720"
-             frameRate="30"
-             profile="8"
-             level="512"
-             numBFrames="0" />
+             frameRate="30" />
 
       <Audio codec="aac"
              bitRate="96000"
@@ -195,10 +163,7 @@
              bitRate="14000000"
              width="1920"
              height="1080"
-             frameRate="30"
-             profile="8"
-             level="4096"
-             numBFrames="0" />
+             frameRate="30" />
 
       <Audio codec="aac"
              bitRate="96000"
@@ -211,10 +176,7 @@
              bitRate="384000"
              width="176"
              height="144"
-             frameRate="30"
-             profile="8"
-             level="1"
-             numBFrames="0" />
+             frameRate="30" />
 
       <!--
             The Audio part of the profile will not be used since time lapse mode
@@ -231,10 +193,7 @@
              bitRate="14000000"
              width="1920"
              height="1080"
-             frameRate="30"
-             profile="8"
-             level="4096"
-             numBFrames="0" />
+             frameRate="30" />
 
       <!--
             The Audio part of the profile will not be used since time lapse mode
@@ -251,10 +210,7 @@
              bitRate="384000"
              width="176"
              height="144"
-             frameRate="30"
-             profile="8"
-             level="1"
-             numBFrames="0" />
+             frameRate="30" />
 
       <!--
             The Audio part of the profile will not be used since time lapse mode
@@ -271,10 +227,7 @@
              bitRate="1536000"
              width="352"
              height="288"
-             frameRate="30"
-             profile="8"
-             level="32"
-             numBFrames="0" />
+             frameRate="30" />
 
       <!--
             The Audio part of the profile will not be used since time lapse mode
@@ -291,10 +244,7 @@
              bitRate="4000000"
              width="640"
              height="480"
-             frameRate="30"
-             profile="8"
-             level="256"
-             numBFrames="0" />
+             frameRate="30" />
 
       <!--
             The Audio part of the profile will not be used since time lapse mode
@@ -311,10 +261,7 @@
              bitRate="8000000"
              width="1280"
              height="720"
-             frameRate="30"
-             profile="8"
-             level="512"
-             numBFrames="0" />
+             frameRate="30" />
 
       <!--
             The Audio part of the profile will not be used since time lapse mode
@@ -331,10 +278,7 @@
              bitRate="14000000"
              width="1920"
              height="1080"
-             frameRate="30"
-             profile="8"
-             level="4096"
-             numBFrames="0" />
+             frameRate="30" />
 
       <!--
             The Audio part of the profile will not be used since time lapse mode
@@ -395,22 +339,4 @@
 
   <VideoDecoderCap name="wmv" enabled="true"/>
   <AudioDecoderCap name="wma" enabled="true"/>
-  <VideoEditorCap maxInputFrameWidth="1920"
-    maxInputFrameHeight="1080"
-    maxOutputFrameWidth="1920"
-    maxOutputFrameHeight="1080"
-    maxPrefetchYUVFrames="10" />
-  <!--
-      The VideoEditor Export codec profile and level values
-      correspond to the values in OMX_Video.h.
-      E.g. for h264, profile value 1 means OMX_VIDEO_AVCProfileBaseline
-      and  level 512 means OMX_VIDEO_AVCLevel31.
-      Please note that the values are in decimal.
-      These values are for video encoder.
-  -->
-  <!--
-      Codec = h.264, Baseline profile, level 4
-  -->
-  <ExportVideoProfile name="h264" profile="1"
-   level="2048" />
 </MediaSettings>
