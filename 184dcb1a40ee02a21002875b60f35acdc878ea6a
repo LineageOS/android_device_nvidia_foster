@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49114d85_210067bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2021-12-18T02:08:46Z",
+      "side": 1,
+      "message": "Verified on sif. Recovery no longer panic reboots after 2 minutes.",
+      "revId": "184dcb1a40ee02a21002875b60f35acdc878ea6a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
