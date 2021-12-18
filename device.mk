@@ -178,6 +178,10 @@ PRODUCT_PACKAGES += \
     cypress-fmac
 endif
 
+# Keylayouts
+PRODUCT_PACKAGES += \
+    gpio-keys.kl
+
 # Light
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service-nvidia
