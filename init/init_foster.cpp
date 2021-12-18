@@ -147,6 +147,8 @@ void vendor_load_properties()
 			ti.property_set("ro.vendor.lineage.tegra.device", "t210");
 			ti.property_set("ro.vendor.lineage.tegra.model", ti.get_model());
 		}
+	} else if (ti.is_model("sif")) {
+		tav = { "9", "PPR1.180610.011", "4079180_2740.7538" };
 	} else if (ti.is_model("icosa") || ti.is_model("icosa_emmc")) {
 		parts.erase(std::remove(parts.begin(), parts.end(), "USP"), parts.end()); 
 
