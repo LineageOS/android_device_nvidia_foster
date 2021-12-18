@@ -14,3 +14,4 @@
 /dev/block/by-name/MDA    /metadata           emmc      defaults                                                            defaults
 /dev/block/by-name/SOS    /recovery           emmc      defaults                                                            defaults
 /dev/block/by-name/BMP    /bmps               emmc      defaults                                                            recoveryonly
+/devices/sdhci-tegra.0/mmc_host*   auto       auto      defaults                                                            voldmanaged=sdcard1:auto,encryptable=userdata
