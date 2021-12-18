@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a877f32f_7a48004c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2021-12-18T00:45:34Z",
+      "side": 1,
+      "message": "Verified on sif, sdcard does enumerate in install list.",
+      "revId": "acd77695d5200a613805f1ad7f803c6c36624e53",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
