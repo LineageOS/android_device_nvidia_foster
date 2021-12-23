@@ -10,12 +10,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.gamestream.display.optimize=1
 
-# NRDP
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.nrdp.modelgroup=SHIELDANDROIDTV \
-    ro.vendor.nrdp.audio.otfs=true \
-    ro.vendor.nrdp.validation=ninja_6
-
 # Power brick info
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.power.brick=PB1000

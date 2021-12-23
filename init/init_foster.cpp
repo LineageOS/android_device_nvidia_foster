@@ -118,6 +118,17 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		ti->property_set(id.first, id.second);
 }
 
+void vendor_set_nrdp_props(tegra_init *ti)
+{
+	if (ti->is_model("mdarcy") || ti->is_model("sif"))
+		ti->property_set("ro.vendor.nrdp.modelgroup", "NVIDIASHIELDANDROIDTV2019");
+	else
+		ti->property_set("ro.vendor.nrdp.modelgroup", "SHIELDANDROIDTV");
+
+	ti->property_set("ro.vendor.nrdp.audio.otfs", "true");
+	ti->property_set("ro.vendor.nrdp.validation", "ninja_6");
+}
+
 void vendor_load_properties()
 {
 	//                                              device    name            model               id    sku   boot device type                api  dpi
@@ -198,6 +209,10 @@ void vendor_load_properties()
 			ti.property_set("ro.boot.avb_version", "");
 	}
 
-	if (ti.vendor_context() || ti.recovery_context())
+	if (ti.vendor_context() || ti.recovery_context()) {
 		vendor_set_usb_product_ids(&ti);
+
+		if (ti.property_get("ro.build.characteristics") == "tv")
+			vendor_set_nrdp_props(&ti);
+	}
 }
