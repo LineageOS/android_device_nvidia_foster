@@ -129,6 +129,18 @@ void vendor_set_nrdp_props(tegra_init *ti)
 	ti->property_set("ro.vendor.nrdp.validation", "ninja_6");
 }
 
+void vendor_set_oem_key1(tegra_init *ti)
+{
+	std::string rel_year = "15";
+
+	if (ti->is_model("mdarcy") || ti->is_model("sif"))
+		rel_year = "19";
+	else if (ti->is_model("darcy"))
+		rel_year = "17";
+
+	ti->property_set("ro.vendor.lineage.tegra.oem_key1", "ATV001000" + rel_year);
+}
+
 void vendor_load_properties()
 {
 	//                                              device    name            model               id    sku   boot device type                api  dpi
@@ -209,7 +221,9 @@ void vendor_load_properties()
 	if (ti.vendor_context() || ti.recovery_context()) {
 		vendor_set_usb_product_ids(&ti);
 
-		if (ti.property_get("ro.build.characteristics") == "tv")
+		if (ti.property_get("ro.build.characteristics") == "tv") {
 			vendor_set_nrdp_props(&ti);
+			vendor_set_oem_key1(&ti);
+		}
 	}
 }
