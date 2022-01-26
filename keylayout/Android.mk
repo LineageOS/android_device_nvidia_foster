@@ -23,3 +23,12 @@ LOCAL_MODULE_CLASS  := ETC
 LOCAL_VENDOR_MODULE := true
 LOCAL_MODULE_PATH   := $(TARGET_OUT_VENDOR)/usr/keylayout
 include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := gpio-keys-loki.kl
+LOCAL_SRC_FILES     := gpio-keys-loki.kl
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_VENDOR_MODULE := true
+LOCAL_MODULE_PATH   := $(TARGET_OUT_VENDOR)/usr/keylayout
+include $(BUILD_PREBUILT)

@@ -179,7 +179,8 @@ endif
 
 # Keylayouts
 PRODUCT_PACKAGES += \
-    gpio-keys.kl
+    gpio-keys.kl \
+    gpio-keys-loki.kl
 
 # Light
 PRODUCT_PACKAGES += \
