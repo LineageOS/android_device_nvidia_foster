@@ -44,8 +44,6 @@ include $(LOCAL_PATH)/system_prop.mk
 PRODUCT_CHARACTERISTICS   := tv
 PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi mdpi hdpi tvdpi
 PRODUCT_AAPT_PREF_CONFIG  := xhdpi
-TARGET_SCREEN_HEIGHT      := 1920
-TARGET_SCREEN_WIDTH       := 1080
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
