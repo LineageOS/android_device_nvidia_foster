@@ -124,9 +124,6 @@
     <!-- Whether UI for multi user should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
 
-    <!-- Is the device capable of hot swapping an UICC Card -->
-    <bool name="config_hotswapCapable">true</bool>
-
     <!-- MMS user agent string -->
     <string name="config_mms_user_agent" translatable="false">Shield Tablet Pro</string>
 
