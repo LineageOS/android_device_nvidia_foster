@@ -119,13 +119,6 @@
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
 
-    <!-- Boolean indicating whether the wifi chipset supports background scanning mechanism.
-         This mechanism allows the host to remain in suspend state and the dongle to actively
-         scan and wake the host when a configured SSID is detected by the dongle. This chipset
-         capability can provide power savings when wifi needs to be always kept on.
-         The driver commands needed to support the feature are BGSCAN-START and BGSCAN-STOP -->
-    <bool name="config_wifi_background_scan_support">true</bool>
-
     <!--  Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">8</integer>
     <!-- Whether UI for multi user should be shown -->
@@ -157,12 +150,6 @@
         <item>hspap:4094,87380,1220608,4096,16384,1220608</item>
         <item>lte:524288,1048576,2097152,262144,524288,1048576</item>
     </string-array>
-
-    <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
-    <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
-
-    <!-- Boolean indicating associated network selection is allowed -->
-    <bool translatable="false" name="config_wifi_framework_enable_associated_network_selection">false</bool>
 
     <!-- Use proper headphone jack detection -->
     <bool name="config_useDevInputEventForAudioJack">true</bool>
