@@ -39,8 +39,8 @@ TARGET_TEGRA_WIREGUARD ?= compat
 
 include device/nvidia/t210-common/t210.mk
 
-# System properties
-include $(LOCAL_PATH)/system_prop.mk
+# Properties
+include $(LOCAL_PATH)/properties.mk
 
 PRODUCT_CHARACTERISTICS   := tv
 PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi mdpi hdpi tvdpi
