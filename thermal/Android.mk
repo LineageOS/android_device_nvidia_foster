@@ -15,6 +15,14 @@
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE        := thermalhal.batuu.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := thermalhal.porg.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE        := thermalhal.darcy.xml
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_CLASS  := ETC
@@ -67,6 +75,22 @@ LOCAL_MODULE        := thermalhal.loki_e_wifi.xml
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_CLASS  := ETC
 LOCAL_SRC_FILES     := thermalhal.loki_e.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := thermalhal.porg.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := thermalhal.porg.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := thermalhal.porg_sd.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := thermalhal.porg.xml
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 

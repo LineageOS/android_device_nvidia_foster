@@ -223,6 +223,7 @@ PRODUCT_PACKAGES += \
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-service-nvidia \
+    thermalhal.batuu.xml \
     thermalhal.darcy.xml \
     thermalhal.icosa.xml \
     thermalhal.icosa_emmc.xml \
@@ -230,6 +231,8 @@ PRODUCT_PACKAGES += \
     thermalhal.jetson_e.xml \
     thermalhal.loki_e_lte.xml \
     thermalhal.loki_e_wifi.xml \
+    thermalhal.porg.xml \
+    thermalhal.porg_sd.xml \
     thermalhal.sif.xml
 
 # Treble workaround

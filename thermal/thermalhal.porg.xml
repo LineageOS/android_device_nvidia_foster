@@ -1,0 +1,30 @@
+<!--ThermalHAL Config
+Attributes for thermal
+	These must be declared as a 'thermal-prop' element node
+	Attributes:
+		name - name of thermal device
+		type - type defined by AOSP
+		sensor-label - tz name
+		multiplier - converting factor to degree Celsius
+		cores - only for CPU type
+		threshold-label - to use a different temperature threshold
+Attributes for cooling
+	These must be declared as a 'cooling-prop' element node
+		name - name of cooling device
+		type - type defined by AOSP
+		cooling-path - node that represents cooling state
+Attributes for cpu-usages
+	These must be part of 'cpu_usages' element node
+		cpus - number of cpus in the platform-->
+<thermalhal>
+	<thermal_devices>
+		<thermal_device>
+			<thermal-prop name="CPU" type="DEVICE_TEMPERATURE_CPU" sensor-label="CPU-therm" multiplier='0.001' />
+			<thermal-prop cores='4' />
+		</thermal_device>
+		<thermal_device>
+			<thermal-prop name="GPU" type="DEVICE_TEMPERATURE_GPU" sensor-label="GPU-therm" multiplier='0.001' />
+		</thermal_device>
+	</thermal_devices>
+	<cpu_usages cpus="4" />
+</thermalhal>
