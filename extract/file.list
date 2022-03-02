@@ -1,8 +1,6 @@
 stock-sif	vendor/bin/hw/vendor.nvidia.hardware.convertibleport@1.0-service	foster/usb/bin32/hw/vendor.nvidia.hardware.convertibleport@1.0-service
 stock-t210	vendor/bin/hw/vendor.nvidia.hardware.convertibleport@1.0-service	foster/usb/bin64/hw/vendor.nvidia.hardware.convertibleport@1.0-service
 
-hekate		hekate_ctcaer_5.5.4.bin		foster/firmware/hekate.bin
-
 nv-tegra-t210	3rdparty/bcmbinaries/bcm4354a1/wlan/atv/nvram_darcy_a00.txt			foster/bcm_firmware/bcm4354/nvram_darcy_a00.txt
 nv-tegra-t210	3rdparty/bcmbinaries/bcm4354a1/wlan/atv/nvram_foster_e_4354.txt			foster/bcm_firmware/bcm4354/nvram_foster_e_4354.txt
 nv-tegra-t210	3rdparty/bcmbinaries/bcm4354a1/wlan/atv/nvram_foster_e_antenna_tuned_4354.txt	foster/bcm_firmware/bcm4354/nvram_foster_e_antenna_tuned_4354.txt

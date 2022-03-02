@@ -14,6 +14,5 @@
 # limitations under the License.
 #
 
-SOURCE_PATHS+=("foster");
 FILELIST_PATHS+=("foster");
 PATCH_PATHS+=("foster");

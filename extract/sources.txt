@@ -1,1 +1,0 @@
-hekate		https://github.com/CTCaer/hekate/releases/download/v5.5.4-v2/hekate_ctcaer_5.5.4_Nyx_1.0.1.zip											hekate
