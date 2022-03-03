@@ -12,16 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/nvidia/foster/vendor/foster-recovery.mk)
 $(call inherit-product, device/nvidia/t210-common/vendor/t210.mk)
 $(call inherit-product, device/nvidia/tegra-common/vendor/common-by-flags.mk)
 $(call inherit-product, device/nvidia/foster/vendor/bcm_firmware/bcm.mk)
 $(call inherit-product, device/nvidia/shield-common/vendor/shield-by-flags.mk)
 
 PRODUCT_PACKAGES += public.libraries
-
-# Switch reboot2payload hekate
-PRODUCT_PACKAGES += reboot_payload
 
 # USB convertible hal, for darcy
 PRODUCT_PACKAGES += vendor.nvidia.hardware.convertibleport@1.0-service
