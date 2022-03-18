@@ -226,6 +226,8 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-service-nvidia \
     thermalhal.batuu.xml \
     thermalhal.darcy.xml \
+    thermalhal.foster_e.xml \
+    thermalhal.foster_e_hdd.xml \
     thermalhal.icosa.xml \
     thermalhal.icosa_emmc.xml \
     thermalhal.jetson_cv.xml \
