@@ -22,6 +22,7 @@ import os
 APP_PART     = '/dev/block/by-name/APP'
 DTB_PART     = '/dev/block/by-name/DTB'
 STAGING_PART = '/dev/block/by-name/USP'
+VBMETA_PART  = '/dev/block/by-name/vbmeta'
 VENDOR_PART  = '/dev/block/by-name/vendor'
 ICOSA_SD     = '/external_sd/switchroot/android/'
 
@@ -39,6 +40,8 @@ LOKI_E_PUBLIC_KEY   = '0x4261f1714a7d71c7e810c9b33769878128cc54ae3c5736646496104
 LOKI_E_BL_VERSION   = '24.00.2015.42-t210-39c6cadc' # the last released signed bootloader
 
 DARCY_PUBLIC_KEY    = '0x435a807e9187c53eae50e2dcab521e0ea41458a9b18d31db553ceb711c21fb52\n'
+MDARCY_PUBLIC_KEY   = '0xc5ae4221f0f4f5113c0271b3519cac7f0bcb0cb860381a4648e9eee350e97f89\n'
+SIF_PUBLIC_KEY      = '0x26646fe375375e39410853f75e59e2c4ca8440926fa37604a280b5c8a25a2c3e\n'
 DARCY_BL_VERSION    = '32.00.2019.50-t210-69ebfcbe'
 
 ICOSA_PUBLIC_KEY    = '0x7e39e100d1135918ceedfe5d66e66496eed21ecb3486d72095cc0b7c60b8bd4f\n'
@@ -115,8 +118,28 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('          is_substring("tegra210b01", read_file("' + DTSFILENAME_PATH + '")),')
   """ mdarcy """
   info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("MDarcy is not supported in this build. Please install a `mdarcy` build instead.");')
-  info.script.AppendExtra('            abort();')
+  info.script.AppendExtra('            ifelse(')
+  info.script.AppendExtra('              getprop("ro.bootloader") == "' + DARCY_BL_VERSION + '",')
+  info.script.AppendExtra('              (')
+  info.script.AppendExtra('                ui_print("Correct bootloader already installed for fused mdarcy");')
+  info.script.AppendExtra('              ),')
+  info.script.AppendExtra('              (')
+  info.script.AppendExtra('                ifelse(')
+  info.script.AppendExtra('                  read_file("' + PUBLIC_KEY_PATH + '") == "' + MDARCY_PUBLIC_KEY + '",')
+  info.script.AppendExtra('                  (')
+  info.script.AppendExtra('                    ui_print("Flashing updated bootloader for fused mdarcy");')
+  info.script.AppendExtra('                    package_extract_file("firmware-update/mdarcy.blob", "' + STAGING_PART + '");')
+  info.script.AppendExtra('                  ),')
+  info.script.AppendExtra('                  (')
+  info.script.AppendExtra('                    ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for mdarcy detected.");')
+  info.script.AppendExtra('                    ui_print("This is not supported. Please report to LineageOS Maintainer.");')
+  info.script.AppendExtra('                    abort();')
+  info.script.AppendExtra('                  )')
+  info.script.AppendExtra('                );')
+  info.script.AppendExtra('              )')
+  info.script.AppendExtra('            );')
+  info.script.AppendExtra('            package_extract_file("install/mdarcy.dtb.img", "' + DTB_PART + '");')
+  info.script.AppendExtra('            package_extract_file("install/vbmeta_skip.img", "' + VBMETA_PART + '");')
   info.script.AppendExtra('          ),')
   """ darcy """
   info.script.AppendExtra('          (')
@@ -221,6 +244,33 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('      )')
   info.script.AppendExtra('    );')
 
+  """ Fused sif """
+  info.script.AppendExtra('    ifelse(')
+  info.script.AppendExtra('      getprop("ro.hardware") == "sif",')
+  info.script.AppendExtra('      (')
+  info.script.AppendExtra('        ifelse(')
+  info.script.AppendExtra('          getprop("ro.bootloader") == "' + DARCY_BL_VERSION + '",')
+  info.script.AppendExtra('          (')
+  info.script.AppendExtra('            ui_print("Correct bootloader already installed for fused sif");')
+  info.script.AppendExtra('          ),')
+  info.script.AppendExtra('          ifelse(')
+  info.script.AppendExtra('            read_file("' + PUBLIC_KEY_PATH + '") == "' + SIF_PUBLIC_KEY + '",')
+  info.script.AppendExtra('            (')
+  info.script.AppendExtra('              ui_print("Flashing updated bootloader for fused sif");')
+  info.script.AppendExtra('              package_extract_file("firmware-update/sif.blob", "' + STAGING_PART + '");')
+  info.script.AppendExtra('            ),')
+  info.script.AppendExtra('            (')
+  info.script.AppendExtra('              ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for sif detected.");')
+  info.script.AppendExtra('              ui_print("This is not supported. Please report to LineageOS Maintainer.");')
+  info.script.AppendExtra('              abort();')
+  info.script.AppendExtra('            )')
+  info.script.AppendExtra('          )')
+  info.script.AppendExtra('        );')
+  info.script.AppendExtra('        package_extract_file("install/sif.dtb.img", "' + DTB_PART + '");')
+  info.script.AppendExtra('        package_extract_file("install/vbmeta_skip.img", "' + VBMETA_PART + '");')
+  info.script.AppendExtra('      )')
+  info.script.AppendExtra('    );')
+
   info.script.AppendExtra('  ),')
 
   """ If not fused """
@@ -253,8 +303,19 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('          is_substring("tegra210b01", read_file("' + DTSFILENAME_PATH + '")),')
   """ mdarcy """
   info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("MDarcy is not supported in this build. Please install a `mdarcy` build instead.");')
-  info.script.AppendExtra('            abort();')
+  info.script.AppendExtra('            ifelse(')
+  info.script.AppendExtra('              getprop("ro.bootloader") == "' + DARCY_BL_VERSION + '",')
+  info.script.AppendExtra('              (')
+  info.script.AppendExtra('                ui_print("Correct bootloader already installed for unfused mdarcy");')
+  info.script.AppendExtra('              ),')
+  info.script.AppendExtra('              (')
+  info.script.AppendExtra('                ui_print("This is an unfused mdarcy.");')
+  info.script.AppendExtra('                ui_print("This is not supported. Please report to LineageOS Maintainer.");')
+  info.script.AppendExtra('                abort();')
+  info.script.AppendExtra('              )')
+  info.script.AppendExtra('            );')
+  info.script.AppendExtra('            package_extract_file("install/mdarcy.dtb.img", "' + DTB_PART + '");')
+  info.script.AppendExtra('            package_extract_file("install/vbmeta_skip.img", "' + VBMETA_PART + '");')
   info.script.AppendExtra('          ),')
   """ darcy """
   info.script.AppendExtra('          (')
@@ -329,6 +390,26 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('          )')
   info.script.AppendExtra('        );')
   info.script.AppendExtra('        package_extract_file("install/" + tegra_get_dtbname(), "' + DTB_PART + '");')
+  info.script.AppendExtra('      )')
+  info.script.AppendExtra('    );')
+
+  """ Unfused sif """
+  info.script.AppendExtra('    ifelse(')
+  info.script.AppendExtra('      getprop("ro.hardware") == "sif",')
+  info.script.AppendExtra('      (')
+  info.script.AppendExtra('        ifelse(')
+  info.script.AppendExtra('          getprop("ro.bootloader") == "' + DARCY_BL_VERSION + '",')
+  info.script.AppendExtra('          (')
+  info.script.AppendExtra('            ui_print("Correct bootloader already installed for unfused sif");')
+  info.script.AppendExtra('          ),')
+  info.script.AppendExtra('          (')
+  info.script.AppendExtra('            ui_print("This is an unfused sif.");')
+  info.script.AppendExtra('            ui_print("This is not supported. Please report to LineageOS Maintainer.");')
+  info.script.AppendExtra('            abort();')
+  info.script.AppendExtra('          )')
+  info.script.AppendExtra('        );')
+  info.script.AppendExtra('        package_extract_file("install/sif.dtb.img", "' + DTB_PART + '");')
+  info.script.AppendExtra('        package_extract_file("install/vbmeta_skip.img", "' + VBMETA_PART + '");')
   info.script.AppendExtra('      )')
   info.script.AppendExtra('    );')
 
