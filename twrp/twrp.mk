@@ -16,12 +16,7 @@ TARGET_KERNEL_CONFIG   := tegra_android_recovery_defconfig
 BOARD_KERNEL_CMDLINE   := androidboot.selinux=permissive
 BOARD_RAMDISK_USE_LZMA := true
 
-PRODUCT_COPY_FILES += \
-    device/nvidia/foster/twrp/twrp.fstab.emmc:recovery/root/system/etc/twrp.fstab.emmc \
-    device/nvidia/foster/twrp/twrp.fstab.icosa_emmc:recovery/root/system/etc/twrp.fstab.icosa_emmc \
-    device/nvidia/foster/twrp/twrp.fstab.icosa_sd:recovery/root/system/etc/twrp.fstab.icosa_sd \
-    device/nvidia/foster/twrp/twrp.fstab.sata:recovery/root/system/etc/twrp.fstab.sata \
-    device/nvidia/foster/twrp/twrp.fstab.sd:recovery/root/system/etc/twrp.fstab.sd
+PRODUCT_COPY_FILES += device/nvidia/foster/twrp/twrp.fstab:recovery/root/system/etc/twrp.fstab
 
 TW_THEME             := landscape_hdpi
 TW_NO_SCREEN_TIMEOUT := true

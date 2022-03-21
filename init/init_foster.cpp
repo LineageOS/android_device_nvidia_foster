@@ -169,15 +169,6 @@ void vendor_load_properties()
 		tav = { "11", "RQ1A.210105.003", "7094503_2914.3416" };
 	} else if (ti.is_model("icosa") || ti.is_model("icosa_emmc")) {
 		parts.erase(std::remove(parts.begin(), parts.end(), "USP"), parts.end()); 
-
-		if (ti.recovery_context()) {
-			std::map<std::string,std::string> icosa_twrp_fstab;
-			if (ti.is_model("icosa_emmc"))
-				icosa_twrp_fstab.emplace("/etc/twrp.fstab.icosa_emmc", "/etc/twrp.fstab");
-			else
-				icosa_twrp_fstab.emplace("/etc/twrp.fstab.icosa_sd", "/etc/twrp.fstab");
-			ti.make_symlinks(icosa_twrp_fstab);
-		}
 	} else if (ti.is_model("dragon")) {
 		tav = { "8.1.0", "OPM8.190605.005", "5749003" };
 		ti.property_set("ro.product.name", "ryu");
@@ -196,12 +187,6 @@ void vendor_load_properties()
 			parts.erase(std::remove(parts.begin(), parts.end(), "vendor"), parts.end());
 		} else if (ti.vendor_context()) {
 			ti.property_set("ro.vendor.lineage.tegra.name", "ryu");
-		}
-	} else if (ti.is_model("loki_e_base") || ti.is_model("loki_e_lte") || ti.is_model("loki_e_wifi")) {
-		if (ti.recovery_context()) {
-			std::map<std::string,std::string> loki_twrp_fstab;
-			loki_twrp_fstab.emplace("/etc/twrp.fstab.icosa_emmc", "/etc/twrp.fstab");
-			ti.make_symlinks(loki_twrp_fstab);
 		}
 	}
 
