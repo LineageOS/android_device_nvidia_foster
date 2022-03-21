@@ -253,3 +253,6 @@ ifeq ($(TARGET_TEGRA_WIFI),bcm)
 PRODUCT_PACKAGES += \
     wifi_scan_config.conf
 endif
+
+PRODUCT_PACKAGES += \
+    WifiOverlay
