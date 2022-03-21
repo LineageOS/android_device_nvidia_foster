@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0171c0db_e9fca7ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2022-03-21T17:21:28Z",
+      "side": 1,
+      "message": "Verified on foster_e_hdd. Seems to make first boot more stable. Maybe a race or timing issue with the bpf net error spamming.",
+      "revId": "101115c93c90e234f856cabb545ae114bc7463b6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
