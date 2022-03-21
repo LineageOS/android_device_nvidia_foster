@@ -143,32 +143,29 @@ void vendor_set_oem_key1(tegra_init *ti)
 
 void vendor_load_properties()
 {
-	//                                              device    name            model               id    sku   boot device type                api  dpi
-	std::vector<tegra_init::devices> devices = { { "foster", "foster_e",     "SHIELD Android TV", 2530,  930, tegra_init::boot_dev_type::EMMC, 21, 320 },
-	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, tegra_init::boot_dev_type::SATA, 21, 320 },
-	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, tegra_init::boot_dev_type::EMMC, 23, 320 },
-	                                             { "mdarcy", "mdarcy",       "SHIELD Android TV", 2894, 2551, tegra_init::boot_dev_type::EMMC, 28, 320 },
-	                                             { "sif",    "sif",          "SHIELD Android TV", 3425,  500, tegra_init::boot_dev_type::EMMC, 28, 320 },
-	                                             { "loki",   "loki_e_base",  "SHIELD Portable",   2530,  131, tegra_init::boot_dev_type::EMMC, 21, 214 },
-	                                             { "loki",   "loki_e_lte",   "SHIELD Portable",   2530,   31, tegra_init::boot_dev_type::EMMC, 21, 240 },
-	                                             { "loki",   "loki_e_wifi",  "SHIELD Portable",   2530,   30, tegra_init::boot_dev_type::EMMC, 21, 240 },
-	                                             { "jetson", "jetson_cv",    "Jetson TX1",        2597, 2180, tegra_init::boot_dev_type::EMMC, 21, 320 },
-	                                             { "jetson", "jetson_e",     "Jetson TX1",        2595,    0, tegra_init::boot_dev_type::EMMC, 21, 320 },
-	                                             { "porg",   "batuu",        "Jetson Nano 2GB",   3448,    3, tegra_init::boot_dev_type::SD,   28, 320 },
-	                                             { "porg",   "porg_sd",      "Jetson Nano",       3448,    0, tegra_init::boot_dev_type::SD,   28, 320 },
-	                                             { "porg",   "porg",         "Jetson Nano",       3448,    2, tegra_init::boot_dev_type::EMMC, 28, 320 },
-	                                             { "icosa",  "icosa_emmc",   "Switch",              20,    1, tegra_init::boot_dev_type::EMMC, 27, 214 },
-	                                             { "icosa",  "icosa",        "Switch",              20,    0, tegra_init::boot_dev_type::SD,   27, 214 },
-	                                             { "dragon", "dragon",       "Pixel C",              3,    0, tegra_init::boot_dev_type::EMMC, 23, 320 } };
+	//                                              device    name            model               id    sku   api dpi
+	std::vector<tegra_init::devices> devices = { { "foster", "foster_e",     "SHIELD Android TV", 2530,  930, 21, 320 },
+	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, 21, 320 },
+	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, 23, 320 },
+	                                             { "mdarcy", "mdarcy",       "SHIELD Android TV", 2894, 2551, 28, 320 },
+	                                             { "sif",    "sif",          "SHIELD Android TV", 3425,  500, 28, 320 },
+	                                             { "loki",   "loki_e_base",  "SHIELD Portable",   2530,  131, 21, 214 },
+	                                             { "loki",   "loki_e_lte",   "SHIELD Portable",   2530,   31, 21, 240 },
+	                                             { "loki",   "loki_e_wifi",  "SHIELD Portable",   2530,   30, 21, 240 },
+	                                             { "jetson", "jetson_cv",    "Jetson TX1",        2597, 2180, 21, 320 },
+	                                             { "jetson", "jetson_e",     "Jetson TX1",        2595,    0, 21, 320 },
+	                                             { "porg",   "batuu",        "Jetson Nano 2GB",   3448,    3, 28, 320 },
+	                                             { "porg",   "porg_sd",      "Jetson Nano",       3448,    0, 28, 320 },
+	                                             { "porg",   "porg",         "Jetson Nano",       3448,    2, 28, 320 },
+	                                             { "icosa",  "icosa_emmc",   "Switch",              20,    1, 27, 214 },
+	                                             { "icosa",  "icosa",        "Switch",              20,    0, 27, 214 },
+	                                             { "dragon", "dragon",       "Pixel C",              3,    0, 23, 320 } };
 	tegra_init::build_version tav = { "11", "RQ1A.210105.003", "7094531_2914.3416" };
-	std::vector<std::string> parts = { "APP", "CAC", "LNX", "SOS", "UDA", "USP", "vendor", "DTB" };
 
 	tegra_init ti(devices);
 
 	if (ti.is_model("sif")) {
 		tav = { "11", "RQ1A.210105.003", "7094503_2914.3416" };
-	} else if (ti.is_model("icosa") || ti.is_model("icosa_emmc")) {
-		parts.erase(std::remove(parts.begin(), parts.end(), "USP"), parts.end()); 
 	} else if (ti.is_model("dragon")) {
 		tav = { "8.1.0", "OPM8.190605.005", "5749003" };
 		ti.property_set("ro.product.name", "ryu");
@@ -176,15 +173,10 @@ void vendor_load_properties()
 
 		if (ti.recovery_context()) {
 			std::map<std::string,std::string> dragon_parts;
-			dragon_parts.emplace("KERN-A", "LNX");
-			dragon_parts.emplace("recovery", "SOS");
-			dragon_parts.emplace("VNR", "vendor");
-			ti.recovery_links(dragon_parts);
-
-			parts.erase(std::remove(parts.begin(), parts.end(), "LNX"), parts.end()); 
-			parts.erase(std::remove(parts.begin(), parts.end(), "SOS"), parts.end()); 
-			parts.erase(std::remove(parts.begin(), parts.end(), "USP"), parts.end()); 
-			parts.erase(std::remove(parts.begin(), parts.end(), "vendor"), parts.end());
+			dragon_parts.emplace("/dev/block/by-name/KERN-A", "/dev/block/by-name/LNX");
+			dragon_parts.emplace("/dev/block/by-name/recovery", "/dev/block/by-name/SOS");
+			dragon_parts.emplace("/dev/block/by-name/VNR", "/dev/block/by-name/vendor");
+			ti.make_symlinks(dragon_parts);
 		} else if (ti.vendor_context()) {
 			ti.property_set("ro.vendor.lineage.tegra.name", "ryu");
 		}
@@ -194,7 +186,6 @@ void vendor_load_properties()
 	ti.set_fingerprints(tav);
 
 	if (ti.recovery_context()) {
-		ti.recovery_links(parts);
 		ti.property_set("ro.product.vendor.model", ti.property_get("ro.product.model"));
 		ti.property_set("ro.product.vendor.manufacturer", ti.property_get("ro.product.manufacturer"));
 
