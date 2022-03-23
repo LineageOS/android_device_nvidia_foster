@@ -194,7 +194,8 @@ PRODUCT_PACKAGES += \
 ifneq (,$(findstring nvmm,$(TARGET_TEGRA_OMX)))
 PRODUCT_PACKAGES += \
     media_codecs_performance.xml \
-    media_profiles_V1_0.xml
+    media_profiles_V1_0.xml \
+    enctune.conf
 endif
 
 # Netflix

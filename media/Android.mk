@@ -133,3 +133,11 @@ LOCAL_MODULE_CLASS  := ETC
 LOCAL_SRC_FILES     := media_profiles_V1_0.xml
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := enctune.conf
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := enctune.conf
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
