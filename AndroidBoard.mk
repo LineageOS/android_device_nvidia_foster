@@ -43,6 +43,6 @@ endif
 
 EKS_DAT_SYMLINK := $(TARGET_OUT_VENDOR)/app/eks2/eks2.dat
 $(EKS_DAT_SYMLINK): $(LOCAL_INSTALLED_MODULE)
-	$(hide) ln -sf /data/vendor/eks2/ek2.dat $@
+	$(hide) ln -sf /data/vendor/eks2/eks2.dat $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(EKS_DAT_SYMLINK)
