@@ -16,6 +16,23 @@
       "message": "Verified on sif. Needs verified on foster or darcy then mdarcy.",
       "revId": "3e07d68f49a3ede6ef31d126676110bc9d019dc4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a15a666d_4312a1c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2022-04-08T02:57:42Z",
+      "side": 1,
+      "message": "Verified widevine working on darcy. mdarcy uses a kernel dt node to point to an mdarcy specific eks2 dat, so is not affected by this change.",
+      "revId": "3e07d68f49a3ede6ef31d126676110bc9d019dc4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
