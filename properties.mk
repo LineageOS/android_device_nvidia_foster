@@ -2,9 +2,11 @@
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.media.avsync=true
 
+ifneq ($(TARGET_TEGRA_KERNEL),3.10)
 # Bpf
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.kernel.ebpf.supported=1
+endif
 
 # Charger
 PRODUCT_SYSTEM_PROPERTY_OVERRIDES += \
