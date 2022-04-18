@@ -12,8 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import init.recovery.xusb.configfs.usb.rc
-import init.recovery.usb.configfs.rc
-
-on init
-    setprop sys.usb.configfs 1
+import init.recovery.usb.rc

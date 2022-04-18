@@ -362,11 +362,7 @@ include $(BUILD_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE       := init.recovery.foster_common.rc
 LOCAL_MODULE_CLASS := ETC
-ifeq ($(TARGET_TEGRA_KERNEL),310)
-LOCAL_SRC_FILES    := init.recovery.foster_common_310.rc
-else
 LOCAL_SRC_FILES    := init.recovery.foster_common.rc
-endif
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
