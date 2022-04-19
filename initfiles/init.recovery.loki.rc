@@ -17,6 +17,5 @@ import init.recovery.foster_common.rc
 
 on post-fs
     # touchscreen
-    mkdir /mnt/vendor/factory
-    mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/FCT /mnt/vendor/factory rw noatime
+    mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/FCT /mnt/vendor/factory ro
     restorecon_recursive /mnt/vendor/factory
