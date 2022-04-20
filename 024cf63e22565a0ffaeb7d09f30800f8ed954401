@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00b44fd4_5af9bdca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2022-04-20T00:31:45Z",
+      "side": 1,
+      "message": "Verified booting mdarcy and jetson_cv",
+      "revId": "024cf63e22565a0ffaeb7d09f30800f8ed954401",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
