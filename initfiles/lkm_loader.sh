@@ -193,7 +193,7 @@ do_insmod /vendor/lib/modules/snd-soc-rt5677-spi.ko
 do_insmod /vendor/lib/modules/snd-soc-rt5677.ko
 do_insmod /vendor/lib/modules/snd-soc-max98357a.ko
 do_insmod /vendor/lib/modules/snd-soc-nau8825.ko
-do_insmod /vendor/lib/modules/snd-soc-tegra-machine-driver-mobile.ko
+do_insmod /vendor/lib/modules/snd-soc-tegra-machine-driver.ko
 /vendor/bin/log -t "$scriptName" -p i "loading odm audio modules completed"
 
 if [[ "$hardwareName" != +(*foster*|*darcy*|sif) ]]; then
