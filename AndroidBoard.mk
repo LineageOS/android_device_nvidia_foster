@@ -24,7 +24,6 @@ DTB_TARGETS := tegra210-darcy-p2894-0000-a00-00.dtb \
                tegra210-foster-e-hdd-p2530-0932-e02-00.dtb \
                tegra210-foster-e-p2530-0930-e01-00.dtb \
                tegra210-foster-e-p2530-0930-e02-00.dtb \
-               tegra210-icosa.dtb \
                tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb \
                tegra210-loki-e-p2530-0030-e01-00.dtb \
                tegra210-loki-e-p2530-0030-e02-00.dtb \
