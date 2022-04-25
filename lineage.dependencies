@@ -45,10 +45,6 @@
    "target_path": "hardware/nvidia/platform/t210/jetson"
  },
  {
-   "repository": "android_hardware_nvidia_platform_t210_icosa",
-   "target_path": "hardware/nvidia/platform/t210/icosa"
- },
- {
    "repository": "android_hardware_nvidia_platform_t210b01_darcy",
    "target_path": "hardware/nvidia/platform/t210b01/darcy"
  },
