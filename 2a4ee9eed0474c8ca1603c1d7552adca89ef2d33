@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f380cd4d_a88544b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2022-05-01T18:17:53Z",
+      "side": 1,
+      "message": "Verified on mdarcy, netflix 4k content falls back to 1080 and plays without corruption.",
+      "revId": "2a4ee9eed0474c8ca1603c1d7552adca89ef2d33",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
