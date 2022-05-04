@@ -18,6 +18,3 @@ $(call inherit-product, device/nvidia/foster/vendor/bcm_firmware/bcm.mk)
 $(call inherit-product, device/nvidia/shield-common/vendor/shield-by-flags.mk)
 
 PRODUCT_PACKAGES += public.libraries
-
-# USB convertible hal, for darcy
-PRODUCT_PACKAGES += vendor.nvidia.hardware.convertibleport@1.0-service
