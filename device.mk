@@ -169,7 +169,7 @@ endif
 # Kernel
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 TARGET_FORCE_PREBUILT_KERNEL := true
-else ifneq ($(TARGET_TEGRA_KERNEL),3.10)
+else ifeq ($(TARGET_TEGRA_KERNEL),4.9)
 PRODUCT_PACKAGES += \
     cypress-fmac
 endif
