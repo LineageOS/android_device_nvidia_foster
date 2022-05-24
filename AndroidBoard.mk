@@ -16,6 +16,10 @@ ifeq ($(TARGET_PREBUILT_KERNEL),)
 INSTALLED_KERNEL_TARGET := $(PRODUCT_OUT)/kernel
 INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
 
+ifeq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
+DTB_SUBFOLDER := nvidia/
+endif
+
 DTB_TARGETS := tegra210-darcy-p2894-0000-a00-00.dtb \
                tegra210-darcy-p2894-0050-a04-00.dtb \
                tegra210-darcy-p2894-0050-a08-00.dtb \
@@ -35,7 +39,7 @@ INSTALLED_DTB_TARGETS := $(DTB_TARGETS:%=$(PRODUCT_OUT)/install/%)
 $(INSTALLED_DTB_TARGETS): $(INSTALLED_KERNEL_TARGET) | $(ACP)
 	echo -e ${CL_GRN}"Copying individual DTBs"${CL_RST}
 	@mkdir -p $(PRODUCT_OUT)/install
-	cp $(@F:%=$(KERNEL_OUT)/arch/arm64/boot/dts/%) $(PRODUCT_OUT)/install/
+	cp $(@F:%=$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)%) $(PRODUCT_OUT)/install/
 
 ALL_DEFAULT_INSTALLED_MODULES += $(INSTALLED_DTB_TARGETS)
 
@@ -44,19 +48,19 @@ $(INSTALLED_DTBIMAGE_TARGET_mdarcy): $(INSTALLED_KERNEL_TARGET) | mkdtimg
 	echo -e ${CL_GRN}"Building mdarcy DTImage"${CL_RST}
 	@mkdir -p $(PRODUCT_OUT)/install
 	$(HOST_OUT_EXECUTABLES)/mkdtimg create $@ --id=2894 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/tegra210b01-darcy-p2894-0050-a08-00.dtb --rev=0x0a8 --custom0=0x28 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/tegra210b01-darcy-p2894-2551-b00-00.dtb --rev=0xb00 --custom0=2551 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/tegra210b01-darcy-p2894-3551-b03-00.dtb --rev=0xb03 --custom0=3551
+		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-darcy-p2894-0050-a08-00.dtb --rev=0x0a8 --custom0=0x28 \
+		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-darcy-p2894-2551-b00-00.dtb --rev=0xb00 --custom0=2551 \
+		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-darcy-p2894-3551-b03-00.dtb --rev=0xb03 --custom0=3551
 
 INSTALLED_DTBIMAGE_TARGET_sif    := $(PRODUCT_OUT)/install/sif.dtb.img
 $(INSTALLED_DTBIMAGE_TARGET_sif): $(INSTALLED_KERNEL_TARGET) | mkdtimg
 	echo -e ${CL_GRN}"Building sif DTImage"${CL_RST}
 	@mkdir -p $(PRODUCT_OUT)/install
 	$(HOST_OUT_EXECUTABLES)/mkdtimg create $@ --id=3425 --custom0=0x140 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/tegra210b01-sif-p3425-0500-a01.dtb --rev=0xa1 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/tegra210b01-sif-p3425-0500-a02.dtb --rev=0xa2 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/tegra210b01-sif-p3425-0500-a04.dtb --rev=0xa3 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/tegra210b01-sif-p3425-0500-a04.dtb --rev=0xa4
+		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-sif-p3425-0500-a01.dtb --rev=0xa1 \
+		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-sif-p3425-0500-a02.dtb --rev=0xa2 \
+		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-sif-p3425-0500-a04.dtb --rev=0xa3 \
+		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-sif-p3425-0500-a04.dtb --rev=0xa4
 
 ALL_DEFAULT_INSTALLED_MODULES += $(INSTALLED_DTBIMAGE_TARGET_mdarcy) $(INSTALLED_DTBIMAGE_TARGET_sif)
 endif
