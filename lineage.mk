@@ -19,6 +19,11 @@ TARGET_TEGRA_POWER    ?= lineage
 TARGET_SCREEN_HEIGHT      := 1920
 TARGET_SCREEN_WIDTH       := 1080
 
+# GMS
+ifeq ($(WITH_GMS),true)
+GMS_MAKEFILE=gms_minimal.mk
+endif
+
 # Unified device support
 TARGET_INIT_VENDOR_LIB := //device/nvidia/foster:libinit_foster
 PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
