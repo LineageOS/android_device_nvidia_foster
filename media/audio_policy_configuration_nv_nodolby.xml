@@ -87,20 +87,7 @@
         <xi:include href="a2dp_in_audio_policy_configuration.xml"/>
 
         <!-- Usb Audio HAL -->
-        <module name="usb" halVersion="2.0">
-            <xi:include href="usb_module_mixports.xml"/>
-            <xi:include href="usb_module_deviceports.xml"/>
-            <routes>
-                <route type="mix" sink="USB Host Out"
-                       sources="usb_accessory output"/>
-                <route type="mix" sink="USB Device Out"
-                       sources="usb_device output,usb_passthrough"/>
-                <route type="mix" sink="USB Headset Out"
-                       sources="usb_device output,usb_passthrough"/>
-                <route type="mix" sink="usb_device input"
-                       sources="USB Device In,USB Headset In"/>
-            </routes>
-        </module>
+        <xi:include href="usb_audio_policy_configuration.xml"/>
 
         <!-- Remote Submix Audio HAL -->
         <xi:include href="r_submix_audio_policy_configuration.xml"/>
