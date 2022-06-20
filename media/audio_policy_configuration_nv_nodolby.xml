@@ -99,8 +99,8 @@
 
     <!-- Volume section -->
 
-    <xi:include href="ne_audio_policy_volumes.xml"/>
-    <xi:include href="ne_default_volume_tables.xml"/>
+    <xi:include href="audio_policy_volumes.xml"/>
+    <xi:include href="default_volume_tables.xml"/>
 
     <!-- End of Volume section -->
 
