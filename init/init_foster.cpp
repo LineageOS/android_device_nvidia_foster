@@ -160,12 +160,12 @@ void vendor_load_properties()
 	                                             { "icosa",  "icosa_emmc",   "Switch",              20,    1, 27, 214 },
 	                                             { "icosa",  "icosa",        "Switch",              20,    0, 27, 214 },
 	                                             { "dragon", "dragon",       "Pixel C",              3,    0, 23, 320 } };
-	tegra_init::build_version tav = { "11", "RQ1A.210105.003", "7094531_2914.3416" };
+	tegra_init::build_version tav = { "11", "RQ1A.210105.003", "7825230_3062.3935" };
 
 	tegra_init ti(devices);
 
 	if (ti.is_model("sif")) {
-		tav = { "11", "RQ1A.210105.003", "7094503_2914.3416" };
+		tav = { "11", "RQ1A.210105.003", "7825199_3062.3935" };
 	} else if (ti.is_model("dragon")) {
 		tav = { "8.1.0", "OPM8.190605.005", "5749003" };
 		ti.property_set("ro.product.name", "ryu");
