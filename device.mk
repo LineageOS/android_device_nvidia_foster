@@ -57,7 +57,6 @@ PRODUCT_PACKAGES += \
     fstab.batuu \
     fstab.darcy \
     fstab.dragon \
-    fstab.foster \
     fstab.foster_e \
     fstab.foster_e_hdd \
     fstab.jetson_cv \

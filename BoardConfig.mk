@@ -65,7 +65,7 @@ TARGET_KERNEL_ADDITIONAL_FLAGS := "NV_BUILD_KERNEL_OPTIONS=$(TARGET_TEGRA_KERNEL
 include device/nvidia/foster/modules.mk
 
 # Recovery
-TARGET_RECOVERY_FSTAB        := device/nvidia/foster/initfiles/fstab.foster
+TARGET_RECOVERY_FSTAB        := device/nvidia/foster/initfiles/fstab.emmc
 TARGET_RECOVERY_UPDATER_LIBS := librecoveryupdater_tegra
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 

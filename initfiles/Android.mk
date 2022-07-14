@@ -14,110 +14,32 @@
 
 LOCAL_PATH := $(call my-dir)
 
+# Parameters
+# $1 Variant name
+# $2 Fstab source
+define fstab_rule
 include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.batuu
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.porg_sd
-LOCAL_VENDOR_MODULE := true
+LOCAL_MODULE           := fstab.$(strip $(1))
+LOCAL_MODULE_CLASS     := ETC
+LOCAL_SRC_FILES        := fstab.$(strip $(2))
+LOCAL_VENDOR_MODULE    := true
 include $(BUILD_PREBUILT)
+endef
 
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.darcy
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.darcy
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.dragon
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.dragon
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.foster
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.foster
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.foster_e
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.foster_e
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.foster_e_hdd
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.foster_e_hdd
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.jetson_e
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.foster_e
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.jetson_cv
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.foster_e
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.loki_e_base
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.foster_e
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.loki_e_lte
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.foster_e
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.loki_e_wifi
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.foster_e
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.nx
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.nx
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.porg
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.foster_e
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.porg_sd
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.porg_sd
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.sif
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.foster_e
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
+$(eval $(call fstab_rule, batuu,        sd     ))
+$(eval $(call fstab_rule, darcy,        emmc   ))
+$(eval $(call fstab_rule, dragon,       dragon ))
+$(eval $(call fstab_rule, foster_e,     emmc   ))
+$(eval $(call fstab_rule, foster_e_hdd, emmc   ))
+$(eval $(call fstab_rule, jetson_cv,    emmc   ))
+$(eval $(call fstab_rule, jetson_e,     emmc   ))
+$(eval $(call fstab_rule, loki_e_base,  emmc   ))
+$(eval $(call fstab_rule, loki_e_lte,   emmc   ))
+$(eval $(call fstab_rule, loki_e_wifi,  emmc   ))
+$(eval $(call fstab_rule, nx,           nx     ))
+$(eval $(call fstab_rule, porg,         emmc   ))
+$(eval $(call fstab_rule, porg_sd,      sd     ))
+$(eval $(call fstab_rule, sif,          emmc   ))
 
 include $(CLEAR_VARS)
 LOCAL_MODULE               := init.batuu.rc
