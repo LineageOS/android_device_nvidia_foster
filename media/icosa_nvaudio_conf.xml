@@ -18,7 +18,7 @@
   <param name="HDMI HW Latency" val="50"/>
   <param name="DP DEVICE ID" val="3"/>
   </card>
-  <card name="tegra-snd-t210ref-mobile-rt565x">
+  <card name="Nintendo Switch APE">
     <pcm_config name="music-playback"
                 device_id="0"
                 rate="48000"
