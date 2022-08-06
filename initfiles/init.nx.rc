@@ -19,6 +19,10 @@ import /vendor/etc/init/hw/init.loki_e_common.rc
 on init
     setprop ro.surface_flinger.primary_display_orientation ORIENTATION_270
 
+on fs
+    mount_all /vendor/etc/fstab.nx
+    swapon_all /vendor/etc/fstab.nx
+
 on boot
     write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 500
     write /sys/devices/57000000.gpu/submit_boost_freq 460800

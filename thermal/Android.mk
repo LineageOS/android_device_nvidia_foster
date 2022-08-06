@@ -47,22 +47,6 @@ LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.icosa.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.darcy.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.icosa_emmc.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.darcy.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE        := thermalhal.jetson_cv.xml
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_CLASS  := ETC
@@ -91,6 +75,14 @@ LOCAL_MODULE        := thermalhal.loki_e_wifi.xml
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_CLASS  := ETC
 LOCAL_SRC_FILES     := thermalhal.loki_e.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := thermalhal.nx.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := thermalhal.darcy.xml
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 

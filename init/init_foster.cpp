@@ -80,7 +80,7 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B427";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B428";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B429";
-	} else if (ti->is_model("icosa") || ti->is_model("icosa_emmc")) {
+	} else if (ti->is_model("odin") || ti->is_model("modin") || ti->is_model("vali") || ti->is_model("frig")) {
 		mDeviceUsbIds["ro.vendor.nv.usb.vid"]           = "057E";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "2000";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "2000";
@@ -157,8 +157,10 @@ void vendor_load_properties()
 	                                             { "porg",   "batuu",        "Jetson Nano 2GB",   3448,    3, 28, 320 },
 	                                             { "porg",   "porg_sd",      "Jetson Nano",       3448,    0, 28, 320 },
 	                                             { "porg",   "porg",         "Jetson Nano",       3448,    2, 28, 320 },
-	                                             { "icosa",  "icosa_emmc",   "Switch",              20,    1, 27, 214 },
-	                                             { "icosa",  "icosa",        "Switch",              20,    0, 27, 214 },
+	                                             { "nx",     "odin",         "Switch",            7888,    0, 27, 214 },
+	                                             { "nx",     "modin",        "Switch V2",         7888,    1, 27, 214 },
+	                                             { "nx",     "vali",         "Switch Lite",       7888,    2, 27, 214 },
+	                                             { "nx",     "frig",         "Switch OLED",       7888,    3, 27, 214 },
 	                                             { "dragon", "dragon",       "Pixel C",              3,    0, 23, 320 } };
 	tegra_init::build_version tav = { "11", "RQ1A.210105.003", "7825230_3167.5736" };
 
