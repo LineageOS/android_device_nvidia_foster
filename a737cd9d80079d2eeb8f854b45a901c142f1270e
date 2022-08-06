@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3052c18_1868a6ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2022-08-06T22:39:41Z",
+      "side": 1,
+      "message": "Topic verified building both 4.9 and 5.10 kernels.",
+      "revId": "a737cd9d80079d2eeb8f854b45a901c142f1270e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
