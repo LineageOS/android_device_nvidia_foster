@@ -61,13 +61,12 @@ PRODUCT_PACKAGES += \
     fstab.foster \
     fstab.foster_e \
     fstab.foster_e_hdd \
-    fstab.icosa \
-    fstab.icosa_emmc \
     fstab.jetson_cv \
     fstab.jetson_e \
     fstab.loki_e_base \
     fstab.loki_e_lte \
     fstab.loki_e_wifi \
+    fstab.nx \
     fstab.porg \
     fstab.porg_sd \
     fstab.sif \
@@ -79,14 +78,12 @@ PRODUCT_PACKAGES += \
     init.foster_e_common.rc \
     init.loki_e_common.rc \
     init.loki_foster_e_common.rc \
-    init.icosa.rc \
-    init.icosa_common.rc \
-    init.icosa_emmc.rc \
     init.jetson_cv.rc \
     init.jetson_e.rc \
     init.loki_e_base.rc \
     init.loki_e_lte.rc \
     init.loki_e_wifi.rc \
+    init.nx.rc \
     init.porg.rc \
     init.porg_sd.rc \
     init.sif.rc \
@@ -96,13 +93,12 @@ PRODUCT_PACKAGES += \
     init.recovery.foster_e.rc \
     init.recovery.foster_e_hdd.rc \
     init.recovery.foster_common.rc \
-    init.recovery.icosa.rc \
-    init.recovery.icosa_emmc.rc \
     init.recovery.jetson_cv.rc \
     init.recovery.jetson_e.rc \
     init.recovery.loki_e_base.rc \
     init.recovery.loki_e_lte.rc \
     init.recovery.loki_e_wifi.rc \
+    init.recovery.nx.rc \
     init.recovery.porg.rc \
     init.recovery.porg_sd.rc \
     init.recovery.sif.rc \
@@ -111,13 +107,12 @@ PRODUCT_PACKAGES += \
     power.dragon.rc \
     power.foster_e.rc \
     power.foster_e_hdd.rc \
-    power.icosa.rc \
-    power.icosa_emmc.rc \
     power.jetson_cv.rc \
     power.jetson_e.rc \
     power.loki_e_base.rc \
     power.loki_e_lte.rc \
     power.loki_e_wifi.rc \
+    power.nx.rc \
     power.porg.rc \
     power.porg_sd.rc \
     power.sif.rc
@@ -142,8 +137,7 @@ PRODUCT_PACKAGES += \
     loki_e_base_nvaudio_conf.xml \
     loki_e_lte_nvaudio_conf.xml \
     loki_e_wifi_nvaudio_conf.xml \
-    icosa_nvaudio_conf.xml \
-    icosa_emmc_nvaudio_conf.xml \
+    nx_nvaudio_conf.xml \
     nvaudio_conf.xml \
     nvaudio_fx.xml
 endif
@@ -231,8 +225,7 @@ PRODUCT_PACKAGES += \
     thermalhal.darcy.xml \
     thermalhal.foster_e.xml \
     thermalhal.foster_e_hdd.xml \
-    thermalhal.icosa.xml \
-    thermalhal.icosa_emmc.xml \
+    thermalhal.nx.xml \
     thermalhal.jetson_cv.xml \
     thermalhal.jetson_e.xml \
     thermalhal.loki_e_lte.xml \
