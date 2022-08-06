@@ -51,18 +51,10 @@ LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE        := icosa_nvaudio_conf.xml
+LOCAL_MODULE        := nx_nvaudio_conf.xml
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := icosa_nvaudio_conf.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := icosa_emmc_nvaudio_conf.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := icosa_nvaudio_conf.xml
+LOCAL_SRC_FILES     := nx_nvaudio_conf.xml
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 

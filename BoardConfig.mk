@@ -32,7 +32,7 @@ TARGET_COPY_OUT_VENDOR             := vendor
 BOARD_BUILD_SYSTEM_ROOT_IMAGE      := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := foster,darcy,jetson,loki,icosa,mdarcy
+TARGET_OTA_ASSERT_DEVICE := foster,darcy,jetson,loki,mdarcy,nx
 ifneq ($(WITH_GMS_TV),true)
 TARGET_OTA_ASSERT_DEVICE := $(TARGET_OTA_ASSERT_DEVICE),sif
 endif

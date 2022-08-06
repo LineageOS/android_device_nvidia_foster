@@ -57,20 +57,6 @@ LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.icosa
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.icosa
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := fstab.icosa_emmc
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := fstab.icosa_emmc
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE        := fstab.jetson_e
 LOCAL_MODULE_CLASS  := ETC
 LOCAL_SRC_FILES     := fstab.foster_e
@@ -102,6 +88,13 @@ include $(CLEAR_VARS)
 LOCAL_MODULE        := fstab.loki_e_wifi
 LOCAL_MODULE_CLASS  := ETC
 LOCAL_SRC_FILES     := fstab.foster_e
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := fstab.nx
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := fstab.nx
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 
@@ -167,30 +160,6 @@ LOCAL_MODULE_RELATIVE_PATH := init/hw
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE               := init.icosa.rc
-LOCAL_MODULE_CLASS         := ETC
-LOCAL_SRC_FILES            := init.icosa.rc
-LOCAL_VENDOR_MODULE        := true
-LOCAL_MODULE_RELATIVE_PATH := init/hw
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE               := init.icosa_common.rc
-LOCAL_MODULE_CLASS         := ETC
-LOCAL_SRC_FILES            := init.icosa_common.rc
-LOCAL_VENDOR_MODULE        := true
-LOCAL_MODULE_RELATIVE_PATH := init/hw
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE               := init.icosa_emmc.rc
-LOCAL_MODULE_CLASS         := ETC
-LOCAL_SRC_FILES            := init.icosa_emmc.rc
-LOCAL_VENDOR_MODULE        := true
-LOCAL_MODULE_RELATIVE_PATH := init/hw
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE               := init.jetson_e.rc
 LOCAL_MODULE_CLASS         := ETC
 LOCAL_SRC_FILES            := init.jetson_e.rc
@@ -226,6 +195,14 @@ include $(CLEAR_VARS)
 LOCAL_MODULE               := init.loki_e_wifi.rc
 LOCAL_MODULE_CLASS         := ETC
 LOCAL_SRC_FILES            := init.loki_e_wifi.rc
+LOCAL_VENDOR_MODULE        := true
+LOCAL_MODULE_RELATIVE_PATH := init/hw
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := init.nx.rc
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_SRC_FILES            := init.nx.rc
 LOCAL_VENDOR_MODULE        := true
 LOCAL_MODULE_RELATIVE_PATH := init/hw
 include $(BUILD_PREBUILT)
@@ -290,20 +267,6 @@ LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE       := init.recovery.icosa.rc
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := init.recovery.icosa.rc
-LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE       := init.recovery.icosa_emmc.rc
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := init.recovery.icosa.rc
-LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE       := init.recovery.jetson_cv.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := init.recovery.foster.rc
@@ -335,6 +298,13 @@ include $(CLEAR_VARS)
 LOCAL_MODULE       := init.recovery.loki_e_wifi.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := init.recovery.loki.rc
+LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := init.recovery.nx.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := init.recovery.nx.rc
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
@@ -426,20 +396,6 @@ LOCAL_SRC_FILES    := power.foster_e_common.rc
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE       := power.icosa.rc
-LOCAL_MODULE_CLASS := ETC
-LOCAL_ODM_MODULE   := true
-LOCAL_SRC_FILES    := power.icosa.rc
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE       := power.icosa_emmc.rc
-LOCAL_MODULE_CLASS := ETC
-LOCAL_ODM_MODULE   := true
-LOCAL_SRC_FILES    := power.icosa.rc
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE       := power.jetson_cv.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_ODM_MODULE   := true
@@ -472,6 +428,13 @@ LOCAL_MODULE       := power.loki_e_wifi.rc
 LOCAL_MODULE_CLASS := ETC
 LOCAL_ODM_MODULE   := true
 LOCAL_SRC_FILES    := power.loki_e_common.rc
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := power.nx.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_ODM_MODULE   := true
+LOCAL_SRC_FILES    := power.nx.rc
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
