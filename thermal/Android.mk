@@ -66,7 +66,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE        := thermalhal.jetson_cv.xml
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.jetson_e.xml
+LOCAL_SRC_FILES     := thermalhal.darcy.xml
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 
@@ -74,7 +74,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE        := thermalhal.jetson_e.xml
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.jetson_e.xml
+LOCAL_SRC_FILES     := thermalhal.darcy.xml
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 
@@ -114,6 +114,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE        := thermalhal.sif.xml
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.sif.xml
+LOCAL_SRC_FILES     := thermalhal.darcy.xml
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
