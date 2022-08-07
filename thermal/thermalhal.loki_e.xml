@@ -28,7 +28,7 @@ Attributes for cpu-usages
 	</thermal_devices>
 	<cooling_devices>
 		<cooling_device>
-			<cooling-prop name="FAN" type="FAN_RPM" cooling-path="/sys/devices/platform/pwm-fan.44/rpm_measured" />
+			<cooling-prop name="FAN" type="FAN_RPM" cooling-path="/sys/devices/platform/pwm-fan.43/rpm_measured" />
 		</cooling_device>
 	</cooling_devices>
 	<cpu_usages cpus="4" />
