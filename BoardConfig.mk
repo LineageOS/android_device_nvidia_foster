@@ -58,6 +58,11 @@ KERNEL_TOOLCHAIN               := $(shell pwd)/prebuilts/gcc/linux-x86/aarch64/a
 KERNEL_TOOLCHAIN_PREFIX        := aarch64-buildroot-linux-gnu-
 TARGET_KERNEL_SOURCE           := kernel/nvidia/kernel-$(TARGET_TEGRA_KERNEL)
 TARGET_KERNEL_CONFIG           := tegra_android_defconfig
+<<<<<<< HEAD   (e36c24 overlay: Remove headset hotplug overlay)
+=======
+TARGET_KERNEL_RECOVERY_CONFIG  := tegra_android_recovery_defconfig
+BOARD_KERNEL_CMDLINE           := androidboot.selinux=permissive
+>>>>>>> CHANGE (4b9429 [DNM] foster: Set SELinux to Permissive)
 BOARD_KERNEL_IMAGE_NAME        := Image.gz
 TARGET_KERNEL_ADDITIONAL_FLAGS := "NV_BUILD_KERNEL_OPTIONS=$(TARGET_TEGRA_KERNEL)"
 BOARD_KERNEL_CMDLINE           := "androidboot.boot_devices=sdhci-tegra.0,tegra-sata.0,sdhci-tegra.3"
