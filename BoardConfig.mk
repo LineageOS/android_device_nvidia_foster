@@ -84,3 +84,5 @@ include device/nvidia/foster/twrp/twrp.mk
 endif
 
 include device/nvidia/t210-common/BoardConfigCommon.mk
+
+BOARD_KERNEL_CMDLINE           += androidboot.selinux=permissive
