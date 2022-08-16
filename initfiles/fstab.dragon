@@ -8,7 +8,7 @@
 /dev/block/platform/sdhci-tegra.3/by-name/CAC           /cache              ext4      noatime,nosuid,nodev,data=ordered,barrier=1,nodelalloc              wait,formattable
 /dev/block/platform/sdhci-tegra.3/by-name/KERN-A        /boot               emmc      defaults                                                            defaults
 /dev/block/platform/sdhci-tegra.3/by-name/MSC           /misc               emmc      defaults                                                            defaults
-/dev/block/platform/sdhci-tegra.3/by-name/UDA           /data               ext4      noatime,nosuid,nodev,data=ordered,barrier=0,noauto_da_alloc           wait,check,formattable,encryptable=/dev/block/platform/sdhci-tegra.3/by-name/MD1,quota,reservedsize=128M
+/dev/block/platform/sdhci-tegra.3/by-name/UDA           /data               ext4      noatime,nosuid,nodev,data=ordered,barrier=0,noauto_da_alloc           wait,check,formattable,quota,reservedsize=128M
 /dev/block/platform/sdhci-tegra.3/by-name/MD1           /metadata           emmc      defaults                                                            defaults
 /dev/block/platform/sdhci-tegra.3/by-name/recovery      /recovery           emmc      defaults                                               defaults
 /devices/70090000.xusb/usb*                             auto                vfat      defaults                                                            voldmanaged=usbdrive:auto,encryptable=userdata

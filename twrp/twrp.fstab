@@ -11,7 +11,7 @@
 /dev/block/by-name/vendor /vendor_image       emmc      ro,noatime                                                          wait
 /dev/block/by-name/LNX    /boot               emmc      defaults                                                            defaults
 /dev/block/by-name/MSC    /misc               emmc      defaults                                                            defaults
-/dev/block/by-name/UDA    /data               ext4      noatime,nosuid,nodev,data=ordered,noauto_da_alloc,errors=panic      wait,check,formattable,encryptable=/dev/block/by-name/MDA
+/dev/block/by-name/UDA    /data               ext4      noatime,nosuid,nodev,data=ordered,noauto_da_alloc,errors=panic      wait,check,formattable
 /dev/block/by-name/USP    /staging            emmc      defaults                                                            defaults
 /dev/block/by-name/SOS    /recovery           emmc      defaults                                                            defaults
 /dev/block/by-name/BMP    /bmps               emmc      defaults                                                            recoveryonly
