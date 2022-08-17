@@ -12,7 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TARGET_TEGRA_POWER ?= lineage
+TARGET_TEGRA_KEYSTORE ?= nvkeystore
+TARGET_TEGRA_POWER    ?= lineage
 
 # Boot Animation
 TARGET_SCREEN_HEIGHT      := 1920
