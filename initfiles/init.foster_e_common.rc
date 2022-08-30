@@ -27,10 +27,6 @@ on post-fs-data
     setprop sys.wal.normal tz4,PGDatabase,launcher.db,playlog.db,music.db
     write /sys/power/wake_lock foster-staywake
 
-    # Disable rescue feature. This needs to be in vendor init, so that it
-    # works on GSI images.
-    setprop persist.sys.disable_rescue true
-
 on post-fs-data
     chown system system /mnt/venodr/wifi_config
     chown system system /mnt/vendor/wifi_config/FSS.txt
