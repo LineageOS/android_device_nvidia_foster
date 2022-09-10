@@ -33,6 +33,24 @@
       "message": "Mmm. Running lspci actually isn\u0027t a policy neverallow? That could have some interesting ramifications. \n\nI\u0027d prefer to not have separate defconfigs for this. Having them as modules in the main config, then only loading as necessary is fine.",
       "revId": "a320cbece55cc1bb10790d3a38cb29f8d0d02644",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77e5715d_003285b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31706
+      },
+      "writtenOn": "2022-09-10T19:26:55Z",
+      "side": 1,
+      "message": "\u003e Mmm. Running lspci actually isn\u0027t a policy neverallow? That could have some interesting ramifications. \n\nTBH I\u0027m a complete newbie in selinux, this is the first time I\u0027ve written a rule for it so I\u0027m a bit lost on what you mean\n\n\u003e I\u0027d prefer to not have separate defconfigs for this. Having them as modules in the main config, then only loading as necessary is fine.\n\nI\u0027ve updated the kernel change to remove the extra config file and modify the existing one: https://review.lineageos.org/q/I33d72d46acaa9b493a623dcb76bf8cadbe135471",
+      "parentUuid": "cde94fcc_2378b96c",
+      "revId": "a320cbece55cc1bb10790d3a38cb29f8d0d02644",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
