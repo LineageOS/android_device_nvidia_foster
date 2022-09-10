@@ -46,7 +46,19 @@ do_insmod /vendor/lib/modules/r8168.ko
 
 # load COMMS drivers
 do_insmod /vendor/lib/modules/bluedroid_pm.ko
-if [ "`cat /proc/device-tree/brcmfmac_pcie_wlan/status`" = "okay" ]; then
+if [[ "$hardwareName" = +(porg*) && -r /vendor/lib/modules/iwlwifi.ko ]] && lspci | grep -q 'Class 0280: 8086:'; then
+        # Only do this for porg which allow installation of intel wifi card:
+        #   Class id:  0280 (network controllers)
+        #   Vendor id: 8086 intel
+        # With this test, assume the device has something like intel 8265
+        /vendor/bin/log -t "wifiloader" -p i " Loading iwlwifi driver for wlan"
+        do_insmod /vendor/lib/modules/cfg80211.ko
+        do_insmod /vendor/lib/modules/mac80211.ko
+        do_insmod /vendor/lib/modules/iwlwifi.ko
+        do_insmod /vendor/lib/modules/iwlmvm.ko
+        do_insmod /vendor/lib/modules/iwldvm.ko
+        do_insmod /vendor/lib/modules/rfcomm.ko
+elif [ "`cat /proc/device-tree/brcmfmac_pcie_wlan/status`" = "okay" ]; then
         /vendor/bin/log -t "wifiloader" -p i " Loading brcmfmac driver for wlan"
         do_insmod /vendor/lib/modules/compat.ko
         do_insmod /vendor/lib/modules/cy_cfg80211.ko
