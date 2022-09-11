@@ -51,6 +51,24 @@
       "parentUuid": "cde94fcc_2378b96c",
       "revId": "a320cbece55cc1bb10790d3a38cb29f8d0d02644",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e25ca42e_56cbad39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31706
+      },
+      "writtenOn": "2022-09-11T14:18:40Z",
+      "side": 1,
+      "message": "I\u0027ve created a patchset for the sepolicy repository. Do I need to do anything else in this patchset?",
+      "parentUuid": "77e5715d_003285b4",
+      "revId": "a320cbece55cc1bb10790d3a38cb29f8d0d02644",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
