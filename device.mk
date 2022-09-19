@@ -186,7 +186,8 @@ PRODUCT_PACKAGES += \
 # Loadable kernel modules
 PRODUCT_PACKAGES += \
     init.lkm.rc \
-    lkm_loader
+    lkm_loader \
+    lkm_loader_target
 
 # Media config
 PRODUCT_COPY_FILES += \

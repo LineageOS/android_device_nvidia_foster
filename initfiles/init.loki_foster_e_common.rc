@@ -18,10 +18,6 @@ on fs
     setprop camera.disable_zsl_mode 1
     setprop ro.config.media_vol_default 15
 
-    # start Early Loadable Kernel Module service
-    exec /vendor/bin/lkm_loader.sh early
-    restorecon_recursive /sys
-
 #start pbc daemon
 service pbc2 /system/vendor/bin/pbc2
     class main
@@ -64,13 +60,8 @@ on boot
     write /sys/devices/57000000.gpu/submit_boost_freq 691200
     write /sys/devices/57000000.gpu/submit_boost_time 500
 
-    # start Loadable Kernel Module service
-    start vendor.lkm_loader
-
-    restorecon_recursive /sys/devices/system/cpu/cpufreq/interactive
     setprop persist.vendor.tegra.decompression cde-client
 
-on property:init.svc.vendor.lkm_loader=stopped
     chmod 664 /sys/kernel/rt8168_power/mode
     chown system system /sys/kernel/rt8168_power/mode
     wait /sys/devices/57000000.gpu/devfreq/57000000.gpu/available_frequencies 10
