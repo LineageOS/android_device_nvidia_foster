@@ -36,9 +36,6 @@ on fs
     mount_all /vendor/etc/fstab.jetson_e
     swapon_all /vendor/etc/fstab.jetson_e
 
-    # start Early Loadable Kernel Module service
-    exec /vendor/bin/lkm_loader.sh early
-
 on post-fs-data
     chmod 0444 /sys/devices/platform/tegra-fuse/aid
 
@@ -50,7 +47,3 @@ service pbc2 /system/vendor/bin/pbc2
 
 on property:sys.boot_completed=1
     write /sys/devices/virtual/android_usb/android0/uevent_in_suspend N
-
-on boot
-    # start Loadable Kernel Module service
-    start vendor.lkm_loader
