@@ -52,7 +52,7 @@ $(INSTALLED_DTBIMAGE_TARGET_mdarcy_recovery): | mkdtimg
 		$(PRODUCT_OUT)/sif.dtb.3    --id=3425 --rev=0xa4  --custom0=0x140
 endif
 
-$(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_FILES) $(BOOTIMAGE_EXTRA_DEPS)
+$(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_FILES) $(BOOTIMAGE_EXTRA_DEPS) $(INSTALLED_KERNEL_TARGET)
 	$(call pretty,"Target boot image: $@")
 	$(hide) $(MKBOOTIMG) --kernel $(call bootimage-to-kernel,$@) $(INTERNAL_BOOTIMAGE_ARGS) $(INTERNAL_MKBOOTIMG_VERSION_ARGS) $(BOARD_MKBOOTIMG_ARGS) --output $@
 	$(hide )$(call assert-max-image-size,$@,$(call get-bootimage-partition-size,$@,boot))
