@@ -14,7 +14,7 @@
  {
    "repository": "android_kernel_nvidia_kernel",
    "target_path": "kernel/nvidia/kernel-4.9",
-   "branch": "lineage-18.1_4.9"
+   "branch": "lineage-19.1_4.9"
  },
  {
    "repository": "android_kernel_nvidia_nvidia",
