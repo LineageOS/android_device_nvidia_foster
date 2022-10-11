@@ -101,3 +101,7 @@ BOARD_VENDOR_KERNEL_MODULES_LOAD += \
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
     hid_xinmo \
     hid_betopff
+
+# Nvhost podgov
+BOARD_VENDOR_KERNEL_MODULES_LOAD += \
+    governor_pod_scaling
