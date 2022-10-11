@@ -18,6 +18,10 @@
 BOARD_VENDOR_KERNEL_MODULES_LOAD := \
     pci_tegra
 
+# Nvhost podgov
+BOARD_VENDOR_KERNEL_MODULES_LOAD += \
+    governor_pod_scaling
+
 # Proprietary gpu driver
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
     nvgpu
