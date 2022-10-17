@@ -4,6 +4,7 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 /dev/block/platform/sdhci-tegra.3/by-name/APP           /                   ext4      ro,noatime                                                          wait
+/dev/block/platform/sdhci-tegra.3/by-name/vendor        /vendor             ext4      ro,noatime                                                          recoveryonly
 /dev/block/platform/sdhci-tegra.3/by-name/CAC           /cache              ext4      noatime,nosuid,nodev,data=ordered,barrier=1,nodelalloc              wait,formattable
 /dev/block/platform/sdhci-tegra.3/by-name/KERN-A        /boot               emmc      defaults                                                            defaults
 /dev/block/platform/sdhci-tegra.3/by-name/MSC           /misc               emmc      defaults                                                            defaults
