@@ -39,7 +39,7 @@ on post-fs-data
     chown system system /mnt/vendor/wifi_config/package.txt
     restorecon_recursive /mnt/vendor/wifi_config
 
-on property:init.svc.vendor.lkm_loader=stopped
+on post-fs
     chown system system /sys/class/leds/led_lightbar/brightness
     chown system system /sys/class/leds/led_lightbar/boot_mode
     chown system system /sys/class/leds/led_lightbar/version

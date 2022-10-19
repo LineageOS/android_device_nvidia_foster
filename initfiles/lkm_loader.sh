@@ -246,6 +246,10 @@ if [ "$hardwareName" != "sif" ]; then
     /vendor/bin/log -t "$scriptName" -p i "Early loading ODM TV tuner modules completed"
 fi
 
+if [[ $hardwareName = *"foster"* ]]; then
+    do_insmod /vendor/lib/modules/leds-cy8c.ko
+fi
+
 /vendor/bin/log -t "$scriptName" -p i "Early Loading LKM Board-ODM modules completed"
 
 }
@@ -259,9 +263,6 @@ normal_load()
 # insmod /vendor/lib/modules/example1.ko
 /vendor/bin/log -t "$scriptName" -p i "Loading LKM SoC-Vendor modules started"
 
-if [[ $hardwareName = *"foster"* ]]; then
-    do_insmod /vendor/lib/modules/leds-cy8c.ko
-fi
 do_insmod /vendor/lib/modules/usb-storage.ko
 #do_insmod /vendor/lib/modules/uas.ko
 do_insmod /vendor/lib/modules/cdc-acm.ko
