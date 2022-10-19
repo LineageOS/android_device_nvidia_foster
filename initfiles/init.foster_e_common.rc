@@ -35,6 +35,13 @@ on post-fs-data
     chown system system /mnt/vendor/wifi_config/package.txt
     restorecon_recursive /mnt/vendor/wifi_config
 
+on post-fs
+    chown system system /sys/class/leds/led_lightbar/brightness
+    chown system system /sys/class/leds/led_lightbar/boot_mode
+    chown system system /sys/class/leds/led_lightbar/version
+    chown system system /sys/class/leds/led_lightbar/effects
+    chown system system /sys/class/leds/led_lightbar/params
+
 on property:vendor.debug.enable_console_logs=true && property:ro.build.type=user
     write /proc/sys/kernel/printk "4 7 1 7 3"
 
