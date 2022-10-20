@@ -89,7 +89,7 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "2000";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "2000";
 	} else if (ti->is_model("dragon")) {
-		mDeviceUsbIds["ro.vendor.nv.usb.vid"]                  = "18D1";
+		mCommonUsbIds["ro.vendor.nv.usb.vid"]                  = "18D1";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]              = "5202";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]          = "5203";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]              = "5206";
@@ -168,8 +168,6 @@ void vendor_load_properties()
 		tav = { "11", "RQ1A.210105.003", "7825199_3062.3935" };
 	} else if (ti.is_model("dragon")) {
 		tav = { "8.1.0", "OPM8.190605.005", "5749003" };
-		ti.property_set("ro.product.name", "ryu");
-		ti.property_set("ro.product.system.name", "ryu");
 
 		if (ti.vendor_context()) {
 			ti.property_set("ro.vendor.lineage.tegra.name", "ryu");
@@ -195,5 +193,14 @@ void vendor_load_properties()
 			vendor_set_nrdp_props(&ti);
 			vendor_set_oem_key1(&ti);
 		}
+	}
+
+	// For system and recovery context
+	if (ti.is_model("dragon") && !ti.vendor_context()) {
+		ti.property_set("ro.product.name", "ryu");
+		ti.property_set("ro.product.system.name", "ryu");
+		ti.property_set("ro.product.system_ext.name", "ryu");
+		ti.property_set("ro.product.odm.name", "ryu");
+		ti.property_set("ro.product.product.name", "ryu");
 	}
 }
