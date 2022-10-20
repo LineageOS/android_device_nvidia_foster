@@ -171,13 +171,7 @@ void vendor_load_properties()
 		ti.property_set("ro.product.name", "ryu");
 		ti.property_set("ro.product.system.name", "ryu");
 
-		if (ti.recovery_context()) {
-			std::map<std::string,std::string> dragon_parts;
-			dragon_parts.emplace("/dev/block/by-name/KERN-A", "/dev/block/by-name/LNX");
-			dragon_parts.emplace("/dev/block/by-name/recovery", "/dev/block/by-name/SOS");
-			dragon_parts.emplace("/dev/block/by-name/VNR", "/dev/block/by-name/vendor");
-			ti.make_symlinks(dragon_parts);
-		} else if (ti.vendor_context()) {
+		if (ti.vendor_context()) {
 			ti.property_set("ro.vendor.lineage.tegra.name", "ryu");
 		}
 	}
