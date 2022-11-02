@@ -1,19 +1,19 @@
 stock-sif	vendor/bin/hw/vendor.nvidia.hardware.convertibleport@1.0-service	foster/usb/bin32/hw/vendor.nvidia.hardware.convertibleport@1.0-service
 stock-t210	vendor/bin/hw/vendor.nvidia.hardware.convertibleport@1.0-service	foster/usb/bin64/hw/vendor.nvidia.hardware.convertibleport@1.0-service
 
-nv-tegra-t210	3rdparty/bcmbinaries/bcm4354a1/wlan/atv/nvram_darcy_a00.txt			foster/bcm_firmware/bcm4354/nvram_darcy_a00.txt
-nv-tegra-t210	3rdparty/bcmbinaries/bcm4354a1/wlan/atv/nvram_foster_e_4354.txt			foster/bcm_firmware/bcm4354/nvram_foster_e_4354.txt
-nv-tegra-t210	3rdparty/bcmbinaries/bcm4354a1/wlan/atv/nvram_foster_e_antenna_tuned_4354.txt	foster/bcm_firmware/bcm4354/nvram_foster_e_antenna_tuned_4354.txt
+stock-t210	vendor/firmware/nvram_darcy_a00.txt						foster/bcm_firmware/bcm4354/nvram_darcy_a00.txt
+stock-t210	vendor/firmware/nvram_foster_e_4354.txt						foster/bcm_firmware/bcm4354/nvram_foster_e_4354.txt
+stock-t210	vendor/firmware/nvram_foster_e_antenna_tuned_4354.txt				foster/bcm_firmware/bcm4354/nvram_foster_e_antenna_tuned_4354.txt
 nv-tegra-t210	3rdparty/bcmbinaries/bcm4354a1/wlan/atv/nvram_loki_e_4354.txt			foster/bcm_firmware/bcm4354/nvram_loki_e_4354.txt
 nv-tegra-t210	3rdparty/bcmbinaries/bcm4354a1/wlan/atv/nvram_loki_e_antenna_tuned_4354.txt	foster/bcm_firmware/bcm4354/nvram_loki_e_antenna_tuned_4354.txt
 nv-tegra-t210	3rdparty/bcmbinaries/bcm4354a1/wlan/emb/nvram_jetsonE_cv_4354.txt		foster/bcm_firmware/bcm4354/nvram_jetsonE_cv_4354.txt
-nv-tegra-t210	3rdparty/cypress/bcm4356a3/wlan/brcmfmac4356-pcie.txt				foster/bcm_firmware/bcm4356/brcmfmac4356-pcie.txt
+stock-t210	vendor/firmware/brcmfmac4356-pcie.txt						foster/bcm_firmware/bcm4356/brcmfmac4356-pcie.txt
 
-nv-tegra-t210	3rdparty/cypress/bcm4354a1/wlan/atv/darcy.clm_blob				foster/bcm_firmware/bcm4354/darcy.clm_blob
-nv-tegra-t210	3rdparty/cypress/bcm4354a1/wlan/atv/foster.clm_blob				foster/bcm_firmware/bcm4354/foster.clm_blob
-nv-tegra-t210	3rdparty/cypress/bcm4354a1/wlan/atv/flynn-hp.clm_blob				foster/bcm_firmware/bcm4354/flynn-hp.clm_blob
+stock-t210	vendor/firmware/bcmdhd_clm_darcy.blob						foster/bcm_firmware/bcm4354/darcy.clm_blob
+stock-t210	vendor/firmware/bcmdhd_clm_foster.blob						foster/bcm_firmware/bcm4354/foster.clm_blob
+stock-t210	vendor/firmware/bcmdhd_clm_darcy_flynn-hp.blob					foster/bcm_firmware/bcm4354/flynn-hp.clm_blob
 nv-tegra-t210	3rdparty/cypress/bcm4356a3/wlan/fw_4356a3_prod.clm_blob				foster/bcm_firmware/bcm4356/fw_4356a3_prod.clm_blob
-nv-tegra-t210	3rdparty/cypress/bcm4356a3/wlan/brcmfmac4356-pcie.clm_blob			foster/bcm_firmware/bcm4356/brcmfmac4356-pcie.clm_blob
+stock-t210	vendor/firmware/brcmfmac4356-pcie.clm_blob					foster/bcm_firmware/bcm4356/brcmfmac4356-pcie.clm_blob
 
 l4t-t210	Linux_for_Tegra/bootloader/t210ref/BCT/P2180_A00_LP4_DSC_204Mhz.cfg	foster/BCT/P2180_A00_LP4_DSC_204Mhz.cfg
 l4t-t210	Linux_for_Tegra/bootloader/t210ref/BCT/P3448_A00_lpddr4_204Mhz_P987.cfg	foster/BCT/P3448_A00_lpddr4_204Mhz_P987.cfg
