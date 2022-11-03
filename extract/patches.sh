@@ -22,8 +22,8 @@ function fetch_smaug_nvram() {
 
 # The previous default crashes the current firmware
 function patch_nvrams() {
-  sed -i 's/ccode=XR/ccode=XX/' ${LINEAGE_ROOT}/${OUTDIR}/foster/bcm_firmware/bcm4354/nvram_jetsonE_cv_4354.txt
-  sed -i 's/ccode=0/ccode=XX/'  ${LINEAGE_ROOT}/${OUTDIR}/foster/bcm_firmware/bcm4354/bcmdhd.cal
+  sed -i 's/ccode=XR/ccode=XY/' ${LINEAGE_ROOT}/${OUTDIR}/foster/bcm_firmware/bcm4354/nvram_jetsonE_cv_4354.txt
+  sed -i 's/ccode=0/ccode=XY/'  ${LINEAGE_ROOT}/${OUTDIR}/foster/bcm_firmware/bcm4354/bcmdhd.cal
 }
 
 fetch_smaug_nvram;
