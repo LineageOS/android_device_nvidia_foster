@@ -12,8 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+ifeq ($(TARGET_TEGRA_DEFAULT_BRANCH),rel-shield-r)
 LOCAL_PATH := $(call my-dir)
-FOSTER_BCM_PATH := ../../../../../vendor/nvidia/foster/bcm_firmware
+FOSTER_BCM_PATH := ../../../../../../vendor/nvidia/foster/rel-shield-r/bcm_firmware
 
 include $(CLEAR_VARS)
 LOCAL_MODULE               := nvram_darcy_a00
@@ -38,46 +39,6 @@ include $(BUILD_NVIDIA_PREBUILT)
 include $(CLEAR_VARS)
 LOCAL_MODULE               := nvram_foster_e_antenna_tuned_4354
 LOCAL_SRC_FILES            := $(FOSTER_BCM_PATH)/bcm4354/nvram_foster_e_antenna_tuned_4354.txt
-LOCAL_MODULE_SUFFIX        := .txt
-LOCAL_MODULE_CLASS         := ETC
-LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
-LOCAL_MODULE_TAGS          := optional
-LOCAL_MODULE_OWNER         := nvidia
-include $(BUILD_NVIDIA_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE               := nvram_loki_e_4354
-LOCAL_SRC_FILES            := $(FOSTER_BCM_PATH)/bcm4354/nvram_loki_e_4354.txt
-LOCAL_MODULE_SUFFIX        := .txt
-LOCAL_MODULE_CLASS         := ETC
-LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
-LOCAL_MODULE_TAGS          := optional
-LOCAL_MODULE_OWNER         := nvidia
-include $(BUILD_NVIDIA_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE               := nvram_loki_e_antenna_tuned_4354
-LOCAL_SRC_FILES            := $(FOSTER_BCM_PATH)/bcm4354/nvram_loki_e_antenna_tuned_4354.txt
-LOCAL_MODULE_SUFFIX        := .txt
-LOCAL_MODULE_CLASS         := ETC
-LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
-LOCAL_MODULE_TAGS          := optional
-LOCAL_MODULE_OWNER         := nvidia
-include $(BUILD_NVIDIA_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE               := nvram_jetsonE_cv_4354
-LOCAL_SRC_FILES            := $(FOSTER_BCM_PATH)/bcm4354/nvram_jetsonE_cv_4354.txt
-LOCAL_MODULE_SUFFIX        := .txt
-LOCAL_MODULE_CLASS         := ETC
-LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
-LOCAL_MODULE_TAGS          := optional
-LOCAL_MODULE_OWNER         := nvidia
-include $(BUILD_NVIDIA_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE               := nvram_smaug_4354
-LOCAL_SRC_FILES            := $(FOSTER_BCM_PATH)/bcm4354/bcmdhd.cal
 LOCAL_MODULE_SUFFIX        := .txt
 LOCAL_MODULE_CLASS         := ETC
 LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
@@ -142,3 +103,4 @@ LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
 LOCAL_MODULE_TAGS          := optional
 LOCAL_MODULE_OWNER         := nvidia
 include $(BUILD_NVIDIA_PREBUILT)
+endif

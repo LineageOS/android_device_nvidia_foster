@@ -12,17 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Boot Animation
-TARGET_SCREEN_HEIGHT      := 1920
-TARGET_SCREEN_WIDTH       := 1080
-
-# Unified device support
-TARGET_INIT_VENDOR_LIB := //device/nvidia/foster:libinit_foster
-PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
-    ro.product.vendor.device \
-    ro.product.vendor.model \
-    ro.product.vendor.name \
-    ro.vendor.build.fingerprint
 PRODUCT_PACKAGES += \
-    init_tegra \
-    resize2fs_static
+    bcmdhd_clm_darcy \
+    bcmdhd_clm_darcy_flynn-hp \
+    bcmdhd_clm_foster \
+    bcmdhd_clm_loki \
+    brcmfmac4356-pcie.clm_blob

@@ -12,17 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Boot Animation
-TARGET_SCREEN_HEIGHT      := 1920
-TARGET_SCREEN_WIDTH       := 1080
+# Purposefully unguarded, these are not available in any supported branch
+LOCAL_PATH := $(call my-dir)
+EXTERNAL_BCM_PATH := ../../../../../../vendor/nvidia/foster/external/bcm_firmware
 
-# Unified device support
-TARGET_INIT_VENDOR_LIB := //device/nvidia/foster:libinit_foster
-PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
-    ro.product.vendor.device \
-    ro.product.vendor.model \
-    ro.product.vendor.name \
-    ro.vendor.build.fingerprint
-PRODUCT_PACKAGES += \
-    init_tegra \
-    resize2fs_static
+include $(CLEAR_VARS)
+LOCAL_MODULE               := nvram_smaug_4354
+LOCAL_SRC_FILES            := $(EXTERNAL_BCM_PATH)/bcm4354/bcmdhd.cal
+LOCAL_MODULE_SUFFIX        := .txt
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_MODULE_PATH          := $(TARGET_OUT_VENDOR)/firmware
+LOCAL_MODULE_TAGS          := optional
+LOCAL_MODULE_OWNER         := nvidia
+include $(BUILD_NVIDIA_PREBUILT)

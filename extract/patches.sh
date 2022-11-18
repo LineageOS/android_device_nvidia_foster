@@ -14,16 +14,14 @@
 
 # Needed by the Pixel C
 function fetch_smaug_nvram() {
-  wget 'https://dumps.tadiphone.dev/dumps/google/dragon/-/raw/ryu-user-8.1.0-OPM8.190605.005-5749003-release-keys/system/etc/wifi/bcmdhd.cal' -O ${LINEAGE_ROOT}/${OUTDIR}/foster/bcm_firmware/bcm4354/bcmdhd.cal
-
-  # Crummy hack to match what was already committed
-  sed -i -e '$a\' ${LINEAGE_ROOT}/${OUTDIR}/foster/bcm_firmware/bcm4354/bcmdhd.cal
+  mkdir -p ${LINEAGE_ROOT}/${OUTDIR}/foster/external/bcm_firmware/bcm4354
+  wget 'https://dumps.tadiphone.dev/dumps/google/dragon/-/raw/ryu-user-8.1.0-OPM8.190605.005-5749003-release-keys/system/etc/wifi/bcmdhd.cal' -O ${LINEAGE_ROOT}/${OUTDIR}/foster/external/bcm_firmware/bcm4354/bcmdhd.cal
 }
 
 # The previous default crashes the current firmware
 function patch_nvrams() {
-  sed -i 's/ccode=XR/ccode=XY/' ${LINEAGE_ROOT}/${OUTDIR}/foster/bcm_firmware/bcm4354/nvram_jetsonE_cv_4354.txt
-  sed -i 's/ccode=0/ccode=XY/'  ${LINEAGE_ROOT}/${OUTDIR}/foster/bcm_firmware/bcm4354/bcmdhd.cal
+  sed -i 's/ccode=XR/ccode=XY/' ${LINEAGE_ROOT}/${OUTDIR}/foster/rel-30/bcm_firmware/bcm4354/nvram_jetsonE_cv_4354.txt
+  sed -i 's/ccode=0/ccode=XY/'  ${LINEAGE_ROOT}/${OUTDIR}/foster/external/bcm_firmware/bcm4354/bcmdhd.cal
 }
 
 fetch_smaug_nvram;

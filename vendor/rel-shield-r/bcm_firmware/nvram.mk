@@ -12,17 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Boot Animation
-TARGET_SCREEN_HEIGHT      := 1920
-TARGET_SCREEN_WIDTH       := 1080
-
-# Unified device support
-TARGET_INIT_VENDOR_LIB := //device/nvidia/foster:libinit_foster
-PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
-    ro.product.vendor.device \
-    ro.product.vendor.model \
-    ro.product.vendor.name \
-    ro.vendor.build.fingerprint
 PRODUCT_PACKAGES += \
-    init_tegra \
-    resize2fs_static
+    nvram_darcy_a00 \
+    nvram_foster_e_4354 \
+    nvram_foster_e_antenna_tuned_4354 \
+    nvram_loki_e_4354 \
+    nvram_loki_e_antenna_tuned_4354 \
+    nvram_jetsonE_cv_4354 \
+    nvram_smaug_4354 \
+    brcmfmac4356-pcie.txt
