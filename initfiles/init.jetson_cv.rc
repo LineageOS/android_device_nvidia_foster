@@ -47,12 +47,6 @@ on property:persist.gps.present=true
 on property:persist.gps.present=false
     rm /data/android.hardware.location.gps.xml
 
-#start pbc daemon
-service pbc2 /system/vendor/bin/pbc2
-    class main
-    user system
-    group system
-
 on property:sys.boot_completed=1
     write /sys/devices/virtual/android_usb/android0/uevent_in_suspend N
     write /sys/devices/usb_cd/extcon/extcon1/uevent_in_suspend N
