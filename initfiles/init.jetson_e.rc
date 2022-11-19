@@ -39,11 +39,5 @@ on fs
 on post-fs-data
     chmod 0444 /sys/devices/platform/tegra-fuse/aid
 
-#start pbc daemon
-service pbc2 /system/vendor/bin/pbc2
-    class main
-    user system
-    group system
-
 on property:sys.boot_completed=1
     write /sys/devices/virtual/android_usb/android0/uevent_in_suspend N
