@@ -59,5 +59,9 @@
  {
    "repository": "android_hardware_nvidia_thermal",
    "target_path": "hardware/nvidia/thermal"
+ },
+ {
+   "repository": "android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-gnu-9.3",
+   "target_path": "prebuilts/gcc/linux-x86/aarch64/aarch64-linux-gnu-9.3"
  }
 ]
