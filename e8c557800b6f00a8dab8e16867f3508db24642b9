@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31c7558f_ddca07f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2022-12-02T07:13:14Z",
+      "side": 1,
+      "message": "Verified on darcy. Blocked by pending fork of the compiler prebuilts.",
+      "revId": "e8c557800b6f00a8dab8e16867f3508db24642b9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
