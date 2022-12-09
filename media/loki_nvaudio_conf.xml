@@ -51,7 +51,7 @@ BT SCO
 -->
 
 <AudioConfigs version="2">
-  <card name="tegra-snd-t210ref-mobile-es755">
+  <card name="NVIDIA SHIELD Portable APE">
     <pcm_config name="music-playback"
                 device_id="0"
                 rate="48000"
