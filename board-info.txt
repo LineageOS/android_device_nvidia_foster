@@ -1,1 +1,1 @@
-require version-bootloader=32.00.2019.50-t210-d30cbd07|32.00.2019.50-t210-69ebfcbe|2020.04-03755-gf4d532d00d-rev3
+require version-bootloader=32.00.2019.50-t210-d30cbd07|32.00.2019.50-t210-69ebfcbe|24.00.2015.42-t210-39c6cadc|2020.04-03755-gf4d532d00d-rev3
