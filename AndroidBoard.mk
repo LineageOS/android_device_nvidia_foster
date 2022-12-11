@@ -33,7 +33,11 @@ DTB_TARGETS := tegra210-darcy-p2894-0000-a00-00.dtb \
                tegra210-loki-e-p2530-0030-e03-00.dtb \
                tegra210-loki-e-p2530-0031-e01-00.dtb \
                tegra210-loki-e-p2530-0031-e02-00.dtb \
-               tegra210-loki-e-p2530-0031-e03-00.dtb
+               tegra210-loki-e-p2530-0031-e03-00.dtb \
+               tegra210-loki-e-p2530-0030-e02-00-rel24.dtb \
+               tegra210-loki-e-p2530-0030-e03-00-rel24.dtb \
+               tegra210-loki-e-p2530-0031-e02-00-rel24.dtb \
+               tegra210-loki-e-p2530-0031-e03-00-rel24.dtb
 INSTALLED_DTB_TARGETS := $(DTB_TARGETS:%=$(PRODUCT_OUT)/install/%)
 $(INSTALLED_DTB_TARGETS): $(INSTALLED_KERNEL_TARGET) | $(ACP)
 	echo -e ${CL_GRN}"Copying individual DTBs"${CL_RST}
