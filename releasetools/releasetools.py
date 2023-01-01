@@ -30,6 +30,9 @@ PUBLIC_KEY_PATH     = '/sys/devices/7000f800.efuse/7000f800.efuse:efuse-burn/pub
 FUSED_PATH          = '/sys/devices/7000f800.efuse/7000f800.efuse:efuse-burn/odm_production_mode'
 DTSFILENAME_PATH    = '/proc/device-tree/nvidia,dtsfilename'
 
+PUBLIC_KEY_PATH_LEGACY = '/sys/devices/platform/tegra-fuse/public_key'
+FUSED_PATH_LEGACY      = '/sys/devices/platform/tegra-fuse/odm_production_mode'
+
 MODE_UNFUSED        = '0x00000000\n'
 MODE_FUSED          = '0x00000001\n'
 
@@ -81,7 +84,7 @@ def AddBootloaderAssertion(info, input_zip):
 def AddBootloaderFlash(info, input_zip):
   """ If device is fused """
   info.script.AppendExtra('ifelse(')
-  info.script.AppendExtra('  read_file("' + FUSED_PATH + '") == "' + MODE_FUSED + '",')
+  info.script.AppendExtra('  read_file("' + FUSED_PATH + '") == "' + MODE_FUSED + '" || read_file("' + FUSED_PATH_LEGACY + '") == "' + MODE_FUSED + '",')
   info.script.AppendExtra('  (')
 
   """ Fused foster_e or foster_e_hdd """
@@ -94,13 +97,13 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('            ui_print("Correct bootloader already installed for fused " + getprop(ro.hardware));')
   info.script.AppendExtra('          ),')
   info.script.AppendExtra('          ifelse(')
-  info.script.AppendExtra('            read_file("' + PUBLIC_KEY_PATH + '") == "' + FOSTER_E_PUBLIC_KEY + '",')
+  info.script.AppendExtra('            read_file("' + PUBLIC_KEY_PATH + '") == "' + FOSTER_E_PUBLIC_KEY + '" || read_file("' + PUBLIC_KEY_PATH_LEGACY + '") == "' + FOSTER_E_PUBLIC_KEY + '",')
   info.script.AppendExtra('            (')
   info.script.AppendExtra('              ui_print("Flashing updated bootloader for fused " + getprop(ro.hardware));')
   info.script.AppendExtra('              package_extract_file("firmware-update/" + getprop(ro.hardware) + ".blob", "' + STAGING_PART + '");')
   info.script.AppendExtra('            ),')
   info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for " + getprop("ro.hardware") + " detected.");')
+  info.script.AppendExtra('              ui_print("Unknown public key for " + getprop("ro.hardware") + " detected.");')
   info.script.AppendExtra('              ui_print("This is not supported. Please report to LineageOS Maintainer.");')
   info.script.AppendExtra('              abort();')
   info.script.AppendExtra('            )')
@@ -131,7 +134,7 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('                    package_extract_file("firmware-update/mdarcy.blob", "' + STAGING_PART + '");')
   info.script.AppendExtra('                  ),')
   info.script.AppendExtra('                  (')
-  info.script.AppendExtra('                    ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for mdarcy detected.");')
+  info.script.AppendExtra('                    ui_print("Unknown public key for mdarcy detected.");')
   info.script.AppendExtra('                    ui_print("This is not supported. Please report to LineageOS Maintainer.");')
   info.script.AppendExtra('                    abort();')
   info.script.AppendExtra('                  )')
@@ -150,13 +153,13 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('              ),')
   info.script.AppendExtra('              (')
   info.script.AppendExtra('                ifelse(')
-  info.script.AppendExtra('                  read_file("' + PUBLIC_KEY_PATH + '") == "' + DARCY_PUBLIC_KEY + '",')
+  info.script.AppendExtra('                  read_file("' + PUBLIC_KEY_PATH + '") == "' + DARCY_PUBLIC_KEY + '" || read_file("' + PUBLIC_KEY_PATH_LEGACY + '") == "' + DARCY_PUBLIC_KEY + '",')
   info.script.AppendExtra('                  (')
   info.script.AppendExtra('                    ui_print("Flashing updated bootloader for fused darcy");')
   info.script.AppendExtra('                    package_extract_file("firmware-update/darcy.blob", "' + STAGING_PART + '");')
   info.script.AppendExtra('                  ),')
   info.script.AppendExtra('                  (')
-  info.script.AppendExtra('                    ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for darcy detected.");')
+  info.script.AppendExtra('                    ui_print("Unknown public key for darcy detected.");')
   info.script.AppendExtra('                    ui_print("This is not supported. Please report to LineageOS Maintainer.");')
   info.script.AppendExtra('                    abort();')
   info.script.AppendExtra('                  )')
@@ -179,7 +182,7 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('            ui_print("Correct bootloader already installed for fused " + getprop(ro.hardware));')
   info.script.AppendExtra('          ),')
   info.script.AppendExtra('          ifelse(')
-  info.script.AppendExtra('            read_file("' + PUBLIC_KEY_PATH + '") == "' + LOKI_E_PUBLIC_KEY + '",')
+  info.script.AppendExtra('            read_file("' + PUBLIC_KEY_PATH + '") == "' + LOKI_E_PUBLIC_KEY + '" || read_file("' + PUBLIC_KEY_PATH_LEGACY + '") == "' + LOKI_E_PUBLIC_KEY + '",')
   info.script.AppendExtra('            (')
   info.script.AppendExtra('              ui_print("Fused " + getprop(ro.hardware) + " is not currently supported.");')
   info.script.AppendExtra('              ui_print("There has not been a signed bootloader update since rel-24.");')
@@ -187,7 +190,7 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('              abort();')
   info.script.AppendExtra('            ),')
   info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for " + getprop("ro.hardware") + " detected.");')
+  info.script.AppendExtra('              ui_print("Unknown public key for " + getprop("ro.hardware") + " detected.");')
   info.script.AppendExtra('              ui_print("This is not supported. Please report to LineageOS Maintainer.");')
   info.script.AppendExtra('              abort();')
   info.script.AppendExtra('            )')
@@ -234,7 +237,7 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('              package_extract_file("firmware-update/" + getprop(ro.hardware) + ".scr", "' + ICOSA_SD + 'boot.scr");')
   info.script.AppendExtra('            ),')
   info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for icosa detected.");')
+  info.script.AppendExtra('              ui_print("Unknown public key for icosa detected.");')
   info.script.AppendExtra('              ui_print("This is not supported. Please report to LineageOS Maintainer.");')
   info.script.AppendExtra('              abort();')
   info.script.AppendExtra('            )')
@@ -260,7 +263,7 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('              package_extract_file("firmware-update/sif.blob", "' + STAGING_PART + '");')
   info.script.AppendExtra('            ),')
   info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for sif detected.");')
+  info.script.AppendExtra('              ui_print("Unknown public key for sif detected.");')
   info.script.AppendExtra('              ui_print("This is not supported. Please report to LineageOS Maintainer.");')
   info.script.AppendExtra('              abort();')
   info.script.AppendExtra('            )')
