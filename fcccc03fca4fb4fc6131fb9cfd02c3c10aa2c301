@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0317db6_760ad280",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2023-01-11T18:23:01Z",
+      "side": 1,
+      "message": "Fixes wifi on mdarcy",
+      "revId": "fcccc03fca4fb4fc6131fb9cfd02c3c10aa2c301",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
