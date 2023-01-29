@@ -20,7 +20,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.sys.usb.udc=700d0000.xudc \
     sys.usb.controller=700d0000.xudc
-
-# USB convertible port
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.convertible.usb.mode=host
