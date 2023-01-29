@@ -195,6 +195,10 @@ void vendor_load_properties()
 		}
 	}
 
+	if (!ti.vendor_context()) {
+		ti.check_safe_mode_adb();
+	}
+
 	// For system and recovery context
 	if (ti.is_model("dragon") && !ti.vendor_context()) {
 		ti.property_set("ro.product.name", "ryu");
