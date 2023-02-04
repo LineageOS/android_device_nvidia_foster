@@ -26,6 +26,9 @@ include $(CLEAR_VARS)
 LOCAL_MODULE        := audio_policy_configuration.xml
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_CLASS  := ETC
+ifeq ($(TARGET_TEGRA_AUDIO),tinyhal)
+LOCAL_SRC_FILES     := audio_policy_configuration_tinyhal.xml
+else
 ifeq ($(PRODUCT_IS_ATV),true)
 ifeq ($(TARGET_TEGRA_DOLBY),true)
 LOCAL_SRC_FILES     := audio_policy_configuration_nv_tv.xml
@@ -39,6 +42,55 @@ else
 LOCAL_SRC_FILES     := audio_policy_configuration_nv_nodolby.xml
 endif
 endif
+endif
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := audio.darcy.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := audio.foster.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := audio.foster.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := audio.foster.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := audio.jetson.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := audio.foster.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := audio.mdarcy.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := audio.foster.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := audio.porg.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := audio.foster.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := audio.sif.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := audio.foster.xml
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 
