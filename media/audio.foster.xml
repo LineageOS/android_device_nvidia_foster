@@ -1,0 +1,26 @@
+<audiohal>
+    <!-- Name varies by model variant, but is always card number 1 -->
+    <mixer card="1">
+        <init>
+            <ctl name="I2S2 Mux" val="ADMAIF2"/>
+            <ctl name="ADMAIF2 Mux" val="I2S2"/>
+            <ctl name="I2S1 Mux" val="ADMAIF1"/>
+            <ctl name="ADMAIF1 Mux" val="I2S1"/>
+        </init>
+    </mixer>
+
+    <device name="hdmi">
+        <path name="on">
+        </path>
+        <path name="off">
+        </path>
+    </device>
+
+    <!-- Stream Configuration -->
+    <stream type="pcm" dir="out" card="0" device="3" rate="48000"> <!-- Tegra HDA -->
+    </stream>
+    <stream type="pcm" dir="in" card="1" device="0" rate="48000"> <!-- Device ASoC Machine driver -->
+    </stream>
+    <!-- End -->
+</audiohal>
+
