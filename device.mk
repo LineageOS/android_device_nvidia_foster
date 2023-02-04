@@ -134,10 +134,21 @@ ifeq ($(PRODUCT_IS_ATV),true)
 endif
 
 # Audio
-ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_AUDIO)),)
+ifneq ($(TARGET_TEGRA_AUDIO),)
 PRODUCT_PACKAGES += \
     audio_effects.xml \
     audio_policy_configuration.xml \
+
+ifeq ($(TARGET_TEGRA_AUDIO),tinyhal)
+PRODUCT_PACKAGES += \
+    audio.darcy.xml \
+    audio.foster.xml \
+    audio.jetson.xml \
+    audio.mdarcy.xml \
+    audio.porg.xml \
+    audio.sif.xml
+else ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_AUDIO)),)
+PRODUCT_PACKAGES += \
     dragon_nvaudio_conf.xml \
     loki_e_base_nvaudio_conf.xml \
     loki_e_lte_nvaudio_conf.xml \
@@ -146,6 +157,7 @@ PRODUCT_PACKAGES += \
     icosa_emmc_nvaudio_conf.xml \
     nvaudio_conf.xml \
     nvaudio_fx.xml
+endif
 endif
 
 # EKS
