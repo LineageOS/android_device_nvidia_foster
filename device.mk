@@ -22,6 +22,7 @@ endif
 TARGET_REFERENCE_DEVICE ?= foster
 TARGET_TEGRA_VARIANT    ?= common
 
+TARGET_TEGRA_AUDIO    ?= tinyhal
 TARGET_TEGRA_APTX     ?= true
 TARGET_TEGRA_BT       ?= bcm
 TARGET_TEGRA_CAMERA   ?= rel-shield-r
