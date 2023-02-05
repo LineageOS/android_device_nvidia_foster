@@ -8,6 +8,10 @@
    "target_path": "device/nvidia/t210-common"
  },
  {
+   "repository": "android_external_tinyhal",
+   "target_path": "external/tinyhal"
+ },
+ {
    "repository": "android_kernel_nvidia_cypress-fmac",
    "target_path": "kernel/nvidia/cypress-fmac"
  },
