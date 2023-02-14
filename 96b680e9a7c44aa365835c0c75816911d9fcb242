@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d9036e2_0fd3a6ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2023-02-14T23:35:39Z",
+      "side": 1,
+      "message": "Verified on mdarcy using pepper. Remote remains connected after screen turns off.",
+      "revId": "96b680e9a7c44aa365835c0c75816911d9fcb242",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
