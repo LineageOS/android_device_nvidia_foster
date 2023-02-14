@@ -40,4 +40,7 @@
 // Increase MAX GATT notification to 75
 #define BTA_GATTC_NOTIF_REG_MAX 75
 
+// Turn off BLE_PRIVACY_SPT. Remote reconnect fails often if this is enabled.
+#define BLE_PRIVACY_SPT FALSE
+
 #endif
