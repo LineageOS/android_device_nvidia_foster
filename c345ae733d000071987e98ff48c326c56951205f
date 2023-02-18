@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "302b1378_9af2072b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2023-02-18T23:41:44Z",
+      "side": 1,
+      "message": "While this does work, it doesn\u0027t have many features of the prebuilt hal. Like multi-channel or passthrough. Supporting tinyhal in general is a nice thing to have, but I don\u0027t want to lose passthrough capability unless there\u0027s no other shippable option.",
+      "revId": "c345ae733d000071987e98ff48c326c56951205f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
