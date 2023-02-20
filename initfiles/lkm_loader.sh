@@ -46,7 +46,12 @@ do_insmod /vendor/lib/modules/r8168.ko
 
 # load COMMS drivers
 do_insmod /vendor/lib/modules/bluedroid_pm.ko
-if [ "`cat /proc/device-tree/brcmfmac_pcie_wlan/status`" = "okay" ]; then
+if [ "`getprop persist.vendor.lineage.tegra.wlan`" = "rtl8822ce" ]; then
+        /vendor/bin/log -t "wifiloader" -p i " Loading rtl8822ce driver for wlan"
+        do_insmod /vendor/lib/modules/rtk_btusb.ko
+        do_insmod /vendor/lib/modules/cfg80211.ko
+        do_insmod /vendor/lib/modules/rtl8822ce.ko
+elif [ "`cat /proc/device-tree/brcmfmac_pcie_wlan/status`" = "okay" ]; then
         /vendor/bin/log -t "wifiloader" -p i " Loading brcmfmac driver for wlan"
         do_insmod /vendor/lib/modules/compat.ko
         do_insmod /vendor/lib/modules/cy_cfg80211.ko

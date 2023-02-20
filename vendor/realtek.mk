@@ -1,4 +1,4 @@
-# Copyright (C) 2020 The LineageOS Project
+# Copyright (C) 2021 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/nvidia/t210-common/vendor/t210.mk)
-$(call inherit-product, device/nvidia/tegra-common/vendor/common-by-flags.mk)
-$(call inherit-product, device/nvidia/foster/vendor/bcm_firmware/bcm.mk)
-$(call inherit-product, device/nvidia/foster/vendor/realtek.mk)
-$(call inherit-product, device/nvidia/shield-common/vendor/shield-by-flags.mk)
-
-PRODUCT_PACKAGES += public.libraries
+PRODUCT_PACKAGES += \
+    rtl8822cu_config \
+    rtl8822cu_fw \
+    rtl8822_setting
