@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fd937a1_4d1276be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2023-03-10T05:52:59Z",
+      "side": 1,
+      "message": "Chain verified on icosa using sd as the boot media. This chain does not support emmc boot. But as this is more of a reference implementation, that isn\u0027t much of a loss.",
+      "revId": "65004aeb44c0b309260dae826253859735a0e23b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
