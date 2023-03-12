@@ -61,6 +61,9 @@ $(INSTALLED_DTBIMAGE_TARGET_sif): $(INSTALLED_KERNEL_TARGET) | mkdtimg
 		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-sif-p3425-0500-a04.dtb --rev=0xa3 \
 		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-sif-p3425-0500-a04.dtb --rev=0xa4
 
+ALL_DEFAULT_INSTALLED_MODULES += $(INSTALLED_DTBIMAGE_TARGET_mdarcy) $(INSTALLED_DTBIMAGE_TARGET_sif)
+
+ifneq ("$(wildcard hardware/nvidia/platform/t210/nx)","")
 INSTALLED_DTBIMAGE_TARGET_nx     := $(PRODUCT_OUT)/install/nx.dtb.img
 $(INSTALLED_DTBIMAGE_TARGET_nx): $(INSTALLED_KERNEL_TARGET) | mkdtimg
 	echo -e ${CL_GRN}"Building nx DTImage"${CL_RST}
@@ -71,7 +74,8 @@ $(INSTALLED_DTBIMAGE_TARGET_nx): $(INSTALLED_KERNEL_TARGET) | mkdtimg
 		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-vali.dtb --id=0x56414C49 --rev=0xa00 \
 		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-frig.dtb --id=0x46524947 --rev=0xa00
 
-ALL_DEFAULT_INSTALLED_MODULES += $(INSTALLED_DTBIMAGE_TARGET_mdarcy) $(INSTALLED_DTBIMAGE_TARGET_sif) $(INSTALLED_DTBIMAGE_TARGET_nx)
+ALL_DEFAULT_INSTALLED_MODULES += $(INSTALLED_DTBIMAGE_TARGET_nx)
+endif
 endif
 
 EKS_DAT_SYMLINK := $(TARGET_OUT_VENDOR)/app/eks2/eks2.dat
