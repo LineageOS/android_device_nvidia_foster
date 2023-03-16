@@ -44,8 +44,9 @@ MDARCY_PUBLIC_KEY   = '0xc5ae4221f0f4f5113c0271b3519cac7f0bcb0cb860381a4648e9eee
 SIF_PUBLIC_KEY      = '0x26646fe375375e39410853f75e59e2c4ca8440926fa37604a280b5c8a25a2c3e\n'
 DARCY_BL_VERSION    = '32.00.2019.50-t210-69ebfcbe'
 
-NX_PUBLIC_KEY       = '0x7e39e100d1135918ceedfe5d66e66496eed21ecb3486d72095cc0b7c60b8bd4f\n'
-NX_BL_VERSION       = '2020.04-03755-gf4d532d00d-rev3'
+NX_ERISTA_PUBLIC_KEY = '0x7e39e100d1135918ceedfe5d66e66496eed21ecb3486d72095cc0b7c60b8bd4f\n'
+NX_MARIKO_PUBLIC_KEY = '0x72b9db116837289e5bfa57bb1c69e2c8fa9697151aa975066381e7efa19fb0c9\n'
+NX_BL_VERSION        = '2020.04-03755-gf4d532d00d-rev3'
 
 def FullOTA_PostValidate(info):
   if 'INSTALL/bin/resize2fs_static' in info.input_zip.namelist():
@@ -226,14 +227,14 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('            ui_print("Correct bootloader already installed for fused " + getprop(ro.hardware));')
   info.script.AppendExtra('          ),')
   info.script.AppendExtra('          ifelse(')
-  info.script.AppendExtra('            read_file("' + PUBLIC_KEY_PATH + '") == "' + NX_PUBLIC_KEY + '",')
+  info.script.AppendExtra('            read_file("' + PUBLIC_KEY_PATH + '") == "' + NX_ERISTA_PUBLIC_KEY + '" || read_file("' + PUBLIC_KEY_PATH + '") == "' + NX_MARIKO_PUBLIC_KEY + '",')
   info.script.AppendExtra('            (')
   info.script.AppendExtra('              ui_print("Flashing updated bootloader for fused " + getprop(ro.hardware));')
   info.script.AppendExtra('              package_extract_file("firmware-update/nx_bl31.bin", "' + NX_SD + 'bl31.bin");')
   info.script.AppendExtra('              package_extract_file("firmware-update/nx_u-boot-dtb.bin", "' + NX_SD + 'bl33.bin");')
   info.script.AppendExtra('            ),')
   info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Unknown public key for icosa detected.");')
+  info.script.AppendExtra('              ui_print("Unknown public key for nx detected.");')
   info.script.AppendExtra('              ui_print("This is not supported. Please report to LineageOS Maintainer.");')
   info.script.AppendExtra('              abort();')
   info.script.AppendExtra('            )')
