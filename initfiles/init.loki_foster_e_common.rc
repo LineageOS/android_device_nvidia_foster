@@ -104,8 +104,6 @@ on init
     write /sys/kernel/mm/ksm/pages_to_scan 100
     write /sys/kernel/mm/ksm/run 1
 
-    setprop ro.hardware.gatekeeper tlk.tegra
-
 on early-init
     # Disable Transparent HUGEPAGE
     write /sys/kernel/mm/transparent_hugepage/enabled "never"

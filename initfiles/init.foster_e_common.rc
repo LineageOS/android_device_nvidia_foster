@@ -8,6 +8,9 @@
 
 import /vendor/etc/init/hw/init.loki_foster_e_common.rc
 
+on init
+    setprop ro.hardware.gatekeeper tlk.tegra
+
 on boot
     write /sys/devices/system/cpu/cpuquiet/runnable_threads/nr_run_thresholds "6 10 18"
     write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 0

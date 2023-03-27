@@ -11,8 +11,6 @@ import /vendor/etc/init/hw/init.t210.rc
 import /vendor/etc/init/hw/init.lkm.rc
 
 on init
-    setprop ro.hardware.gatekeeper tlk.tegra
-
 # override cpuset cpus to 0-3, mems to 0
     write /dev/cpuset/foreground/cpus 0-3
     write /dev/cpuset/foreground/mems 0
