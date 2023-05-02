@@ -16,6 +16,24 @@
       "message": "The bdroid cfg is in the comms folder on the tegra reference targets. This change should not add a second.",
       "revId": "5967122ad864d14f94867ffaaa82b2c52f85474b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4af768e9_52cbca05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2023-05-02T00:13:25Z",
+      "side": 1,
+      "message": "that was accidental - fixed.",
+      "parentUuid": "dc7029ff_8dc7cac7",
+      "revId": "5967122ad864d14f94867ffaaa82b2c52f85474b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
