@@ -35,7 +35,7 @@ endif
 include device/nvidia/t210-common/t210.mk
 
 # Properties
-include $(LOCAL_PATH)/properties.mk
+include device/nvidia/foster/properties.mk
 
 PRODUCT_CHARACTERISTICS   := tv
 PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi mdpi hdpi tvdpi
@@ -43,7 +43,7 @@ PRODUCT_AAPT_PREF_CONFIG  := xhdpi
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
-$(call inherit-product, device/nvidia/foster/vendor/foster-vendor.mk)
+include device/nvidia/foster/vendor/foster-vendor.mk
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -194,13 +194,13 @@ PRODUCT_PACKAGES += \
     NetflixConfig \
     NetflixConfigOverlay
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/permissions/netflix.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/netflix.xml \
-    $(LOCAL_PATH)/permissions/nrdp.modelgroup.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/nrdp.modelgroup.xml
+    device/nvidia/foster/permissions/netflix.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/netflix.xml \
+    device/nvidia/foster/permissions/nrdp.modelgroup.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/nrdp.modelgroup.xml
 endif
 
 # NVIDIA specific permissions
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/permissions/com.nvidia.feature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nvidia.feature.xml
+    device/nvidia/foster/permissions/com.nvidia.feature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nvidia.feature.xml
 
 # PHS
 ifneq ($(TARGET_TEGRA_PHS),)
