@@ -15,5 +15,4 @@
 import init.recovery.foster_common.rc
 
 on init
-    setprop persist.twrp.rotation 270
     setprop ro.minui.default_rotation "ROTATION_LEFT"

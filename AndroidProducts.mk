@@ -16,8 +16,7 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/full_foster.mk \
-    $(LOCAL_DIR)/lineage_foster.mk \
-    $(LOCAL_DIR)/twrp_foster.mk
+    $(LOCAL_DIR)/lineage_foster.mk
 
 COMMON_LUNCH_CHOICES := \
     full_foster-eng \
@@ -25,6 +24,4 @@ COMMON_LUNCH_CHOICES := \
     full_foster-userdebug \
     lineage_foster-eng \
     lineage_foster-user \
-    lineage_foster-userdebug \
-    twrp_foster-eng \
-    twrp_foster-userdebug
+    lineage_foster-userdebug
