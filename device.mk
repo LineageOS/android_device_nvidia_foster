@@ -51,7 +51,7 @@ PRODUCT_AAPT_PREF_CONFIG  := xhdpi
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
-$(call inherit-product, device/nvidia/foster/vendor/foster-vendor.mk)
+include device/nvidia/foster/vendor/foster-vendor.mk
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
