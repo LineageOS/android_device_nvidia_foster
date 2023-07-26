@@ -15,9 +15,9 @@
 LOCAL_PATH := device/nvidia/foster/vendor/bcm_firmware
 COMMON_BCM_PATH := device/nvidia/tegra-common/vendor/bcm_firmware
 
-$(call inherit-product, $(COMMON_BCM_PATH)/bcm4354/device-bcm.mk)
-$(call inherit-product, $(LOCAL_PATH)/clm.mk)
-$(call inherit-product, $(LOCAL_PATH)/nvram.mk)
+include $(COMMON_BCM_PATH)/bcm4354/device-bcm.mk
+include $(LOCAL_PATH)/clm.mk
+include $(LOCAL_PATH)/nvram.mk
 
 PRODUCT_PACKAGES += \
     bcm4350 \
