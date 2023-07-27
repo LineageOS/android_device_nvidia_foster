@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14e643ae_2f0c6fb0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2023-07-27T03:33:59Z",
+      "side": 1,
+      "message": "No regressions building main target",
+      "revId": "cb35fff8c75c05cca30da3511fe2ad9368af2ba7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
