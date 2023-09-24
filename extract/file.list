@@ -1,6 +1,3 @@
-stock-sif	vendor/bin/hw/vendor.nvidia.hardware.convertibleport@1.0-service	usb/bin32/hw/
-stock-t210	vendor/bin/hw/vendor.nvidia.hardware.convertibleport@1.0-service	usb/bin64/hw/
-
 stock-t210	vendor/firmware/nvram_darcy_a00.txt								bcm_firmware/bcm4354/
 stock-t210	vendor/firmware/nvram_foster_e_4354.txt								bcm_firmware/bcm4354/
 stock-t210	vendor/firmware/nvram_foster_e_antenna_tuned_4354.txt						bcm_firmware/bcm4354/
