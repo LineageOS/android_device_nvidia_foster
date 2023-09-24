@@ -1,0 +1,1 @@
+nv-tegra-t210	https://nv-tegra.nvidia.com/r/plugins/gitiles/tegra/prebuilts-licensed-binary-tlk-t210/+/c84a4130e416b4182c752a343c8c11e622dc2e72/extract-nv-bins.sh?format=TEXT		gitiles		rel-30		prebuilt/t210/target/product/t210
