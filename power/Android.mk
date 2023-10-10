@@ -1,4 +1,4 @@
-# Copyright (C) 2019 The LineageOS Project
+# Copyright (C) 2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,18 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import /vendor/etc/init/hw/init.tegra.rc
-import /vendor/etc/init/hw/init.t210.rc
-import /vendor/etc/init/hw/init.loki_e_common.rc
+LOCAL_PATH:= $(call my-dir)
 
-on init
-    setprop ro.surface_flinger.primary_display_orientation ORIENTATION_270
-
-on fs
-    mount_all /vendor/etc/fstab.nx
-    swapon_all /vendor/etc/fstab.nx
-
-on boot
-    write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 500
-    write /sys/devices/57000000.gpu/submit_boost_freq 460800
-    write /sys/module/input_cfboost/parameters/boost_gpu 460800
+include $(CLEAR_VARS)
+LOCAL_MODULE        := powerhal.nx.xml
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := powerhal.nx.xml
+LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)

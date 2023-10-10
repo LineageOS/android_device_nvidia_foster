@@ -217,6 +217,9 @@ PRODUCT_PACKAGES += \
 endif
 
 # Power
+PRODUCT_PACKAGES += \
+	powerhal.nx.xml
+
 PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/cgroups_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
     system/core/libprocessgroup/profiles/task_profiles_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json

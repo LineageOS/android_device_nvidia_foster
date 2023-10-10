@@ -1,0 +1,13 @@
+<!--
+    Power HAL Config XML for nx devices
+
+    Copyright (C) 2023 Thomas Makin
+    Copyright (C) 2023 The LineageOS Project
+ -->
+<powerhal>
+    <!-- handle joycon sleep/wake -->
+    <input_devices>
+        <input name="joyconl"/>
+        <input name="joyconr"/>
+    </input_devices>
+</powerhal>
