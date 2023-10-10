@@ -27,8 +27,3 @@ on boot
     write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 500
     write /sys/devices/57000000.gpu/submit_boost_freq 460800
     write /sys/module/input_cfboost/parameters/boost_gpu 460800
-
-    chown system system /sys/bus/serial/devices/serial0-0/wake
-    chmod 0664 /sys/bus/serial/devices/serial0-0/wake
-    chown system system /sys/bus/serial/devices/serial1-0/wake
-    chmod 0664 /sys/bus/serial/devices/serial1-0/wake
