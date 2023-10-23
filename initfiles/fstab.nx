@@ -6,6 +6,7 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 /dev/block/by-name/APP  /                   ext4      ro,noatime                                                          wait
+/dev/block/by-name/vendor  /vendor          ext4      ro,noatime                                                          recoveryonly
 /dev/block/by-name/CAC  /cache              ext4      noatime,nosuid,nodev,data=ordered,barrier=1,nodelalloc              wait,formattable
 /dev/block/by-name/LNX  /boot               emmc      defaults                                                            defaults
 /dev/block/by-name/MSC  /misc               emmc      defaults                                                            defaults
