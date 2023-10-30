@@ -23,6 +23,15 @@ LOCAL_MODULE           := fstab.$(strip $(1))
 LOCAL_MODULE_CLASS     := ETC
 LOCAL_SRC_FILES        := fstab.$(strip $(2))
 LOCAL_VENDOR_MODULE    := true
+LOCAL_REQUIRED_MODULES := fstab.$(strip $(1))_ramdisk
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := fstab.$(strip $(1))_ramdisk
+LOCAL_MODULE_STEM   := fstab.$(strip $(1))
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_SRC_FILES     := fstab.$(strip $(2))
+LOCAL_MODULE_PATH   := $(TARGET_RAMDISK_OUT)
 include $(BUILD_PREBUILT)
 endef
 

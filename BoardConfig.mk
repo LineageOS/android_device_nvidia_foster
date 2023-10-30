@@ -25,7 +25,6 @@ TARGET_USERIMAGES_USE_EXT4         := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE  := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR             := vendor
-BOARD_BUILD_SYSTEM_ROOT_IMAGE      := true
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := foster,darcy,jetson,loki,mdarcy,nx
@@ -62,6 +61,7 @@ TARGET_KERNEL_CONFIG           := tegra_android_defconfig
 TARGET_KERNEL_RECOVERY_CONFIG  := tegra_android_recovery_defconfig
 BOARD_KERNEL_IMAGE_NAME        := Image.gz
 TARGET_KERNEL_ADDITIONAL_FLAGS := "NV_BUILD_KERNEL_OPTIONS=$(TARGET_TEGRA_KERNEL)"
+BOARD_KERNEL_CMDLINE           := "androidboot.boot_devices=sdhci-tegra.0,tegra-sata.0,sdhci-tegra.3"
 include device/nvidia/foster/modules.mk
 
 # Recovery
