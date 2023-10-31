@@ -14,98 +14,30 @@
 
 LOCAL_PATH:= $(call my-dir)
 
+# Parameters
+# $1 Variant name
+# $2 Config name
+define thermal_config_rule
 include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.batuu.xml
+LOCAL_MODULE        := thermalhal.$(strip $(1)).xml
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.porg.xml
+LOCAL_SRC_FILES     := thermalhal.$(strip $(2)).xml
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
+endef
 
-include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.darcy.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.darcy.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.foster_e.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.darcy.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.foster_e_hdd.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.darcy.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.jetson_cv.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.darcy.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.jetson_e.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.darcy.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.loki_e_lte.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.loki_e.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.loki_e_wifi.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.loki_e.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.nx.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.darcy.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.porg.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.porg.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.porg_sd.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.porg.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE        := thermalhal.sif.xml
-LOCAL_MODULE_TAGS   := optional
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_SRC_FILES     := thermalhal.darcy.xml
-LOCAL_VENDOR_MODULE := true
-include $(BUILD_PREBUILT)
+$(eval $(call thermal_config_rule, batuu,        porg   ))
+$(eval $(call thermal_config_rule, darcy,        darcy  ))
+$(eval $(call thermal_config_rule, dragon,       darcy  ))
+$(eval $(call thermal_config_rule, foster_e,     darcy  ))
+$(eval $(call thermal_config_rule, foster_e_hdd, darcy  ))
+$(eval $(call thermal_config_rule, jetson_cv,    darcy  ))
+$(eval $(call thermal_config_rule, jetson_e,     darcy  ))
+$(eval $(call thermal_config_rule, loki_e_base,  loki_e ))
+$(eval $(call thermal_config_rule, loki_e_lte,   loki_e ))
+$(eval $(call thermal_config_rule, loki_e_wifi,  loki_e ))
+$(eval $(call thermal_config_rule, nx,           darcy  ))
+$(eval $(call thermal_config_rule, porg,         porg   ))
+$(eval $(call thermal_config_rule, porg_sd,      porg   ))
+$(eval $(call thermal_config_rule, sif,          darcy  ))

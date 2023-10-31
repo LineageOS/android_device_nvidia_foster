@@ -12,5 +12,5 @@ import /vendor/etc/init/hw/init.loki_e_common.rc
 import /vendor/etc/init/hw/init.ray_touch.rc
 
 on fs
-    mount_all /vendor/etc/fstab.loki_e_lte
-    swapon_all /vendor/etc/fstab.loki_e_lte
+    mount_all /vendor/etc/fstab.${ro.hardware}
+    swapon_all /vendor/etc/fstab.${ro.hardware}

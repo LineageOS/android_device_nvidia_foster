@@ -143,25 +143,27 @@ void vendor_set_oem_key1(tegra_init *ti)
 
 void vendor_load_properties()
 {
-	//                                              device    name            model               id    sku   api dpi
-	std::vector<tegra_init::devices> devices = { { "foster", "foster_e",     "SHIELD Android TV", 2530,  930, 21, 320 },
-	                                             { "foster", "foster_e_hdd", "SHIELD Android TV", 2530,  932, 21, 320 },
-	                                             { "darcy",  "darcy",        "SHIELD Android TV", 2894,   52, 23, 320 },
-	                                             { "mdarcy", "mdarcy",       "SHIELD Android TV", 2894, 2551, 28, 320 },
-	                                             { "sif",    "sif",          "SHIELD Android TV", 3425,  500, 28, 320 },
-	                                             { "loki",   "loki_e_base",  "SHIELD Portable",   2530,  131, 21, 214 },
-	                                             { "loki",   "loki_e_lte",   "SHIELD Portable",   2530,   31, 21, 240 },
-	                                             { "loki",   "loki_e_wifi",  "SHIELD Portable",   2530,   30, 21, 240 },
-	                                             { "jetson", "jetson_cv",    "Jetson TX1",        2597, 2180, 21, 320 },
-	                                             { "jetson", "jetson_e",     "Jetson TX1",        2595,    0, 21, 320 },
-	                                             { "porg",   "batuu",        "Jetson Nano 2GB",   3448,    3, 28, 320 },
-	                                             { "porg",   "porg_sd",      "Jetson Nano",       3448,    0, 28, 320 },
-	                                             { "porg",   "porg",         "Jetson Nano",       3448,    2, 28, 320 },
-	                                             { "nx",     "odin",         "Switch",            7888,    0, 27, 214 },
-	                                             { "nx",     "modin",        "Switch V2",         7888,    1, 27, 214 },
-	                                             { "nx",     "vali",         "Switch Lite",       7888,    2, 27, 214 },
-	                                             { "nx",     "frig",         "Switch OLED",       7888,    3, 27, 214 },
-	                                             { "dragon", "dragon",       "Pixel C",              3,    0, 23, 320 } };
+		// device    name            hardware        model               id    sku   api dpi
+	std::vector<tegra_init::devices> devices = {
+		{ "foster", "foster_e",     "foster_e",     "SHIELD Android TV", 2530,  930, 21, 320 },
+		{ "foster", "foster_e_hdd", "foster_e_hdd", "SHIELD Android TV", 2530,  932, 21, 320 },
+		{ "darcy",  "darcy",        "darcy",        "SHIELD Android TV", 2894,   52, 23, 320 },
+		{ "mdarcy", "mdarcy",       "darcy",        "SHIELD Android TV", 2894, 2551, 28, 320 },
+		{ "sif",    "sif",          "sif",          "SHIELD Android TV", 3425,  500, 28, 320 },
+		{ "loki",   "loki_e_base",  "loki_e_base",  "SHIELD Portable",   2530,  131, 21, 214 },
+		{ "loki",   "loki_e_lte",   "loki_e_lte",   "SHIELD Portable",   2530,   31, 21, 240 },
+		{ "loki",   "loki_e_wifi",  "loki_e_wifi",  "SHIELD Portable",   2530,   30, 21, 240 },
+		{ "jetson", "jetson_cv",    "jetson_cv",    "Jetson TX1",        2597, 2180, 21, 320 },
+		{ "jetson", "jetson_e",     "jetson_e",     "Jetson TX1",        2595,    0, 21, 320 },
+		{ "porg",   "batuu",        "batuu",        "Jetson Nano 2GB",   3448,    3, 28, 320 },
+		{ "porg",   "porg_sd",      "porg_sd",      "Jetson Nano",       3448,    0, 28, 320 },
+		{ "porg",   "porg",         "porg",         "Jetson Nano",       3448,    2, 28, 320 },
+		{ "nx",     "odin",         "nx",           "Switch",            7888,    0, 27, 214 },
+		{ "nx",     "modin",        "nx",           "Switch V2",         7888,    1, 27, 214 },
+		{ "nx",     "vali",         "nx",           "Switch Lite",       7888,    2, 27, 214 },
+		{ "nx",     "frig",         "nx",           "Switch OLED",       7888,    3, 27, 214 },
+		{ "dragon", "dragon",       "dragon",       "Pixel C",              3,    0, 23, 320 }
+	};
 	tegra_init::build_version tav = { "11", "RQ1A.210105.003", "7825230_3167.5736" };
 
 	tegra_init ti(devices);
