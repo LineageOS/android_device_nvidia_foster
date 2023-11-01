@@ -130,7 +130,9 @@ PRODUCT_PACKAGES += \
 # Loadable kernel modules
 PRODUCT_PACKAGES += \
     init.lkm.rc \
+    init.recovery.lkm.rc \
     lkm_loader \
+    lkm_loader_recovery \
     lkm_loader_target
 
 # Media config
