@@ -162,6 +162,10 @@ endif
 PRODUCT_COPY_FILES += \
     device/nvidia/foster/permissions/com.nvidia.feature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nvidia.feature.xml
 
+# Partitions
+PRODUCT_USE_DYNAMIC_PARTITIONS      := true
+PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
+
 # PHS
 ifneq ($(TARGET_TEGRA_PHS),)
 PRODUCT_PACKAGES += \
