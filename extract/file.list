@@ -14,3 +14,55 @@ l4t-t210	bootloader/t210ref/BCT/P2180_A00_LP4_DSC_204Mhz.cfg	BCT/
 l4t-t210	bootloader/t210ref/BCT/P3448_A00_lpddr4_204Mhz_P987.cfg	BCT/
 
 nv-tegra-t210	tnspec_data/t210/tnspec.json	tnspec/foster.json
+
+blob-foster_e	bootloader/BCT		bootloader/foster_e/foster_e.bct
+blob-foster_e	bootloader/BPF		bootloader/foster_e/bpmp_zeroes.bin
+blob-foster_e	bootloader/DTB		bootloader/foster_e/tegra210-foster-e-p2530-0930-e01-00.dtb
+blob-foster_e	bootloader/DTB_2	bootloader/foster_e/tegra210-foster-e-p2530-0930-e02-00.dtb
+blob-foster_e	bootloader/EBT		bootloader/foster_e/cboot.bin
+blob-foster_e	bootloader/NVC		bootloader/foster_e/nvtboot.bin
+blob-foster_e	bootloader/RP4		bootloader/foster_e/rp4.blob
+blob-foster_e	bootloader/TBC		bootloader/foster_e/nvtboot_cpu.bin
+blob-foster_e	bootloader/TOS		bootloader/foster_e/tos.img
+blob-foster_e	bootloader/WB0		bootloader/foster_e/warmboot.bin
+
+stock-foster	bootloader/BCT		bootloader/foster_e_hdd/foster_e_hdd.bct
+stock-foster	bootloader/DTB		bootloader/foster_e_hdd/tegra210-foster-e-hdd-cpc-p2530-0933-e03-00.dtb
+stock-foster	bootloader/DTB_2	bootloader/foster_e_hdd/tegra210-foster-e-hdd-p2530-0932-e01-00.dtb
+stock-foster	bootloader/DTB_3	bootloader/foster_e_hdd/tegra210-foster-e-hdd-p2530-0932-e02-00.dtb
+stock-foster	bootloader/TBC		bootloader/foster_e_hdd/nvtboot_cpu.bin
+stock-foster	bootloader/TOS		bootloader/foster_e_hdd/tos.img
+
+nv-tegra-t210	prebuilt/t210/host/linux-x86/bin/nvblob_v2	bootloader/
+
+blob-darcy	bootloader/BCT		bootloader/darcy/darcy.bct
+blob-darcy	bootloader/DTB		bootloader/darcy/tegra210-darcy-p2894-0000-a00-00.dtb
+blob-darcy	bootloader/DTB_2	bootloader/darcy/tegra210-darcy-p2894-0050-a04-00.dtb
+blob-darcy	bootloader/DTB_3	bootloader/darcy/tegra210-darcy-p2894-0050-a08-00.dtb
+blob-darcy	bootloader/DTB_4	bootloader/darcy/tegra210-darcy-p2894-0052-a08-00.dtb
+blob-darcy	bootloader/EBT		bootloader/darcy/cboot.bin
+blob-darcy	bootloader/NVC		bootloader/darcy/nvtboot.bin
+blob-darcy	bootloader/RP4		bootloader/darcy/rp4.blob
+blob-darcy	bootloader/TBC		bootloader/darcy/nvtboot_cpu.bin
+blob-darcy	bootloader/TOS		bootloader/darcy/tos.img
+blob-darcy	bootloader/WB0		bootloader/darcy/warmboot.bin
+
+stock-t210	bootloader/T210B01_BCT	bootloader/mdarcy/mdarcy.bct
+stock-t210	bootloader/T210B01_BPF	bootloader/mdarcy/bpmp.bin
+stock-t210	bootloader/DTB		bootloader/mdarcy/mdarcy_dtb.img
+stock-t210	bootloader/T210B01_EBT	bootloader/mdarcy/cboot.bin
+stock-t210	bootloader/T210B01_NVC	bootloader/mdarcy/nvtboot.bin
+stock-t210	bootloader/RP4		bootloader/mdarcy/rp4.blob
+stock-t210	bootloader/T210B01_TBC	bootloader/mdarcy/nvtboot_cpu.bin
+stock-t210	bootloader/T210B01_TOS	bootloader/mdarcy/tos.img
+stock-t210	bootloader/T210B01_WB0	bootloader/mdarcy/warmboot.bin
+
+stock-sif	bootloader/BCT	bootloader/sif/sif.bct
+stock-sif	bootloader/BPF	bootloader/sif/bpmp.bin
+stock-sif	bootloader/DTB	bootloader/sif/sif_dtb.img
+stock-sif	bootloader/EBT	bootloader/sif/cboot.bin
+stock-sif	bootloader/NVC	bootloader/sif/nvtboot.bin
+stock-sif	bootloader/RP4	bootloader/sif/rp4.blob
+stock-sif	bootloader/TBC	bootloader/sif/nvtboot_cpu.bin
+stock-sif	bootloader/TOS	bootloader/sif/tos.img
+stock-sif	bootloader/WB0	bootloader/sif/warmboot.bin
