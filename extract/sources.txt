@@ -1,1 +1,3 @@
 nv-tegra-t210	https://nv-tegra.nvidia.com/r/plugins/gitiles/tegra/prebuilts-licensed-binary-tlk-t210/+/c84a4130e416b4182c752a343c8c11e622dc2e72/extract-nv-bins.sh?format=TEXT		gitiles		rel-30		prebuilt/t210/target/product/t210
+blob-foster_e	https://ota-downloads.nvidia.com/ota/productionBL-droid-signed-foster_e-full_ota-7825230_3167.5736_BF2AA3.zip	blob	rel-shield-r
+blob-darcy	https://ota-downloads.nvidia.com/ota/productionBL-droid-signed-darcy-full_ota-7825230_3167.5736_6F094A.zip	blob	rel-shield-r

@@ -32,5 +32,14 @@ function patch_nvrams() {
   echo "";
 }
 
+function patch_nvblob() {
+  echo -n "Patching nvblob_v2 output path...";
+
+  sed -i "s/e\['outfile'\]/os.path.join\(out_path,e\['outfile'\]\)/" ${LINEAGE_ROOT}/${OUTDIR}/foster/rel-30/bootloader/nvblob_v2
+
+  echo "";
+}
+
 fetch_smaug_nvram;
 patch_nvrams;
+patch_nvblob;
