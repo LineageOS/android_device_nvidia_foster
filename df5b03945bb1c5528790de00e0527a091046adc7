@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ac749be_93793dd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2023-11-20T00:58:16Z",
+      "side": 1,
+      "message": "Need to implement and verify an inline update mechanism, so this doesn\u0027t require manual fastbootd intervention by the user.",
+      "revId": "df5b03945bb1c5528790de00e0527a091046adc7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
