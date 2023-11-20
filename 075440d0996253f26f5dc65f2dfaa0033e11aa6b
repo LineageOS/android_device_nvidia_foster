@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "964a868b_fa14cdd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2023-11-20T23:36:49Z",
+      "side": 1,
+      "message": "Verified on darcy, hdmi hotplug events now do not generate headset plug intents.",
+      "revId": "075440d0996253f26f5dc65f2dfaa0033e11aa6b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
