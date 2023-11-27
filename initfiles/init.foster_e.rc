@@ -10,10 +10,6 @@ import /vendor/etc/init/hw/init.tegra_emmc.rc
 import /vendor/etc/init/hw/init.t210.rc
 import /vendor/etc/init/hw/init.foster_e_common.rc
 
-on init
-    # support old sdcard features (apps on sdcard and migrated apps)
-    setprop vendor.vold.linktoprimary 1
-
 on fs
     mount_all /vendor/etc/fstab.foster_e
     swapon_all /vendor/etc/fstab.foster_e
