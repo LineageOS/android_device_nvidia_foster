@@ -13,7 +13,6 @@ on fs
     # Assuming system takes 1GB runtime RAM, dedeuct it from GPU comptag memory allocation
     write /sys/devices/57000000.gpu/comptag_mem_deduct 1024
 
-    setprop ro.wifi.sdmmc 1
     setprop persist.vendor.sys.dpy0.prism 0
     setprop camera.disable_zsl_mode 1
 
