@@ -42,6 +42,7 @@ TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
 DEVICE_MANIFEST_FILE := device/nvidia/foster/manifest.xml
 
 # Bluetooth
+TARGET_VENDOR_PROP += device/nvidia/foster/bluetooth.prop
 ifeq ($(TARGET_TEGRA_BT),bcm)
 BOARD_CUSTOM_BT_CONFIG := device/nvidia/foster/comms/vnd_foster.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/nvidia/foster/comms
