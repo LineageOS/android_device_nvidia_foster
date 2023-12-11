@@ -14,10 +14,6 @@
 # limitations under the License.
 #
 
-# Tegra pcie host
-BOARD_VENDOR_KERNEL_MODULES_LOAD := \
-    pci-tegra
-
 # Nvhost podgov
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
     governor_pod_scaling
