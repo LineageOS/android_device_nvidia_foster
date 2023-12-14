@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2022 The LineageOS Project
+# Copyright (C) 2022-2023 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 # Tegra pcie host
 BOARD_VENDOR_KERNEL_MODULES_LOAD := \
-    pci_tegra
+    pci-tegra
 
 # Nvhost podgov
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
@@ -40,30 +40,30 @@ BOARD_VENDOR_KERNEL_MODULES_LOAD += \
 
 # Tegra hdmi audio
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    snd_hda_tegra
+    snd-hda-tegra
 
 # Tegra audio processing engine
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    snd_soc_tegra210_alt_xbar \
-    snd_soc_tegra210_alt_admaif \
-    snd_soc_tegra210_alt_sfc \
-    snd_soc_tegra210_alt_i2s \
-    snd_soc_tegra210_alt_mixer \
-    snd_soc_tegra210_alt_afc \
-    snd_soc_tegra210_alt_adx \
-    snd_soc_tegra210_alt_amx \
-    snd_soc_tegra210_alt_dmic \
-    snd_soc_tegra210_alt_mvc \
-    snd_soc_tegra210_alt_ope \
-    snd_soc_tegra_machine_driver
+    snd-soc-tegra210-alt-xbar \
+    snd-soc-tegra210-alt-admaif \
+    snd-soc-tegra210-alt-sfc \
+    snd-soc-tegra210-alt-i2s \
+    snd-soc-tegra210-alt-mixer \
+    snd-soc-tegra210-alt-afc \
+    snd-soc-tegra210-alt-adx \
+    snd-soc-tegra210-alt-amx \
+    snd-soc-tegra210-alt-dmic \
+    snd-soc-tegra210-alt-mvc \
+    snd-soc-tegra210-alt-ope \
+    snd-soc-tegra-machine-driver
 
 # Userspace aes crypto access
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    tegra_cryptodev
+    tegra-cryptodev
 
 # Input cpufreq boost
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    input_cfboost
+    input-cfboost
 
 # Fan
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
@@ -76,41 +76,41 @@ BOARD_VENDOR_KERNEL_MODULES_LOAD += \
 
 # TV Tuners
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    videobuf_dvb \
+    videobuf-dvb \
     lgdt3306a \
     si2168 \
     si2157 \
     lgdt3305 \
     tda18272 \
-    em28xx_dvb \
-    em28xx_rc \
+    em28xx-dvb \
+    em28xx-rc \
     cx25840 \
-    cx231xx_dvb
+    cx231xx-dvb
 
 # USB Storage
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    usb_storage
+    usb-storage
 
 # USB Modem
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    cdc_acm
+    cdc-acm
 
 # Nvidia Controllers
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
     ozwpan \
-    hid_nvidia_blake \
-    hid_jarvis_remote
+    hid-nvidia-blake \
+    hid-jarvis-remote
 
 # Misc Controllers
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    hid_xinmo \
-    hid_betopff
+    hid-xinmo \
+    hid-betopff
 
 
 # Copy to recovery
 BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD := \
-    hid_nvidia_blake \
-    hid_jarvis_remote \
-    usb_storage
+    hid-nvidia-blake \
+    hid-jarvis-remote \
+    usb-storage
 
-RECOVERY_KERNEL_MODULES := $(addsuffix .ko,$(subst _,-,$(BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD)))
+RECOVERY_KERNEL_MODULES := $(addsuffix .ko,$(BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD))
