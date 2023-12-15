@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "870726c0_8ebbedd6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2023-12-15T01:52:05Z",
+      "side": 1,
+      "message": "Verified on mdarcy, wifi works with blocking lkm load.",
+      "revId": "f6a6399faa4027cda595e67fa20fc839e7f029ba",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
