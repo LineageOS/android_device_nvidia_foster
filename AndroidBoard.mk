@@ -16,6 +16,8 @@ INSTALLED_KERNEL_TARGET := $(PRODUCT_OUT)/kernel
 
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 DTB_PATH := $(dir $(TARGET_PREBUILT_KERNEL))
+else ifneq ($(TARGET_KERNEL_PLATFORM_TARGET),)
+DTB_PATH := $(abspath $(KERNEL_OUT))
 else ifneq ($(filter 3.10 4.9, $(TARGET_KERNEL_VERSION)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
 else ifneq ($(findstring dtstree,$(TARGET_KERNEL_ADDITIONAL_FLAGS)),)

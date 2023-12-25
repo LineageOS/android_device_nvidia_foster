@@ -27,10 +27,12 @@ FOSTER_TNSPEC := $(BUILD_TOP)/vendor/nvidia/foster/rel-30/tnspec/foster.json
 INSTALLED_BMP_BLOB_TARGET      := $(PRODUCT_OUT)/bmp.blob
 INSTALLED_KERNEL_TARGET        := $(PRODUCT_OUT)/kernel
 INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
-INSTALLED_TOS_TARGET           := $(PRODUCT_OUT)/tos-$(if $(filter rel-shield-r software,$(TARGET_TEGRA_TOS)),mon-only,$(TARGET_TEGRA_TOS)).img
+INSTALLED_TOS_TARGET           := $(PRODUCT_OUT)/tos-$(if $(filter-out rel-shield-r software,$(TARGET_TEGRA_TOS)),$(TARGET_TEGRA_TOS),mon-only).img
 
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 DTB_PATH := $(dir $(TARGET_PREBUILT_KERNEL))
+else ifneq ($(TARGET_KERNEL_PLATFORM_TARGET),)
+DTB_PATH := $(abspath $(KERNEL_OUT))
 else ifneq ($(filter 3.10 4.9, $(TARGET_KERNEL_VERSION)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
 else ifneq ($(findstring dtstree,$(TARGET_KERNEL_ADDITIONAL_FLAGS)),)
