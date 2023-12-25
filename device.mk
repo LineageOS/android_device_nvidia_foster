@@ -173,10 +173,16 @@ PRODUCT_PACKAGES += \
 
 # Loadable kernel modules
 PRODUCT_PACKAGES += \
-    lkm_loader \
-    lkm_loader_target
+    lkm_loader
 PRODUCT_COPY_FILES += \
     device/nvidia/tegra-common/initfiles/init.lkm.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.lkm.rc
+ifneq ($(filter 4.9, $(TARGET_KERNEL_VERSION)),)
+PRODUCT_PACKAGES += \
+    lkm_loader_target
+else
+PRODUCT_COPY_FILES += \
+    device/nvidia/foster/initfiles/lkm.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/lkm.rc
+endif
 
 # Media config
 ifneq ($(filter-out software,$(TARGET_TEGRA_OMX)),)
@@ -207,10 +213,16 @@ PRODUCT_COPY_FILES += \
     device/nvidia/foster/nvphs/nvphsd.foster.conf:$(TARGET_COPY_OUT_ODM)/etc/nvphsd.conf
 endif
 
-# Power
+# Shipping API
+ifneq ($(filter 3.10 4.9 5.10, $(TARGET_KERNEL_VERSION)),)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_l.mk)
+
 PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/cgroups_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
     system/core/libprocessgroup/profiles/task_profiles_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
+else
+PRODUCT_SHIPPING_API_LEVEL := 36
+endif
 
 # SKU Specific Overlays
 PRODUCT_PACKAGES += \

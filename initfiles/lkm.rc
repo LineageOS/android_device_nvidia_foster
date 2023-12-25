@@ -1,0 +1,4 @@
+on fs
+    exec u:r:modprobe:s0 -- /system/bin/modprobe -a -d /system/lib/modules hci_uart.ko
+    exec u:r:modprobe:s0 -- /system/bin/modprobe -a -d /system/lib/modules r8152.ko
+    exec u:r:modprobe:s0 -- /system/bin/modprobe -a -d /system/lib/modules cdc_eem.ko cdc_ether.ko cdc_ncm.ko
