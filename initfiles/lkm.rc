@@ -1,0 +1,3 @@
+on fs
+    exec u:r:modprobe:s0 -- /system/bin/modprobe -a -d /system/lib/modules hci_uart.ko
+    exec u:r:modprobe:s0 -- /system/bin/modprobe -a -d /system/lib/modules r8152.ko
