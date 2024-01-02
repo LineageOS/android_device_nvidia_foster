@@ -21,20 +21,25 @@ LOCAL_PATH := $(call my-dir)
 # So only dt's related to mdarcy and sif should be part of this list
 INSTALLED_DTBIMAGE_TARGET_mdarcy_recovery := $(PRODUCT_OUT)/mdarcy_recovery.dtb.img
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-ifeq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
-DTB_SUBFOLDER := nvidia/
+ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
+DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
+else ifneq ($(findstring dtstree,$(TARGET_KERNEL_ADDITIONAL_FLAGS)),)
+DTB_PATH := $(abspath $(KERNEL_OUT)/../nv-oot/device-tree/platform/generic-dts/t21x/lineage)
+else
+DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts/nvidia)
 endif
+
 
 $(INSTALLED_DTBIMAGE_TARGET_mdarcy_recovery): $(INSTALLED_KERNEL_TARGET) | mkdtimg
 	echo -e ${CL_GRN}"Building mdarcy recovery DTImage"${CL_RST}
 	$(HOST_OUT_EXECUTABLES)/mkdtimg create $@ \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-darcy-p2894-0050-a08-00.dtb --id=2894 --rev=0x0a8 --custom0=0x28  \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-darcy-p2894-2551-b00-00.dtb --id=2894 --rev=0xb00 --custom0=2551  \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-darcy-p2894-3551-b03-00.dtb --id=2894 --rev=0xb03 --custom0=3551  \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-sif-p3425-0500-a01.dtb      --id=3425 --rev=0xa1  --custom0=0x140 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-sif-p3425-0500-a02.dtb      --id=3425 --rev=0xa2  --custom0=0x140 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-sif-p3425-0500-a04.dtb      --id=3425 --rev=0xa3  --custom0=0x140 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210b01-sif-p3425-0500-a04.dtb      --id=3425 --rev=0xa4  --custom0=0x140
+		$(DTB_PATH)/tegra210b01-darcy-p2894-0050-a08-00.dtb --id=2894 --rev=0x0a8 --custom0=0x28  \
+		$(DTB_PATH)/tegra210b01-darcy-p2894-2551-b00-00.dtb --id=2894 --rev=0xb00 --custom0=2551  \
+		$(DTB_PATH)/tegra210b01-darcy-p2894-3551-b03-00.dtb --id=2894 --rev=0xb03 --custom0=3551  \
+		$(DTB_PATH)/tegra210b01-sif-p3425-0500-a01.dtb      --id=3425 --rev=0xa1  --custom0=0x140 \
+		$(DTB_PATH)/tegra210b01-sif-p3425-0500-a02.dtb      --id=3425 --rev=0xa2  --custom0=0x140 \
+		$(DTB_PATH)/tegra210b01-sif-p3425-0500-a04.dtb      --id=3425 --rev=0xa3  --custom0=0x140 \
+		$(DTB_PATH)/tegra210b01-sif-p3425-0500-a04.dtb      --id=3425 --rev=0xa4  --custom0=0x140
 else
 $(INSTALLED_DTBIMAGE_TARGET_mdarcy_recovery): | mkdtimg
 	echo -e ${CL_GRN}"Building mdarcy recovery DTImage"${CL_RST}

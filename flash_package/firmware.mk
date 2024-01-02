@@ -28,8 +28,12 @@ INSTALLED_TOS_TARGET    := $(PRODUCT_OUT)/tos-mon-only.img
 TOYBOX_HOST := $(HOST_OUT_EXECUTABLES)/toybox
 NVBLOB_HOST := python2 $(BUILD_TOP)/vendor/nvidia/foster/rel-30/bootloader/nvblob_v2
 
-ifneq ($(TARGET_TEGRA_KERNEL),4.9)
-DTB_SUBFOLDER := nvidia/
+ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
+DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
+else ifneq ($(findstring dtstree,$(TARGET_KERNEL_ADDITIONAL_FLAGS)),)
+DTB_PATH := $(abspath $(KERNEL_OUT)/../nv-oot/device-tree/platform/generic-dts/t21x/lineage)
+else
+DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts/nvidia)
 endif
 
 include $(CLEAR_VARS)
@@ -77,8 +81,8 @@ $(_foster_e_blob): $(INSTALLED_KERNEL_TARGET)
 		$(FOSTER_BL)/foster_e/rp4.blob RP4 2 \
 		$(FOSTER_BL)/foster_e/tegra210-foster-e-p2530-0930-e01-00.dtb RP1 2 \
 		$(FOSTER_BL)/foster_e/tegra210-foster-e-p2530-0930-e02-00.dtb RP1 2 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210-foster-e-p2530-0930-e01-00.dtb DTB 2 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210-foster-e-p2530-0930-e02-00.dtb DTB 2 \
+		$(DTB_PATH)/tegra210-foster-e-p2530-0930-e01-00.dtb DTB 2 \
+		$(DTB_PATH)/tegra210-foster-e-p2530-0930-e02-00.dtb DTB 2 \
 		$(FOSTER_BL)/foster_e/cboot.bin EBT 2 \
 		$(FOSTER_BL)/foster_e/cboot.bin RBL 2 \
 		$(FOSTER_BL)/foster_e/bpmp_zeroes.bin BPF 2 \
@@ -111,9 +115,9 @@ $(_foster_e_hdd_blob): $(INSTALLED_KERNEL_TARGET)
 		$(FOSTER_BL)/foster_e_hdd/tegra210-foster-e-hdd-cpc-p2530-0933-e03-00.dtb RP1 2 \
 		$(FOSTER_BL)/foster_e_hdd/tegra210-foster-e-hdd-p2530-0932-e01-00.dtb RP1 2 \
 		$(FOSTER_BL)/foster_e_hdd/tegra210-foster-e-hdd-p2530-0932-e02-00.dtb RP1 2 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210-foster-e-hdd-cpc-p2530-0933-e03-00.dtb DTB 2 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210-foster-e-hdd-p2530-0932-e01-00.dtb DTB 2 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210-foster-e-hdd-p2530-0932-e02-00.dtb DTB 2 \
+		$(DTB_PATH)/tegra210-foster-e-hdd-cpc-p2530-0933-e03-00.dtb DTB 2 \
+		$(DTB_PATH)/tegra210-foster-e-hdd-p2530-0932-e01-00.dtb DTB 2 \
+		$(DTB_PATH)/tegra210-foster-e-hdd-p2530-0932-e02-00.dtb DTB 2 \
 		$(FOSTER_BL)/foster_e/cboot.bin EBT 2 \
 		$(FOSTER_BL)/foster_e/cboot.bin RBL 2 \
 		$(FOSTER_BL)/foster_e/bpmp_zeroes.bin BPF 2 \
@@ -203,7 +207,7 @@ $(_jetson_cv_br_bct): $(TOYBOX_HOST) $(INSTALLED_KERNEL_TARGET) $(INSTALLED_TOS_
 	@cp $(FOSTER_BL)/foster_e/*.bin $(dir $@)/
 	@cp $(INSTALLED_TOS_TARGET) $(dir $@)/
 	@cp $(JETSON_BL)/jetson_cv/tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb $(dir $@)/
-	@cp $(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb $(dir $@)/
+	@cp $(DTB_PATH)/tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb $(dir $@)/
 	cd $(dir $@); $(TEGRAFLASH_PATH)/tegraparser --pt flash_t210_android_sdmmc_fb.xml.tmp
 	cd $(dir $@); $(TEGRAFLASH_PATH)/tegrahost --chip 0x21 --partitionlayout flash_t210_android_sdmmc_fb.xml.bin --list images_list.xml
 	cd $(dir $@); $(TEGRAFLASH_PATH)/tegrasign --key None --list images_list.xml --pubkeyhash pub_key.key
