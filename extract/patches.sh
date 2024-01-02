@@ -40,6 +40,15 @@ function patch_nvblob() {
   echo "";
 }
 
+function patch_jetson_dtb() {
+  echo -n "Patching jetson tx1 bootloader dtb...";
+
+  fdtput -r ${LINEAGE_ROOT}/${OUTDIR}/foster/r32/bootloader/jetson_cv/tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb /chosen/verified-boot
+
+  echo "";
+}
+
 fetch_smaug_nvram;
 patch_nvrams;
 patch_nvblob;
+patch_jetson_dtb;

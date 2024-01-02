@@ -15,6 +15,7 @@
 LOCAL_PATH := $(call my-dir)
 
 FOSTER_BL       := $(BUILD_TOP)/vendor/nvidia/foster/rel-shield-r/bootloader
+JETSON_BL       := $(BUILD_TOP)/vendor/nvidia/foster/r32/bootloader
 TEGRAFLASH_PATH := $(BUILD_TOP)/vendor/nvidia/t210/r32/tegraflash
 T210_BL         := $(BUILD_TOP)/vendor/nvidia/t210/r32/bootloader
 FOSTER_BCT      := $(BUILD_TOP)/vendor/nvidia/foster/r32/BCT
@@ -58,6 +59,7 @@ $(_p2371_package_archive): $(INSTALLED_BMP_BLOB_TARGET) $(INSTALLED_KERNEL_TARGE
 	@cp $(INSTALLED_TOS_TARGET) $(dir $@)/
 	@cp $(INSTALLED_BMP_BLOB_TARGET) $(dir $@)/
 	@cp $(INSTALLED_RECOVERYIMAGE_TARGET) $(dir $@)/
+	@cp $(JETSON_BL)/jetson_cv/tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb $(dir $@)/
 	@cp $(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb $(dir $@)/
 	@cp $(FOSTER_BCT)/P2180_A00_LP4_DSC_204Mhz.cfg $(dir $@)/
 	@python2 $(TNSPEC_PY) nct new p2371-2180-devkit -o $(dir $@)/p2371-2180-devkit.bin --spec $(FOSTER_TNSPEC)

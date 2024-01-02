@@ -24,7 +24,7 @@ fi;
 
 # Sign some images
 echo "Signing boot images";
-cp tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb temp.dtb > /dev/null
+cp tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb temp.dtb > /dev/null
 cp cboot_tegraflash.bin cboot.tmp > /dev/null
 tegraflash.py \
   "${FLASH_CMD_EEPROM[@]}" \
