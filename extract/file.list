@@ -13,6 +13,13 @@ stock-t210	vendor/firmware/brcmfmac4356-pcie.clm_blob	bcm_firmware/bcm4356/
 l4t-t210	bootloader/t210ref/BCT/P2180_A00_LP4_DSC_204Mhz.cfg	BCT/
 l4t-t210	bootloader/t210ref/BCT/P3448_A00_lpddr4_204Mhz_P987.cfg	BCT/
 
+l4t-t210	kernel/dtb/tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb	bootloader/jetson_cv/
+l4t-t210	kernel/dtb/tegra210-p3448-0000-p3449-0000-a02.dtb		bootloader/porg/
+l4t-t210	kernel/dtb/tegra210-p3448-0000-p3449-0000-b00.dtb		bootloader/porg/
+l4t-t210	kernel/dtb/tegra210-p3448-0002-p3449-0000-a02.dtb		bootloader/porg/
+l4t-t210	kernel/dtb/tegra210-p3448-0002-p3449-0000-b00.dtb		bootloader/porg/
+l4t-t210	kernel/dtb/tegra210-p3448-0003-p3542-0000.dtb			bootloader/porg/
+
 nv-tegra-t210	tnspec_data/t210/tnspec.json	tnspec/foster.json
 
 blob-foster_e	bootloader/BCT		bootloader/foster_e/foster_e.bct

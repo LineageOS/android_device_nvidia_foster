@@ -15,6 +15,7 @@
 LOCAL_PATH := $(call my-dir)
 
 FOSTER_BL  := $(BUILD_TOP)/vendor/nvidia/foster/rel-shield-r/bootloader
+JETSON_BL  := $(BUILD_TOP)/vendor/nvidia/foster/r32/bootloader
 
 TEGRAFLASH_PATH := $(BUILD_TOP)/vendor/nvidia/t210/r32/tegraflash
 T210_BL         := $(BUILD_TOP)/vendor/nvidia/t210/r32/bootloader
@@ -201,6 +202,7 @@ $(_jetson_cv_br_bct): $(TOYBOX_HOST) $(INSTALLED_KERNEL_TARGET) $(INSTALLED_TOS_
 	@cp $(FOSTER_BCT)/P2180_A00_LP4_DSC_204Mhz.cfg $(dir $@)/
 	@cp $(FOSTER_BL)/foster_e/*.bin $(dir $@)/
 	@cp $(INSTALLED_TOS_TARGET) $(dir $@)/
+	@cp $(JETSON_BL)/jetson_cv/tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb $(dir $@)/
 	@cp $(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb $(dir $@)/
 	cd $(dir $@); $(TEGRAFLASH_PATH)/tegraparser --pt flash_t210_android_sdmmc_fb.xml.tmp
 	cd $(dir $@); $(TEGRAFLASH_PATH)/tegrahost --chip 0x21 --partitionlayout flash_t210_android_sdmmc_fb.xml.bin --list images_list.xml
@@ -221,7 +223,7 @@ $(_jetson_cv_blob): $(_jetson_cv_br_bct) $(INSTALLED_KERNEL_TARGET) | $(ACP)
 	@mkdir -p $(dir $@)
 	OUT=$(dir $@) TOP=$(BUILD_TOP) $(NVBLOB_HOST) -t update \
 		$(FOSTER_BL)/foster_e/rp4.blob RP4 2 \
-		$(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb RP1 2 \
+		$(JETSON_BL)/jetson_cv/tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb RP1 2 \
 		$(JETSON_CV_SIGNED_PATH)/cboot.bin.encrypt EBT 2 \
 		$(FOSTER_BL)/foster_e/bpmp_zeroes.bin BPF 2 \
 		$(JETSON_CV_SIGNED_PATH)/nvtboot.bin.encrypt NVC 2 \

@@ -127,7 +127,7 @@
             <file_system_attribute> 0 </file_system_attribute>
             <allocation_attribute> 0x8 </allocation_attribute>
             <percent_reserved> 0 </percent_reserved>
-            <filename> tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb </filename>
+            <filename> tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb </filename>
         </partition>
 
         <partition name="RP2" type="data">
