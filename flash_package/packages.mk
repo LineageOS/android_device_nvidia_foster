@@ -30,9 +30,14 @@ INSTALLED_KERNEL_TARGET        := $(PRODUCT_OUT)/kernel
 INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
 INSTALLED_TOS_TARGET           := $(PRODUCT_OUT)/tos-mon-only.img
 
-ifneq ($(TARGET_TEGRA_KERNEL),4.9)
-DTB_SUBFOLDER := nvidia/
+ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
+DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
+else ifneq ($(findstring dtstree,$(TARGET_KERNEL_ADDITIONAL_FLAGS)),)
+DTB_PATH := $(abspath $(KERNEL_OUT)/../nv-oot/device-tree/platform/generic-dts/t21x/lineage)
+else
+DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts/nvidia)
 endif
+
 
 include $(CLEAR_VARS)
 LOCAL_MODULE        := p2371_flash_package
@@ -60,7 +65,7 @@ $(_p2371_package_archive): $(INSTALLED_BMP_BLOB_TARGET) $(INSTALLED_KERNEL_TARGE
 	@cp $(INSTALLED_BMP_BLOB_TARGET) $(dir $@)/
 	@cp $(INSTALLED_RECOVERYIMAGE_TARGET) $(dir $@)/
 	@cp $(JETSON_BL)/jetson_cv/tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb $(dir $@)/
-	@cp $(KERNEL_OUT)/arch/arm64/boot/dts/$(DTB_SUBFOLDER)tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb $(dir $@)/
+	@cp $(DTB_PATH)/tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb $(dir $@)/
 	@cp $(FOSTER_BCT)/P2180_A00_LP4_DSC_204Mhz.cfg $(dir $@)/
 	@python2 $(TNSPEC_PY) nct new p2371-2180-devkit -o $(dir $@)/p2371-2180-devkit.bin --spec $(FOSTER_TNSPEC)
 	@cd $(dir $@); tar -cJf $(abspath $@) *
