@@ -25,7 +25,6 @@ TARGET_TEGRA_VARIANT    ?= common
 TARGET_TEGRA_MODELS := $(shell awk -F, '/tegra_init::devices/{ f = 1; next } /};/{ f = 0 } f{ gsub(/"/, "", $$3); gsub(/ /, "", $$3); print $$3 }' device/nvidia/$(TARGET_REFERENCE_DEVICE)/init/init_$(TARGET_REFERENCE_DEVICE).cpp |sort |uniq)
 
 TARGET_TEGRA_BT       ?= bcm
-TARGET_TEGRA_CAMERA   ?= rel-shield-r
 TARGET_TEGRA_KERNEL   ?= 4.9
 TARGET_TEGRA_WIDEVINE ?= rel-shield-r
 TARGET_TEGRA_WIFI     ?= bcm
