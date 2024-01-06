@@ -26,12 +26,38 @@ include $(CLEAR_VARS)
 LOCAL_MODULE        := audio_policy_configuration.xml
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MODULE_CLASS  := ETC
-ifeq ($(PRODUCT_IS_ATV),true)
-LOCAL_SRC_FILES     := audio_policy_configuration_nv_tv.xml
-else
-LOCAL_SRC_FILES     := audio_policy_configuration_nv.xml
-endif
+LOCAL_SRC_FILES     := audio_policy_configuration.xml
 LOCAL_VENDOR_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := audio_policy_configuration_dragon.xml
+LOCAL_MODULE_STEM          := audio_policy_configuration.xml
+LOCAL_MODULE_TAGS          := optional
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_SRC_FILES            := audio_policy_configuration_loki.xml
+LOCAL_VENDOR_MODULE        := true
+LOCAL_MODULE_RELATIVE_PATH := audio/sku_dragon
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := audio_policy_configuration_loki.xml
+LOCAL_MODULE_STEM          := audio_policy_configuration.xml
+LOCAL_MODULE_TAGS          := optional
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_SRC_FILES            := audio_policy_configuration_loki.xml
+LOCAL_VENDOR_MODULE        := true
+LOCAL_MODULE_RELATIVE_PATH := audio/sku_loki
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE               := audio_policy_configuration_nx.xml
+LOCAL_MODULE_STEM          := audio_policy_configuration.xml
+LOCAL_MODULE_TAGS          := optional
+LOCAL_MODULE_CLASS         := ETC
+LOCAL_SRC_FILES            := audio_policy_configuration_nx.xml
+LOCAL_VENDOR_MODULE        := true
+LOCAL_MODULE_RELATIVE_PATH := audio/sku_nx
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
