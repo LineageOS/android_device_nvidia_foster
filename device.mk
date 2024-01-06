@@ -89,6 +89,9 @@ PRODUCT_PACKAGES += \
     audio.sif.xml
 else ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_AUDIO)),)
 PRODUCT_PACKAGES += \
+    audio_policy_configuration_dragon.xml \
+    audio_policy_configuration_loki.xml \
+    audio_policy_configuration_nx.xml \
     dragon_nvaudio_conf.xml \
     loki_e_base_nvaudio_conf.xml \
     loki_e_lte_nvaudio_conf.xml \
