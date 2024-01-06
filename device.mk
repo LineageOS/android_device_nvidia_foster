@@ -140,6 +140,9 @@ ifeq ($(TARGET_TEGRA_AUDIO),nvaudio)
 PRODUCT_PACKAGES += \
     audio_effects.xml \
     audio_policy_configuration.xml \
+    audio_policy_configuration_dragon.xml \
+    audio_policy_configuration_loki.xml \
+    audio_policy_configuration_nx.xml \
     dragon_nvaudio_conf.xml \
     loki_e_base_nvaudio_conf.xml \
     loki_e_lte_nvaudio_conf.xml \
