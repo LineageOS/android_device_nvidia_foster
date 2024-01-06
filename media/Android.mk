@@ -30,17 +30,9 @@ ifeq ($(TARGET_TEGRA_AUDIO),tinyhal)
 LOCAL_SRC_FILES     := audio_policy_configuration_tinyhal.xml
 else
 ifeq ($(PRODUCT_IS_ATV),true)
-ifeq ($(TARGET_TEGRA_DOLBY),true)
 LOCAL_SRC_FILES     := audio_policy_configuration_nv_tv.xml
 else
-LOCAL_SRC_FILES     := audio_policy_configuration_nv_tv_nodolby.xml
-endif
-else
-ifeq ($(TARGET_TEGRA_DOLBY),true)
 LOCAL_SRC_FILES     := audio_policy_configuration_nv.xml
-else
-LOCAL_SRC_FILES     := audio_policy_configuration_nv_nodolby.xml
-endif
 endif
 endif
 LOCAL_VENDOR_MODULE := true
