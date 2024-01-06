@@ -118,6 +118,12 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		ti->property_set(id.first, id.second);
 }
 
+void vendor_set_sku(tegra_init *ti)
+{
+	if (ti->is_model("loki_e_base") || ti->is_model("loki_e_lte") || ti->is_model("loki_e_wifi"))
+		ti->property_set("ro.boot.product.vendor.sku", "loki");
+}
+
 void vendor_set_nrdp_props(tegra_init *ti)
 {
 	if (ti->is_model("mdarcy") || ti->is_model("sif"))
@@ -190,6 +196,7 @@ void vendor_load_properties()
 
 	if (ti.vendor_context() || ti.recovery_context()) {
 		vendor_set_usb_product_ids(&ti);
+		vendor_set_sku(&ti);
 
 		if (ti.property_get("ro.build.characteristics") == "tv") {
 			vendor_set_nrdp_props(&ti);
