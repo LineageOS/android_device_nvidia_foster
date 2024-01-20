@@ -196,7 +196,7 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_ODM)/etc/media_codecs_google_video.xml
 PRODUCT_PACKAGES += \
     media_codecs.xml
-ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_OMX)),)
+ifneq ($(filter-out software,$(TARGET_TEGRA_OMX)),)
 PRODUCT_PACKAGES += \
     media_codecs_performance.xml \
     media_profiles_V1_0.xml \
