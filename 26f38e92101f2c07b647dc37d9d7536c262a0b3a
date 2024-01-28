@@ -16,6 +16,23 @@
       "message": "even if just as a TMP?",
       "revId": "26f38e92101f2c07b647dc37d9d7536c262a0b3a",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43290067_5347ec55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2024-01-28T08:14:58Z",
+      "side": 1,
+      "message": "Symbols should be shimmed instead of dropping the entire hal",
+      "revId": "26f38e92101f2c07b647dc37d9d7536c262a0b3a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
