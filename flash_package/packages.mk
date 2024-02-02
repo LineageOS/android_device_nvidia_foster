@@ -14,6 +14,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
+BARACUS_BL      := $(BUILD_TOP)/vendor/nvidia/foster/rel-28/bootloader/baracus
 FOSTER_BL       := $(BUILD_TOP)/vendor/nvidia/foster/rel-shield-r/bootloader
 JETSON_BL       := $(BUILD_TOP)/vendor/nvidia/foster/r32/bootloader
 TEGRAFLASH_PATH := $(BUILD_TOP)/vendor/nvidia/t210/r32/tegraflash
@@ -68,6 +69,36 @@ $(_p2371_package_archive): $(INSTALLED_BMP_BLOB_TARGET) $(INSTALLED_KERNEL_TARGE
 	@cp $(DTB_PATH)/tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb $(dir $@)/
 	@cp $(FOSTER_BCT)/P2180_A00_LP4_DSC_204Mhz.cfg $(dir $@)/
 	@python2 $(TNSPEC_PY) nct new p2371-2180-devkit -o $(dir $@)/p2371-2180-devkit.bin --spec $(FOSTER_TNSPEC)
+	@cd $(dir $@); tar -cJf $(abspath $@) *
+
+include $(BUILD_SYSTEM)/base_rules.mk
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := baracus_flash_package
+LOCAL_MODULE_SUFFIX := .txz
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_MODULE_PATH   := $(PRODUCT_OUT)
+
+_baracus_package_intermediates := $(call intermediates-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE))
+_baracus_package_archive := $(_baracus_package_intermediates)/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
+
+$(_baracus_package_archive): $(INSTALLED_BMP_BLOB_TARGET) $(INSTALLED_KERNEL_TARGET) $(INSTALLED_RECOVERYIMAGE_TARGET) $(INSTALLED_TOS_TARGET)
+	@mkdir -p $(dir $@)/tegraflash
+	@mkdir -p $(dir $@)/scripts
+	@cp $(TEGRAFLASH_PATH)/* $(dir $@)/tegraflash/
+	@cp $(COMMON_FLASH)/*.sh $(dir $@)/scripts/
+	@cp $(FOSTER_FLASH)/baracus.sh $(dir $@)/flash.sh
+	@cp $(FOSTER_FLASH)/flash_baracus_android_sdmmc_fb.xml $(dir $@)/
+	@cp $(FOSTER_FLASH)/sign.xml $(dir $@)/
+	@cp $(BARACUS_BL)/* $(dir $@)/
+	@cp $(T210_BL)/cboot.bin $(dir $@)/cboot_tegraflash.bin
+	@cp $(T210_BL)/nvtboot_recovery.bin $(dir $@)/
+	@cp $(INSTALLED_TOS_TARGET) $(dir $@)/
+	@cp $(INSTALLED_BMP_BLOB_TARGET) $(dir $@)/
+	@cp $(INSTALLED_RECOVERYIMAGE_TARGET) $(dir $@)/
+	@cp $(DTB_PATH)/tegra210-baracus.dtb $(dir $@)/
+	@cp $(FOSTER_BCT)/P2180_A00_LP4_DSC_204Mhz.cfg $(dir $@)/
+	@python2 $(TNSPEC_PY) nct new p2371-2180-4k-edp -o $(dir $@)/baracus.bin --spec $(FOSTER_TNSPEC)
 	@cd $(dir $@); tar -cJf $(abspath $@) *
 
 include $(BUILD_SYSTEM)/base_rules.mk

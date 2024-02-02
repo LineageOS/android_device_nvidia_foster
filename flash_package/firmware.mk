@@ -14,6 +14,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
+BARACUS_BL := $(BUILD_TOP)/vendor/nvidia/foster/rel-28/bootloader/baracus
 FOSTER_BL  := $(BUILD_TOP)/vendor/nvidia/foster/rel-shield-r/bootloader
 JETSON_BL  := $(BUILD_TOP)/vendor/nvidia/foster/r32/bootloader
 
@@ -190,6 +191,30 @@ $(_sif_blob):
 
 include $(BUILD_SYSTEM)/base_rules.mk
 INSTALLED_RADIOIMAGE_TARGET += $(PRODUCT_OUT)/$(notdir $(_sif_blob))
+
+include $(CLEAR_VARS)
+LOCAL_MODULE        := baracus.blob
+LOCAL_MODULE_CLASS  := ETC
+LOCAL_MODULE_PATH   := $(PRODUCT_OUT)
+
+_baracus_blob_intermediates := $(call intermediates-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE))
+_baracus_blob := $(_baracus_blob_intermediates)/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
+
+$(_baracus_blob):
+	@mkdir -p $(dir $@)
+	OUT=$(dir $@) TOP=$(BUILD_TOP) $(NVBLOB_HOST) -t update \
+		$(BARACUS_BL)/tegra210-jetson-cv-p2597-2180-a00.dtb RP1 2 \
+		$(BARACUS_BL)/cboot.bin EBT 2 \
+		$(BARACUS_BL)/bpmp.bin BPF 2 \
+		$(BARACUS_BL)/nvtboot.bin NVC 2 \
+		$(BARACUS_BL)/nvtboot_cpu.bin TBC 2 \
+		$(BARACUS_BL)/warmboot.bin WB0 2 \
+		$(BARACUS_BL)/tos.img TOS 2 \
+		$(BARACUS_BL)/baracus.bct BCT 2
+	@mv $(dir $@)/ota.blob $@
+
+include $(BUILD_SYSTEM)/base_rules.mk
+INSTALLED_RADIOIMAGE_TARGET += $(PRODUCT_OUT)/$(notdir $(_baracus_blob))
 
 include $(CLEAR_VARS)
 LOCAL_MODULE       := jetson_cv.blob
