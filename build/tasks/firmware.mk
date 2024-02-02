@@ -13,6 +13,7 @@
 # limitations under the License.
 
 ifeq ($(TARGET_REFERENCE_DEVICE), foster)
+BARACUS_BL := $(BUILD_TOP)/vendor/nvidia/foster/rel-28/bootloader/baracus
 FOSTER_BL  := $(BUILD_TOP)/vendor/nvidia/foster/rel-shield-r/bootloader
 JETSON_BL  := $(BUILD_TOP)/vendor/nvidia/foster/r32/bootloader
 
@@ -192,6 +193,29 @@ $(PRODUCT_OUT)/sif.blob: $(_sif_blob)
 .PHONY: sif.blob
 sif.blob: $(PRODUCT_OUT)/sif.blob
 
+_baracus_blob := $(call intermediates-dir-for,ETC,baracus.blob)/baracus.blob
+
+$(_baracus_blob):
+	@mkdir -p $(dir $@)
+	OUT=$(dir $@) TOP=$(BUILD_TOP) $(NVBLOB_HOST) -t update \
+		$(BARACUS_BL)/tegra210-jetson-cv-p2597-2180-a00.dtb RP1 2 \
+		$(BARACUS_BL)/cboot.bin EBT 2 \
+		$(BARACUS_BL)/bpmp.bin BPF 2 \
+		$(BARACUS_BL)/nvtboot.bin NVC 2 \
+		$(BARACUS_BL)/nvtboot_cpu.bin TBC 2 \
+		$(BARACUS_BL)/warmboot.bin WB0 2 \
+		$(BARACUS_BL)/tos.img TOS 2 \
+		$(BARACUS_BL)/baracus.bct BCT 2
+	@mv $(dir $@)/ota.blob $@
+
+INSTALLED_RADIOIMAGE_TARGET += $(_baracus_blob)
+$(call intermediates-dir-for,PACKAGING,target_files)/$(TARGET_PRODUCT)-target_files.zip: $(_baracus_blob)
+
+$(PRODUCT_OUT)/baracus.blob: $(_baracus_blob)
+        $(hide) cp $< $@
+
+.PHONY: baracus.blob
+baracus.blob: $(PRODUCT_OUT)/baracus.blob
 
 JETSON_CV_SIGNED_PATH := $(call intermediates-dir-for,ETC,jetson_cv.blob)
 _jetson_cv_br_bct     := $(JETSON_CV_SIGNED_PATH)/P2180_A00_LP4_DSC_204Mhz.bct

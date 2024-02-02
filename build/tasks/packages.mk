@@ -72,6 +72,32 @@ $(PRODUCT_OUT)/p2371_flash_package.txz: $(_p2371_package_archive)
 .PHONY: p2371_flash_package
 p2371_flash_package: $(PRODUCT_OUT)/p2371_flash_package.txz
 
+_baracus_package_archive := $(call intermediates-dir-for,ETC,baracus_flash_package)/baracus_flash_package.txz
+
+$(_baracus_package_archive): $(INSTALLED_BMP_BLOB_TARGET) $(INSTALLED_KERNEL_TARGET) $(INSTALLED_RECOVERYIMAGE_TARGET) $(INSTALLED_TOS_TARGET)
+	@mkdir -p $(dir $@)/tegraflash
+	@mkdir -p $(dir $@)/scripts
+	@cp $(TEGRAFLASH_PATH)/* $(dir $@)/tegraflash/
+	@cp $(COMMON_FLASH)/*.sh $(dir $@)/scripts/
+	@cp $(FOSTER_FLASH)/baracus.sh $(dir $@)/flash.sh
+	@cp $(FOSTER_FLASH)/flash_baracus_android_sdmmc_fb.xml $(dir $@)/
+	@cp $(FOSTER_FLASH)/sign.xml $(dir $@)/
+	@cp $(BARACUS_BL)/* $(dir $@)/
+	@cp $(T210_BL)/cboot.bin $(dir $@)/cboot_tegraflash.bin
+	@cp $(T210_BL)/nvtboot_recovery.bin $(dir $@)/
+	@cp $(INSTALLED_TOS_TARGET) $(dir $@)/
+	@cp $(INSTALLED_BMP_BLOB_TARGET) $(dir $@)/
+	@cp $(INSTALLED_RECOVERYIMAGE_TARGET) $(dir $@)/
+	@cp $(DTB_PATH)/tegra210-baracus.dtb $(dir $@)/
+	@cp $(FOSTER_BCT)/P2180_A00_LP4_DSC_204Mhz.cfg $(dir $@)/
+	@python2 $(TNSPEC_PY) nct new p2371-2180-4k-edp -o $(dir $@)/baracus.bin --spec $(FOSTER_TNSPEC)
+	@cd $(dir $@); tar -cJf $(abspath $@) *
+
+$(PRODUCT_OUT)/baracus_flash_package.txz: $(_baracus_package_archive)
+        $(hide) cp $< $@
+
+.PHONY: baracus_flash_package
+baracus_flash_package: $(PRODUCT_OUT)/baracus_flash_package.txz
 
 ifeq ($(word 2,$(subst _, ,$(TARGET_PRODUCT))),foster)
 BUILT_TARGET_FILES_ZIPROOT := $(call intermediates-dir-for,PACKAGING,target_files)/$(TARGET_PRODUCT)-target_files
