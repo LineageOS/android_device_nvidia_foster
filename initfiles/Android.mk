@@ -60,6 +60,7 @@ LOCAL_SRC_FILES    := power.$(strip $(5)).rc
 include $(BUILD_PREBUILT)
 endef
 
+$(eval $(call initfiles_rule, baracus,      emmc,   jetson_cv,    foster, foster_e_common ))
 $(eval $(call initfiles_rule, batuu,        sd,     batuu,        foster, darcy           ))
 $(eval $(call initfiles_rule, darcy,        emmc,   darcy,        darcy,  darcy           ))
 $(eval $(call initfiles_rule, dragon,       dragon, dragon,       dragon, abca            ))
