@@ -27,6 +27,7 @@ LOCAL_VENDOR_MODULE := true
 include $(BUILD_PREBUILT)
 endef
 
+$(eval $(call thermal_config_rule, baracus,      darcy  ))
 $(eval $(call thermal_config_rule, batuu,        porg   ))
 $(eval $(call thermal_config_rule, darcy,        darcy  ))
 $(eval $(call thermal_config_rule, dragon,       darcy  ))

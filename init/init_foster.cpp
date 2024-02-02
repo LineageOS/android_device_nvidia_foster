@@ -172,6 +172,7 @@ void vendor_load_properties()
 		{ "nx",     "modin",        "nx",           "Switch V2",         7888,    1, 27, 214 },
 		{ "nx",     "vali",         "nx",           "Switch Lite",       7888,    2, 27, 214 },
 		{ "nx",     "frig",         "nx",           "Switch OLED",       7888,    3, 27, 214 },
+		{ "jetson", "baracus",      "baracus",      "Jamboard",          2180, 9999, 23, 320 },
 		{ "dragon", "dragon",       "dragon",       "Pixel C",              3,    0, 23, 320 }
 	};
 	tegra_init::build_version tav = { "11", "RQ1A.210105.003", "7825230_3167.5736" };
