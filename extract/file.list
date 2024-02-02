@@ -74,4 +74,15 @@ stock-sif	bootloader/TBC	bootloader/sif/nvtboot_cpu.bin
 stock-sif	bootloader/TOS	bootloader/sif/tos.img
 stock-sif	bootloader/WB0	bootloader/sif/warmboot.bin
 
+<<<<<<< HEAD   (39b01b Revert "omx: Disable secure h265 hardware decoder")
 blob-jetson_cv	bootloader/NVC	bootloader/jetson_cv/nvtboot.bin
+=======
+blob-baracus	bootloader/BCT		bootloader/baracus/baracus.bct
+blob-baracus	bootloader/BPF		bootloader/baracus/bpmp.bin
+blob-baracus	bootloader/DTB		bootloader/baracus/tegra210-jetson-cv-p2597-2180-a00.dtb
+blob-baracus	bootloader/EBT		bootloader/baracus/cboot.bin
+blob-baracus	bootloader/NVC		bootloader/baracus/nvtboot.bin
+blob-baracus	bootloader/TBC		bootloader/baracus/nvtboot_cpu.bin
+blob-baracus	bootloader/TOS		bootloader/baracus/tos.img
+blob-baracus	bootloader/WB0		bootloader/baracus/warmboot.bin
+>>>>>>> CHANGE (7b8922 Add baracus flash package)
