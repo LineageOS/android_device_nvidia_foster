@@ -2,4 +2,8 @@ nv-tegra-t210	https://nv-tegra.nvidia.com/r/plugins/gitiles/tegra/prebuilts-lice
 blob-foster_e	https://ota-downloads.nvidia.com/ota/productionBL-droid-signed-foster_e-full_ota-13961456_4040.2147_97BF24.zip	blob	rel-shield-r
 blob-darcy	https://ota-downloads.nvidia.com/ota/productionBL-droid-signed-darcy-full_ota-13961458_4040.2147_433F49.zip	blob	rel-shield-r
 blob-jetson_cv	https://ota-downloads.nvidia.com/ota/productionBL-droid-signed-foster_e-full_ota-7825230_3167.5736_BF2AA3.zip	blob	rel-shield-r
+<<<<<<< PATCH SET (2a20bc Add baracus flash package)
+blob-baracus	https://android.googleapis.com/packages/ota-api/package/a40bffa0422296aa577c32d91fdf9f546301ce9c.zip		blob	rel-28
+=======
 l4t-t210-ovl	https://developer.nvidia.com/downloads/embedded/L4T/r32_Release_v7.5/overlay_32.7.5_PCN211181.tbz2		l4t	r32
+>>>>>>> BASE      (2c6367 Load fan driver in recovery)
