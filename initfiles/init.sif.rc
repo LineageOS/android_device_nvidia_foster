@@ -35,3 +35,6 @@ on init
     write /dev/cpuset/background/cpus 0-3
     write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/top-app/cpus 0-3
+
+    # Force cool profile to prevent melting
+    write /sys/devices/thermal-fan-est/fan_profile "cool"
