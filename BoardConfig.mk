@@ -33,6 +33,7 @@ TARGET_OTA_ASSERT_DEVICE := foster,darcy,jetson,loki,mdarcy,nx
 BOARD_CUSTOM_BOOTIMG    := true
 BOARD_CUSTOM_BOOTIMG_MK := device/nvidia/foster/mkbootimg.mk
 BOARD_MKBOOTIMG_ARGS    := --header_version 1
+BOARD_RAMDISK_USE_XZ    := true
 
 # Bootloader versions
 TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
