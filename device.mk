@@ -183,10 +183,6 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-service-nvidia \
     $(foreach model,$(TARGET_TEGRA_MODELS),thermalhal.$(model).xml)
 
-# Treble workaround
-PRODUCT_PACKAGES += $(PRODUCT_PACKAGES_SHIPPING_API_LEVEL_29)
-PRODUCT_PACKAGES += $(PRODUCT_PACKAGES_SHIPPING_API_LEVEL_33)
-
 # Trust HAL
 PRODUCT_PACKAGES += \
     vendor.lineage.trust@1.0-service

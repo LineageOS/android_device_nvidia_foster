@@ -15,6 +15,7 @@
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, device/google/atv/products/atv_base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_l.mk)
 $(call inherit-product, device/nvidia/foster/device.mk)
 
 # Set those variables here to overwrite the inherited values.

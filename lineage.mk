@@ -27,7 +27,8 @@ PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
     ro.product.vendor.device \
     ro.product.vendor.model \
     ro.product.vendor.name \
-    ro.vendor.build.fingerprint
+    ro.vendor.build.fingerprint \
+    ro.product.first_api_level
 PRODUCT_PACKAGES += \
     init_tegra \
     resize2fs_static
