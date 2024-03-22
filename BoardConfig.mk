@@ -51,6 +51,9 @@ endif
 # Charger
 WITH_LINEAGE_CHARGER := false
 
+# Fingerprint override
+BUILD_FINGERPRINT := NVIDIA/foster_e/foster:11/RQ1A.210105.003/7825230_3167.5736:user/release-keys
+
 # Kernel
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 BOARD_VENDOR_KERNEL_MODULES += $(wildcard $(dir $(TARGET_PREBUILT_KERNEL))/*.ko)
