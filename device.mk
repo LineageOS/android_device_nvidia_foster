@@ -157,7 +157,7 @@ endif
 endif
 
 # EKS
-ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_KEYSTORE)),)
+ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_TOS)),)
 PRODUCT_PACKAGES += \
     init.eks2.rc \
     eks2_darcy.dat \
