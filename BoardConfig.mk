@@ -64,11 +64,12 @@ KERNEL_TOOLCHAIN_PREFIX        := aarch64-buildroot-linux-gnu-
 TARGET_KERNEL_SOURCE           := kernel/nvidia/kernel-$(TARGET_TEGRA_KERNEL)
 TARGET_KERNEL_CONFIG           := tegra_android_defconfig
 BOARD_KERNEL_IMAGE_NAME        := Image.gz
-TARGET_KERNEL_ADDITIONAL_FLAGS := "NV_BUILD_KERNEL_OPTIONS=$(TARGET_TEGRA_KERNEL)"
+TARGET_KERNEL_ADDITIONAL_FLAGS := NV_BUILD_KERNEL_OPTIONS=$(TARGET_TEGRA_KERNEL) CONFIG_EXFAT_FS=m
 BOARD_KERNEL_CMDLINE           := "androidboot.boot_devices=sdhci-tegra.0,tegra-sata.0,sdhci-tegra.3"
 
 TARGET_KERNEL_EXT_MODULE_ROOT := kernel/nvidia
 TARGET_KERNEL_EXT_MODULES := \
+    exfat:kbuild \
     nvgpu/drivers/gpu/nvgpu:kbuild
 include device/nvidia/foster/modules.mk
 
