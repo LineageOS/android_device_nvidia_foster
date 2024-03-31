@@ -62,7 +62,11 @@ TARGET_KERNEL_SOURCE           := kernel/nvidia/kernel-$(TARGET_TEGRA_KERNEL)
 TARGET_KERNEL_CONFIG           := tegra_android_defconfig
 TARGET_KERNEL_RECOVERY_CONFIG  := tegra_android_recovery_defconfig
 BOARD_KERNEL_IMAGE_NAME        := Image.gz
-TARGET_KERNEL_ADDITIONAL_FLAGS := "NV_BUILD_KERNEL_OPTIONS=$(TARGET_TEGRA_KERNEL)"
+TARGET_KERNEL_ADDITIONAL_FLAGS := NV_BUILD_KERNEL_OPTIONS=$(TARGET_TEGRA_KERNEL) CONFIG_EXFAT_FS=m
+
+TARGET_KERNEL_EXT_MODULE_ROOT := kernel/nvidia
+TARGET_KERNEL_EXT_MODULES := \
+    exfat:kbuild
 include device/nvidia/foster/modules.mk
 
 # Recovery
