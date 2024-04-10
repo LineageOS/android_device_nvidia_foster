@@ -73,7 +73,7 @@ TARGET_KERNEL_PLATFORM_TARGET := tegra
 TARGET_KERNEL_SOURCE          := vendor/nvidia/$(TARGET_KERNEL_PLATFORM_TARGET)
 BOARD_KERNEL_IMAGE_NAME       := Image.gz
 endif
-BOARD_KERNEL_CMDLINE          := firmware_class.path=/vendor/firmware cpufreq.default_governor=performance cma=512MB nouveau.atomic=1
+BOARD_KERNEL_CMDLINE          := firmware_class.path=/vendor/firmware cpufreq.default_governor=performance cma=512MB nouveau.atomic=1 8250.nr_uarts=1 earlycon
 include device/nvidia/foster/modules-ack.mk
 endif
 
@@ -89,7 +89,9 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
 VENDOR_SECURITY_PATCH := 2024-12-05
 
 # SELinux
+ifneq ($(filter 3.10 4.9 5.10, $(TARGET_KERNEL_VERSION)),)
 BOARD_VENDOR_SEPOLICY_DIRS   += device/nvidia/foster/sepolicy/vendor
+endif
 
 # Treble
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
