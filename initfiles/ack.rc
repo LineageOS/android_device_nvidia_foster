@@ -1,0 +1,10 @@
+on init
+    stop watchdogd
+
+on early-init && property:ro.hardware=jetson_cv
+    write /sys/kernel/debug/emc/min_rate 408000000
+
+# Override and disable watchdog
+service watchdogd /system/bin/true
+    override
+    disabled
