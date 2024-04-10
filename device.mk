@@ -25,12 +25,23 @@ TARGET_TEGRA_VARIANT    ?= common
 TARGET_TEGRA_MODELS := $(shell awk -F, '/tegra_init::devices/{ f = 1; next } /};/{ f = 0 } f{ gsub(/"/, "", $$3); gsub(/ /, "", $$3); print $$3 }' device/nvidia/$(TARGET_REFERENCE_DEVICE)/init/init_$(TARGET_REFERENCE_DEVICE).cpp |sort |uniq)
 
 TARGET_KERNEL_VERSION ?= 4.9
-TARGET_TEGRA_BT       ?= bcm
-TARGET_TEGRA_CAMERA   ?= rel-shield-r
 TARGET_TEGRA_LIGHT    ?= lineage
 TARGET_TEGRA_THERMAL  ?= lineage
-TARGET_TEGRA_WIDEVINE ?= rel-shield-r
 TARGET_TEGRA_WIFI     ?= bcm
+
+ifneq ($(filter 3.10 4.9 5.10, $(TARGET_KERNEL_VERSION)),)
+TARGET_TEGRA_BT        ?= bcm
+TARGET_TEGRA_CAMERA    ?= rel-shield-r
+TARGET_TEGRA_WIDEVINE  ?= rel-shield-r
+else
+TARGET_TEGRA_FIRMWARE_BRANCH ?= linux-firmware
+
+TARGET_TEGRA_BT        ?= btlinux
+
+PRODUCT_COPY_FILES += \
+    device/nvidia/foster/initfiles/ack.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/ack.rc \
+    device/nvidia/foster/initfiles/init.recovery.ack.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.ack.rc
+endif
 
 include device/nvidia/t210-common/t210.mk
 
