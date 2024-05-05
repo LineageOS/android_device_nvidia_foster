@@ -38,9 +38,6 @@ BOARD_RAMDISK_USE_XZ    := true
 # Bootloader versions
 TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
 
-# Manifest
-DEVICE_MANIFEST_FILE := device/nvidia/foster/manifest.xml
-
 # Bluetooth
 TARGET_VENDOR_PROP += device/nvidia/foster/bluetooth.prop
 ifeq ($(TARGET_TEGRA_BT),bcm)
