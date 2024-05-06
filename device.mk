@@ -27,6 +27,7 @@ TARGET_TEGRA_MODELS := $(shell awk -F, '/tegra_init::devices/{ f = 1; next } /};
 TARGET_TEGRA_BT       ?= bcm
 TARGET_TEGRA_CAMERA   ?= rel-shield-r
 TARGET_TEGRA_KERNEL   ?= 4.9
+TARGET_TEGRA_THERMAL  ?= lineage
 TARGET_TEGRA_WIDEVINE ?= rel-shield-r
 TARGET_TEGRA_WIFI     ?= bcm
 
@@ -179,9 +180,10 @@ PRODUCT_PACKAGES += \
     DarcyOverlay
 
 # Thermal
+ifneq ($(TARGET_TEGRA_THERMAL),)
 PRODUCT_PACKAGES += \
-    android.hardware.thermal@1.0-service-nvidia \
     $(foreach model,$(TARGET_TEGRA_MODELS),thermalhal.$(model).xml)
+endif
 
 # WiFi
 ifeq ($(TARGET_TEGRA_WIFI),bcm)
