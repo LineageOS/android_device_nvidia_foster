@@ -20,8 +20,3 @@ PRODUCT_MAKEFILES := \
 
 COMMON_LUNCH_CHOICES := \
     full_foster-eng \
-    full_foster-user \
-    full_foster-userdebug \
-    lineage_foster-eng \
-    lineage_foster-user \
-    lineage_foster-userdebug
