@@ -45,6 +45,10 @@
    "target_path": "hardware/nvidia/light"
  },
  {
+   "repository": "android_hardware_nvidia_memtrack",
+   "target_path": "hardware/nvidia/memtrack"
+ },
+ {
    "repository": "android_hardware_nvidia_platform_t210_foster",
    "target_path": "hardware/nvidia/platform/t210/foster"
  },
