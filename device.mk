@@ -163,6 +163,9 @@ endif
 PRODUCT_COPY_FILES += \
     device/nvidia/foster/permissions/com.nvidia.feature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nvidia.feature.xml
 
+# Partitions
+$(call inherit-product, $(SRC_TARGET_DIR)/product/non_ab_device.mk)
+
 # PHS
 ifneq ($(TARGET_TEGRA_PHS),)
 PRODUCT_PACKAGES += \
