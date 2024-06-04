@@ -89,3 +89,13 @@ $(INSTALLED_VBMETA_SKIP_TARGET): $(AVBTOOL_HOST)
 	@$(AVBTOOL_HOST) make_vbmeta_image --flags 2 --padding_size 256 --output $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(INSTALLED_VBMETA_SKIP_TARGET)
+
+ifeq ($(word 2,$(subst _, ,$(TARGET_PRODUCT))),foster)
+BUILT_TARGET_FILES_ZIPROOT := $(call intermediates-dir-for,PACKAGING,target_files)/$(TARGET_PRODUCT)-target_files
+$(BUILT_TARGET_FILES_ZIPROOT).zip: $(BUILT_TARGET_FILES_ZIPROOT)/IMAGES/p2371_flash_package.txz
+
+$(BUILT_TARGET_FILES_ZIPROOT)/IMAGES/p2371_flash_package.txz: $(BUILT_TARGET_FILES_ZIPROOT).zip.list $(PRODUCT_OUT)/p2371_flash_package.txz
+	@mkdir -p $(dir $@)
+	@cp $(PRODUCT_OUT)/p2371_flash_package.txz $@
+	@echo $@ >> $(BUILT_TARGET_FILES_ZIPROOT).zip.list
+endif
