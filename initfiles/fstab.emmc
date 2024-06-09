@@ -13,7 +13,6 @@
 /dev/block/by-name/SOS	/recovery	emmc	defaults	defaults
 /dev/block/by-name/BMP	/bmps		emmc	defaults	recoveryonly
 
-/dev/block/by-name/RP3	/mnt/vendor/wifi_config	ext4	rw,noatime,nosuid,nodev,noexec	check,formattable
 /dev/block/by-name/CAC	/cache	ext4	noatime,nosuid,nodev,data=ordered,barrier=1,nodelalloc	wait,formattable
 /dev/block/by-name/UDA	/data	ext4	noatime,nosuid,nodev,data=ordered,barrier=0,noauto_da_alloc	wait,check,formattable,quota,reservedsize=128M
 
