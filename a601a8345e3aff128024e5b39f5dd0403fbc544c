@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a70aa760_29f7ed25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2024-06-10T02:27:30Z",
+      "side": 1,
+      "message": "Verified by ServError to fix porg emmc boot. Verified by me to not regress porg sd or darcy.",
+      "revId": "a601a8345e3aff128024e5b39f5dd0403fbc544c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
