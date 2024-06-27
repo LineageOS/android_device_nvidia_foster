@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifeq ($(TARGET_TEGRA_FIRMWARE_BRANCH),rel-shield-r)
+ifeq ($(TARGET_TEGRA_FIRMWARE_BRANCH),linux-firmware)
 LOCAL_PATH := $(call my-dir)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))

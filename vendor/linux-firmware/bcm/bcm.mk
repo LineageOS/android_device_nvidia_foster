@@ -1,4 +1,4 @@
-# Copyright (C) 2022 The LineageOS Project
+# Copyright (C) 2023 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,8 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifeq ($(TARGET_TEGRA_FIRMWARE_BRANCH),rel-shield-r)
-LOCAL_PATH := $(call my-dir)
-
-include $(call all-makefiles-under,$(LOCAL_PATH))
-endif
+PRODUCT_PACKAGES += \
+    bcm4350.hcd \
+    bcm4356.hcd \
+    nvram_jetsonE_cv_4354.txt \
+    nvram_loki_e_4354.txt \
+    nvram_foster_e_4354.txt \
+    nvram_darcy_a00.txt \
+    brcmfmac4356-pcie.txt \
+    BCM4356A2-13d3-3488

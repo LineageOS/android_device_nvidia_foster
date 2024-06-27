@@ -16,8 +16,14 @@ include device/nvidia/t210-common/vendor/t210-by-flags.mk
 include device/nvidia/tegra-common/vendor/common-by-flags.mk
 include device/nvidia/shield-common/vendor/shield-by-flags.mk
 
-ifneq ("$(wildcard device/nvidia/foster/vendor/$(TARGET_TEGRA_DEFAULT_BRANCH)/bcm_firmware/bcm.mk)","")
+ifneq ("$(wildcard device/nvidia/foster/vendor/$(TARGET_TEGRA_FIRMWARE_BRANCH)/bcm/bcm.mk)","")
+include device/nvidia/foster/vendor/$(TARGET_TEGRA_FIRMWARE_BRANCH)/bcm/bcm.mk
+include device/nvidia/tegra-common/vendor/$(TARGET_TEGRA_FIRMWARE_BRANCH)/bcm/bcm4354.mk
+include device/nvidia/tegra-common/vendor/$(TARGET_TEGRA_FIRMWARE_BRANCH)/bcm/bcm4356.mk
+include device/nvidia/tegra-common/vendor/$(TARGET_TEGRA_FIRMWARE_BRANCH)/realtek/rtl8153a-3.mk
+else ifneq ("$(wildcard device/nvidia/foster/vendor/$(TARGET_TEGRA_DEFAULT_BRANCH)/bcm_firmware/bcm.mk)","")
 include device/nvidia/foster/vendor/$(TARGET_TEGRA_DEFAULT_BRANCH)/bcm_firmware/bcm.mk
-endif
 
+# This needs a better check. Assumption is that when firmware is from rel-shield-r, nvgpu is in use.
 PRODUCT_PACKAGES += public.libraries
+endif
