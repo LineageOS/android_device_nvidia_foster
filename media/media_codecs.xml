@@ -265,6 +265,4 @@ Only the three quirks included above are recognized at this point:
             <Feature name="bitrate-modes" value="VBR,CBR" />
         </MediaCodec>
     </Encoders>
-    <Include href="media_codecs_google_audio.xml" />
-    <Include href="media_codecs_google_video.xml" />
 </MediaCodecs>
