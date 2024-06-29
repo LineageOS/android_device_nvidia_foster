@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24f4ff85_f84990e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2024-06-29T05:45:44Z",
+      "side": 1,
+      "message": "Verified booting darcy with normal nvmm codecs and software only codecs.",
+      "revId": "d740e786ade2c8bec245f23163dcf5cd5d1b741e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
