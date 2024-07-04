@@ -1,7 +1,5 @@
 #!/vendor/bin/sh
 
-/vendor/bin/insmod /vendor/lib/modules/pci-tegra.ko
-
 hardwareName=$(getprop ro.hardware)
 if [ "`cat /proc/device-tree/brcmfmac_pcie_wlan/status`" = "okay" ]; then
   /vendor/bin/insmod /vendor/lib/modules/compat.ko
