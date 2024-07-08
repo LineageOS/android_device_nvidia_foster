@@ -1,0 +1,6 @@
+install_symlink {
+    name: "eks2.dat",
+    vendor: true,
+    installed_location: "app/eks2/eks2.dat",
+    symlink_target: "/data/vendor/eks2/eks2.dat",
+}

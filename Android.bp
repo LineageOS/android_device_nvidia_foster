@@ -17,7 +17,3 @@
 soong_namespace {
     imports: ["device/nvidia/tegra-common"]
 }
-
-subdirs = [
-    "init"
-]
