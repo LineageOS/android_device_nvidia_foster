@@ -120,7 +120,5 @@ LOCAL_MODULE_CLASS         := ETC
 LOCAL_SRC_FILES            := init.eks2.rc
 LOCAL_VENDOR_MODULE        := true
 LOCAL_MODULE_RELATIVE_PATH := init
-LOCAL_POST_INSTALL_CMD     := \
-    mkdir -p $(TARGET_OUT_VENDOR)/app/eks2; \
-    ln -sf /data/vendor/eks2/eks2.dat $(TARGET_OUT_VENDOR)/app/eks2/eks2.dat
+LOCAL_REQUIRED_MODULES     := eks2_symlink
 include $(BUILD_PREBUILT)
