@@ -17,7 +17,7 @@ function fetch_smaug_nvram() {
   echo -n "Fetching Smaug nvram from Android Dumps...";
 
   mkdir -p ${LINEAGE_ROOT}/${OUTDIR}/foster/external/bcm_firmware/bcm4354
-  wget -q 'https://dumps.tadiphone.dev/dumps/google/dragon/-/raw/ryu-user-8.1.0-OPM8.190605.005-5749003-release-keys/system/etc/wifi/bcmdhd.cal' -O ${LINEAGE_ROOT}/${OUTDIR}/foster/external/bcm_firmware/bcm4354/bcmdhd.cal
+  wget -q 'https://dumps.tadiphone.dev/dumps/google/dragon/-/raw/ryu-user-8.1.0-OPM8.190605.005-5749003-release-keys/system/etc/wifi/bcmdhd.cal' -O $(realpath ${LINEAGE_ROOT}/${OUTDIR}/foster/external/bcm_firmware/bcm4354/bcmdhd.cal)
 
   echo "";
 }
