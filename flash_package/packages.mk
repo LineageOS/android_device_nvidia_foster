@@ -30,7 +30,9 @@ INSTALLED_KERNEL_TARGET        := $(PRODUCT_OUT)/kernel
 INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
 INSTALLED_TOS_TARGET           := $(PRODUCT_OUT)/tos-$(if $(filter rel-shield-r software,$(TARGET_TEGRA_TOS)),mon-only,$(TARGET_TEGRA_TOS)).img
 
-ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
+ifneq ($(TARGET_PREBUILT_KERNEL),)
+DTB_PATH := $(dir $(TARGET_PREBUILT_KERNEL))
+else ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
 else ifneq ($(findstring dtstree,$(TARGET_KERNEL_ADDITIONAL_FLAGS)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/../lineage-oot/device-tree/platform/generic-dts/t21x/lineage)

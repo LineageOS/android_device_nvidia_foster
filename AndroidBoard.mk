@@ -12,10 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
 INSTALLED_KERNEL_TARGET := $(PRODUCT_OUT)/kernel
 
-ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
+ifneq ($(TARGET_PREBUILT_KERNEL),)
+DTB_PATH := $(dir $(TARGET_PREBUILT_KERNEL))
+else ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
 else ifneq ($(findstring dtstree,$(TARGET_KERNEL_ADDITIONAL_FLAGS)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/../lineage-oot/device-tree/platform/generic-dts/t21x/lineage)
@@ -80,7 +81,6 @@ $(INSTALLED_DTBIMAGE_TARGET_nx): $(INSTALLED_KERNEL_TARGET) | mkdtimg
 		$(DTB_PATH)/tegra210b01-fric.dtb --id=0x46524947 --rev=0xa00
 
 ALL_DEFAULT_INSTALLED_MODULES += $(INSTALLED_DTBIMAGE_TARGET_nx)
-endif
 endif
 
 AVBTOOL_HOST := $(HOST_OUT_EXECUTABLES)/avbtool

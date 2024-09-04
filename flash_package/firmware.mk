@@ -28,7 +28,9 @@ INSTALLED_TOS_TARGET    := $(PRODUCT_OUT)/tos-$(if $(filter rel-shield-r softwar
 TOYBOX_HOST := $(HOST_OUT_EXECUTABLES)/toybox
 NVBLOB_HOST := python2 $(BUILD_TOP)/vendor/nvidia/foster/rel-30/bootloader/nvblob_v2
 
-ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
+ifneq ($(TARGET_PREBUILT_KERNEL),)
+DTB_PATH := $(dir $(TARGET_PREBUILT_KERNEL))
+else ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
 else ifneq ($(findstring dtstree,$(TARGET_KERNEL_ADDITIONAL_FLAGS)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/../lineage-oot/device-tree/platform/generic-dts/t21x/lineage)

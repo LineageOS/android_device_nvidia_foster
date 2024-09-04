@@ -20,8 +20,9 @@ LOCAL_PATH := $(call my-dir)
 # On other platforms, this dtimage is completely ignored by cboot
 # So only dt's related to mdarcy and sif should be part of this list
 INSTALLED_DTBIMAGE_TARGET_mdarcy_recovery := $(PRODUCT_OUT)/mdarcy_recovery.dtb.img
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
+ifneq ($(TARGET_PREBUILT_KERNEL),)
+DTB_PATH := $(dir $(TARGET_PREBUILT_KERNEL))
+else ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
 else ifneq ($(findstring dtstree,$(TARGET_KERNEL_ADDITIONAL_FLAGS)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/../lineage-oot/device-tree/platform/generic-dts/t21x/lineage)
@@ -40,22 +41,6 @@ $(INSTALLED_DTBIMAGE_TARGET_mdarcy_recovery): $(INSTALLED_KERNEL_TARGET) | mkdti
 		$(DTB_PATH)/tegra210b01-sif-p3425-0500-a02.dtb      --id=3425 --rev=0xa2  --custom0=0x140 \
 		$(DTB_PATH)/tegra210b01-sif-p3425-0500-a04.dtb      --id=3425 --rev=0xa3  --custom0=0x140 \
 		$(DTB_PATH)/tegra210b01-sif-p3425-0500-a04.dtb      --id=3425 --rev=0xa4  --custom0=0x140
-else
-$(INSTALLED_DTBIMAGE_TARGET_mdarcy_recovery): | mkdtimg
-	echo -e ${CL_GRN}"Building mdarcy recovery DTImage"${CL_RST}
-	$(HOST_OUT_EXECUTABLES)/mkdtimg dump $(dir $(TARGET_PREBUILT_KERNEL))/mdarcy.dtb.img \
-		-b $(PRODUCT_OUT)/mdarcy.dtb
-	$(HOST_OUT_EXECUTABLES)/mkdtimg dump $(dir $(TARGET_PREBUILT_KERNEL))/sif.dtb.img \
-		-b $(PRODUCT_OUT)/sif.dtb
-	$(HOST_OUT_EXECUTABLES)/mkdtimg create $@ \
-		$(PRODUCT_OUT)/mdarcy.dtb.0 --id=2894 --rev=0x0a8 --custom0=0x28  \
-		$(PRODUCT_OUT)/mdarcy.dtb.1 --id=2894 --rev=0xb00 --custom0=2551  \
-		$(PRODUCT_OUT)/mdarcy.dtb.2 --id=2894 --rev=0xb03 --custom0=3551  \
-		$(PRODUCT_OUT)/sif.dtb.0    --id=3425 --rev=0xa1  --custom0=0x140 \
-	        $(PRODUCT_OUT)/sif.dtb.1    --id=3425 --rev=0xa2  --custom0=0x140 \
-		$(PRODUCT_OUT)/sif.dtb.2    --id=3425 --rev=0xa3  --custom0=0x140 \
-		$(PRODUCT_OUT)/sif.dtb.3    --id=3425 --rev=0xa4  --custom0=0x140
-endif
 
 $(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_FILES) $(BOOTIMAGE_EXTRA_DEPS) $(INSTALLED_KERNEL_TARGET)
 	$(call pretty,"Target boot image: $@")
