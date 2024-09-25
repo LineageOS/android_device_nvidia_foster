@@ -11,7 +11,7 @@ import /vendor/etc/init/hw/init.t210.rc
 import /vendor/etc/init/hw/init.foster_e_common.rc
 
 on init
-    enable btlinux-1.1
+    enable vendor.bluetooth-default
 
 on fs
     mount_all /vendor/etc/fstab.porg
