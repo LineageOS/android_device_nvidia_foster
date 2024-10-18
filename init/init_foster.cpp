@@ -199,6 +199,11 @@ void vendor_load_properties()
 		// Unset avb flags. This is to ignore compatibility checks on unified builds
 		if (ti.is_model("mdarcy") || ti.is_model("sif"))
 			ti.property_set("ro.boot.avb_version", "");
+
+		if (!(ti.is_model("loki_e_base") || ti.is_model("loki_e_lte") || ti.is_model("loki_e_wifi") ||
+		      ti.is_model("odin") || ti.is_model("modin") || ti.is_model("fric") || ti.is_model("vali") ||
+		      ti.is_model("dragon")))
+			ti.property_set("ro.recovery.batteryless", "true");
 	}
 
 	if (ti.vendor_context() || ti.recovery_context()) {
