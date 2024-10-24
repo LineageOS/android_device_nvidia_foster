@@ -27,13 +27,18 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR             := vendor
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := foster,darcy,jetson,loki,mdarcy,nx
+TARGET_OTA_ASSERT_DEVICE := foster,darcy,jetson,loki,mdarcy,nx,baracus
 
 # Boot image
 BOARD_CUSTOM_BOOTIMG    := true
 BOARD_CUSTOM_BOOTIMG_MK := device/nvidia/foster/mkbootimg.mk
-BOARD_MKBOOTIMG_ARGS    := --header_version 1
-BOARD_RAMDISK_USE_XZ    := true
+BOARD_MKBOOTIMG_ARGS    := \
+                --header_version 0 \
+                --base 0x88000000 \
+                --kernel_offset 0x200000 \
+                --ramdisk_offset 0x4000000
+
+#BOARD_RAMDISK_USE_XZ    := true
 
 # Bootloader versions
 TARGET_BOARD_INFO_FILE := device/nvidia/foster/board-info.txt
