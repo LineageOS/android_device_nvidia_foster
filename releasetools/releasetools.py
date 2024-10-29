@@ -48,8 +48,8 @@ NX_BL_VERSION       = '2020.04-03755-gf4d532d00d-rev3'
 
 def FullOTA_PostValidate(info):
   if 'INSTALL/bin/resize2fs_static' in info.input_zip.namelist():
-    info.script.AppendExtra('run_program("/tmp/install/bin/resize2fs_static", "' + APP_PART + '");')
-    info.script.AppendExtra('run_program("/tmp/install/bin/resize2fs_static", "' + VENDOR_PART + '");')
+    info.script.AppendExtra(f'run_program("/tmp/install/bin/resize2fs_static", "{APP_PART}");')
+    info.script.AppendExtra(f'run_program("/tmp/install/bin/resize2fs_static", "{VENDOR_PART}");')
 
 def FullOTA_Assertions(info):
   if 'RADIO/foster_e.blob' in info.input_zip.namelist():
@@ -78,195 +78,207 @@ def AddBootloaderAssertion(info, input_zip):
 
 def AddBootloaderFlash(info, input_zip):
   """ If device is fused """
-  info.script.AppendExtra('ifelse(')
-  info.script.AppendExtra('  read_file("' + FUSED_PATH + '") == "' + MODE_FUSED + '",')
-  info.script.AppendExtra('  (')
+  info.script.AppendExtra(f'''
+ifelse(
+  read_file("{FUSED_PATH}") == "{MODE_FUSED}",
+  (
+''')
 
   """ Fused foster_e or foster_e_hdd """
-  info.script.AppendExtra('    ifelse(')
-  info.script.AppendExtra('      getprop("ro.hardware") == "foster_e" || getprop("ro.hardware") == "foster_e_hdd",')
-  info.script.AppendExtra('      (')
-  info.script.AppendExtra('        ifelse(')
-  info.script.AppendExtra('          getprop("ro.bootloader") == "' + FOSTER_E_BL_VERSION + '",')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("Correct bootloader already installed for fused " + getprop(ro.hardware));')
-  info.script.AppendExtra('          ),')
-  info.script.AppendExtra('          ifelse(')
-  info.script.AppendExtra('            read_file("' + PUBLIC_KEY_PATH + '") == "' + FOSTER_E_PUBLIC_KEY + '",')
-  info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Flashing updated bootloader for fused " + getprop(ro.hardware));')
-  info.script.AppendExtra('              package_extract_file("firmware-update/" + getprop(ro.hardware) + ".blob", "' + STAGING_PART + '");')
-  info.script.AppendExtra('            ),')
-  info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for " + getprop("ro.hardware") + " detected.");')
-  info.script.AppendExtra('              ui_print("This is not supported. Please report to LineageOS Maintainer.");')
-  info.script.AppendExtra('              abort();')
-  info.script.AppendExtra('            )')
-  info.script.AppendExtra('          )')
-  info.script.AppendExtra('        );')
-  info.script.AppendExtra('        package_extract_file("install/" + tegra_get_dtbname(), "' + DTB_PART + '");')
-  info.script.AppendExtra('      )')
-  info.script.AppendExtra('    );')
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "foster_e" || getprop("ro.hardware") == "foster_e_hdd",
+      (
+        ifelse(
+          getprop("ro.bootloader") == "{FOSTER_E_BL_VERSION}",
+          (
+            ui_print("Correct bootloader already installed for fused " + getprop(ro.hardware));
+          ),
+          ifelse(
+            read_file("{PUBLIC_KEY_PATH}") == "{FOSTER_E_PUBLIC_KEY}",
+            (
+              ui_print("Flashing updated bootloader for fused " + getprop(ro.hardware));
+              package_extract_file("firmware-update/" + getprop(ro.hardware) + ".blob", "{STAGING_PART}");
+            ),
+            (
+              ui_print("Unknown public key " + read_file("{PUBLIC_KEY_PATH}") + " for " + getprop("ro.hardware") + " detected.");
+              ui_print("This is not supported. Please report to LineageOS Maintainer.");
+              abort();
+            )
+          )
+        );
+        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+      )
+    );
+''')
 
   """ Fused darcy """
-  info.script.AppendExtra('    ifelse(')
-  info.script.AppendExtra('      getprop("ro.hardware") == "darcy",')
-  info.script.AppendExtra('      (')
-  info.script.AppendExtra('        ifelse(')
-  info.script.AppendExtra('          is_substring("tegra210b01", read_file("' + DTSFILENAME_PATH + '")),')
-  """ mdarcy """
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ifelse(')
-  info.script.AppendExtra('              getprop("ro.bootloader") == "' + DARCY_BL_VERSION + '",')
-  info.script.AppendExtra('              (')
-  info.script.AppendExtra('                ui_print("Correct bootloader already installed for fused mdarcy");')
-  info.script.AppendExtra('              ),')
-  info.script.AppendExtra('              (')
-  info.script.AppendExtra('                ifelse(')
-  info.script.AppendExtra('                  read_file("' + PUBLIC_KEY_PATH + '") == "' + MDARCY_PUBLIC_KEY + '",')
-  info.script.AppendExtra('                  (')
-  info.script.AppendExtra('                    ui_print("Flashing updated bootloader for fused mdarcy");')
-  info.script.AppendExtra('                    package_extract_file("firmware-update/mdarcy.blob", "' + STAGING_PART + '");')
-  info.script.AppendExtra('                  ),')
-  info.script.AppendExtra('                  (')
-  info.script.AppendExtra('                    ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for mdarcy detected.");')
-  info.script.AppendExtra('                    ui_print("This is not supported. Please report to LineageOS Maintainer.");')
-  info.script.AppendExtra('                    abort();')
-  info.script.AppendExtra('                  )')
-  info.script.AppendExtra('                );')
-  info.script.AppendExtra('              )')
-  info.script.AppendExtra('            );')
-  info.script.AppendExtra('            package_extract_file("install/mdarcy.dtb.img", "' + DTB_PART + '");')
-  info.script.AppendExtra('            package_extract_file("install/vbmeta_skip.img", "' + VBMETA_PART + '");')
-  info.script.AppendExtra('          ),')
-  """ darcy """
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ifelse(')
-  info.script.AppendExtra('              getprop("ro.bootloader") == "' + DARCY_BL_VERSION + '",')
-  info.script.AppendExtra('              (')
-  info.script.AppendExtra('                ui_print("Correct bootloader already installed for fused darcy");')
-  info.script.AppendExtra('              ),')
-  info.script.AppendExtra('              (')
-  info.script.AppendExtra('                ifelse(')
-  info.script.AppendExtra('                  read_file("' + PUBLIC_KEY_PATH + '") == "' + DARCY_PUBLIC_KEY + '",')
-  info.script.AppendExtra('                  (')
-  info.script.AppendExtra('                    ui_print("Flashing updated bootloader for fused darcy");')
-  info.script.AppendExtra('                    package_extract_file("firmware-update/darcy.blob", "' + STAGING_PART + '");')
-  info.script.AppendExtra('                  ),')
-  info.script.AppendExtra('                  (')
-  info.script.AppendExtra('                    ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for darcy detected.");')
-  info.script.AppendExtra('                    ui_print("This is not supported. Please report to LineageOS Maintainer.");')
-  info.script.AppendExtra('                    abort();')
-  info.script.AppendExtra('                  )')
-  info.script.AppendExtra('                );')
-  info.script.AppendExtra('              )')
-  info.script.AppendExtra('            );')
-  info.script.AppendExtra('            package_extract_file("install/" + tegra_get_dtbname(), "' + DTB_PART + '");')
-  info.script.AppendExtra('          )')
-  info.script.AppendExtra('        )')
-  info.script.AppendExtra('      )')
-  info.script.AppendExtra('    );')
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "darcy",
+      (
+        ifelse(
+          is_substring("tegra210b01", read_file("{DTSFILENAME_PATH}")),
+          (
+            ifelse(
+              getprop("ro.bootloader") == "{DARCY_BL_VERSION}",
+              (
+                ui_print("Correct bootloader already installed for fused mdarcy");
+              ),
+              (
+                ifelse(
+                  read_file("{PUBLIC_KEY_PATH}") == "{MDARCY_PUBLIC_KEY}",
+                  (
+                    ui_print("Flashing updated bootloader for fused mdarcy");
+                    package_extract_file("firmware-update/mdarcy.blob", "{STAGING_PART}");
+                  ),
+                  (
+                    ui_print("Unknown public key " + read_file("{PUBLIC_KEY_PATH}") + " for mdarcy detected.");
+                    ui_print("This is not supported. Please report to LineageOS Maintainer.");
+                    abort();
+                  )
+                );
+              )
+            );
+            package_extract_file("install/mdarcy.dtb.img", "{DTB_PART}");
+            package_extract_file("install/vbmeta_skip.img", "{VBMETA_PART}");
+          ),
+          (
+            ifelse(
+              getprop("ro.bootloader") == "{DARCY_BL_VERSION}",
+              (
+                ui_print("Correct bootloader already installed for fused darcy");
+              ),
+              (
+                ifelse(
+                  read_file("{PUBLIC_KEY_PATH}") == "{DARCY_PUBLIC_KEY}",
+                  (
+                    ui_print("Flashing updated bootloader for fused darcy");
+                    package_extract_file("firmware-update/darcy.blob", "{STAGING_PART}");
+                  ),
+                  (
+                    ui_print("Unknown public key " + read_file("{PUBLIC_KEY_PATH}") + " for darcy detected.");
+                    ui_print("This is not supported. Please report to LineageOS Maintainer.");
+                    abort();
+                  )
+                );
+              )
+            );
+            package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+          )
+        )
+      )
+    );
+''')
 
   """ Fused loki_e """
-  info.script.AppendExtra('    ifelse(')
-  info.script.AppendExtra('      getprop("ro.hardware") == "loki_e_base" || getprop("ro.hardware") == "loki_e_lte" || getprop("ro.hardware") == "loki_e_wifi",')
-  info.script.AppendExtra('      (')
-  info.script.AppendExtra('        ifelse(')
-  info.script.AppendExtra('          getprop("ro.bootloader") == "' + FOSTER_E_BL_VERSION + '",')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("Correct bootloader already installed for fused " + getprop(ro.hardware));')
-  info.script.AppendExtra('          ),')
-  info.script.AppendExtra('          ifelse(')
-  info.script.AppendExtra('            read_file("' + PUBLIC_KEY_PATH + '") == "' + LOKI_E_PUBLIC_KEY + '",')
-  info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Fused " + getprop(ro.hardware) + " is not currently supported.");')
-  info.script.AppendExtra('              ui_print("There has not been a signed bootloader update since rel-24.");')
-  info.script.AppendExtra('              ui_print("The newer kernel will not boot on the old bootloader.");')
-  info.script.AppendExtra('              abort();')
-  info.script.AppendExtra('            ),')
-  info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for " + getprop("ro.hardware") + " detected.");')
-  info.script.AppendExtra('              ui_print("This is not supported. Please report to LineageOS Maintainer.");')
-  info.script.AppendExtra('              abort();')
-  info.script.AppendExtra('            )')
-  info.script.AppendExtra('          )')
-  info.script.AppendExtra('        );')
-  info.script.AppendExtra('        package_extract_file("install/" + tegra_get_dtbname(), "' + DTB_PART + '");')
-  info.script.AppendExtra('      )')
-  info.script.AppendExtra('    );')
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "loki_e_base" || getprop("ro.hardware") == "loki_e_lte" || getprop("ro.hardware") == "loki_e_wifi",
+      (
+        ifelse(
+          getprop("ro.bootloader") == "{FOSTER_E_BL_VERSION}",
+          (
+            ui_print("Correct bootloader already installed for fused " + getprop(ro.hardware));
+          ),
+          ifelse(
+            read_file("{PUBLIC_KEY_PATH}") == "{LOKI_E_PUBLIC_KEY}",
+            (
+              ui_print("Fused " + getprop(ro.hardware) + " is not currently supported.");
+              ui_print("There has not been a signed bootloader update since rel-24.");
+              ui_print("The newer kernel will not boot on the old bootloader.");
+              abort();
+            ),
+            (
+              ui_print("Unknown public key " + read_file("{PUBLIC_KEY_PATH}") + " for " + getprop("ro.hardware") + " detected.");
+              ui_print("This is not supported. Please report to LineageOS Maintainer.");
+              abort();
+            )
+          )
+        );
+        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+      )
+    );
+''')
 
   """ Fused jetson """
-  info.script.AppendExtra('    ifelse(')
-  info.script.AppendExtra('      getprop("ro.hardware") == "jetson_cv",')
-  info.script.AppendExtra('      (')
-  info.script.AppendExtra('        ifelse(')
-  info.script.AppendExtra('          getprop("ro.bootloader") == "' + FOSTER_E_BL_VERSION + '",')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("Correct bootloader already installed for fused " + getprop(ro.hardware));')
-  info.script.AppendExtra('          ),')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("You fused your Jetson TX1?!? Seriously, why would you do this?");')
-  info.script.AppendExtra('            ui_print("You are on your own. The LineageOS Maintainer does not want to hear about this.");')
-  info.script.AppendExtra('            abort();')
-  info.script.AppendExtra('          )')
-  info.script.AppendExtra('        );')
-  info.script.AppendExtra('        package_extract_file("install/" + tegra_get_dtbname(), "' + DTB_PART + '");')
-  info.script.AppendExtra('      )')
-  info.script.AppendExtra('    );')
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "jetson_cv",
+      (
+        ifelse(
+          getprop("ro.bootloader") == "{FOSTER_E_BL_VERSION}",
+          (
+            ui_print("Correct bootloader already installed for fused " + getprop(ro.hardware));
+          ),
+          (
+            ui_print("You fused your Jetson TX1?!? Seriously, why would you do this?");
+            ui_print("You are on your own. The LineageOS Maintainer does not want to hear about this.");
+            abort();
+          )
+        );
+        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+      )
+    );
+''')
 
   """ Fused nx """
-  info.script.AppendExtra('    ifelse(')
-  info.script.AppendExtra('      getprop("ro.hardware") == "nx",')
-  info.script.AppendExtra('      (')
-  info.script.AppendExtra('        ifelse(')
-  info.script.AppendExtra('          getprop("ro.bootloader") == "' + NX_BL_VERSION + '",')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("Correct bootloader already installed for fused " + getprop(ro.hardware));')
-  info.script.AppendExtra('          ),')
-  info.script.AppendExtra('          ifelse(')
-  info.script.AppendExtra('            read_file("' + PUBLIC_KEY_PATH + '") == "' + NX_PUBLIC_KEY + '",')
-  info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Flashing updated bootloader for fused " + getprop(ro.hardware));')
-  info.script.AppendExtra('              package_extract_file("firmware-update/nx_bl31.bin", "' + NX_SD + 'bl31.bin");')
-  info.script.AppendExtra('              package_extract_file("firmware-update/nx_u-boot-dtb.bin", "' + NX_SD + 'bl33.bin");')
-  info.script.AppendExtra('            ),')
-  info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Unknown public key for icosa detected.");')
-  info.script.AppendExtra('              ui_print("This is not supported. Please report to LineageOS Maintainer.");')
-  info.script.AppendExtra('              abort();')
-  info.script.AppendExtra('            )')
-  info.script.AppendExtra('          )')
-  info.script.AppendExtra('        );')
-  info.script.AppendExtra('        package_extract_file("install/nx.dtb.img", "' + DTB_PART + '");')
-  info.script.AppendExtra('      )')
-  info.script.AppendExtra('    );')
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "nx",
+      (
+        ifelse(
+          getprop("ro.bootloader") == "{NX_BL_VERSION}",
+          (
+            ui_print("Correct bootloader already installed for fused " + getprop(ro.hardware));
+          ),
+          ifelse(
+            read_file("{PUBLIC_KEY_PATH}") == "{NX_PUBLIC_KEY}",
+            (
+              ui_print("Flashing updated bootloader for fused " + getprop(ro.hardware));
+              package_extract_file("firmware-update/nx_bl31.bin", "{NX_SD}bl31.bin");
+              package_extract_file("firmware-update/nx_u-boot-dtb.bin", "{NX_SD}'bl33.bin");
+            ),
+            (
+              ui_print("Unknown public key for icosa detected.");
+              ui_print("This is not supported. Please report to LineageOS Maintainer.");
+              abort();
+            )
+          )
+        );
+        package_extract_file("install/nx.dtb.img", "{DTB_PART}");
+      )
+    );
+''')
 
   """ Fused sif """
-  info.script.AppendExtra('    ifelse(')
-  info.script.AppendExtra('      getprop("ro.hardware") == "sif",')
-  info.script.AppendExtra('      (')
-  info.script.AppendExtra('        ifelse(')
-  info.script.AppendExtra('          getprop("ro.bootloader") == "' + DARCY_BL_VERSION + '",')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("Correct bootloader already installed for fused sif");')
-  info.script.AppendExtra('          ),')
-  info.script.AppendExtra('          ifelse(')
-  info.script.AppendExtra('            read_file("' + PUBLIC_KEY_PATH + '") == "' + SIF_PUBLIC_KEY + '",')
-  info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Flashing updated bootloader for fused sif");')
-  info.script.AppendExtra('              package_extract_file("firmware-update/sif.blob", "' + STAGING_PART + '");')
-  info.script.AppendExtra('            ),')
-  info.script.AppendExtra('            (')
-  info.script.AppendExtra('              ui_print("Unknown public key " + read_file("' + PUBLIC_KEY_PATH + '") + " for sif detected.");')
-  info.script.AppendExtra('              ui_print("This is not supported. Please report to LineageOS Maintainer.");')
-  info.script.AppendExtra('              abort();')
-  info.script.AppendExtra('            )')
-  info.script.AppendExtra('          )')
-  info.script.AppendExtra('        );')
-  info.script.AppendExtra('        package_extract_file("install/sif.dtb.img", "' + DTB_PART + '");')
-  info.script.AppendExtra('        package_extract_file("install/vbmeta_skip.img", "' + VBMETA_PART + '");')
-  info.script.AppendExtra('      )')
-  info.script.AppendExtra('    );')
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "sif",
+      (
+        ifelse(
+          getprop("ro.bootloader") == "{DARCY_BL_VERSION}",
+          (
+            ui_print("Correct bootloader already installed for fused sif");
+          ),
+          ifelse(
+            read_file("{PUBLIC_KEY_PATH}") == "{SIF_PUBLIC_KEY}",
+            (
+              ui_print("Flashing updated bootloader for fused sif");
+              package_extract_file("firmware-update/sif.blob", "{STAGING_PART}");
+            ),
+            (
+              ui_print("Unknown public key " + read_file("{PUBLIC_KEY_PATH}") + " for sif detected.");
+              ui_print("This is not supported. Please report to LineageOS Maintainer.");
+              abort();
+            )
+          )
+        );
+        package_extract_file("install/sif.dtb.img", "{DTB_PART}");
+        package_extract_file("install/vbmeta_skip.img", "{VBMETA_PART}");
+      )
+    );
+''')
 
   info.script.AppendExtra('  ),')
 
@@ -274,141 +286,151 @@ def AddBootloaderFlash(info, input_zip):
   info.script.AppendExtra('  (')
 
   """ Unfused foster_e or foster_e_hdd """
-  info.script.AppendExtra('    ifelse(')
-  info.script.AppendExtra('      getprop("ro.hardware") == "foster_e" || getprop("ro.hardware") == "foster_e_hdd",')
-  info.script.AppendExtra('      (')
-  info.script.AppendExtra('        ifelse(')
-  info.script.AppendExtra('          getprop("ro.bootloader") == "' + FOSTER_E_BL_VERSION + '",')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("Correct bootloader already installed for unfused " + getprop(ro.hardware));')
-  info.script.AppendExtra('          ),')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("This is an unfused foster_e or foster_e_hdd.");')
-  info.script.AppendExtra('            ui_print("This is not supported. Please report to LineageOS Maintainer.");')
-  info.script.AppendExtra('            abort();')
-  info.script.AppendExtra('          )')
-  info.script.AppendExtra('        );')
-  info.script.AppendExtra('        package_extract_file("install/" + tegra_get_dtbname(), "' + DTB_PART + '");')
-  info.script.AppendExtra('      )')
-  info.script.AppendExtra('    );')
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "foster_e" || getprop("ro.hardware") == "foster_e_hdd",
+      (
+        ifelse(
+          getprop("ro.bootloader") == "{FOSTER_E_BL_VERSION}",
+          (
+            ui_print("Correct bootloader already installed for unfused " + getprop(ro.hardware));
+          ),
+          (
+            ui_print("This is an unfused foster_e or foster_e_hdd.");
+            ui_print("This is not supported. Please report to LineageOS Maintainer.");
+            abort();
+          )
+        );
+        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+      )
+    );
+''')
 
   """ Unfused darcy """
-  info.script.AppendExtra('    ifelse(')
-  info.script.AppendExtra('      getprop("ro.hardware") == "darcy",')
-  info.script.AppendExtra('      (')
-  info.script.AppendExtra('        ifelse(')
-  info.script.AppendExtra('          is_substring("tegra210b01", read_file("' + DTSFILENAME_PATH + '")),')
-  """ mdarcy """
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ifelse(')
-  info.script.AppendExtra('              getprop("ro.bootloader") == "' + DARCY_BL_VERSION + '",')
-  info.script.AppendExtra('              (')
-  info.script.AppendExtra('                ui_print("Correct bootloader already installed for unfused mdarcy");')
-  info.script.AppendExtra('              ),')
-  info.script.AppendExtra('              (')
-  info.script.AppendExtra('                ui_print("This is an unfused mdarcy.");')
-  info.script.AppendExtra('                ui_print("This is not supported. Please report to LineageOS Maintainer.");')
-  info.script.AppendExtra('                abort();')
-  info.script.AppendExtra('              )')
-  info.script.AppendExtra('            );')
-  info.script.AppendExtra('            package_extract_file("install/mdarcy.dtb.img", "' + DTB_PART + '");')
-  info.script.AppendExtra('            package_extract_file("install/vbmeta_skip.img", "' + VBMETA_PART + '");')
-  info.script.AppendExtra('          ),')
-  """ darcy """
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ifelse(')
-  info.script.AppendExtra('              getprop("ro.bootloader") == "' + DARCY_BL_VERSION + '",')
-  info.script.AppendExtra('              (')
-  info.script.AppendExtra('                ui_print("Correct bootloader already installed for unfused darcy");')
-  info.script.AppendExtra('              ),')
-  info.script.AppendExtra('              (')
-  info.script.AppendExtra('                ui_print("This is an unfused darcy.");')
-  info.script.AppendExtra('                ui_print("This is not supported. Please report to LineageOS Maintainer.");')
-  info.script.AppendExtra('                abort();')
-  info.script.AppendExtra('              )')
-  info.script.AppendExtra('            );')
-  info.script.AppendExtra('            package_extract_file("install/" + tegra_get_dtbname(), "' + DTB_PART + '");')
-  info.script.AppendExtra('          )')
-  info.script.AppendExtra('        )')
-  info.script.AppendExtra('      )')
-  info.script.AppendExtra('    );')
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "darcy",
+      (
+        ifelse(
+          is_substring("tegra210b01", read_file("{DTSFILENAME_PATH}")),
+          (
+            ifelse(
+              getprop("ro.bootloader") == "{DARCY_BL_VERSION}",
+              (
+                ui_print("Correct bootloader already installed for unfused mdarcy");
+              ),
+              (
+                ui_print("This is an unfused mdarcy.");
+                ui_print("This is not supported. Please report to LineageOS Maintainer.");
+                abort();
+              )
+            );
+            package_extract_file("install/mdarcy.dtb.img", "{DTB_PART}");
+            package_extract_file("install/vbmeta_skip.img", "{VBMETA_PART}");
+          ),
+          (
+            ifelse(
+              getprop("ro.bootloader") == "{DARCY_BL_VERSION}",
+              (
+                ui_print("Correct bootloader already installed for unfused darcy");
+              ),
+              (
+                ui_print("This is an unfused darcy.");
+                ui_print("This is not supported. Please report to LineageOS Maintainer.");
+                abort();
+              )
+            );
+            package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+          )
+        )
+      )
+    );
+''')
 
   """ Unfused loki_e """
-  info.script.AppendExtra('    ifelse(')
-  info.script.AppendExtra('      getprop("ro.hardware") == "loki_e_base" || getprop("ro.hardware") == "loki_e_lte" || getprop("ro.hardware") == "loki_e_wifi",')
-  info.script.AppendExtra('      (')
-  info.script.AppendExtra('        ifelse(')
-  info.script.AppendExtra('          getprop("ro.bootloader") == "' + FOSTER_E_BL_VERSION + '",')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("Correct bootloader already installed for unfused " + getprop(ro.hardware));')
-  info.script.AppendExtra('          ),')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("This is an unfused " + getprop(ro.hardware) + ".");')
-  info.script.AppendExtra('            ui_print("Updating the bootloader is not currently supported.");')
-  info.script.AppendExtra('            ui_print("There has not been a working bootloader since rel-29.");')
-  info.script.AppendExtra('            abort();')
-  info.script.AppendExtra('          )')
-  info.script.AppendExtra('        );')
-  info.script.AppendExtra('        package_extract_file("install/" + tegra_get_dtbname(), "' + DTB_PART + '");')
-  info.script.AppendExtra('      )')
-  info.script.AppendExtra('    );')
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "loki_e_base" || getprop("ro.hardware") == "loki_e_lte" || getprop("ro.hardware") == "loki_e_wifi",
+      (
+        ifelse(
+          getprop("ro.bootloader") == "{FOSTER_E_BL_VERSION}",
+          (
+            ui_print("Correct bootloader already installed for unfused " + getprop(ro.hardware));
+          ),
+          (
+            ui_print("This is an unfused " + getprop(ro.hardware) + ".");
+            ui_print("Updating the bootloader is not currently supported.");
+            ui_print("There has not been a working bootloader since rel-29.");
+            abort();
+          )
+        );
+        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+      )
+    );
+''')
 
   """ Unfused jetson """
-  info.script.AppendExtra('    ifelse(')
-  info.script.AppendExtra('      getprop("ro.hardware") == "jetson_cv",')
-  info.script.AppendExtra('      (')
-  info.script.AppendExtra('        ifelse(')
-  info.script.AppendExtra('          getprop("ro.bootloader") == "' + FOSTER_E_BL_VERSION + '",')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("Correct bootloader already installed for " + getprop(ro.hardware));')
-  info.script.AppendExtra('          ),')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("Flashing updated bootloader for unfused Jetson TX1");')
-  info.script.AppendExtra('            package_extract_file("firmware-update/jetson_cv.blob", "' + STAGING_PART + '");')
-  info.script.AppendExtra('          )')
-  info.script.AppendExtra('        );')
-  info.script.AppendExtra('        package_extract_file("install/" + tegra_get_dtbname(), "' + DTB_PART + '");')
-  info.script.AppendExtra('      )')
-  info.script.AppendExtra('    );')
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "jetson_cv",
+      (
+        ifelse(
+          getprop("ro.bootloader") == "{FOSTER_E_BL_VERSION}",
+          (
+            ui_print("Correct bootloader already installed for " + getprop(ro.hardware));
+          ),
+          (
+            ui_print("Flashing updated bootloader for unfused Jetson TX1");
+            package_extract_file("firmware-update/jetson_cv.blob", "{STAGING_PART}");
+          )
+        );
+        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+      )
+    );
+''')
 
   """ Unfused nx """
-  info.script.AppendExtra('    ifelse(')
-  info.script.AppendExtra('      getprop("ro.hardware") == "nx",')
-  info.script.AppendExtra('      (')
-  info.script.AppendExtra('        ifelse(')
-  info.script.AppendExtra('          getprop("ro.bootloader") == "' + NX_BL_VERSION + '",')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("Correct bootloader already installed for unfused " + getprop(ro.hardware));')
-  info.script.AppendExtra('          ),')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("This is an unfused nx. Many devlopers would kill for this unit.");')
-  info.script.AppendExtra('            ui_print("This is not supported. Please report to LineageOS Maintainer.");')
-  info.script.AppendExtra('            abort();')
-  info.script.AppendExtra('          )')
-  info.script.AppendExtra('        );')
-  info.script.AppendExtra('        package_extract_file("install/nx.dtb.img", "' + DTB_PART + '");')
-  info.script.AppendExtra('      )')
-  info.script.AppendExtra('    );')
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "nx",
+      (
+        ifelse(
+          getprop("ro.bootloader") == "{NX_BL_VERSION}",
+          (
+            ui_print("Correct bootloader already installed for unfused " + getprop(ro.hardware));
+          ),
+          (
+            ui_print("This is an unfused nx. Many devlopers would kill for this unit.");
+            ui_print("This is not supported. Please report to LineageOS Maintainer.");
+            abort();
+          )
+        );
+        package_extract_file("install/nx.dtb.img", "{DTB_PART}");
+      )
+    );
+''')
 
   """ Unfused sif """
-  info.script.AppendExtra('    ifelse(')
-  info.script.AppendExtra('      getprop("ro.hardware") == "sif",')
-  info.script.AppendExtra('      (')
-  info.script.AppendExtra('        ifelse(')
-  info.script.AppendExtra('          getprop("ro.bootloader") == "' + DARCY_BL_VERSION + '",')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("Correct bootloader already installed for unfused sif");')
-  info.script.AppendExtra('          ),')
-  info.script.AppendExtra('          (')
-  info.script.AppendExtra('            ui_print("This is an unfused sif.");')
-  info.script.AppendExtra('            ui_print("This is not supported. Please report to LineageOS Maintainer.");')
-  info.script.AppendExtra('            abort();')
-  info.script.AppendExtra('          )')
-  info.script.AppendExtra('        );')
-  info.script.AppendExtra('        package_extract_file("install/sif.dtb.img", "' + DTB_PART + '");')
-  info.script.AppendExtra('        package_extract_file("install/vbmeta_skip.img", "' + VBMETA_PART + '");')
-  info.script.AppendExtra('      )')
-  info.script.AppendExtra('    );')
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "sif",
+      (
+        ifelse(
+          getprop("ro.bootloader") == "{DARCY_BL_VERSION}",
+          (
+            ui_print("Correct bootloader already installed for unfused sif");
+          ),
+          (
+            ui_print("This is an unfused sif.");
+            ui_print("This is not supported. Please report to LineageOS Maintainer.");
+            abort();
+          )
+        );
+        package_extract_file("install/sif.dtb.img", "{DTB_PART}");
+        package_extract_file("install/vbmeta_skip.img", "{VBMETA_PART}");
+      )
+    );
+''')
 
   info.script.AppendExtra('  )')
   info.script.AppendExtra(');')
