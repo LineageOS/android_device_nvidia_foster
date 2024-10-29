@@ -48,8 +48,8 @@ NX_BL_VERSION       = '2020.04-03755-gf4d532d00d-rev3'
 
 def FullOTA_PostValidate(info):
   if 'INSTALL/bin/resize2fs_static' in info.input_zip.namelist():
-    info.script.AppendExtra('run_program("/tmp/install/bin/resize2fs_static", "' + APP_PART + '");');
-    info.script.AppendExtra('run_program("/tmp/install/bin/resize2fs_static", "' + VENDOR_PART + '");');
+    info.script.AppendExtra('run_program("/tmp/install/bin/resize2fs_static", "' + APP_PART + '");')
+    info.script.AppendExtra('run_program("/tmp/install/bin/resize2fs_static", "' + VENDOR_PART + '");')
 
 def FullOTA_Assertions(info):
   if 'RADIO/foster_e.blob' in info.input_zip.namelist():
