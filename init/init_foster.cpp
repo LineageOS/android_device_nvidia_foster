@@ -233,5 +233,7 @@ void vendor_load_properties()
 		ti.property_set("ro.product.system_ext.name", "ryu");
 		ti.property_set("ro.product.odm.name", "ryu");
 		ti.property_set("ro.product.product.name", "ryu");
+	} else if (ti.is_model("baracus") && !ti.vendor_context()) {
+		ti.property_set("ro.boot.secureos", "none");
 	}
 }
