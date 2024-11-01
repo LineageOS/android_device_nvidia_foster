@@ -28,6 +28,8 @@ INSTALLED_TOS_TARGET    := $(PRODUCT_OUT)/tos-mon-only.img
 TOYBOX_HOST := $(HOST_OUT_EXECUTABLES)/toybox
 NVBLOB_HOST := python2 $(BUILD_TOP)/vendor/nvidia/foster/rel-30/bootloader/nvblob_v2
 
+KERNEL_OUT ?= $(PRODUCT_OUT)/obj/KERNEL_OBJ
+
 ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
 else ifneq ($(findstring dtstree,$(TARGET_KERNEL_ADDITIONAL_FLAGS)),)
