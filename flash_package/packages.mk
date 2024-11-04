@@ -28,7 +28,7 @@ FOSTER_TNSPEC := $(BUILD_TOP)/vendor/nvidia/foster/rel-30/tnspec/foster.json
 INSTALLED_BMP_BLOB_TARGET      := $(PRODUCT_OUT)/bmp.blob
 INSTALLED_KERNEL_TARGET        := $(PRODUCT_OUT)/kernel
 INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
-INSTALLED_TOS_TARGET           := $(PRODUCT_OUT)/tos-mon-only.img
+INSTALLED_TOS_TARGET           := $(PRODUCT_OUT)/tos-$(if $(filter rel-shield-r software,$(TARGET_TEGRA_TOS)),mon-only,$(TARGET_TEGRA_TOS)).img
 
 ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
@@ -61,7 +61,7 @@ $(_p2371_package_archive): $(INSTALLED_BMP_BLOB_TARGET) $(INSTALLED_KERNEL_TARGE
 	@rm $(dir $@)/bpmp_zeroes.bin
 	@cp $(T210_BL)/cboot.bin $(dir $@)/cboot_tegraflash.bin
 	@cp $(T210_BL)/nvtboot_recovery.bin $(dir $@)/
-	@cp $(INSTALLED_TOS_TARGET) $(dir $@)/
+	@cp $(INSTALLED_TOS_TARGET) $(dir $@)/tos.img
 	@cp $(INSTALLED_BMP_BLOB_TARGET) $(dir $@)/
 	@cp $(INSTALLED_RECOVERYIMAGE_TARGET) $(dir $@)/
 	@cp $(JETSON_BL)/jetson_cv/tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb $(dir $@)/
