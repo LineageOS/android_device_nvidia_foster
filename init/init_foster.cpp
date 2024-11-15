@@ -80,7 +80,7 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B427";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B428";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B429";
-	} else if (ti->is_model("odin") || ti->is_model("modin") || ti->is_model("vali") || ti->is_model("frig")) {
+	} else if (ti->is_model("odin") || ti->is_model("modin") || ti->is_model("vali") || ti->is_model("fric")) {
 		mDeviceUsbIds["ro.vendor.nv.usb.vid"]           = "057E";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "2000";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "2000";
@@ -122,7 +122,7 @@ void vendor_set_sku(tegra_init *ti)
 {
 	if (ti->is_model("loki_e_base") || ti->is_model("loki_e_lte") || ti->is_model("loki_e_wifi"))
 		ti->property_set("ro.boot.product.vendor.sku", "loki");
-	else if (ti->is_model("odin") || ti->is_model("modin") || ti->is_model("frig") || ti->is_model("vali"))
+	else if (ti->is_model("odin") || ti->is_model("modin") || ti->is_model("fric") || ti->is_model("vali"))
 		ti->property_set("ro.boot.product.vendor.sku", "nx");
 	else if (ti->is_model("dragon"))
 		ti->property_set("ro.boot.product.vendor.sku", "dragon");
@@ -171,7 +171,7 @@ void vendor_load_properties()
 		{ "nx",     "odin",         "nx",           "Switch",            7888,    0, 27, 214 },
 		{ "nx",     "modin",        "nx",           "Switch V2",         7888,    1, 27, 214 },
 		{ "nx",     "vali",         "nx",           "Switch Lite",       7888,    2, 27, 214 },
-		{ "nx",     "frig",         "nx",           "Switch OLED",       7888,    3, 27, 214 },
+		{ "nx",     "fric",         "nx",           "Switch OLED",       7888,    3, 27, 214 },
 		{ "baracus","baracus",      "baracus",      "Jamboard",          2180, 9999, 23, 320 },
 		{ "dragon", "dragon",       "dragon",       "Pixel C",              3,    0, 23, 320 }
 	};
