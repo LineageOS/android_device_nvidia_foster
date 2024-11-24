@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af596f14_808e0c0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2024-11-24T04:53:26Z",
+      "side": 1,
+      "message": "Verified that files are installed when targeting linux-firmware and that no regressions happen when targeting rel-shield-r.",
+      "revId": "004a61ae996024503d3c7b2970bb5cd9ae4fceb7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
