@@ -64,6 +64,7 @@ $(_p2371_package_archive): $(INSTALLED_BMP_BLOB_TARGET) $(INSTALLED_KERNEL_TARGE
 	@cp $(T210_BL)/cboot.bin $(dir $@)/cboot_tegraflash.bin
 	@cp $(T210_BL)/nvtboot_recovery.bin $(dir $@)/
 	@cp $(INSTALLED_TOS_TARGET) $(dir $@)/tos.img
+	@cp $(FOSTER_FLASH)/eks_nokey.dat $(dir $@)/eks.img
 	@cp $(INSTALLED_BMP_BLOB_TARGET) $(dir $@)/
 	@cp $(INSTALLED_RECOVERYIMAGE_TARGET) $(dir $@)/
 	@cp $(JETSON_BL)/jetson_cv/tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb $(dir $@)/
