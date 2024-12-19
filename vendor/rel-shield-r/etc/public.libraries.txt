@@ -1,5 +1,0 @@
-libtsec_wrapper.so
-libnvsi_ll_2.so
-libnvos.so
-libnvgr.so
-libnvcpl_vendor.so
