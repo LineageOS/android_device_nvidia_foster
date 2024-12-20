@@ -1,14 +1,14 @@
-stock-t210	vendor/firmware/nvram_darcy_a00.txt								bcm_firmware/bcm4354/
-stock-t210	vendor/firmware/nvram_foster_e_4354.txt								bcm_firmware/bcm4354/
-stock-t210	vendor/firmware/nvram_foster_e_antenna_tuned_4354.txt						bcm_firmware/bcm4354/
-nv-tegra-t210	prebuilt/t210/3rdparty/bcmbinaries/bcm4354a1/wlan/atv/nvram_loki_e_4354.txt			bcm_firmware/bcm4354/
-nv-tegra-t210	prebuilt/t210/3rdparty/bcmbinaries/bcm4354a1/wlan/atv/nvram_loki_e_antenna_tuned_4354.txt	bcm_firmware/bcm4354/
-nv-tegra-t210	prebuilt/t210/3rdparty/bcmbinaries/bcm4354a1/wlan/emb/nvram_jetsonE_cv_4354.txt			bcm_firmware/bcm4354/
-stock-t210	vendor/firmware/brcmfmac4356-pcie.txt								bcm_firmware/bcm4356/
+stock-t210	vendor/firmware/nvram_darcy_a00.txt								bcm/bcm4354/
+stock-t210	vendor/firmware/nvram_foster_e_4354.txt								bcm/bcm4354/
+stock-t210	vendor/firmware/nvram_foster_e_antenna_tuned_4354.txt						bcm/bcm4354/
+nv-tegra-t210	prebuilt/t210/3rdparty/bcmbinaries/bcm4354a1/wlan/atv/nvram_loki_e_4354.txt			bcm/bcm4354/
+nv-tegra-t210	prebuilt/t210/3rdparty/bcmbinaries/bcm4354a1/wlan/atv/nvram_loki_e_antenna_tuned_4354.txt	bcm/bcm4354/
+nv-tegra-t210	prebuilt/t210/3rdparty/bcmbinaries/bcm4354a1/wlan/emb/nvram_jetsonE_cv_4354.txt			bcm/bcm4354/
+stock-t210	vendor/firmware/brcmfmac4356-pcie.txt								bcm/bcm4356/
 
-stock-t210	vendor/firmware/bcmdhd_clm_darcy.blob		bcm_firmware/bcm4354/darcy.clm_blob
-stock-t210	vendor/firmware/bcmdhd_clm_foster.blob		bcm_firmware/bcm4354/foster.clm_blob
-stock-t210	vendor/firmware/brcmfmac4356-pcie.clm_blob	bcm_firmware/bcm4356/
+stock-t210	vendor/firmware/bcmdhd_clm_darcy.blob		bcm/bcm4354/darcy.clm_blob
+stock-t210	vendor/firmware/bcmdhd_clm_foster.blob		bcm/bcm4354/foster.clm_blob
+stock-t210	vendor/firmware/brcmfmac4356-pcie.clm_blob	bcm/bcm4356/
 
 l4t-t210	bootloader/t210ref/BCT/P2180_A00_LP4_DSC_204Mhz.cfg	BCT/
 l4t-t210	bootloader/t210ref/BCT/P3448_A00_lpddr4_204Mhz_P987.cfg	BCT/

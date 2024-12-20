@@ -1,0 +1,37 @@
+soong_namespace {
+}
+
+install_symlink {
+    name: "brcmfmac4354-sdio_p2371-0000_symlink",
+    vendor: true,
+    installed_location: "firmware/brcm/brcmfmac4354-sdio.nvidia,p2371-0000.txt",
+    symlink_target: "brcmfmac4354-sdio.nvidia,p2371-2180.txt",
+}
+
+install_symlink {
+    name: "brcmfmac4354-sdio_loki_e_base_symlink",
+    vendor: true,
+    installed_location: "firmware/brcm/brcmfmac4354-sdio.nvidia,loki_e_base.txt",
+    symlink_target: "brcmfmac4354-sdio.nvidia,loki_e_wifi.txt",
+}
+
+install_symlink {
+    name: "brcmfmac4354-sdio_loki_e_lte_symlink",
+    vendor: true,
+    installed_location: "firmware/brcm/brcmfmac4354-sdio.nvidia,loki_e_lte.txt",
+    symlink_target: "brcmfmac4354-sdio.nvidia,loki_e_wifi.txt",
+}
+
+install_symlink {
+    name: "brcmfmac4354-sdio_foster_e_hdd_symlink",
+    vendor: true,
+    installed_location: "firmware/brcm/brcmfmac4354-sdio.nvidia,foster_e_hdd.txt",
+    symlink_target: "brcmfmac4354-sdio.nvidia,foster_e.txt",
+}
+
+install_symlink {
+    name: "brcmfmac4356-pcie_sif_symlink",
+    vendor: true,
+    installed_location: "firmware/brcm/brcmfmac4356-pcie.nvidia,sif.txt",
+    symlink_target: "brcmfmac4356-pcie.nvidia,darcy.txt",
+}
