@@ -1,0 +1,9 @@
+soong_namespace {
+}
+
+install_symlink {
+    name: "bcm4354a2_hcd_symlink",
+    vendor: true,
+    installed_location: "firmware/brcm/BCM4354A2-13d3-3488.hcd",
+    symlink_target: "BCM4356A2-13d3-3488.hcd",
+}
