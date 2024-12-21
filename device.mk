@@ -26,6 +26,7 @@ TARGET_TEGRA_MODELS := $(shell awk -F, '/tegra_init::devices/{ f = 1; next } /};
 
 TARGET_TEGRA_BT       ?= bcm
 TARGET_TEGRA_CAMERA   ?= rel-shield-r
+TARGET_TEGRA_DOLBY    ?= audio video
 TARGET_TEGRA_KERNEL   ?= 4.9
 TARGET_TEGRA_LIGHT    ?= lineage
 TARGET_TEGRA_THERMAL  ?= lineage
@@ -105,6 +106,10 @@ PRODUCT_PACKAGES += \
     nvaudio_fx.xml
 endif
 endif
+
+# DeviceSettings
+PRODUCT_PACKAGES += \
+    DeviceSettings
 
 # EKS
 ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_TOS)),)
