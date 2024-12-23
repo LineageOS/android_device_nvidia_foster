@@ -1,4 +1,4 @@
-# Copyright (C) 2021 The LineageOS Project
+# Copyright (C) 2021-2024 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,8 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := $(call my-dir)
-
+ifeq ($(TARGET_REFERENCE_DEVICE), foster)
 FOSTER_BL  := $(BUILD_TOP)/vendor/nvidia/foster/rel-shield-r/bootloader
 JETSON_BL  := $(BUILD_TOP)/vendor/nvidia/foster/r32/bootloader
 
@@ -38,13 +37,7 @@ else
 DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts/nvidia)
 endif
 
-include $(CLEAR_VARS)
-LOCAL_MODULE        := darcy.blob
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_MODULE_PATH   := $(PRODUCT_OUT)
-
-_darcy_blob_intermediates := $(call intermediates-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE))
-_darcy_blob := $(_darcy_blob_intermediates)/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
+_darcy_blob := $(call intermediates-dir-for,ETC,darcy.blob)/darcy.blob
 
 $(_darcy_blob):
 	@mkdir -p $(dir $@)
@@ -66,16 +59,17 @@ $(_darcy_blob):
 		$(FOSTER_BL)/darcy/darcy.bct BCT 2
 	@mv $(dir $@)/ota.blob $@
 
-include $(BUILD_SYSTEM)/base_rules.mk
-INSTALLED_RADIOIMAGE_TARGET += $(PRODUCT_OUT)/$(notdir $(_darcy_blob))
+INSTALLED_RADIOIMAGE_TARGET += $(_darcy_blob)
+$(call intermediates-dir-for,PACKAGING,target_files)/$(TARGET_PRODUCT)-target_files.zip: $(_darcy_blob)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE        := foster_e.blob
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_MODULE_PATH   := $(PRODUCT_OUT)
+$(PRODUCT_OUT)/darcy.blob: $(_darcy_blob)
+	$(hide) cp $< $@
 
-_foster_e_blob_intermediates := $(call intermediates-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE))
-_foster_e_blob := $(_foster_e_blob_intermediates)/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
+.PHONY: darcy.blob
+darcy.blob: $(PRODUCT_OUT)/darcy.blob
+
+
+_foster_e_blob := $(call intermediates-dir-for,ETC,foster_e.blob)/foster_e.blob
 
 $(_foster_e_blob): $(INSTALLED_KERNEL_TARGET)
 	@mkdir -p $(dir $@)
@@ -97,18 +91,17 @@ $(_foster_e_blob): $(INSTALLED_KERNEL_TARGET)
 		$(FOSTER_BL)/foster_e/foster_e.bct BCT 2
 	@mv $(dir $@)/ota.blob $@
 
-include $(BUILD_SYSTEM)/base_rules.mk
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-INSTALLED_RADIOIMAGE_TARGET += $(PRODUCT_OUT)/$(notdir $(_foster_e_blob))
-endif
+INSTALLED_RADIOIMAGE_TARGET += $(_foster_e_blob)
+$(call intermediates-dir-for,PACKAGING,target_files)/$(TARGET_PRODUCT)-target_files.zip: $(_foster_e_blob)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE        := foster_e_hdd.blob
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_MODULE_PATH   := $(PRODUCT_OUT)
+$(PRODUCT_OUT)/foster_e.blob: $(_foster_e_blob)
+	$(hide) cp $< $@
 
-_foster_e_hdd_blob_intermediates := $(call intermediates-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE))
-_foster_e_hdd_blob := $(_foster_e_hdd_blob_intermediates)/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
+.PHONY: foster_e.blob
+foster_e.blob: $(PRODUCT_OUT)/foster_e.blob
+
+
+_foster_e_hdd_blob := $(call intermediates-dir-for,ETC,foster_e_hdd.blob)/foster_e_hdd.blob
 
 $(_foster_e_hdd_blob): $(INSTALLED_KERNEL_TARGET)
 	@mkdir -p $(dir $@)
@@ -132,18 +125,17 @@ $(_foster_e_hdd_blob): $(INSTALLED_KERNEL_TARGET)
 		$(FOSTER_BL)/foster_e_hdd/foster_e_hdd.bct BCT 2
 	@mv $(dir $@)/ota.blob $@
 
-include $(BUILD_SYSTEM)/base_rules.mk
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-INSTALLED_RADIOIMAGE_TARGET += $(PRODUCT_OUT)/$(notdir $(_foster_e_hdd_blob))
-endif
+INSTALLED_RADIOIMAGE_TARGET += $(_foster_e_hdd_blob)
+$(call intermediates-dir-for,PACKAGING,target_files)/$(TARGET_PRODUCT)-target_files.zip: $(_foster_e_hdd_blob)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE        := mdarcy.blob
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_MODULE_PATH   := $(PRODUCT_OUT)
+$(PRODUCT_OUT)/foster_e_hdd.blob: $(_foster_e_hdd_blob)
+	$(hide) cp $< $@
 
-_mdarcy_blob_intermediates := $(call intermediates-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE))
-_mdarcy_blob := $(_mdarcy_blob_intermediates)/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
+.PHONY: foster_e_hdd.blob
+foster_e_hdd.blob: $(PRODUCT_OUT)/foster_e_hdd.blob
+
+
+_mdarcy_blob := $(call intermediates-dir-for,ETC,mdarcy.blob)/mdarcy.blob
 
 $(_mdarcy_blob):
 	@mkdir -p $(dir $@)
@@ -162,16 +154,17 @@ $(_mdarcy_blob):
 		$(FOSTER_BL)/mdarcy/mdarcy.bct T210B01_BCT 2
 	@mv $(dir $@)/ota.blob $@
 
-include $(BUILD_SYSTEM)/base_rules.mk
-INSTALLED_RADIOIMAGE_TARGET += $(PRODUCT_OUT)/$(notdir $(_mdarcy_blob))
+INSTALLED_RADIOIMAGE_TARGET += $(_mdarcy_blob)
+$(call intermediates-dir-for,PACKAGING,target_files)/$(TARGET_PRODUCT)-target_files.zip: $(_mdarcy_blob)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE        := sif.blob
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_MODULE_PATH   := $(PRODUCT_OUT)
+$(PRODUCT_OUT)/mdarcy.blob: $(_mdarcy_blob)
+	$(hide) cp $< $@
 
-_sif_blob_intermediates := $(call intermediates-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE))
-_sif_blob := $(_sif_blob_intermediates)/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
+.PHONY: mdarcy.blob
+mdarcy.blob: $(PRODUCT_OUT)/mdarcy.blob
+
+
+_sif_blob := $(call intermediates-dir-for,ETC,sif.blob)/sif.blob
 
 $(_sif_blob):
 	@mkdir -p $(dir $@)
@@ -190,17 +183,19 @@ $(_sif_blob):
 		$(FOSTER_BL)/sif/sif.bct BCT 2
 	@mv $(dir $@)/ota.blob $@
 
-include $(BUILD_SYSTEM)/base_rules.mk
-INSTALLED_RADIOIMAGE_TARGET += $(PRODUCT_OUT)/$(notdir $(_sif_blob))
+INSTALLED_RADIOIMAGE_TARGET += $(_sif_blob)
+$(call intermediates-dir-for,PACKAGING,target_files)/$(TARGET_PRODUCT)-target_files.zip: $(_sif_blob)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE       := jetson_cv.blob
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH  := $(PRODUCT_OUT)
+$(PRODUCT_OUT)/sif.blob: $(_sif_blob)
+	$(hide) cp $< $@
 
-JETSON_CV_SIGNED_PATH := $(call intermediates-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE))
+.PHONY: sif.blob
+sif.blob: $(PRODUCT_OUT)/sif.blob
+
+
+JETSON_CV_SIGNED_PATH := $(call intermediates-dir-for,ETC,jetson_cv.blob)
 _jetson_cv_br_bct     := $(JETSON_CV_SIGNED_PATH)/P2180_A00_LP4_DSC_204Mhz.bct
-_jetson_cv_blob       := $(JETSON_CV_SIGNED_PATH)/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
+_jetson_cv_blob       := $(JETSON_CV_SIGNED_PATH)/jetson_cv.blob
 
 $(_jetson_cv_br_bct): $(TOYBOX_HOST) $(INSTALLED_KERNEL_TARGET) $(INSTALLED_TOS_TARGET) | $(ACP)
 	@mkdir -p $(dir $@)
@@ -239,8 +234,12 @@ $(_jetson_cv_blob): $(_jetson_cv_br_bct) $(INSTALLED_KERNEL_TARGET) | $(ACP)
 		$(JETSON_CV_SIGNED_PATH)/P2180_A00_LP4_DSC_204Mhz.bct BCT 2
 	@mv $(dir $@)/ota.blob $@
 
-include $(BUILD_SYSTEM)/base_rules.mk
+INSTALLED_RADIOIMAGE_TARGET += $(_jetson_cv_blob)
+$(call intermediates-dir-for,PACKAGING,target_files)/$(TARGET_PRODUCT)-target_files.zip: $(_jetson_cv_blob)
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-INSTALLED_RADIOIMAGE_TARGET += $(PRODUCT_OUT)/$(notdir $(_jetson_cv_blob))
+$(PRODUCT_OUT)/jetson_cv.blob: $(_jetson_cv_blob)
+	$(hide) cp $< $@
+
+.PHONY: jetson_cv.blob
+jetson_cv.blob: $(PRODUCT_OUT)/jetson_cv.blob
 endif

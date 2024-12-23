@@ -1,4 +1,4 @@
-# Copyright (C) 2021 The LineageOS Project
+# Copyright (C) 2021-2024 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,8 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := $(call my-dir)
-
+ifeq ($(TARGET_REFERENCE_DEVICE), foster)
 FOSTER_BL       := $(BUILD_TOP)/vendor/nvidia/foster/rel-shield-r/bootloader
 JETSON_BL       := $(BUILD_TOP)/vendor/nvidia/foster/r32/bootloader
 TEGRAFLASH_PATH := $(BUILD_TOP)/vendor/nvidia/t210/r32/tegraflash
@@ -41,14 +40,7 @@ DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts/nvidia)
 endif
 
 
-include $(CLEAR_VARS)
-LOCAL_MODULE        := p2371_flash_package
-LOCAL_MODULE_SUFFIX := .txz
-LOCAL_MODULE_CLASS  := ETC
-LOCAL_MODULE_PATH   := $(PRODUCT_OUT)
-
-_p2371_package_intermediates := $(call intermediates-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE))
-_p2371_package_archive := $(_p2371_package_intermediates)/$(LOCAL_MODULE)$(LOCAL_MODULE_SUFFIX)
+_p2371_package_archive := $(call intermediates-dir-for,ETC,p2371_flash_package)/p2371_flash_package.txz
 
 $(_p2371_package_archive): $(INSTALLED_BMP_BLOB_TARGET) $(INSTALLED_KERNEL_TARGET) $(INSTALLED_RECOVERYIMAGE_TARGET) $(INSTALLED_TOS_TARGET)
 	@mkdir -p $(dir $@)/tegraflash
@@ -73,4 +65,20 @@ $(_p2371_package_archive): $(INSTALLED_BMP_BLOB_TARGET) $(INSTALLED_KERNEL_TARGE
 	@python2 $(TNSPEC_PY) nct new p2371-2180-devkit -o $(dir $@)/p2371-2180-devkit.bin --spec $(FOSTER_TNSPEC)
 	@cd $(dir $@); tar -cJf $(abspath $@) *
 
-include $(BUILD_SYSTEM)/base_rules.mk
+$(PRODUCT_OUT)/p2371_flash_package.txz: $(_p2371_package_archive)
+	$(hide) cp $< $@
+
+.PHONY: p2371_flash_package
+p2371_flash_package: $(PRODUCT_OUT)/p2371_flash_package.txz
+
+
+ifeq ($(word 2,$(subst _, ,$(TARGET_PRODUCT))),foster)
+BUILT_TARGET_FILES_ZIPROOT := $(call intermediates-dir-for,PACKAGING,target_files)/$(TARGET_PRODUCT)-target_files
+$(BUILT_TARGET_FILES_ZIPROOT).zip: $(BUILT_TARGET_FILES_ZIPROOT)/IMAGES/p2371_flash_package.txz
+
+$(BUILT_TARGET_FILES_ZIPROOT)/IMAGES/p2371_flash_package.txz: $(BUILT_TARGET_FILES_ZIPROOT).zip.list $(PRODUCT_OUT)/p2371_flash_package.txz
+	@mkdir -p $(dir $@)
+	@cp $(PRODUCT_OUT)/p2371_flash_package.txz $@
+	@echo $@ >> $(BUILT_TARGET_FILES_ZIPROOT).zip.list
+endif
+endif
