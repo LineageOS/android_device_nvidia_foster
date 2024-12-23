@@ -107,8 +107,7 @@ endif
 # Audio
 ifneq ($(TARGET_TEGRA_AUDIO),)
 PRODUCT_PACKAGES += \
-    audio_effects.xml \
-    audio_policy_configuration.xml \
+    audio_effects.xml
 
 ifeq ($(TARGET_TEGRA_AUDIO),tinyhal)
 PRODUCT_PACKAGES += \
@@ -118,6 +117,8 @@ PRODUCT_PACKAGES += \
     audio.mdarcy.xml \
     audio.porg.xml \
     audio.sif.xml
+PRODUCT_COPY_FILES += \
+    device/nvidia/quill/media/audio_policy_configuration_tinyhal.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
 else ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_AUDIO)),)
 PRODUCT_PACKAGES += \
     audio_policy_configuration_dragon.xml \
@@ -130,18 +131,22 @@ PRODUCT_PACKAGES += \
     nx_nvaudio_conf.xml \
     nvaudio_conf.xml \
     nvaudio_fx.xml
+PRODUCT_COPY_FILES += \
+    device/nvidia/quill/media/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
 endif
 endif
 
 # EKS
 ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_TOS)),)
+PRODUCT_COPY_FILES += \
+    device/nvidia/foster/initfiles/init.eks2.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.eks2.rc \
+    device/nvidia/foster/eks2/eks2_darcy.dat:$(TARGET_COPY_OUT_VENDOR)/app/eks2/eks2_darcy.dat \
+    device/nvidia/foster/eks2/eks2_foster.dat:$(TARGET_COPY_OUT_VENDOR)/app/eks2/eks2_foster.dat \
+    device/nvidia/foster/eks2/eks2_mdarcy.dat:$(TARGET_COPY_OUT_VENDOR)/app/eks2/eks2_mdarcy.dat \
+    device/nvidia/foster/eks2/eks2_public.dat:$(TARGET_COPY_OUT_VENDOR)/app/eks2/eks2_public.dat \
+    device/nvidia/foster/eks2/eks2_sif.dat:$(TARGET_COPY_OUT_VENDOR)/app/eks2/eks2_sif.dat
 PRODUCT_PACKAGES += \
-    init.eks2.rc \
-    eks2_darcy.dat \
-    eks2_foster.dat \
-    eks2_mdarcy.dat \
-    eks2_public.dat \
-    eks2_sif.dat
+    eks2_symlink
 endif
 
 # Fingerprint
@@ -158,8 +163,7 @@ endif
 
 # Keylayouts
 PRODUCT_PACKAGES += \
-    gpio-keys.kl \
-    gpio-keys-loki.kl
+    keylayout_data_foster
 
 # Loadable kernel modules
 PRODUCT_PACKAGES += \
@@ -192,8 +196,8 @@ PRODUCT_COPY_FILES += \
 
 # PHS
 ifneq ($(TARGET_TEGRA_PHS),)
-PRODUCT_PACKAGES += \
-    nvphsd.conf
+PRODUCT_COPY_FILES += \
+    device/nvidia/foster/nvphs/nvphsd.foster.conf:$(TARGET_COPY_OUT_ODM)/etc/nvphsd.conf
 endif
 
 # Power
@@ -233,8 +237,8 @@ endif
 
 # WiFi
 ifeq ($(TARGET_TEGRA_WIFI),bcm)
-PRODUCT_PACKAGES += \
-    wifi_scan_config.conf
+PRODUCT_COPY_FILES += \
+    device/nvidia/foster/comms/wifi_scan_config.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wifi_scan_config.conf
 endif
 
 PRODUCT_PACKAGES += \
