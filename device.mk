@@ -59,12 +59,39 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_SOONG_NAMESPACES += device/nvidia/foster
 
 # Init related
-PRODUCT_PACKAGES += \
-    $(foreach model,$(TARGET_TEGRA_MODELS),fstab.$(model) init.$(model).rc init.recovery.$(model).rc power.$(model).rc) \
-    init.foster_e_common.rc \
-    init.loki_e_common.rc \
-    init.loki_foster_e_common.rc \
-    init.recovery.foster_common.rc
+# Parameters
+# $1 Variant name
+# $2 Fstab source
+# $3 Init rc name
+# $4 Recovery rc name
+# $5 Power rc name 
+define initfiles_rule
+device/nvidia/foster/initfiles/fstab.$(strip $(2)):$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(strip $(1)) \
+device/nvidia/foster/initfiles/fstab.$(strip $(2)):$(TARGET_COPY_OUT_RAMDISK)/fstab.$(strip $(1)) \
+device/nvidia/foster/initfiles/init.$(strip $(3)).rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.$(strip $(1)).rc \
+device/nvidia/foster/initfiles/init.recovery.$(strip $(4)).rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.$(strip $(1)).rc \
+device/nvidia/foster/initfiles/power.$(strip $(5)).rc:$(TARGET_COPY_OUT_ODM)/etc/power.$(strip $(1)).rc
+endef
+PRODUCT_COPY_FILES += \
+    $(call initfiles_rule, baracus,      emmc,   jetson_cv,    foster, foster_e_common ) \
+    $(call initfiles_rule, batuu,        sd,     batuu,        foster, darcy           ) \
+    $(call initfiles_rule, darcy,        emmc,   darcy,        darcy,  darcy           ) \
+    $(call initfiles_rule, dragon,       dragon, dragon,       dragon, abca            ) \
+    $(call initfiles_rule, foster_e,     emmc,   foster_e,     foster, foster_e_common ) \
+    $(call initfiles_rule, foster_e_hdd, emmc,   foster_e_hdd, foster, foster_e_common ) \
+    $(call initfiles_rule, jetson_cv,    emmc,   jetson_cv,    foster, foster_e_common ) \
+    $(call initfiles_rule, jetson_e,     emmc,   jetson_e,     foster, foster_e_common ) \
+    $(call initfiles_rule, loki_e_base,  emmc,   loki_e,       loki,   loki_e_common   ) \
+    $(call initfiles_rule, loki_e_lte,   emmc,   loki_e,       loki,   loki_e_common   ) \
+    $(call initfiles_rule, loki_e_wifi,  emmc,   loki_e,       loki,   loki_e_common   ) \
+    $(call initfiles_rule, nx,           nx,     nx,           nx,     nx              ) \
+    $(call initfiles_rule, porg,         emmc,   porg,         foster, darcy           ) \
+    $(call initfiles_rule, porg_sd,      sd,     porg_sd,      foster, darcy           ) \
+    $(call initfiles_rule, sif,          emmc,   sif,          sif,    darcy           ) \
+    device/nvidia/foster/initfiles/init.foster_e_common.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.foster_e_common.rc \
+    device/nvidia/foster/initfiles/init.loki_e_common.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.loki_e_common.rc \
+    device/nvidia/foster/initfiles/init.loki_foster_e_common.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.loki_foster_e_common.rc \
+    device/nvidia/foster/initfiles/init.recovery.foster_common.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.foster_common.rc
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -180,8 +207,23 @@ PRODUCT_PACKAGES += \
 
 # Thermal
 ifneq ($(TARGET_TEGRA_THERMAL),)
-PRODUCT_PACKAGES += \
-    $(foreach model,$(TARGET_TEGRA_MODELS),thermalhal.$(model).xml)
+THERMAL_CONFIG_baracus      := darcy
+THERMAL_CONFIG_batuu        := porg
+THERMAL_CONFIG_darcy        := darcy
+THERMAL_CONFIG_dragon       := darcy
+THERMAL_CONFIG_foster_e     := darcy
+THERMAL_CONFIG_foster_e_hdd := darcy
+THERMAL_CONFIG_jetson_cv    := darcy
+THERMAL_CONFIG_jetson_e     := darcy
+THERMAL_CONFIG_loki_e_base  := loki_e
+THERMAL_CONFIG_loki_e_lte   := loki_e
+THERMAL_CONFIG_loki_e_wifi  := loki_e
+THERMAL_CONFIG_nx           := darcy
+THERMAL_CONFIG_porg         := porg
+THERMAL_CONFIG_porg_sd      := porg
+THERMAL_CONFIG_sif          := darcy
+PRODUCT_COPY_FILES += \
+    $(foreach model,$(TARGET_TEGRA_MODELS),device/nvidia/foster/thermal/thermalhal.$(THERMAL_CONFIG_$(model)).xml:$(TARGET_COPY_OUT_VENDOR)/etc/thermalhal.$(model).xml)
 endif
 
 # WiFi
