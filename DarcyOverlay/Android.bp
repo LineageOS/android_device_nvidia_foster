@@ -1,0 +1,6 @@
+runtime_resource_overlay {
+    name: "DarcyOverlay",
+    theme: "DarcyOverlay",
+    sdk_version: "current",
+    soc_specific: true
+}
