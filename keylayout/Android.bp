@@ -14,16 +14,9 @@
 // limitations under the License.
 //
 
-install_symlink {
-    name: "eks2_symlink",
-    vendor: true,
-    installed_location: "app/eks2/eks2.dat",
-    symlink_target: "/data/vendor/eks2/eks2.dat",
-}
-
-sh_binary {
-    name: "lkm_loader_target",
-    filename: "lkm_loader_target.sh",
-    src: "lkm_loader_target.sh",
+prebuilt_usr_keylayout {
+    name: "keylayout_data_foster",
+    srcs: ["*.kl"],
     soc_specific: true,
+    no_full_install: true,
 }
