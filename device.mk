@@ -32,10 +32,6 @@ TARGET_TEGRA_THERMAL  ?= lineage
 TARGET_TEGRA_WIDEVINE ?= rel-shield-r
 TARGET_TEGRA_WIFI     ?= bcm
 
-ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
-TARGET_TEGRA_WIREGUARD ?= compat
-endif
-
 include device/nvidia/t210-common/t210.mk
 
 # Properties
