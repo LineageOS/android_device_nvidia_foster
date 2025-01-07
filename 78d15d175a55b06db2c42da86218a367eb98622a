@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeda34c5_e8a5cf3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2025-01-07T21:58:38Z",
+      "side": 1,
+      "message": "Still want to look further at build time checks for the initfiles copies.",
+      "revId": "78d15d175a55b06db2c42da86218a367eb98622a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
