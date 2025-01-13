@@ -30,6 +30,7 @@ else
 DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts/nvidia)
 endif
 
+UBOOT_BIN := $(PRODUCT_OUT)/u-boot-dtb.bin
 
 $(INSTALLED_DTBIMAGE_TARGET_mdarcy_recovery): $(INSTALLED_KERNEL_TARGET) | mkdtimg
 	echo -e ${CL_GRN}"Building mdarcy recovery DTImage"${CL_RST}
@@ -44,9 +45,24 @@ $(INSTALLED_DTBIMAGE_TARGET_mdarcy_recovery): $(INSTALLED_KERNEL_TARGET) | mkdti
 
 $(INSTALLED_BOOTIMAGE_TARGET): $(MKBOOTIMG) $(INTERNAL_BOOTIMAGE_FILES) $(BOOTIMAGE_EXTRA_DEPS) $(INSTALLED_KERNEL_TARGET)
 	$(call pretty,"Target boot image: $@")
+ifneq ($(TARGET_TEGRA_UBOOT_CONFIG),)
+	$(hide) $(MKBOOTIMG) --kernel $(call bootimage-to-kernel,$@) $(INTERNAL_BOOTIMAGE_ARGS) $(INTERNAL_MKBOOTIMG_VERSION_ARGS) $(BOARD_MKBOOTIMG_ARGS) --output $@.tmp
+	$(hide) $(MKBOOTIMG) --kernel $(UBOOT_BIN) --ramdisk $@.tmp --output $@
+else
 	$(hide) $(MKBOOTIMG) --kernel $(call bootimage-to-kernel,$@) $(INTERNAL_BOOTIMAGE_ARGS) $(INTERNAL_MKBOOTIMG_VERSION_ARGS) $(BOARD_MKBOOTIMG_ARGS) --output $@
+endif
 	$(hide )$(call assert-max-image-size,$@,$(call get-bootimage-partition-size,$@,boot))
 
 INTERNAL_RECOVERYIMAGE_ARGS += --recovery_dtbo $(INSTALLED_DTBIMAGE_TARGET_mdarcy_recovery)
 $(INSTALLED_RECOVERYIMAGE_TARGET): $(recoveryimage-deps) $(RECOVERYIMAGE_EXTRA_DEPS) $(INSTALLED_DTBIMAGE_TARGET_mdarcy_recovery)
+ifneq ($(TARGET_TEGRA_UBOOT_CONFIG),)
+	$(call build-recoveryimage-target, $@.tmp, $(recovery_kernel))
+	$(hide) $(MKBOOTIMG) --kernel $(UBOOT_BIN) --ramdisk $@.tmp --output $@
+else
 	$(call build-recoveryimage-target, $@, $(recovery_kernel))
+endif
+
+ifneq ($(TARGET_TEGRA_UBOOT_CONFIG),)
+$(INSTALLED_BOOTIMAGE_TARGET): $(UBOOT_BIN)
+$(INSTALLED_RECOVERYIMAGE_TARGET): $(UBOOT_BIN)
+endif
