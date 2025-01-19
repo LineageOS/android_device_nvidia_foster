@@ -16,6 +16,23 @@
       "message": "This flashes as expected on jetson_cv, meaning the edify code parses correctly. I do not have one of these new mdarcy units to specifically verify, however.",
       "revId": "d937722a75d73ba102eae94b4a0dbd1855c68e12",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "427df7ab_95bad007",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2025-01-19T22:09:09Z",
+      "side": 1,
+      "message": "Yolo",
+      "revId": "d937722a75d73ba102eae94b4a0dbd1855c68e12",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
