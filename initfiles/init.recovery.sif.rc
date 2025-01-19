@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Do nothing, usb can't be used on consumer sif units
+import init.recovery.eth.rc

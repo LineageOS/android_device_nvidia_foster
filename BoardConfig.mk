@@ -75,6 +75,7 @@ endif
 TARGET_RECOVERY_FSTAB        := device/nvidia/foster/initfiles/fstab.emmc
 TARGET_RECOVERY_UPDATER_LIBS := librecoveryupdater_tegra
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
+TARGET_RECOVERY_UI_LIB       := librecovery_ui_ethernet
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
