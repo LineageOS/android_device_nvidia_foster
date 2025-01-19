@@ -115,7 +115,9 @@ BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD := \
     hid-nvidia-blake \
     hid-jarvis-remote \
     pwm_fan \
-    therm_fan_est
+    therm_fan_est \
+    pci-tegra \
+    r8168
 
 BOOT_KERNEL_MODULES     := $(addsuffix .ko,$(BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD))
 RECOVERY_KERNEL_MODULES := $(addsuffix .ko,$(BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD))
