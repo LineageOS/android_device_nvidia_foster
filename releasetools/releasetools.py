@@ -42,6 +42,7 @@ DARCY_PUBLIC_KEY    = '0x435a807e9187c53eae50e2dcab521e0ea41458a9b18d31db553ceb7
 MDARCY_PUBLIC_KEY   = '0xc5ae4221f0f4f5113c0271b3519cac7f0bcb0cb860381a4648e9eee350e97f89\n'
 SIF_PUBLIC_KEY      = '0x26646fe375375e39410853f75e59e2c4ca8440926fa37604a280b5c8a25a2c3e\n'
 DARCY_BL_VERSION    = '32.00.2019.50-t210-69ebfcbe'
+DARCY_912_VERSION   = '32.00.2019.50-t210-030626ef'
 
 NX_PUBLIC_KEY       = '0x7e39e100d1135918ceedfe5d66e66496eed21ecb3486d72095cc0b7c60b8bd4f\n'
 NX_BL_VERSION       = '2020.04-03755-gf4d532d00d-rev3'
@@ -127,15 +128,25 @@ ifelse(
               ),
               (
                 ifelse(
-                  read_file("{PUBLIC_KEY_PATH}") == "{MDARCY_PUBLIC_KEY}",
+                  getprop("ro.bootloader") == "{DARCY_912_VERSION}",
                   (
-                    ui_print("Flashing updated bootloader for fused mdarcy");
-                    package_extract_file("firmware-update/mdarcy.blob", "{STAGING_PART}");
+                    ui_print("Unsupported bootloader version detected, aborting.");
+                    ui_print("Installing would downgrade the bootloader to a version that likely does not support this hardware.");
+                    abort();
                   ),
                   (
-                    ui_print("Unknown public key " + read_file("{PUBLIC_KEY_PATH}") + " for mdarcy detected.");
-                    ui_print("This is not supported. Please report to LineageOS Maintainer.");
-                    abort();
+                    ifelse(
+                      read_file("{PUBLIC_KEY_PATH}") == "{MDARCY_PUBLIC_KEY}",
+                      (
+                        ui_print("Flashing updated bootloader for fused mdarcy");
+                        package_extract_file("firmware-update/mdarcy.blob", "{STAGING_PART}");
+                      ),
+                      (
+                        ui_print("Unknown public key " + read_file("{PUBLIC_KEY_PATH}") + " for mdarcy detected.");
+                        ui_print("This is not supported. Please report to LineageOS Maintainer.");
+                        abort();
+                      )
+                    )
                   )
                 );
               )
@@ -262,15 +273,25 @@ ifelse(
             ui_print("Correct bootloader already installed for fused sif");
           ),
           ifelse(
-            read_file("{PUBLIC_KEY_PATH}") == "{SIF_PUBLIC_KEY}",
+            getprop("ro.bootloader") == "{DARCY_912_VERSION}",
             (
-              ui_print("Flashing updated bootloader for fused sif");
-              package_extract_file("firmware-update/sif.blob", "{STAGING_PART}");
+              ui_print("Unsupported bootloader version detected, aborting.");
+              ui_print("Installing would downgrade the bootloader to a version that likely does not support this hardware.");
+              abort();
             ),
             (
-              ui_print("Unknown public key " + read_file("{PUBLIC_KEY_PATH}") + " for sif detected.");
-              ui_print("This is not supported. Please report to LineageOS Maintainer.");
-              abort();
+              ifelse(
+                read_file("{PUBLIC_KEY_PATH}") == "{SIF_PUBLIC_KEY}",
+                (
+                  ui_print("Flashing updated bootloader for fused sif");
+                  package_extract_file("firmware-update/sif.blob", "{STAGING_PART}");
+                ),
+                (
+                  ui_print("Unknown public key " + read_file("{PUBLIC_KEY_PATH}") + " for sif detected.");
+                  ui_print("This is not supported. Please report to LineageOS Maintainer.");
+                  abort();
+                )
+              )
             )
           )
         );
