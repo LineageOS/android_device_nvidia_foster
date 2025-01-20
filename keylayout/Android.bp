@@ -18,5 +18,4 @@ prebuilt_usr_keylayout {
     name: "keylayout_data_foster",
     srcs: ["*.kl"],
     soc_specific: true,
-    no_full_install: true,
 }
