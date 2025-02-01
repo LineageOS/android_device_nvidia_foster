@@ -224,6 +224,9 @@ PRODUCT_PACKAGES += \
 
 # Thermal
 ifneq ($(TARGET_TEGRA_THERMAL),)
+ifeq ($(filter 3.10 4.9 5.10, $(TARGET_KERNEL_VERSION)),)
+TARGET_TEGRA_THERMAL_SUFFIX ?= .ack
+endif
 THERMAL_CONFIG_baracus      := darcy
 THERMAL_CONFIG_batuu        := porg
 THERMAL_CONFIG_darcy        := darcy
@@ -240,7 +243,7 @@ THERMAL_CONFIG_porg         := porg
 THERMAL_CONFIG_porg_sd      := porg
 THERMAL_CONFIG_sif          := darcy
 PRODUCT_COPY_FILES += \
-    $(foreach model,$(TARGET_TEGRA_MODELS),device/nvidia/foster/thermal/thermalhal.$(THERMAL_CONFIG_$(model)).xml:$(TARGET_COPY_OUT_VENDOR)/etc/thermalhal.$(model).xml)
+    $(foreach model,$(TARGET_TEGRA_MODELS),device/nvidia/foster/thermal/thermalhal.$(THERMAL_CONFIG_$(model))$(TARGET_TEGRA_THERMAL_SUFFIX).xml:$(TARGET_COPY_OUT_VENDOR)/etc/thermalhal.$(model).xml)
 endif
 
 # Touch
