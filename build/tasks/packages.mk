@@ -52,7 +52,8 @@ $(_p2371_package_archive): $(INSTALLED_BMP_BLOB_TARGET) $(INSTALLED_KERNEL_TARGE
 	@cp $(FOSTER_FLASH)/sign.xml $(dir $@)/
 	@cp $(FOSTER_BL)/foster_e/*.bin $(dir $@)/
 	@cp $(FOSTER_BL)/foster_e/rp4.blob $(dir $@)/
-	@rm $(dir $@)/bpmp_zeroes.bin
+	@rm $(dir $@)/bpmp_zeroes.bin $(dir $@)/nvtboot.bin
+	@cp $(FOSTER_BL)/jetson_cv/nvtboot.bin $(dir $@)/
 	@cp $(T210_BL)/cboot.bin $(dir $@)/cboot_tegraflash.bin
 	@cp $(T210_BL)/nvtboot_recovery.bin $(dir $@)/
 	@cp $(INSTALLED_TOS_TARGET) $(dir $@)/tos.img
