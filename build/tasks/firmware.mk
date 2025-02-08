@@ -202,6 +202,8 @@ $(_jetson_cv_br_bct): $(TOYBOX_HOST) $(INSTALLED_KERNEL_TARGET) $(INSTALLED_TOS_
 	@cp $(FOSTER_FLASH)/flash_t210_android_sdmmc_fb.xml $(dir $@)/flash_t210_android_sdmmc_fb.xml.tmp
 	@cp $(FOSTER_BCT)/P2180_A00_LP4_DSC_204Mhz.cfg $(dir $@)/
 	@cp $(FOSTER_BL)/foster_e/*.bin $(dir $@)/
+	@rm $(dir $@)/nvtboot.bin
+	@cp $(FOSTER_BL)/jetson_cv/nvtboot.bin $(dir $@)/
 	@cp $(INSTALLED_TOS_TARGET) $(dir $@)/tos.img
 	@cp $(JETSON_BL)/jetson_cv/tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb $(dir $@)/
 	@cp $(DTB_PATH)/tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb $(dir $@)/

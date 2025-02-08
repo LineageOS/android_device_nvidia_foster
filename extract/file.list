@@ -73,3 +73,5 @@ stock-sif	bootloader/RP4	bootloader/sif/rp4.blob
 stock-sif	bootloader/TBC	bootloader/sif/nvtboot_cpu.bin
 stock-sif	bootloader/TOS	bootloader/sif/tos.img
 stock-sif	bootloader/WB0	bootloader/sif/warmboot.bin
+
+blob-jetson_cv	bootloader/NVC	bootloader/jetson_cv/nvtboot.bin
