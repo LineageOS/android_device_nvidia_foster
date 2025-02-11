@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae9bcb85_6abcf8c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2025-02-11T02:09:59Z",
+      "side": 1,
+      "message": "Verified booting jetson_cv.",
+      "revId": "1d3c27ad3d91ea3b4576e1748bb2688c3b19e05b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
