@@ -29,7 +29,7 @@ on post-fs-data
     write /sys/power/wake_lock foster-staywake
 
 on post-fs-data
-    chown system system /mnt/venodr/wifi_config
+    chown system system /mnt/vendor/wifi_config
     chown system system /mnt/vendor/wifi_config/FSS.txt
     chown system system /mnt/vendor/wifi_config/country_code.txt
     chown system system /mnt/vendor/wifi_config/country_code.sig
