@@ -17,4 +17,4 @@
 /devices/70090000.xusb/usb*                             auto                vfat      defaults                                                            voldmanaged=usbdrive:auto,encryptable=userdata
 /dev/block/platform/sdhci-tegra.0/by-num/p1             /sdcard             vfat      defaults                                                            recoveryonly
 /dev/block/platform/70090000.xusb/by-num/p1             /usbdrive           vfat      defaults                                                            recoveryonly
-/dev/block/zram0 none swap defaults zramsize=536870912
+/dev/block/zram0 none swap defaults zramsize=30%
