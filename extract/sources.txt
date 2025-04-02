@@ -2,3 +2,4 @@ nv-tegra-t210	https://nv-tegra.nvidia.com/gitweb/?p=tegra/prebuilts-licensed-bin
 blob-foster_e	https://ota-downloads.nvidia.com/ota/productionBL-droid-signed-foster_e-full_ota-13961456_3871.0251_CD4C14.zip	blob	rel-shield-r
 blob-darcy	https://ota-downloads.nvidia.com/ota/productionBL-droid-signed-darcy-full_ota-13961458_3871.0251_7F8709.zip	blob	rel-shield-r
 blob-jetson_cv	https://ota-downloads.nvidia.com/ota/productionBL-droid-signed-foster_e-full_ota-7825230_3167.5736_BF2AA3.zip	blob	rel-shield-r
+l4t-t210-ovl	https://developer.nvidia.com/downloads/embedded/L4T/r32_Release_v7.5/overlay_32.7.5_PCN211181.tbz2		l4t	r32
