@@ -113,7 +113,9 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := \
 BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD := \
     exfat \
     hid-nvidia-blake \
-    hid-jarvis-remote
+    hid-jarvis-remote \
+    pwm_fan \
+    therm_fan_est
 
 BOOT_KERNEL_MODULES     := $(addsuffix .ko,$(BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD))
 RECOVERY_KERNEL_MODULES := $(addsuffix .ko,$(BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD))
