@@ -22,7 +22,7 @@ GMS_MAKEFILE=gms_minimal.mk
 endif
 
 # Unified device support
-TARGET_INIT_VENDOR_LIB := //device/nvidia/foster:libinit_foster
+$(call soong_config_set,libinit,vendor_init_lib,//device/nvidia/foster:libinit_foster)
 PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
     ro.product.vendor.device \
     ro.product.vendor.model \
