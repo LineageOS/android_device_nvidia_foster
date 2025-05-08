@@ -175,12 +175,18 @@ void vendor_load_properties()
 		{ "baracus","baracus",      "baracus",      "Jamboard",          2180, 9999, 23, 320 },
 		{ "dragon", "dragon",       "dragon",       "Pixel C",              3,    0, 23, 320 }
 	};
-	tegra_init::build_version tav = { "11", "RQ1A.210105.003", "13961456_3871.0251" };
+	tegra_init::build_version tav = { "11", "RQ1A.210105.003", "7825230_4040.2147" };
 
 	tegra_init ti(devices);
 
-	if (ti.is_model("sif") || ti.is_model("mdarcy")) {
-		tav = { "11", "RQ1A.210105.003", "7825230_3871.0251" };
+	if (ti.is_model("foster_e")) {
+		tav = { "11", "RQ1A.210105.003", "13961456_4040.2147" };
+	} else if (ti.is_model("foster_e_hdd")) {
+		tav = { "11", "RQ1A.210105.003", "13961457_4040.2147" };
+	} else if (ti.is_model("darcy")) {
+		tav = { "11", "RQ1A.210105.003", "13961458_4040.2147" };
+	} else if (ti.is_model("sif")) {
+		tav = { "11", "RQ1A.210105.003", "7825199_4040.2147" };
 	} else if (ti.is_model("dragon")) {
 		tav = { "8.1.0", "OPM8.190605.005", "5749003" };
 
