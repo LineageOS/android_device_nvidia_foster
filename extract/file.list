@@ -11,6 +11,7 @@ stock-t210	vendor/firmware/bcmdhd_clm_foster.blob		bcm/bcm4354/foster.clm_blob
 stock-t210	vendor/firmware/brcmfmac4356-pcie.clm_blob	bcm/bcm4356/
 
 l4t-t210	bootloader/t210ref/BCT/P2180_A00_LP4_DSC_204Mhz.cfg	BCT/
+l4t-t210	bootloader/t210ref/BCT/P3448_A00_lpddr4_204Mhz_P987.cfg	BCT/P3448-0003_A00_lpddr4_204Mhz_P987.cfg
 l4t-t210-ovl	bootloader/t210ref/BCT/P3448_A00_lpddr4_204Mhz_P987.cfg	BCT/
 
 l4t-t210	kernel/dtb/tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb	bootloader/jetson_cv/
