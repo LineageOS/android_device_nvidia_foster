@@ -63,7 +63,7 @@ $(_p2371_package_archive): $(INSTALLED_BMP_BLOB_TARGET) $(INSTALLED_KERNEL_TARGE
 	@cp $(JETSON_BL)/jetson_cv/tegra210-jetson-tx1-p2597-2180-a01-devkit.dtb $(dir $@)/
 	@cp $(DTB_PATH)/tegra210-jetson-tx1-p2597-2180-a01-android-devkit.dtb $(dir $@)/
 	@cp $(FOSTER_BCT)/P2180_A00_LP4_DSC_204Mhz.cfg $(dir $@)/
-	@python2 $(TNSPEC_PY) nct new p2371-2180-devkit -o $(dir $@)/p2371-2180-devkit.bin --spec $(FOSTER_TNSPEC)
+	@python3 $(TNSPEC_PY) nct new p2371-2180-devkit -o $(dir $@)/p2371-2180-devkit.bin --spec $(FOSTER_TNSPEC)
 	@cd $(dir $@); tar -cJf $(abspath $@) *
 
 $(PRODUCT_OUT)/p2371_flash_package.txz: $(_p2371_package_archive)

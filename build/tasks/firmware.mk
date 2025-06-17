@@ -25,7 +25,7 @@ INSTALLED_KERNEL_TARGET := $(PRODUCT_OUT)/kernel
 INSTALLED_TOS_TARGET    := $(PRODUCT_OUT)/tos-$(if $(filter rel-shield-r software,$(TARGET_TEGRA_TOS)),mon-only,$(TARGET_TEGRA_TOS)).img
 
 TOYBOX_HOST := $(HOST_OUT_EXECUTABLES)/toybox
-NVBLOB_HOST := python2 $(BUILD_TOP)/vendor/nvidia/foster/rel-30/bootloader/nvblob_v2
+NVBLOB_HOST := python3 $(BUILD_TOP)/vendor/nvidia/foster/rel-30/bootloader/nvblob_v2
 
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 DTB_PATH := $(dir $(TARGET_PREBUILT_KERNEL))
