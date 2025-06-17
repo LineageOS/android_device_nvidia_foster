@@ -38,6 +38,11 @@ function patch_nvblob() {
   sed -i "s/e\['outfile'\]/os.path.join\(out_path,e\['outfile'\]\)/" ${LINEAGE_ROOT}/${OUTDIR}/foster/rel-30/bootloader/nvblob_v2
 
   echo "";
+  echo -n "Patching nvblob_v2 to support python3...";
+
+  patch --no-backup-if-mismatch -d ${LINEAGE_ROOT}/${OUTDIR} -p1 1>/dev/null 2>&1 < ${LINEAGE_ROOT}/device/nvidia/foster/extract/nvblob-py3.patch
+
+  echo "";
 }
 
 function patch_jetson_dtb() {

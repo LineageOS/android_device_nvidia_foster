@@ -1,0 +1,126 @@
+From 44f3e0079d79fd48bfa8d1d4680f3756645bda18 Mon Sep 17 00:00:00 2001
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Mon, 16 Jun 2025 20:08:52 -0500
+Subject: [PATCH] foster: Update nvblob for py3
+
+---
+ foster/rel-30/bootloader/nvblob_v2 | 32 +++++++++++++++---------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
+
+diff --git a/foster/rel-30/bootloader/nvblob_v2 b/foster/rel-30/bootloader/nvblob_v2
+index 294a005..46cb726 100644
+--- a/foster/rel-30/bootloader/nvblob_v2
++++ b/foster/rel-30/bootloader/nvblob_v2
+@@ -43,8 +43,8 @@ example:
+ 
+ import sys
+ 
+-if sys.hexversion < 0x02060000:
+-  print >> sys.stderr, "Python 2.6 or newer is required."
++if sys.hexversion < 0x03000000:
++  print("Python 3.0 or newer is required.", file=sys.stderr)
+   sys.exit(1)
+ 
+ import os
+@@ -64,7 +64,7 @@ top_var = "TOP"
+ 
+ def Run(args, **kwargs):
+   """Create and return a subprocess.Popen object."""
+-  print "  running: ", " ".join(args)
++  print("  running: ", " ".join(args))
+   return subprocess.Popen(args, **kwargs)
+ 
+ def update_entry(t, o, l):
+@@ -87,12 +87,12 @@ def update_parse(j, arg):
+             if not os.path.isfile(binary_name):
+                 sys.stderr.write("File %s does not exist\n" % binary_name)
+                 return
+-        return binary_name
++        return binary_name.encode('utf-8')
+     elif j == 1:
+         if len(arg) > gpt_part_name_len_max:
+             sys.stderr.write("ERROR:Partition name too long(>%s) %s\n" % (gpt_part_name_len_max,arg));
+             sys.exit(-1);
+-        return arg
++        return arg.encode('utf-8')
+     elif j == 2:
+         try:
+             return int(arg)
+@@ -110,12 +110,12 @@ def firmware_parse(j, arg):
+             if not os.path.isfile(binary_name):
+                 sys.stderr.write("File %s does not exist\n" % binary_name)
+                 return
+-        return binary_name
++        return binary_name.encode('utf-8')
+     elif j == 1:
+         if len(arg) > firmware_name_len_max:
+             sys.stderr.write("ERROR:Firmware name too long(>%s) %s\n" % (firmware_name_len_max,arg));
+             sys.exit(-1);
+-        return arg
++        return arg.encode('utf-8')
+     elif j == 2:
+         try:
+             return int(arg, 0)
+@@ -133,7 +133,7 @@ def bmp_parse(j, arg):
+             if not os.path.isfile(binary_name):
+                 sys.stderr.write("File %s does not exist\n" % binary_name)
+                 return
+-        return binary_name
++        return binary_name.encode('utf-8')
+     elif j == 1:
+         if   arg == 'nvidia'       : tp = 0;
+         elif arg == 'lowbattery'   : tp = 1;
+@@ -165,15 +165,15 @@ def main(argv):
+     global top_var
+ 
+     # Check "TOP" variable is set and is valid
+-    if not os.environ.has_key("TOP") or not os.path.isdir(os.environ["TOP"]):
+-        if not os.environ.has_key("ANDROID_BUILD_TOP") or not os.path.isdir(os.environ["ANDROID_BUILD_TOP"]):
++    if "TOP" not in os.environ or not os.path.isdir(os.environ["TOP"]):
++        if "ANDROID_BUILD_TOP" not in os.environ or not os.path.isdir(os.environ["ANDROID_BUILD_TOP"]):
+             sys.stderr.write("Environment variable TOP not set or invalid.\n")
+             return
+         else:
+             top_var = "ANDROID_BUILD_TOP"
+ 
+     # Check "OUT" variable is set and is valid
+-    if not os.environ.has_key("OUT") or not os.path.isdir(os.environ["OUT"]):
++    if "OUT" not in os.environ or not os.path.isdir(os.environ["OUT"]):
+         sys.stderr.write("Environment variable OUT not set or invalid.\n")
+         return
+ 
+@@ -192,8 +192,8 @@ def main(argv):
+     ]
+ 
+     out_path = os.environ.get("OUT")
+-    print 'OUT   :', out_path
+-    print 'PARTITION INFO   :', partition_info
++    print('OUT   :', out_path)
++    print('PARTITION INFO   :', partition_info)
+ 
+     blob_type = "update"
+     if (partition_info[0] == '-t'):
+@@ -207,7 +207,7 @@ def main(argv):
+     number_of_elements = len(partition_info)
+ 
+     if ((number_of_elements % e['params']) != 0):
+-        print __doc__
++        print(__doc__)
+         return
+ 
+     i = 0
+@@ -234,9 +234,9 @@ def main(argv):
+     header_size = struct.calcsize(header_packing)
+     header_size_pos = struct.calcsize('=16sI')
+     if support_compress == True:
+-        update_header_tuple = (e['magic'], 0x00020000, 0, header_size, number_of_elements, e['type'], 0)
++        update_header_tuple = (e['magic'].encode('utf-8'), 0x00020000, 0, header_size, number_of_elements, e['type'], 0)
+     else:
+-        update_header_tuple = (e['magic'], 0x00020000, 0, header_size, number_of_elements, e['type'])
++        update_header_tuple = (e['magic'].encode('utf-8'), 0x00020000, 0, header_size, number_of_elements, e['type'])
+     update_header = struct.pack(header_packing, *update_header_tuple)
+     blob.write(update_header)
+ 
+-- 
+2.50.0
+
