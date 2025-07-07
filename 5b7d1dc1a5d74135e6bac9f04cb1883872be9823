@@ -16,6 +16,24 @@
       "message": "Shouldn\u0027t this check for 3.0 or newer instead of 2.6?",
       "revId": "5b7d1dc1a5d74135e6bac9f04cb1883872be9823",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb681fe8_d002d3b0",
+        "filename": "extract/nvblob-py3.patch",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2025-07-07T21:46:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f8e0300_fa803ad3",
+      "revId": "5b7d1dc1a5d74135e6bac9f04cb1883872be9823",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
