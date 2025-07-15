@@ -22,7 +22,7 @@ LOCAL_PATH := $(call my-dir)
 INSTALLED_DTBIMAGE_TARGET_mdarcy_recovery := $(PRODUCT_OUT)/mdarcy_recovery.dtb.img
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 DTB_PATH := $(dir $(TARGET_PREBUILT_KERNEL))
-else ifneq ($(filter 3.10 4.9, $(TARGET_TEGRA_KERNEL)),)
+else ifneq ($(filter 3.10 4.9, $(TARGET_KERNEL_VERSION)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
 else ifneq ($(findstring dtstree,$(TARGET_KERNEL_ADDITIONAL_FLAGS)),)
 DTB_PATH := $(abspath $(KERNEL_OUT)/../lineage-oot/device-tree/platform/generic-dts/t21x/lineage)

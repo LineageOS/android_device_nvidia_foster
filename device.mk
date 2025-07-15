@@ -24,9 +24,9 @@ TARGET_TEGRA_VARIANT    ?= common
 
 TARGET_TEGRA_MODELS := $(shell awk -F, '/tegra_init::devices/{ f = 1; next } /};/{ f = 0 } f{ gsub(/"/, "", $$3); gsub(/ /, "", $$3); print $$3 }' device/nvidia/$(TARGET_REFERENCE_DEVICE)/init/init_$(TARGET_REFERENCE_DEVICE).cpp |sort |uniq)
 
+TARGET_KERNEL_VERSION ?= 4.9
 TARGET_TEGRA_BT       ?= bcm
 TARGET_TEGRA_CAMERA   ?= rel-shield-r
-TARGET_TEGRA_KERNEL   ?= 4.9
 TARGET_TEGRA_LIGHT    ?= lineage
 TARGET_TEGRA_THERMAL  ?= lineage
 TARGET_TEGRA_WIDEVINE ?= rel-shield-r
@@ -162,7 +162,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 # Kernel
 ifneq ($(TARGET_PREBUILT_KERNEL),)
 TARGET_FORCE_PREBUILT_KERNEL := true
-else ifeq ($(TARGET_TEGRA_KERNEL),4.9)
+else ifeq ($(TARGET_KERNEL_VERSION),4.9)
 PRODUCT_PACKAGES += \
     cypress-fmac
 endif

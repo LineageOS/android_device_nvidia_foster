@@ -52,10 +52,10 @@ WITH_LINEAGE_CHARGER := false
 TARGET_KERNEL_CLANG_COMPILE    := false
 KERNEL_TOOLCHAIN               := $(shell pwd)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-gnu-9.3/bin
 KERNEL_TOOLCHAIN_PREFIX        := aarch64-buildroot-linux-gnu-
-TARGET_KERNEL_SOURCE           := kernel/nvidia/kernel-$(TARGET_TEGRA_KERNEL)
+TARGET_KERNEL_SOURCE           := kernel/nvidia/kernel-$(TARGET_KERNEL_VERSION)
 TARGET_KERNEL_CONFIG           := tegra_android_defconfig
 BOARD_KERNEL_IMAGE_NAME        := Image.gz
-TARGET_KERNEL_ADDITIONAL_FLAGS := NV_BUILD_KERNEL_OPTIONS=$(TARGET_TEGRA_KERNEL) CONFIG_EXFAT_FS=m
+TARGET_KERNEL_ADDITIONAL_FLAGS := NV_BUILD_KERNEL_OPTIONS=$(TARGET_KERNEL_VERSION) CONFIG_EXFAT_FS=m
 BOARD_KERNEL_CMDLINE           := androidboot.boot_devices=sdhci-tegra.0,tegra-sata.0,sdhci-tegra.3
 
 TARGET_KERNEL_EXT_MODULE_ROOT := kernel/nvidia
