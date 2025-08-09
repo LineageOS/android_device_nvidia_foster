@@ -26,17 +26,15 @@ include device/nvidia/tegra-common/vendor/$(TARGET_TEGRA_FIRMWARE_BRANCH)/realte
 
 # Device specific bcm firmware
 PRODUCT_COPY_FILES += \
-    $(REL30_BCM_PATH)/bcm4354/nvram_jetsonE_cv_4354.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4354-sdio.nvidia,p2371-2180.txt \
-    $(FOSTER_BCM_PATH)/bcm4354/nvram_darcy_a00.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4354-sdio.nvidia,darcy.txt \
-    $(FOSTER_BCM_PATH)/bcm4354/nvram_foster_e_4354.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4354-sdio.nvidia,foster_e.txt \
-    $(REL30_BCM_PATH)/bcm4354/nvram_loki_e_4354.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4354-sdio.nvidia,loki_e_wifi.txt \
-    $(FOSTER_BCM_PATH)/bcm4356/brcmfmac4356-pcie.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4356-pcie.nvidia,darcy.txt \
+    $(FOSTER_BCM_PATH)/bcm4354/nvram_darcy_a00.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4354-sdio.nvidia,p2894-0050-a08.txt \
+    $(FOSTER_BCM_PATH)/bcm4354/nvram_foster_e_4354.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4354-sdio.nvidia,p2571-0930.txt \
+    $(FOSTER_BCM_PATH)/bcm4354/nvram_foster_e_4354.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4354-sdio.nvidia,p2571-0931.txt \
+    $(REL30_BCM_PATH)/bcm4354/nvram_loki_e_4354.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4354-sdio.nvidia,p2523-0030.txt \
+    $(REL30_BCM_PATH)/bcm4354/nvram_loki_e_4354.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4354-sdio.nvidia,p2523-0031.txt \
+    $(FOSTER_BCM_PATH)/bcm4356/brcmfmac4356-pcie.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4356-pcie.nvidia,p2894-0050-a08.txt \
+    $(FOSTER_BCM_PATH)/bcm4356/brcmfmac4356-pcie.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4356-pcie.nvidia,p3425-0500.txt \
     $(EXTERNAL_BCM_PATH)/bcm4356/BCM4356A2-13d3-3488.hcd:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/BCM4356A2-13d3-3488.hcd
 
-# Symlinks
+# Upstream nvram's
 PRODUCT_PACKAGES += \
-    brcmfmac4354-sdio_p2371-0000_symlink \
-    brcmfmac4354-sdio_loki_e_base_symlink \
-    brcmfmac4354-sdio_loki_e_lte_symlink \
-    brcmfmac4354-sdio_foster_e_hdd_symlink \
-    brcmfmac4356-pcie_sif_symlink
+    linux_firmware_brcm-bcm4354-nvidia_nvram
