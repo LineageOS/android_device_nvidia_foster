@@ -1,0 +1,167 @@
+#!/system/bin/sh
+
+usage_txt="usage: $(basename "$0") [OPTION] [FUNCTION]"
+
+help_txt="Control Hazeldos operating mode
+One of the FUNCTION below must be used:
+usb_boot      enable step-down, reset T2, boot from USB
+spifi_boot    enable step-dwon, reset T2, boot from SPIFI
+powerdown     disable Hazeldos step-down converter (VMCU)
+
+Options:
+-w TIMEOUT    wait for enumeration, TIMEOUT in seconds
+-p            print interface pin assignment
+-s            silent, don't print anything but set exit code
+-h            help"
+
+interface_txt="Interface pin assignment:
+netname           Exynos 5422      /sys/class/gpio  Odroid-XU3 I/O Expansion CON10
+T2_BOOT_MODE      XEINT_10/GPX1_2  18               pin15
+HAZELDOS_PWR_EN   XEINT_11/GPX1_3  19               pin18
+T2_RESET          XEINT_16/GPX2_0  24               pin26"
+
+while getopts "hw:ps" opt; do
+  case $opt in
+    h  )
+      echo "$usage_txt"
+      echo "$help_txt"
+      exit 0
+    ;;
+    w  )
+      timeout=$OPTARG
+    ;;
+    p  )
+      echo "$interface_txt"
+      exit 0
+    ;;
+    s  )
+      silent=1
+    ;;
+    \? )
+      echo "$usage_txt"
+      exit 1
+  esac
+done
+shift $((OPTIND - 1))
+
+if [ -n "$silent" ]; then exec > /dev/null 2>&1; fi
+
+
+MACHINE="$(uname -m)"
+if [ "$MACHINE" = "x86_64" ]; then
+    # reset signal
+    reset=507; release=0; active=1
+    # boot options
+    bootmode=506; spifi=0; usb=1
+    # step-down (pwren)
+    pwren=505; on=0; off=1
+else
+    # reset signal
+    reset=185; release=0; active=1
+    # boot options
+    bootmode=184; spifi=0; usb=1
+    # step-down (pwren)
+    pwren=174; on=0; off=1
+fi
+
+
+
+# usb enumeration
+nxp_vid=1fc9
+nxp_pid=000c
+rapt_vid=1cbe
+rapt_pid=0003
+
+
+verify_enumeration ()
+{
+  vid=$1
+  pid=$2
+  status=1
+
+  while [ "$timeout" -gt 0 ] && [ "$status" -ne 0 ]; do
+    lsusb | grep -q "$vid:$pid"
+    status=$?
+    timeout=$((timeout - 1))
+    sleep 1
+  done
+  if [ "$status" -ne 0 ]; then
+    echo "FAIL, device not enumerated as expected"
+    exit 1
+  else
+    echo "OK, device enumerates as: $vid:$pid"
+  fi
+}
+
+
+set_dir ()
+{
+  gpio_index=$1
+  set_direction=$2
+  if [ ! -d "/sys/class/gpio/gpio$gpio_index" ]; then
+    sh -c "echo $gpio_index > /sys/class/gpio/export"
+  fi
+  sh -c "echo $set_direction > /sys/class/gpio/gpio$gpio_index/direction"
+}
+
+set_val ()
+{
+  gpio_index=$1
+  gpio_value=$2
+  sh -c "echo $gpio_value > /sys/class/gpio/gpio$gpio_index/value"
+}
+
+configure_gpios ()
+{
+  set_dir $bootmode out
+  set_dir $pwren out
+  set_dir $reset out
+}
+
+usb_boot ()
+{
+  configure_gpios
+  set_val $reset $active
+  set_val $bootmode $usb
+  set_val $pwren $on
+  sleep 0.2
+  set_val $reset $release
+  sleep 0.2
+  # after lpcscrypt reset, we want to boot from spifi
+  set_val $bootmode $spifi
+  if [ -n "$timeout" ]; then verify_enumeration $nxp_vid $nxp_pid; fi
+}
+
+spifi_boot ()
+{
+  configure_gpios
+  set_val $reset $active
+  set_val $bootmode $spifi
+  set_val $pwren $on
+  sleep 0.2
+  set_val $reset $release
+  if [ -n "$timeout" ]; then verify_enumeration $rapt_vid $rapt_pid; fi
+}
+
+powerdown ()
+{
+  configure_gpios
+  set_val $pwren $off
+}
+
+
+# execute function, passed as argument to the script
+case $1 in
+  usb_boot|spifi_boot|powerdown )
+    echo "Configuring Hazeldos in:  $1 "
+    if [ "$(id -u)" -ne 0 ]; then
+      echo "This script must be run as root. Aborted." 1>&2
+      exit 1
+    fi
+    $1
+  ;;
+  * )
+    echo "error: FUNCTION $1 is not a valid argument"
+    echo "$usage_txt"
+  ;;
+esac
