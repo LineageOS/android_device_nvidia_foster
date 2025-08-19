@@ -67,7 +67,7 @@ MAIN_INIT_$(strip $(1))     := $(strip $(3))
 RECOVERY_INIT_$(strip $(1)) := $(strip $(4))
 POWER_RC_$(strip $(1))      := $(strip $(5))
 endef
-$(eval $(call initfiles_rule, baracus,      emmc,   jetson_cv,    foster, foster_e_common ))
+$(eval $(call initfiles_rule, baracus,      emmc,   baracus,      baracus,foster_e_common ))
 $(eval $(call initfiles_rule, batuu,        sd,     batuu,        foster, darcy           ))
 $(eval $(call initfiles_rule, darcy,        emmc,   darcy,        darcy,  darcy           ))
 $(eval $(call initfiles_rule, dragon,       dragon, dragon,       dragon, abca            ))
@@ -236,6 +236,13 @@ THERMAL_CONFIG_sif          := darcy
 PRODUCT_COPY_FILES += \
     $(foreach model,$(TARGET_TEGRA_MODELS),device/nvidia/foster/thermal/thermalhal.$(THERMAL_CONFIG_$(model)).xml:$(TARGET_COPY_OUT_VENDOR)/etc/thermalhal.$(model).xml)
 endif
+
+# Touch
+PRODUCT_PACKAGES += \
+    hazeldos-ctrl
+
+PRODUCT_COPY_FILES += \
+    device/nvidia/foster/initfiles/hazeldos-ctrl:recovery/root/vendor/bin/hazeldos-ctrl
 
 # WiFi
 ifeq ($(TARGET_TEGRA_WIFI),bcm)
