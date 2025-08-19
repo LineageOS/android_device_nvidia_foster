@@ -82,6 +82,9 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2024-12-05
 
+# SELinux
+BOARD_VENDOR_SEPOLICY_DIRS   += device/nvidia/foster/sepolicy/vendor
+
 # Treble
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 BOARD_VNDK_VERSION                     := current
