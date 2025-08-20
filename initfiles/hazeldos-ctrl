@@ -1,6 +1,6 @@
-#!/system_ext/bin/bash
+#!/vendor/bin/sh
 
-usage_txt="usage: $(basename $BASH_SOURCE) [OPTION] [FUNCTION]"
+usage_txt="usage: $(basename "$0") [OPTION] [FUNCTION]"
 
 help_txt="Control Hazeldos operating mode
 One of the FUNCTION below must be used:
@@ -23,7 +23,7 @@ T2_RESET          XEINT_16/GPX2_0  24               pin26"
 while getopts "hw:ps" opt; do
   case $opt in
     h  )
-      echo $usage_txt
+      echo "$usage_txt"
       echo "$help_txt"
       exit 0
     ;;
@@ -42,9 +42,9 @@ while getopts "hw:ps" opt; do
       exit 1
   esac
 done
-shift $(($OPTIND - 1))
+shift $((OPTIND - 1))
 
-if [ ! -z $silent ]; then exec > /dev/null 2>&1; fi
+if [ -n "$silent" ]; then exec > /dev/null 2>&1; fi
 
 
 MACHINE="$(uname -m)"
@@ -75,16 +75,17 @@ rapt_pid=0003
 
 verify_enumeration ()
 {
-  local vid=$1
-  local pid=$2
-  local status=1
-  
-  until test $((timeout--)) -eq 0 -o $status -eq 0; do
-    lsusb | grep -q $vid:$pid
+  vid=$1
+  pid=$2
+  status=1
+
+  while [ "$timeout" -gt 0 ] && [ "$status" -ne 0 ]; do
+    lsusb | grep -q "$vid:$pid"
     status=$?
+    timeout=$((timeout - 1))
     sleep 1
   done
-  if test $timeout -eq -1; then
+  if [ "$status" -ne 0 ]; then
     echo "FAIL, device not enumerated as expected"
     exit 1
   else
@@ -126,9 +127,9 @@ usb_boot ()
   sleep 0.2
   set_val $reset $release
   sleep 0.2
-  # after lpcscrypt reset, we want to boot from spifi	
+  # after lpcscrypt reset, we want to boot from spifi
   set_val $bootmode $spifi
-  if [ ! -z $timeout ]; then verify_enumeration $nxp_vid $nxp_pid; fi
+  if [ -n "$timeout" ]; then verify_enumeration $nxp_vid $nxp_pid; fi
 }
 
 spifi_boot ()
@@ -139,7 +140,7 @@ spifi_boot ()
   set_val $pwren $on
   sleep 0.2
   set_val $reset $release
-  if [ ! -z $timeout ]; then verify_enumeration $rapt_vid $rapt_pid; fi
+  if [ -n "$timeout" ]; then verify_enumeration $rapt_vid $rapt_pid; fi
 }
 
 powerdown ()
@@ -153,7 +154,7 @@ powerdown ()
 case $1 in
   usb_boot|spifi_boot|powerdown )
     echo "Configuring Hazeldos in:  $1 "
-    if [[ $EUID -ne 0 ]]; then
+    if [ "$(id -u)" -ne 0 ]; then
       echo "This script must be run as root. Aborted." 1>&2
       exit 1
     fi
