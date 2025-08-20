@@ -1,4 +1,4 @@
-#Copyright (c) 2014-2018, NVIDIA CORPORATION.  All rights reserved.
+'#Copyright (c) 2014-2018, NVIDIA CORPORATION.  All rights reserved.
 #
 #NVIDIA Corporation and its licensors retain all intellectual property and
 #proprietary rights in and to this software and related documentation.  Any
@@ -24,10 +24,6 @@ on init
     write /dev/cpuset/top-app/mems 0
 
 on fs
-    setprop audio.custompolicy 1
-    setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
-    setprop ro.crypto.umount_sd false
-    setprop ro.crypto.fuse_sdcard true
     mount_all /vendor/etc/fstab.jetson_cv
     swapon_all /vendor/etc/fstab.jetson_cv
 
