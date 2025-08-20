@@ -1,4 +1,4 @@
-'#Copyright (c) 2014-2018, NVIDIA CORPORATION.  All rights reserved.
+#Copyright (c) 2014-2018, NVIDIA CORPORATION.  All rights reserved.
 #
 #NVIDIA Corporation and its licensors retain all intellectual property and
 #proprietary rights in and to this software and related documentation.  Any
@@ -33,12 +33,6 @@ on post-fs-data
 
 on post-fs-data
     chmod 0444 /sys/devices/platform/tegra-fuse/aid
-
-on property:persist.gps.present=true
-    symlink /system/etc/android.hardware.location.gps.xml /data/android.hardware.location.gps.xml
-
-on property:persist.gps.present=false
-    rm /data/android.hardware.location.gps.xml
 
 on property:sys.boot_completed=1
     write /sys/devices/virtual/android_usb/android0/uevent_in_suspend N
