@@ -126,6 +126,8 @@ void vendor_set_sku(tegra_init *ti)
 		ti->property_set("ro.boot.product.vendor.sku", "nx");
 	else if (ti->is_model("dragon"))
 		ti->property_set("ro.boot.product.vendor.sku", "dragon");
+        else if (ti->is_model("baracus"))
+                ti->property_set("ro.boot.product.vendor.sku", "baracus");
 }
 
 void vendor_set_nrdp_props(tegra_init *ti)
@@ -187,6 +189,8 @@ void vendor_load_properties()
 		tav = { "11", "RQ1A.210105.003", "13961458_4040.2147" };
 	} else if (ti.is_model("sif")) {
 		tav = { "11", "RQ1A.210105.003", "7825199_4040.2147" };
+        } else if (ti.is_model("baracus")) {
+                tav = { "7.0", "NRT1.240624.004", "12020658" };
 	} else if (ti.is_model("dragon")) {
 		tav = { "8.1.0", "OPM8.190605.005", "5749003" };
 
@@ -208,7 +212,7 @@ void vendor_load_properties()
 
 		if (!(ti.is_model("loki_e_base") || ti.is_model("loki_e_lte") || ti.is_model("loki_e_wifi") ||
 		      ti.is_model("odin") || ti.is_model("modin") || ti.is_model("fric") || ti.is_model("vali") ||
-		      ti.is_model("dragon")))
+		      || ti.is_model("dragon")))
 			ti.property_set("ro.recovery.batteryless", "true");
 	}
 
