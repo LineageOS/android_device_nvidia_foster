@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d221a92_e08d29b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2025-08-20T18:45:47Z",
+      "side": 1,
+      "message": "Drop executable perms from the scripts, the build system will set that on install. Better to not have executable things in the device trees if not necessary.\n\nThe input associations snippet in the commit message is irrelevant to this change. Maybe more just a \u0027Add hazeldos script\u0027 subject. With the body containing a description of what the script does, namely enable the baracus touch controller.",
+      "revId": "e3758c137bd438fffad9e4184fb40728bb99ec73",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
