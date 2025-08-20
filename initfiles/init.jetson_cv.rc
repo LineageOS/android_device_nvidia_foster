@@ -34,10 +34,10 @@ on post-fs-data
 on post-fs-data
     chmod 0444 /sys/devices/platform/tegra-fuse/aid
 
-on property:persist.gps.present=true
+on property:persist.vendor.gps.present=true
     symlink /system/etc/android.hardware.location.gps.xml /data/android.hardware.location.gps.xml
 
-on property:persist.gps.present=false
+on property:persist.vendor.gps.present=false
     rm /data/android.hardware.location.gps.xml
 
 on property:sys.boot_completed=1
