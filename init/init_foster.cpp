@@ -88,8 +88,15 @@ void vendor_set_usb_product_ids(tegra_init *ti)
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "2000";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "2000";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "2000";
+        } else if (ti->is_model("baracus")) {
+                mCommonUsbIds["ro.vendor.nv.usb.vid"]           = "18D1";
+                mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "D001";
+                mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "D001";
+                mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "D001";
+                mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "D001";
+                mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "D001";
+                mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "D001";
 	} else if (ti->is_model("dragon")) {
-		mCommonUsbIds["ro.vendor.nv.usb.vid"]                  = "18D1";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]              = "5202";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]          = "5203";
 		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]              = "5206";
