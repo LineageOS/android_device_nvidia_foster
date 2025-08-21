@@ -117,6 +117,7 @@ ifelse(
     ifelse(
       getprop("ro.hardware") == "baracus",
       (
+        ui_print("This is n fused baracus.");
         package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
       )
     );
@@ -321,8 +322,8 @@ ifelse(
     ifelse(
       getprop("ro.hardware") == "baracus",
       (
-        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
         ui_print("This is an unfused baracus.");
+        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
       )
     );
 ''')
