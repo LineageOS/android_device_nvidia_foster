@@ -112,6 +112,16 @@ ifelse(
     );
 ''')
 
+  """ Fused baracus """
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "baracus",
+      (
+        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+      )
+    );
+''')
+
   """ Fused darcy """
   info.script.AppendExtra(f'''
     ifelse(
@@ -302,6 +312,18 @@ ifelse(
           )
         );
         package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+      )
+    );
+''')
+
+  """ Unfused baracus """
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "baracus",
+      (
+        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+        ui_print("This is an unfused baracys. Many devlopers would kill for this unit.");
+        ui_print("This is not supported. Please report to LineageOS Maintainer.");
       )
     );
 ''')
