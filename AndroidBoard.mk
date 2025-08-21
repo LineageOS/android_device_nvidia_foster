@@ -25,6 +25,7 @@ DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts/nvidia)
 endif
 
 DTB_TARGETS := \
+    tegra210-baracus.dtb \
     tegra210-darcy-p2894-0000-a00-00.dtb \
     tegra210-darcy-p2894-0050-a04-00.dtb \
     tegra210-darcy-p2894-0050-a08-00.dtb \

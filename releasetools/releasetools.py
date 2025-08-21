@@ -112,6 +112,16 @@ ifelse(
     );
 ''')
 
+  """ Fused baracus or baracus_hdd """
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "baracus",
+      (
+        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+      )
+    );
+''')
+
   """ Fused darcy """
   info.script.AppendExtra(f'''
     ifelse(
