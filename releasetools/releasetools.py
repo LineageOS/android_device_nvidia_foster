@@ -112,6 +112,16 @@ ifelse(
     );
 ''')
 
+  """ Fused baracus """
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "baracus",
+      (
+        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+      )
+    );
+''')
+
   """ Fused darcy """
   info.script.AppendExtra(f'''
     ifelse(
@@ -302,6 +312,17 @@ ifelse(
           )
         );
         package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+      )
+    );
+''')
+
+  """ Unfused baracus """
+  info.script.AppendExtra(f'''
+    ifelse(
+      getprop("ro.hardware") == "baracus",
+      (
+        package_extract_file("install/" + tegra_get_dtbname(), "{DTB_PART}");
+        ui_print("This is an unfused baracus.");
       )
     );
 ''')
