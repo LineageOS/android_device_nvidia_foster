@@ -196,8 +196,6 @@ void vendor_load_properties()
 		tav = { "11", "RQ1A.210105.003", "13961458_4040.2147" };
 	} else if (ti.is_model("sif")) {
 		tav = { "11", "RQ1A.210105.003", "7825199_4040.2147" };
-        } else if (ti.is_model("baracus")) {
-                tav = { "7.0", "NRT1.240624.004", "12020658" };
 	} else if (ti.is_model("dragon")) {
 		tav = { "8.1.0", "OPM8.190605.005", "5749003" };
 
