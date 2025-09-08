@@ -22,7 +22,7 @@ EXTERNAL_BCM_PATH := vendor/nvidia/common/external/bcm
 
 include device/nvidia/tegra-common/vendor/$(TARGET_TEGRA_FIRMWARE_BRANCH)/bcm/bcm4354.mk
 include device/nvidia/tegra-common/vendor/$(TARGET_TEGRA_FIRMWARE_BRANCH)/bcm/bcm4356.mk
-include device/nvidia/tegra-common/vendor/$(TARGET_TEGRA_FIRMWARE_BRANCH)/realtek/rtl8153a-3.mk
+include device/nvidia/tegra-common/vendor/$(TARGET_TEGRA_FIRMWARE_BRANCH)/realtek/rtl8152.mk
 
 # Device specific bcm firmware
 PRODUCT_COPY_FILES += \
