@@ -142,6 +142,12 @@ PRODUCT_COPY_FILES += \
 endif
 endif
 
+# Bluetooth
+ifeq ($(TARGET_TEGRA_BT),bcm)
+$(call soong_config_set,brcm_libbt,bdroid_buildcfg_include_dir,device/nvidia/foster/comms)
+$(call soong_config_set,brcm_libbt,custom_bt_config,//device/nvidia/foster:vnd_foster.txt)
+endif
+
 # EKS
 ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_TOS)),)
 PRODUCT_COPY_FILES += \
