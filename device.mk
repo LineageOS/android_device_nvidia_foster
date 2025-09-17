@@ -125,6 +125,16 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/nvidia/foster/permissions/com.nvidia.feature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nvidia.feature.xml
 
+# Power
+ifeq ($(TARGET_POWER_HAL),perfmgr-lineage)
+ifeq ($(TARGET_GRAPHICS),mesa)
+PRODUCT_PACKAGES += \
+    powerhint.nouveau.json
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.powerhal.config=powerhint.nouveau.json
+endif
+endif
+
 # Shipping API
 PRODUCT_SHIPPING_API_LEVEL := 36
 
