@@ -47,9 +47,8 @@ NX_PUBLIC_KEY       = '0x7e39e100d1135918ceedfe5d66e66496eed21ecb3486d72095cc0b7
 NX_BL_VERSION       = '2020.04-03755-gf4d532d00d-rev3'
 
 def FullOTA_PostValidate(info):
-  if 'INSTALL/bin/resize2fs_static' in info.input_zip.namelist():
-    info.script.AppendExtra(f'run_program("/tmp/install/bin/resize2fs_static", "{APP_PART}");')
-    info.script.AppendExtra(f'run_program("/tmp/install/bin/resize2fs_static", "{VENDOR_PART}");')
+  info.script.AppendExtra(f'run_program("/system/bin/resize2fs", "{APP_PART}");')
+  info.script.AppendExtra(f'run_program("/system/bin/resize2fs", "{VENDOR_PART}");')
 
 def FullOTA_Assertions(info):
   if 'RADIO/foster_e.blob' in info.input_zip.namelist():

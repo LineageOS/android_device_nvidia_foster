@@ -30,5 +30,4 @@ PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
     ro.vendor.build.fingerprint \
     ro.product.first_api_level
 PRODUCT_PACKAGES += \
-    init_tegra \
-    resize2fs_static
+    init_tegra
