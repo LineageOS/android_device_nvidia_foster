@@ -1,0 +1,15 @@
+# Partitions
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/APP	u:object_r:system_block_device:s0
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/CAC	u:object_r:cache_block_device:s0
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/DTB	u:object_r:dtb_block_device:s0
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/FCT	u:object_r:factorycalib_block_device:s0
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/LNX	u:object_r:boot_block_device:s0
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/MDA	u:object_r:metadata_block_device:s0
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/MSC	u:object_r:misc_block_device:s0
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/RP2	u:object_r:frp_block_device:s0
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/RP3	u:object_r:rpx_block_device:s0
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/SOS	u:object_r:recovery_block_device:s0
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/UDA	u:object_r:userdata_block_device:s0
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/USP	u:object_r:bootloader_block_device:s0
+/dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/vendor	u:object_r:system_block_device:s0
+/dev/block/platform/700b0600\.mmc/mmcblk0rpmb				u:object_r:rpmb_block_device:s0
