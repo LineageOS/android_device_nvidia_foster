@@ -66,6 +66,9 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2024-12-05
 
+# SELinux
+BOARD_VENDOR_SEPOLICY_DIRS += device/nvidia/foster/sepolicy/vendor
+
 # Verity
 # Only needed for signing
 BOARD_AVB_ENABLE := false
