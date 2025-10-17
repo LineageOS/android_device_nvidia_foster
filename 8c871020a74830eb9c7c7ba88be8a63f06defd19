@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03b0febe_be3266b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14048
+      },
+      "writtenOn": "2025-10-17T04:31:35Z",
+      "side": 1,
+      "message": "Code looks fine, but I want to know if it fully resolves the issue on baracus before merging.",
+      "revId": "8c871020a74830eb9c7c7ba88be8a63f06defd19",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
