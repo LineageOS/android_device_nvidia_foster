@@ -13,3 +13,7 @@
 /dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/USP	u:object_r:bootloader_block_device:s0
 /dev/block/platform/(700b0[06]00\.mmc|70020000\.sata)/by-name/vendor	u:object_r:system_block_device:s0
 /dev/block/platform/700b0600\.mmc/mmcblk0rpmb				u:object_r:rpmb_block_device:s0
+
+# Jetson TX1 otg port
+/sys/devices/platform/7009f000.padctl/usb2-0/7009f000.padctl:ports:usb2-0:connector/power_supply/usb-charger-0/type	u:object_r:sysfs_power_supply:s0
+/sys/devices/platform/7009f000.padctl/usb2-0/7009f000.padctl:ports:usb2-0:connector/power_supply/usb-charger-0/online	u:object_r:sysfs_power_supply:s0
