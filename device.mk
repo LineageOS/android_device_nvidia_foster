@@ -104,12 +104,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.ethernet.xml
 
-# ATV specific stuff
-ifeq ($(PRODUCT_IS_ATV),true)
-    PRODUCT_PACKAGES += \
-        android.hardware.tv.input@1.0-impl
-endif
-
 # Audio
 ifneq ($(TARGET_TEGRA_AUDIO),)
 PRODUCT_PACKAGES += \
