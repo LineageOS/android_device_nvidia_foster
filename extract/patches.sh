@@ -53,7 +53,17 @@ function patch_jetson_dtb() {
   echo "";
 }
 
+function patch_tnspec() {
+  echo -n "Patching tnspec octal conversion...";
+
+  sed -i 's/"0000/"0/' ${LINEAGE_ROOT}/${OUTDIR}/foster/rel-30/tnspec/foster.json
+  sed -i 's/"00/"0o/' ${LINEAGE_ROOT}/${OUTDIR}/foster/rel-30/tnspec/foster.json
+
+  echo "";
+}
+
 fetch_smaug_nvram;
 patch_nvrams;
 patch_nvblob;
 patch_jetson_dtb;
+patch_tnspec;
