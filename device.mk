@@ -100,6 +100,12 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.ethernet.xml
 
+# Audio
+ifeq ($(TARGET_AUDIO_HAL),baylibre)
+PRODUCT_COPY_FILES += \
+    device/nvidia/tegra-common/audio/primary_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/primary_audio_policy_configuration.xml
+endif
+
 # Fingerprint
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildFingerprint=NVIDIA/foster_e/foster:11/RQ1A.210105.003/13961456_3871.0251:user/release-keys
