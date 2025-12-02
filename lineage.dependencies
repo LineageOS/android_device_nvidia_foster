@@ -12,57 +12,8 @@
    "target_path": "kernel/nvidia/cypress-fmac"
  },
  {
-   "repository": "android_kernel_nvidia_exfat",
-   "target_path": "kernel/nvidia/exfat"
- },
- {
-   "repository": "android_kernel_nvidia_kernel",
-   "target_path": "kernel/nvidia/kernel-4.9",
-   "branch": "lineage-23.0_4.9"
- },
- {
-   "repository": "android_kernel_nvidia_nvidia",
-   "target_path": "kernel/nvidia/nvidia"
- },
- {
-   "repository": "android_kernel_nvidia_nvgpu",
-   "target_path": "kernel/nvidia/nvgpu"
- },
- {
-   "repository": "android_hardware_nvidia_hdmi-cec",
-   "target_path": "hardware/nvidia/hdmi-cec"
- },
- {
-   "repository": "android_hardware_nvidia_interfaces",
-   "target_path": "hardware/nvidia/interfaces"
- },
- {
    "repository": "android_hardware_nvidia_light",
    "target_path": "hardware/nvidia/light"
- },
- {
-   "repository": "android_hardware_nvidia_memtrack",
-   "target_path": "hardware/nvidia/memtrack"
- },
- {
-   "repository": "android_hardware_nvidia_platform_t210_foster",
-   "target_path": "hardware/nvidia/platform/t210/foster"
- },
- {
-   "repository": "android_hardware_nvidia_platform_t210_jetson",
-   "target_path": "hardware/nvidia/platform/t210/jetson"
- },
- {
-   "repository": "android_hardware_nvidia_platform_t210b01_darcy",
-   "target_path": "hardware/nvidia/platform/t210b01/darcy"
- },
- {
-   "repository": "android_hardware_nvidia_platform_t210b01_sif",
-   "target_path": "hardware/nvidia/platform/t210b01/sif"
- },
- {
-   "repository": "android_hardware_nvidia_power",
-   "target_path": "hardware/nvidia/power"
  },
  {
    "repository": "android_hardware_nvidia_thermal",

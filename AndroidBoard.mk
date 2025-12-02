@@ -18,12 +18,6 @@ ifneq ($(TARGET_PREBUILT_KERNEL),)
 DTB_PATH := $(dir $(TARGET_PREBUILT_KERNEL))
 else ifneq ($(TARGET_KERNEL_PLATFORM_TARGET),)
 DTB_PATH := $(abspath $(KERNEL_OUT))
-else ifneq ($(filter 3.10 4.9, $(TARGET_KERNEL_VERSION)),)
-DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts)
-else ifneq ($(findstring dtstree,$(TARGET_KERNEL_ADDITIONAL_FLAGS)),)
-DTB_PATH := $(abspath $(KERNEL_OUT)/../lineage-oot/device-tree/platform/generic-dts/t21x/lineage)
-else
-DTB_PATH := $(abspath $(KERNEL_OUT)/arch/arm64/boot/dts/nvidia)
 endif
 
 DTB_TARGETS := \
@@ -71,20 +65,6 @@ $(INSTALLED_DTBIMAGE_TARGET_sif): $(INSTALLED_KERNEL_TARGET) | mkdtimg
 		$(DTB_PATH)/tegra210b01-sif-p3425-0500-a04.dtb --rev=0xa4
 
 ALL_DEFAULT_INSTALLED_MODULES += $(INSTALLED_DTBIMAGE_TARGET_mdarcy) $(INSTALLED_DTBIMAGE_TARGET_sif)
-
-ifneq ("$(wildcard hardware/nvidia/platform/t210/nx)","")
-INSTALLED_DTBIMAGE_TARGET_nx     := $(PRODUCT_OUT)/install/nx.dtb.img
-$(INSTALLED_DTBIMAGE_TARGET_nx): $(INSTALLED_KERNEL_TARGET) | mkdtimg
-	echo -e ${CL_GRN}"Building nx DTImage"${CL_RST}
-	@mkdir -p $(PRODUCT_OUT)/install
-	$(HOST_OUT_EXECUTABLES)/mkdtimg create $@ \
-		$(DTB_PATH)/tegra210-odin.dtb    --id=0x4F44494E --rev=0xa00 \
-		$(DTB_PATH)/tegra210b01-odin.dtb --id=0x4F44494E --rev=0xb01 \
-		$(DTB_PATH)/tegra210b01-vali.dtb --id=0x56414C49 --rev=0xa00 \
-		$(DTB_PATH)/tegra210b01-fric.dtb --id=0x46524947 --rev=0xa00
-
-ALL_DEFAULT_INSTALLED_MODULES += $(INSTALLED_DTBIMAGE_TARGET_nx)
-endif
 
 AVBTOOL_HOST := $(HOST_OUT_EXECUTABLES)/avbtool
 INSTALLED_VBMETA_SKIP_TARGET := $(PRODUCT_OUT)/install/vbmeta_skip.img

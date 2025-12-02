@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="nrdp_platform_capabilities">{\"vp9Disabled\":\"true\"}</string>
-    <string name="nrdp_audio_platform_capabilities">{\"audiocaps\":{\"continuousAudio\":true,\"ddplus\":{\"enabled\":true,\"mixing\":true,\"transition\":\"ease\"},\"pcm\":{\"mixing\":true,\"transition\":\"ease\"}}}</string>
-</resources>

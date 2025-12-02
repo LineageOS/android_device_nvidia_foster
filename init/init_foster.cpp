@@ -137,17 +137,6 @@ void vendor_set_sku(tegra_init *ti)
                 ti->property_set("ro.boot.product.vendor.sku", "baracus");
 }
 
-void vendor_set_nrdp_props(tegra_init *ti)
-{
-	if (ti->is_model("mdarcy") || ti->is_model("sif"))
-		ti->property_set("ro.vendor.nrdp.modelgroup", "NVIDIASHIELDANDROIDTV2019");
-	else
-		ti->property_set("ro.vendor.nrdp.modelgroup", "SHIELDANDROIDTV");
-
-	ti->property_set("ro.vendor.nrdp.audio.otfs", "true");
-	ti->property_set("ro.vendor.nrdp.validation", "ninja_6");
-}
-
 void vendor_set_oem_key1(tegra_init *ti)
 {
 	std::string rel_year = "15";
@@ -226,7 +215,6 @@ void vendor_load_properties()
 		vendor_set_sku(&ti);
 
 		if (ti.property_get("ro.build.characteristics") == "tv") {
-			vendor_set_nrdp_props(&ti);
 			vendor_set_oem_key1(&ti);
 		}
 	}

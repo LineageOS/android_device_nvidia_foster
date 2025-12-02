@@ -25,6 +25,7 @@ TARGET_USERIMAGES_USE_EXT4         := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE  := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR             := vendor
+BOARD_USES_METADATA_PARTITION      := true
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := foster,darcy,jetson,loki,mdarcy,nx
@@ -45,37 +46,14 @@ TARGET_VENDOR_PROP += device/nvidia/foster/bluetooth.prop
 WITH_LINEAGE_CHARGER := false
 
 # Kernel
-ifeq ($(TARGET_KERNEL_VERSION),4.9)
-TARGET_KERNEL_CLANG_COMPILE    := false
-KERNEL_TOOLCHAIN               := $(shell pwd)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-gnu-9.3/bin
-KERNEL_TOOLCHAIN_PREFIX        := aarch64-buildroot-linux-gnu-
-TARGET_KERNEL_SOURCE           := kernel/nvidia/kernel-$(TARGET_KERNEL_VERSION)
-TARGET_KERNEL_CONFIG           := tegra_android_defconfig
-BOARD_KERNEL_IMAGE_NAME        := Image.gz
-TARGET_KERNEL_ADDITIONAL_FLAGS := NV_BUILD_KERNEL_OPTIONS=$(TARGET_KERNEL_VERSION) CONFIG_EXFAT_FS=m
-BOARD_KERNEL_CMDLINE           := androidboot.boot_devices=sdhci-tegra.0,tegra-sata.0,sdhci-tegra.3
-
-TARGET_KERNEL_EXT_MODULE_ROOT := kernel/nvidia
-TARGET_KERNEL_EXT_MODULES := \
-    exfat:kbuild \
-    nvgpu/drivers/gpu/nvgpu:kbuild
-include device/nvidia/foster/modules.mk
-
-ifneq ($(TARGET_PREBUILT_KERNEL),)
-MODDIR := $(dir $(TARGET_PREBUILT_KERNEL))
-BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(MODDIR)/*.ko)
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(addprefix $(MODDIR)/,$(BOOT_KERNEL_MODULES))
-BOARD_RECOVERY_KERNEL_MODULES := $(addprefix $(MODDIR)/,$(RECOVERY_KERNEL_MODULES))
-endif
-else
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 TARGET_KERNEL_PLATFORM_TARGET := tegra
 TARGET_KERNEL_SOURCE          := vendor/nvidia/$(TARGET_KERNEL_PLATFORM_TARGET)
 BOARD_KERNEL_IMAGE_NAME       := Image.gz
 endif
+
 BOARD_KERNEL_CMDLINE          := firmware_class.path=/vendor/firmware cpufreq.default_governor=performance cma=512MB nouveau.atomic=1
-include device/nvidia/foster/modules-ack.mk
-endif
+include device/nvidia/foster/modules.mk
 
 # Recovery
 TARGET_RECOVERY_FSTAB        := device/nvidia/foster/initfiles/fstab.emmc
@@ -87,14 +65,6 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/foster/releasetools
 
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2024-12-05
-
-# SELinux
-BOARD_VENDOR_SEPOLICY_DIRS   += device/nvidia/foster/sepolicy/vendor
-
-# Treble
-BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
-BOARD_VNDK_VERSION                     := current
-PRODUCT_FULL_TREBLE_OVERRIDE           := true
 
 # Verity
 # Only needed for signing

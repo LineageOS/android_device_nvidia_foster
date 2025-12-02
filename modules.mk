@@ -14,108 +14,205 @@
 # limitations under the License.
 #
 
-# Nvhost podgov
+# Gpu driver
+ifeq ($(TARGET_TEGRA_GPU),nvgpu)
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    governor_pod_scaling
-
-# Proprietary gpu driver
-BOARD_VENDOR_KERNEL_MODULES_LOAD += \
+    governor_pod_scaling \
     nvgpu
-
-# Tegra sata
+else
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    ahci_tegra
+    nouveau
+endif
 
-# Realtek 8168
+# Tegra high speed serial
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    r8168
+    serial-tegra
 
-# Bluedroid power management
+# Usb Bluetooth
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    bluedroid_pm
+    btusb
+
+# Broadcom wifi
+BOARD_VENDOR_KERNEL_MODULES_LOAD += \
+    brcmfmac-wcc
+
+# Realtek wifi
+BOARD_VENDOR_KERNEL_MODULES_LOAD += \
+    rtw88_8821cu \
+    rtw88_8822ce
+
+# Realtek ethernet
+BOARD_VENDOR_KERNEL_MODULES_LOAD += \
+    r8169
+
+# Tegra cec
+BOARD_VENDOR_KERNEL_MODULES_LOAD += \
+    tegra_cec
 
 # Tegra hdmi audio
+ifeq ($(TARGET_KERNEL_VERSION),6.12)
+BOARD_VENDOR_KERNEL_MODULES_LOAD += \
+    snd-hda-codec-hdmi
+else
+BOARD_VENDOR_KERNEL_MODULES_LOAD += \
+    snd-hda-codec-tegrahdmi
+endif
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
     snd-hda-tegra
 
 # Tegra audio processing engine
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    snd-soc-tegra210-alt-xbar \
-    snd-soc-tegra210-alt-admaif \
-    snd-soc-tegra210-alt-sfc \
-    snd-soc-tegra210-alt-i2s \
-    snd-soc-tegra210-alt-mixer \
-    snd-soc-tegra210-alt-afc \
-    snd-soc-tegra210-alt-adx \
-    snd-soc-tegra210-alt-amx \
-    snd-soc-tegra210-alt-dmic \
-    snd-soc-tegra210-alt-mvc \
-    snd-soc-tegra210-alt-ope \
-    snd-soc-tegra-machine-driver
-
-# Userspace aes crypto access
-BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    tegra-cryptodev
-
-# Input cpufreq boost
-BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    input-cfboost
-
-# Fan
-BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    pwm_fan \
-    therm_fan_est
-
-# Power Monitor
-BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    ina3221
-
-# TV Tuners
-BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    videobuf-dvb \
-    lgdt3306a \
-    si2168 \
-    si2157 \
-    lgdt3305 \
-    tda18272 \
-    em28xx-dvb \
-    em28xx-rc \
-    cx25840 \
-    cx231xx-dvb
-
-# FS
-BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    exfat
-
-# USB Modem
-BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    cdc-acm
+    tegra210-adma \
+    snd-soc-tegra210-ahub \
+    snd-soc-tegra210-sfc \
+    snd-soc-tegra210-i2s \
+    snd-soc-tegra210-mixer \
+    snd-soc-tegra210-amx \
+    snd-soc-tegra210-admaif \
+    snd-soc-tegra210-adx \
+    snd-soc-tegra210-dmic \
+    snd-soc-tegra210-mvc \
+    snd-soc-tegra210-ope \
+    snd-soc-tegra-audio-graph-card
 
 # Nvidia Controllers
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    ozwpan \
-    hid-nvidia-blake \
-    hid-jarvis-remote
+    hid-nvidia-shield \
+    hid-nvidia-shield-oot
 
-# Misc Controllers
+# Raydium touchscreen
 BOARD_VENDOR_KERNEL_MODULES_LOAD += \
-    hid-xinmo \
-    hid-betopff
+    rm31080a_ctrl \
+    rm31080a_ts
 
+# Copy to boot
+BOOT_KERNEL_MODULES := \
+    system_heap.ko \
+    tegra30-devfreq.ko \
+    cpufreq-dt.ko \
+    tegra124-cpufreq.ko \
+    i2c-tegra.ko \
+    i2c-dev.ko \
+    spi-tegra114.ko \
+    spi-tegra210-quad.ko \
+    bq24190_charger.ko \
+    bq27xxx_battery.ko \
+    bq27xxx_battery_i2c.ko \
+    rtc-tegra.ko \
+    gpio-tegra.ko \
+    max77620.ko \
+    gpio-max77620.ko \
+    pinctrl-max77620.ko \
+    max77620-regulator.ko \
+    rtc-max77686.ko \
+    max77812-regulator.ko \
+    max8973-regulator.ko \
+    max77620-restart.ko \
+    gpio-pca953x.ko \
+    tegra20-apb-dma.ko \
+    phy-tegra-xusb.ko \
+    xhci-tegra.ko \
+    tegra-xudc.ko \
+    usb-conn-gpio.ko \
+    pci-tegra.ko \
+    hwmon.ko \
+    pwm-tegra.ko \
+    pwm-fan.ko \
+    pwm-regulator.ko \
+    tegra-soctherm.ko \
+    lm90.ko \
+    cqhci.ko \
+    sdhci-tegra.ko \
+    libahci.ko \
+    libahci_platform.ko \
+    libata.ko \
+    ahci_tegra.ko \
+    mtd.ko \
+    spi-nor.ko \
+    mtd_blkdevs.ko \
+    mtdblock.ko \
+    host1x.ko \
+    drm_display_helper.ko \
+    drm_dp_aux_bus.ko \
+    tegra-aconnect.ko \
+    tegra-drm.ko \
+    panel-jdi-58-1440-810.ko \
+    pwm_bl.ko
+
+ifeq ($(TARGET_TEGRA_TOS),trusty)
+BOOT_KERNEL_MODULES += \
+    ffa-core.ko \
+    ffa-module.ko \
+    trusty-core.ko \
+    trusty-ffa.ko \
+    trusty-ipc.ko \
+    trusty-log.ko \
+    trusty-populate.ko \
+    trusty-smc.ko \
+    trusty-test.ko \
+    trusty-virtio.ko \
+    trusty-virtio-polling.ko
+endif
 
 # Load in first stage boot
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := \
+    system_heap \
+    tegra20-apb-dma \
+    i2c-tegra \
+    max77620 \
+    max77620-regulator \
+    gpio-tegra \
+    pwm-tegra \
+    pwm-regulator \
+    pinctrl-max77620 \
+    gpio-max77620 \
+    max77812-regulator \
+    max8973-regulator \
+    tegra124-cpufreq \
+    spi-tegra114 \
+    spi-tegra210-quad \
+    bq24190_charger \
+    bq27xxx_battery_i2c \
+    rtc-tegra \
+    gpio-pca953x \
+    xhci-tegra \
+    tegra-xudc \
+    usb-conn-gpio \
     pci-tegra \
-    usb-storage
+    pwm-fan \
+    tegra-soctherm \
+    lm90 \
+    max77620-restart \
+    tegra-aconnect \
+    sdhci-tegra \
+    ahci_tegra \
+    spi-nor \
+    mtdblock \
+    tegra-drm \
+    panel-jdi-58-1440-810 \
+    pwm_bl \
+    tegra30-devfreq
+
+ifeq ($(TARGET_TEGRA_TOS),trusty)
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD += \
+    trusty-smc \
+    trusty-log \
+    trusty-ipc \
+    trusty-virtio
+endif
 
 
 # Copy to recovery
-BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD := \
-    exfat \
-    hid-nvidia-blake \
-    hid-jarvis-remote \
-    pwm_fan \
-    therm_fan_est
+RECOVERY_KERNEL_MODULES := \
+    $(BOOT_KERNEL_MODULES) \
+    hid-nvidia-shield.ko \
+    hid-nvidia-shield-oot.ko \
+    rm31080a_ctrl.ko \
+    rm31080a_ts.ko
 
-BOOT_KERNEL_MODULES     := $(addsuffix .ko,$(BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD))
-RECOVERY_KERNEL_MODULES := $(addsuffix .ko,$(BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD))
+# Load in recovery
+BOARD_RECOVERY_KERNEL_MODULES_LOAD := \
+    $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD) \
+    hid-nvidia-shield \
+    hid-nvidia-shield-oot \
+    rm31080a_ts

@@ -27,10 +27,3 @@ sh_binary {
     src: "hazeldos-ctrl",
     soc_specific: true,
 }
-
-sh_binary {
-    name: "lkm_loader_target",
-    filename: "lkm_loader_target.sh",
-    src: "lkm_loader_target.sh",
-    soc_specific: true,
-}

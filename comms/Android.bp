@@ -1,4 +1,0 @@
-filegroup {
-    name: "vnd_foster.txt",
-    srcs: ["vnd_foster.txt"],
-}

@@ -24,13 +24,9 @@ TARGET_TEGRA_VARIANT    ?= common
 
 TARGET_TEGRA_MODELS := $(shell awk -F, '/tegra_init::devices/{ f = 1; next } /};/{ f = 0 } f{ gsub(/"/, "", $$3); gsub(/ /, "", $$3); print $$3 }' device/nvidia/$(TARGET_REFERENCE_DEVICE)/init/init_$(TARGET_REFERENCE_DEVICE).cpp |sort |uniq)
 
-TARGET_KERNEL_VERSION ?= 4.9
-TARGET_TEGRA_BT       ?= bcm
-TARGET_TEGRA_CAMERA   ?= rel-shield-r
-TARGET_TEGRA_LIGHT    ?= lineage
-TARGET_TEGRA_THERMAL  ?= lineage
-TARGET_TEGRA_WIDEVINE ?= rel-shield-r
-TARGET_TEGRA_WIFI     ?= bcm
+TARGET_KERNEL_VERSION ?= 6.12
+TARGET_LIGHT_HAL      ?= tegra
+TARGET_THERMAL_HAL    ?= tegra
 
 include device/nvidia/t210-common/t210.mk
 
@@ -104,68 +100,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.ethernet.xml
 
-# Audio
-ifneq ($(TARGET_TEGRA_AUDIO),)
-PRODUCT_PACKAGES += \
-    audio_effects.xml
-
-ifeq ($(TARGET_TEGRA_AUDIO),tinyhal)
-PRODUCT_PACKAGES += \
-    audio.darcy.xml \
-    audio.foster.xml \
-    audio.jetson.xml \
-    audio.mdarcy.xml \
-    audio.porg.xml \
-    audio.sif.xml
-PRODUCT_COPY_FILES += \
-    device/nvidia/foster/media/audio_policy_configuration_tinyhal.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
-else ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_AUDIO)),)
-PRODUCT_PACKAGES += \
-    audio_policy_configuration_dragon.xml \
-    audio_policy_configuration_loki.xml \
-    audio_policy_configuration_nx.xml \
-    dragon_nvaudio_conf.xml \
-    loki_e_base_nvaudio_conf.xml \
-    loki_e_lte_nvaudio_conf.xml \
-    loki_e_wifi_nvaudio_conf.xml \
-    nx_nvaudio_conf.xml \
-    nvaudio_conf.xml \
-    nvaudio_fx.xml
-PRODUCT_COPY_FILES += \
-    device/nvidia/foster/media/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
-endif
-endif
-
-# Bluetooth
-ifeq ($(TARGET_TEGRA_BT),bcm)
-$(call soong_config_set,brcm_libbt,bdroid_buildcfg_include_dir,device/nvidia/foster/comms)
-$(call soong_config_set,brcm_libbt,custom_bt_config,//device/nvidia/foster:vnd_foster.txt)
-endif
-
-# EKS
-ifneq ($(filter rel-shield-r, $(TARGET_TEGRA_TOS)),)
-PRODUCT_COPY_FILES += \
-    device/nvidia/foster/initfiles/init.eks2.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.eks2.rc \
-    device/nvidia/foster/eks2/eks2_darcy.dat:$(TARGET_COPY_OUT_VENDOR)/app/eks2/eks2_darcy.dat \
-    device/nvidia/foster/eks2/eks2_foster.dat:$(TARGET_COPY_OUT_VENDOR)/app/eks2/eks2_foster.dat \
-    device/nvidia/foster/eks2/eks2_mdarcy.dat:$(TARGET_COPY_OUT_VENDOR)/app/eks2/eks2_mdarcy.dat \
-    device/nvidia/foster/eks2/eks2_public.dat:$(TARGET_COPY_OUT_VENDOR)/app/eks2/eks2_public.dat \
-    device/nvidia/foster/eks2/eks2_sif.dat:$(TARGET_COPY_OUT_VENDOR)/app/eks2/eks2_sif.dat
-PRODUCT_PACKAGES += \
-    eks2_symlink
-endif
-
 # Fingerprint
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildFingerprint=NVIDIA/foster_e/foster:11/RQ1A.210105.003/13961456_3871.0251:user/release-keys
-
-# Kernel
-ifneq ($(TARGET_PREBUILT_KERNEL),)
-TARGET_FORCE_PREBUILT_KERNEL := true
-else ifeq ($(TARGET_KERNEL_VERSION),4.9)
-PRODUCT_PACKAGES += \
-    cypress-fmac
-endif
 
 # Keylayouts
 PRODUCT_PACKAGES += \
@@ -175,64 +112,22 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lkm_loader
 PRODUCT_COPY_FILES += \
-    device/nvidia/tegra-common/initfiles/init.lkm.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.lkm.rc
-ifneq ($(filter 4.9, $(TARGET_KERNEL_VERSION)),)
-PRODUCT_PACKAGES += \
-    lkm_loader_target
-else
-PRODUCT_COPY_FILES += \
+    device/nvidia/tegra-common/initfiles/init.lkm.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.lkm.rc \
     device/nvidia/foster/initfiles/lkm.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/lkm.rc
-endif
-
-# Media config
-ifneq ($(filter-out software,$(TARGET_TEGRA_OMX)),)
-PRODUCT_PACKAGES += \
-    media_codecs.xml \
-    media_codecs_performance.xml \
-    media_profiles_V1_0.xml \
-    enctune.conf
-endif
-
-# Netflix
-ifeq ($(PRODUCT_IS_ATV),true)
-PRODUCT_PACKAGES += \
-    NetflixConfig \
-    NetflixConfigOverlay
-PRODUCT_COPY_FILES += \
-    device/nvidia/foster/permissions/netflix.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/netflix.xml \
-    device/nvidia/foster/permissions/nrdp.modelgroup.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/nrdp.modelgroup.xml
-endif
 
 # NVIDIA specific permissions
 PRODUCT_COPY_FILES += \
     device/nvidia/foster/permissions/com.nvidia.feature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nvidia.feature.xml
 
-# PHS
-ifneq ($(TARGET_TEGRA_PHS),)
-PRODUCT_COPY_FILES += \
-    device/nvidia/foster/nvphs/nvphsd.foster.conf:$(TARGET_COPY_OUT_ODM)/etc/nvphsd.conf
-endif
-
 # Shipping API
-ifneq ($(filter 3.10 4.9 5.10, $(TARGET_KERNEL_VERSION)),)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_l.mk)
-
-PRODUCT_COPY_FILES += \
-    system/core/libprocessgroup/profiles/cgroups_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
-    system/core/libprocessgroup/profiles/task_profiles_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
-else
 PRODUCT_SHIPPING_API_LEVEL := 36
-endif
 
 # SKU Specific Overlays
 PRODUCT_PACKAGES += \
     DarcyOverlay
 
 # Thermal
-ifneq ($(TARGET_TEGRA_THERMAL),)
-ifeq ($(filter 3.10 4.9 5.10, $(TARGET_KERNEL_VERSION)),)
-TARGET_TEGRA_THERMAL_SUFFIX ?= .ack
-endif
+ifeq ($(TARGET_THERMAL_HAL),tegra)
 THERMAL_CONFIG_baracus      := darcy
 THERMAL_CONFIG_batuu        := porg
 THERMAL_CONFIG_darcy        := darcy
@@ -249,7 +144,7 @@ THERMAL_CONFIG_porg         := porg
 THERMAL_CONFIG_porg_sd      := porg
 THERMAL_CONFIG_sif          := darcy
 PRODUCT_COPY_FILES += \
-    $(foreach model,$(TARGET_TEGRA_MODELS),device/nvidia/foster/thermal/thermalhal.$(THERMAL_CONFIG_$(model))$(TARGET_TEGRA_THERMAL_SUFFIX).xml:$(TARGET_COPY_OUT_VENDOR)/etc/thermalhal.$(model).xml)
+    $(foreach model,$(TARGET_TEGRA_MODELS),device/nvidia/foster/thermal/thermalhal.$(THERMAL_CONFIG_$(model)).xml:$(TARGET_COPY_OUT_VENDOR)/etc/thermalhal.$(model).xml)
 endif
 
 # Touch
@@ -258,12 +153,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     device/nvidia/foster/initfiles/hazeldos-ctrl-recovery:recovery/root/vendor/bin/hazeldos-ctrl
-
-# WiFi
-ifeq ($(TARGET_TEGRA_WIFI),bcm)
-PRODUCT_COPY_FILES += \
-    device/nvidia/foster/comms/wifi_scan_config.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wifi_scan_config.conf
-endif
 
 PRODUCT_PACKAGES += \
     WifiOverlay
