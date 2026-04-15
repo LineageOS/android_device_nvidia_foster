@@ -16,6 +16,24 @@
       "message": "As much as I like commonizing everything I can, this support is very specific to baracus and highly unlikely to be usable by anything else. So it\u0027s better to keep this in the baracus repo. The new init rc can be installed to /vendor/etc/init and vendor_init will pick it up without it needing to be included by something else.",
       "revId": "8ab5dcf9dd84b5f47df3a78f7126efbf3f493b2d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34dafaac_e5d244e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 36936
+      },
+      "writtenOn": "2026-04-15T06:21:00Z",
+      "side": 1,
+      "message": "Done. Moved init.baracus.touch.rc and all sepolicy to the baracus tree. The init.rc is now installed to /vendor/etc/init/ via PRODUCT_COPY_FILES. This change can be abandoned.",
+      "parentUuid": "e002311b_ed4efa11",
+      "revId": "8ab5dcf9dd84b5f47df3a78f7126efbf3f493b2d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ],
   "submitRequirementResults": [
