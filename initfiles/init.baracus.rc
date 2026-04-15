@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import /vendor/etc/init/hw/init.jetson_cv.rc
+import /vendor/etc/init/hw/init.baracus.touch.rc
 
 service hazeldos-ctrl /vendor/bin/hazeldos-ctrl spifi_boot
     class core

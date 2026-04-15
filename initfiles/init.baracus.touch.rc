@@ -1,0 +1,103 @@
+# Copyright (C) 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+#
+# Jamboard Scaler + Touch Forwarding
+#
+# scalerd: Central daemon for MStar scaler UART communication.
+#   Owns /dev/ttyTHS1, publishes vendor.scaler.* properties,
+#   handles brightness, input source, and speaker control.
+#
+# touch_forward: Reads hazelred touch events and forwards to USB HID gadget.
+#   Gated by vendor.scaler.input_source property (from scalerd).
+#
+# The HID function is set up at boot alongside the standard ADB function.
+
+# Create scalerd IPC directory (writable by system apps for input source switching)
+on post-fs-data
+    mkdir /data/misc/scalerd 0777 system system
+    restorecon_recursive /data/misc/scalerd
+
+# Set backlight sysfs permissions and SELinux label for Lights HAL
+on boot
+    chown system system /sys/class/backlight/scaler/brightness
+    chmod 0666 /sys/class/backlight/scaler/brightness
+    restorecon /sys/devices/scaler-backlight/backlight/scaler/brightness
+
+# Configure HID report descriptor at boot (before any USB config is applied)
+on boot && property:ro.vendor.lineage.tegra.configfs=1
+    # Write HID function parameters (the function dir is created by init.xusb.configfs.usb.rc)
+    write /config/usb_gadget/g1/functions/hid.usb0/protocol 0
+    write /config/usb_gadget/g1/functions/hid.usb0/subclass 0
+    write /config/usb_gadget/g1/functions/hid.usb0/report_length 340
+    # Write the binary report descriptor
+    copy /vendor/etc/touch/hid-mt/report_desc /config/usb_gadget/g1/functions/hid.usb0/report_desc
+
+# When ADB is ready and config is 'adb', add HID as a composite function
+# This overrides the standard adb-only config to include HID multitouch
+on property:sys.usb.ffs.ready=1 && property:sys.usb.config=adb && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/os_desc/use 0
+    write /config/usb_gadget/g1/idVendor 0x${ro.vendor.nv.usb.vid}
+    write /config/usb_gadget/g1/idProduct 0x${ro.vendor.nv.usb.pid.adb}
+    write /config/usb_gadget/g1/configs/b.1/bmAttributes 0xc0
+    write /config/usb_gadget/g1/bDeviceClass 0x0
+    write /config/usb_gadget/g1/bDeviceSubClass 0x0
+    write /config/usb_gadget/g1/bDeviceProtocol 0x0
+    rm /config/usb_gadget/g1/configs/b.1/f1
+    rm /config/usb_gadget/g1/configs/b.1/f2
+    rm /config/usb_gadget/g1/configs/b.1/f3
+    # f1 = HID multitouch, f2 = ADB
+    symlink /config/usb_gadget/g1/functions/hid.usb0 /config/usb_gadget/g1/configs/b.1/f1
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f2
+    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
+    start scalerd
+    start touch_enable
+    start touch_forward
+
+# Also handle mtp,adb composite with HID
+on property:sys.usb.ffs.ready=1 && property:sys.usb.config=mtp,adb && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/functions/mtp.gs0/os_desc/interface.MTP/compatible_id "MTP"
+    write /config/usb_gadget/g1/os_desc/use 1
+    write /config/usb_gadget/g1/idVendor 0x${ro.vendor.nv.usb.vid}
+    write /config/usb_gadget/g1/idProduct 0x${ro.vendor.nv.usb.pid.mtp.adb}
+    write /config/usb_gadget/g1/configs/b.1/bmAttributes 0xc0
+    write /config/usb_gadget/g1/bDeviceClass 0x0
+    write /config/usb_gadget/g1/bDeviceSubClass 0x0
+    write /config/usb_gadget/g1/bDeviceProtocol 0x0
+    rm /config/usb_gadget/g1/configs/b.1/f1
+    rm /config/usb_gadget/g1/configs/b.1/f2
+    rm /config/usb_gadget/g1/configs/b.1/f3
+    # f1 = HID multitouch, f2 = MTP, f3 = ADB
+    symlink /config/usb_gadget/g1/functions/hid.usb0 /config/usb_gadget/g1/configs/b.1/f1
+    symlink /config/usb_gadget/g1/functions/mtp.gs0 /config/usb_gadget/g1/configs/b.1/f2
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f3
+    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
+    start scalerd
+    start touch_enable
+    start touch_forward
+
+# Enable all RAPT Touch input devices (hazelred disables them by default)
+# Runs with a delay to ensure hazelred USB has enumerated
+service touch_enable /system/bin/sh -c "sleep 10 && /vendor/bin/touch_enable && sleep 5 && /vendor/bin/touch_enable"
+    class core
+    user root
+    group root input
+    seclabel u:r:vendor_init:s0
+    disabled
+    oneshot
+
+service scalerd /vendor/bin/scalerd
+    class core
+    user root
+    group root system
+    seclabel u:r:scalerd:s0
+    disabled
+
+service touch_forward /vendor/bin/touch_forward
+    class core
+    user root
+    group root input
+    seclabel u:r:touch_forward:s0
+    disabled
+    oneshot

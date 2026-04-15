@@ -14,3 +14,9 @@
 
 # hazeldos-ctrl
 /vendor/bin/hazeldos-ctrl	u:object_r:hazeldos_exec:s0
+
+# scalerd (scaler UART daemon)
+/vendor/bin/scalerd		u:object_r:scalerd_exec:s0
+
+# touch_forward
+/vendor/bin/touch_forward	u:object_r:touch_forward_exec:s0

@@ -1,0 +1,24 @@
+# SELinux policy for scalerd daemon
+# Central scaler UART daemon for Jamboard MStar MST9U23T1 communication.
+# Owns /dev/ttyTHS1, publishes vendor.scaler.* properties.
+
+type scalerd, domain;
+type scalerd_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(scalerd)
+
+# Read/write scaler UART (/dev/ttyTHS1)
+allow scalerd scaler_uart_device:chr_file rw_file_perms;
+
+# Read backlight sysfs for brightness polling
+allow scalerd sysfs:dir r_dir_perms;
+allow scalerd sysfs:file { read open getattr };
+allow scalerd sysfs_class_backlight:dir r_dir_perms;
+allow scalerd sysfs_class_backlight:file { read open getattr };
+
+# Set scaler properties (vendor.scaler.*)
+set_prop(scalerd, vendor_scaler_prop)
+
+# Read IPC file from /data/misc/scalerd/ (written by InputSource app)
+allow scalerd scalerd_data_file:dir r_dir_perms;
+allow scalerd scalerd_data_file:file r_file_perms;

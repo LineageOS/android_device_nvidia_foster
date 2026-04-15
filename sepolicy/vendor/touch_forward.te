@@ -1,0 +1,29 @@
+# SELinux policy for touch_forward daemon
+# Forwards hazelred touch events to USB HID gadget (/dev/hidg0)
+# Gated by vendor.scaler.input_source property from scalerd.
+# All configfs operations are handled by init.
+
+type touch_forward, domain;
+type touch_forward_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(touch_forward)
+
+# Read input devices (hazelred touch evdev)
+allow touch_forward input_device:dir r_dir_perms;
+allow touch_forward input_device:chr_file rw_file_perms;
+
+# Write to HID gadget device (/dev/hidg0)
+allow touch_forward hidg_device:chr_file rw_file_perms;
+
+# Read/write sysfs for input device enable and discovery
+allow touch_forward sysfs:dir r_dir_perms;
+allow touch_forward sysfs:file { read open getattr write };
+allow touch_forward sysfs_input_dev:dir r_dir_perms;
+allow touch_forward sysfs_input_dev:file rw_file_perms;
+
+# The hazelred touch 'enabled' file is labeled sysfs_bus_usb
+allow touch_forward sysfs_bus_usb:dir r_dir_perms;
+allow touch_forward sysfs_bus_usb:file rw_file_perms;
+
+# Read scaler properties (input source from scalerd)
+get_prop(touch_forward, vendor_scaler_prop)
