@@ -170,5 +170,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/nvidia/foster/initfiles/hazeldos-ctrl-recovery:recovery/root/vendor/bin/hazeldos-ctrl
 
+# Trusted firmware
+ATF_PATH ?= hardware/nvidia/t210/arm-trusted-firmware
+
 PRODUCT_PACKAGES += \
     WifiOverlay
