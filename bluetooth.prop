@@ -1,1 +1,2 @@
 bluetooth.device.default_name=SHIELD Android TV
+bluetooth.btm.sec.delay_auth_ms.value=50
