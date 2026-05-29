@@ -1,15 +1,15 @@
 [
  {
+   "type": "kernel",
+   "version": "6.12"
+ },
+ {
    "repository": "android_device_nvidia_shield-common",
    "target_path": "device/nvidia/shield-common"
  },
  {
    "repository": "android_device_nvidia_t210-common",
    "target_path": "device/nvidia/t210-common"
- },
- {
-   "repository": "android_kernel_nvidia_cypress-fmac",
-   "target_path": "kernel/nvidia/cypress-fmac"
  },
  {
    "repository": "android_hardware_nvidia_light",
@@ -22,6 +22,10 @@
  {
    "repository": "android_hardware_nvidia_u-boot",
    "target_path": "hardware/nvidia/u-boot"
+ },
+ {
+   "repository": "android_kernel_nvidia_tegra-build",
+   "target_path": "kernel/platform/kernel-6.12/vendor/nvidia/tegra"
  },
  {
    "repository": "android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-gnu-9.3",
