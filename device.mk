@@ -135,7 +135,7 @@ endif
 endif
 
 # Shipping API
-PRODUCT_SHIPPING_API_LEVEL := 36
+PRODUCT_SHIPPING_API_LEVEL := 37
 
 # SKU Specific Overlays
 PRODUCT_PACKAGES += \
