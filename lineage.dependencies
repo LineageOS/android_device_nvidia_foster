@@ -1,7 +1,7 @@
 [
  {
    "type": "kernel",
-   "version": "6.12"
+   "version": "6.18"
  },
  {
    "repository": "android_device_nvidia_shield-common",
@@ -26,7 +26,7 @@
  },
  {
    "repository": "android_kernel_nvidia_tegra-build",
-   "target_path": "kernel/platform/kernel-6.12/vendor/nvidia/tegra"
+   "target_path": "kernel/platform/kernel-6.18/vendor/nvidia/tegra"
  },
  {
    "repository": "android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-gnu-9.3",

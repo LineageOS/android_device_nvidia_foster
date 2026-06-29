@@ -24,7 +24,7 @@ TARGET_TEGRA_VARIANT    ?= common
 
 TARGET_TEGRA_MODELS := $(shell awk -F, '/tegra_init::devices/{ f = 1; next } /};/{ f = 0 } f{ gsub(/"/, "", $$3); gsub(/ /, "", $$3); print $$3 }' device/nvidia/$(TARGET_REFERENCE_DEVICE)/init/init_$(TARGET_REFERENCE_DEVICE).cpp |sort |uniq)
 
-TARGET_KERNEL_VERSION ?= 6.12
+TARGET_KERNEL_VERSION ?= 6.18
 TARGET_LIGHT_HAL      ?= tegra
 
 include device/nvidia/t210-common/t210.mk
