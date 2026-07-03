@@ -168,6 +168,7 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := \
     gpio-max77620 \
     max77812-regulator \
     max8973-regulator \
+    rtc-max77686 \
     tegra124-cpufreq \
     spi-tegra114 \
     spi-tegra210-quad \
