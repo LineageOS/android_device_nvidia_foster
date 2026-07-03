@@ -26,7 +26,6 @@ TARGET_TEGRA_MODELS := $(shell awk -F, '/tegra_init::devices/{ f = 1; next } /};
 
 TARGET_KERNEL_VERSION ?= 6.12
 TARGET_LIGHT_HAL      ?= tegra
-TARGET_THERMAL_HAL    ?= tegra
 
 include device/nvidia/t210-common/t210.mk
 

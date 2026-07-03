@@ -16,10 +16,6 @@
    "target_path": "hardware/nvidia/light"
  },
  {
-   "repository": "android_hardware_nvidia_thermal",
-   "target_path": "hardware/nvidia/thermal"
- },
- {
    "repository": "android_hardware_nvidia_arm-trusted-firmware",
    "target_path": "hardware/nvidia/t210/arm-trusted-firmware",
    "branch": "lineage-23.2-t210"
