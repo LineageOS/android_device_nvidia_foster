@@ -34,7 +34,7 @@ PRODUCT_COPY_FILES += \
     $(FOSTER_BCM_PATH)/bcm4354/nvram_foster_e_4354.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4354-sdio.nvidia,p2571-0931.txt \
     $(REL30_BCM_PATH)/bcm4354/nvram_loki_e_4354.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4354-sdio.nvidia,p2523-0030.txt \
     $(REL30_BCM_PATH)/bcm4354/nvram_loki_e_4354.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4354-sdio.nvidia,p2523-0031.txt \
-    $(FOSTER_BCM_PATH)/bcm4356/brcmfmac4356-pcie.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4356-pcie.nvidia,p2894-0050-a08.txt \
+    $(FOSTER_BCM_PATH)/bcm4356/brcmfmac4356-pcie.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4356-pcie.nvidia,p2894-2551-b00.txt \
     $(FOSTER_BCM_PATH)/bcm4356/brcmfmac4356-pcie.txt:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/brcmfmac4356-pcie.nvidia,p3425-0500.txt \
     $(EXTERNAL_BCM_PATH)/bcm4356/BCM4356A2-13d3-3488.hcd:$(TARGET_COPY_OUT_VENDOR)/firmware/brcm/BCM4356A2-13d3-3488.hcd
 
