@@ -29,93 +29,137 @@
 
 #include <map>
 
+void recovery_set_usb_product_ids(tegra_init *ti)
+{
+	std::map<std::string, std::string> mCommonUsbIds, mDeviceUsbIds;
+
+	mCommonUsbIds["ro.recovery.usb.vid"]     = "0955";
+	mCommonUsbIds["ro.recovery.usb.adb.pid"] = "7104";
+
+	if (ti->is_model("foster_e")) {
+		mDeviceUsbIds["ro.recovery.usb.fastboot.pid"] = "B421";
+	} else if (ti->is_model("foster_e_hdd")) {
+		mDeviceUsbIds["ro.recovery.usb.fastboot.pid"] = "B422";
+	} else if (ti->is_model("darcy") || ti->is_model("sif")) {
+		mDeviceUsbIds["ro.recovery.usb.fastboot.pid"] = "B442";
+	} else if (ti->is_model("mdarcy")) {
+		mDeviceUsbIds["ro.recovery.usb.fastboot.pid"] = "B423";
+	} else if (ti->is_model("loki_e_base") || ti->is_model("loki_e_lte") || ti->is_model("loki_e_wifi")) {
+		mDeviceUsbIds["ro.recovery.usb.fastboot.pid"] = "B420";
+	} else if (ti->is_model("odin") || ti->is_model("modin") || ti->is_model("vali") || ti->is_model("fric")) {
+		mCommonUsbIds["ro.recovery.usb.vid"]          = "057E";
+		mCommonUsbIds["ro.recovery.usb.adb.pid"]      = "2000";
+		mDeviceUsbIds["ro.recovery.usb.fastboot.pid"] = "2000";
+	} else if (ti->is_model("baracus")) {
+		mCommonUsbIds["ro.recovery.usb.vid"]          = "18D1";
+		mCommonUsbIds["ro.recovery.usb.adb.pid"]      = "D001";
+		mDeviceUsbIds["ro.recovery.usb.fastboot.pid"] = "D001";
+	} else if (ti->is_model("dragon")) {
+		mCommonUsbIds["ro.recovery.usb.vid"]          = "18D1";
+		mCommonUsbIds["ro.recovery.usb.adb.pid"]      = "5208";
+		mDeviceUsbIds["ro.recovery.usb.fastboot.pid"] = "EE1E";
+	} else {
+		mDeviceUsbIds["ro.recovery.usb.fastboot.pid"] = "7100";
+	}
+
+	for (auto const& id : mDeviceUsbIds)
+		ti->property_set(id.first, id.second);
+
+	for (auto const& id : mCommonUsbIds)
+		ti->property_set(id.first, id.second);
+}
+
 void vendor_set_usb_product_ids(tegra_init *ti)
 {
 	std::map<std::string, std::string> mCommonUsbIds, mDeviceUsbIds;
 
-	mCommonUsbIds["ro.vendor.nv.usb.vid"]                  = "0955";
-	mCommonUsbIds["ro.vendor.nv.usb.pid.rndis.acm.adb"]    = "AF00";
-	mCommonUsbIds["ro.vendor.nv.usb.pid.adb"]              = "7104";
-	mCommonUsbIds["ro.vendor.nv.usb.pid.accessory.adb"]    = "7105";
-	mCommonUsbIds["ro.vendor.nv.usb.pid.audio_source.adb"] = "7106";
-	mCommonUsbIds["ro.vendor.nv.usb.pid.ncm"]              = "7107";
-	mCommonUsbIds["ro.vendor.nv.usb.pid.ncm.adb"]          = "7108";
-	mCommonUsbIds["ro.vendor.nv.usb.pid.midi"]             = "7109";
-	mCommonUsbIds["ro.vendor.nv.usb.pid.midi.adb"]         = "710A";
-	mCommonUsbIds["ro.vendor.nv.usb.pid.ecm"]              = "710B";
-	mCommonUsbIds["ro.vendor.nv.usb.pid.ecm.adb"]          = "710C";
+	mCommonUsbIds["ro.vendor.usb.vid"]                            = "0955";
+	mCommonUsbIds["ro.vendor.usb.pid.adb"]                        = "7104";
+	mCommonUsbIds["ro.vendor.usb.pid.accessory"]                  = "EE0A";
+	mCommonUsbIds["ro.vendor.usb.pid.accessory.adb"]              = "7105";
+	mCommonUsbIds["ro.vendor.usb.pid.accessory.audio_source"]     = "EE0C";
+	mCommonUsbIds["ro.vendor.usb.pid.accessory.audio_source.adb"] = "EE0D";
+	mCommonUsbIds["ro.vendor.usb.pid.audio_source"]               = "EE0B";
+	mCommonUsbIds["ro.vendor.usb.pid.audio_source.adb"]           = "7106";
+	mCommonUsbIds["ro.vendor.usb.pid.ncm"]                        = "7107";
+	mCommonUsbIds["ro.vendor.usb.pid.ncm.adb"]                    = "7108";
+	mCommonUsbIds["ro.vendor.usb.pid.midi"]                       = "7109";
+	mCommonUsbIds["ro.vendor.usb.pid.midi.adb"]                   = "710A";
+	mCommonUsbIds["ro.vendor.usb.pid.uvc"]                        = "710B";
+	mCommonUsbIds["ro.vendor.usb.pid.uvc.adb"]                    = "710C";
 
 	if (ti->is_model("foster_e")) {
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "B430";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "B431";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "B432";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B433";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B434";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B435";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp"]       = "B430";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp.adb"]   = "B431";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp"]       = "B432";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp.adb"]   = "B433";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis"]     = "B434";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis.adb"] = "B435";
 	} else if (ti->is_model("foster_e_hdd")) {
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "B436";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "B437";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "B43E";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B43F";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B43A";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B43B";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp"]       = "B436";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp.adb"]   = "B437";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp"]       = "B43E";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp.adb"]   = "B43F";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis"]     = "B43A";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis.adb"] = "B43B";
 	} else if (ti->is_model("darcy") || ti->is_model("sif")) {
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "B43C";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "B43D";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "B43E";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B43F";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B440";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B441";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp"]       = "B43C";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp.adb"]   = "B43D";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp"]       = "B43E";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp.adb"]   = "B43F";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis"]     = "B440";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis.adb"] = "B441";
 	} else if (ti->is_model("mdarcy")) {
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "B42A";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "B42B";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "B42C";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B42D";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B42E";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B42F";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp"]       = "B42A";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp.adb"]   = "B42B";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp"]       = "B42C";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp.adb"]   = "B42D";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis"]     = "B42E";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis.adb"] = "B42F";
 	} else if (ti->is_model("loki_e_base") || ti->is_model("loki_e_lte") || ti->is_model("loki_e_wifi")) {
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "B424";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "B425";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "B426";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "B427";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "B428";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "B429";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp"]       = "B424";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp.adb"]   = "B425";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp"]       = "B426";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp.adb"]   = "B427";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis"]     = "B428";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis.adb"] = "B429";
 	} else if (ti->is_model("odin") || ti->is_model("modin") || ti->is_model("vali") || ti->is_model("fric")) {
-		mDeviceUsbIds["ro.vendor.nv.usb.vid"]           = "057E";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "2000";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "2000";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "2000";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "2000";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "2000";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "2000";
+		mCommonUsbIds["ro.vendor.usb.vid"]           = "057E";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp"]       = "2000";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp.adb"]   = "2000";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp"]       = "2000";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp.adb"]   = "2000";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis"]     = "2000";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis.adb"] = "2000";
 	} else if (ti->is_model("baracus")) {
-		mCommonUsbIds["ro.vendor.nv.usb.vid"]           = "18D1";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "D001";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "D001";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "D001";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "D001";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "D001";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "D001";
+		mCommonUsbIds["ro.vendor.usb.vid"]           = "18D1";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp"]       = "D001";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp.adb"]   = "D001";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp"]       = "D001";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp.adb"]   = "D001";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis"]     = "D001";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis.adb"] = "D001";
 	} else if (ti->is_model("dragon")) {
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]              = "5202";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]          = "5203";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]              = "5206";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]          = "5207";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]            = "5204";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"]        = "5205";
-		mCommonUsbIds["ro.vendor.nv.usb.pid.adb"]              = "5208";
-		mCommonUsbIds["ro.vendor.nv.usb.pid.accessory.adb"]    = "2D01";
-		mCommonUsbIds["ro.vendor.nv.usb.pid.audio_source.adb"] = "2D03";
-		mCommonUsbIds["ro.vendor.nv.usb.pid.midi"]             = "5209";
-		mCommonUsbIds["ro.vendor.nv.usb.pid.midi.adb"]         = "520A";
+		mCommonUsbIds["ro.vendor.usb.vid"]                  = "18D1";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp"]              = "5202";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp.adb"]          = "5203";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp"]              = "5206";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp.adb"]          = "5207";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis"]            = "5204";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis.adb"]        = "5205";
+		mCommonUsbIds["ro.vendor.usb.pid.adb"]              = "5208";
+		mCommonUsbIds["ro.vendor.usb.pid.accessory.adb"]    = "2D01";
+		mCommonUsbIds["ro.vendor.usb.pid.audio_source.adb"] = "2D03";
+		mCommonUsbIds["ro.vendor.usb.pid.midi"]             = "5209";
+		mCommonUsbIds["ro.vendor.usb.pid.midi.adb"]         = "520A";
 
 	} else {
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp"]       = "EE02";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.mtp.adb"]   = "EE03";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp"]       = "EE04";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.ptp.adb"]   = "EE05";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis"]     = "EE08";
-		mDeviceUsbIds["ro.vendor.nv.usb.pid.rndis.adb"] = "EE09";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp"]       = "EE02";
+		mDeviceUsbIds["ro.vendor.usb.pid.mtp.adb"]   = "EE03";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp"]       = "EE04";
+		mDeviceUsbIds["ro.vendor.usb.pid.ptp.adb"]   = "EE05";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis"]     = "EE08";
+		mDeviceUsbIds["ro.vendor.usb.pid.rndis.adb"] = "EE09";
 	}
 
 	for (auto const& id : mDeviceUsbIds)
@@ -197,6 +241,8 @@ void vendor_load_properties()
 	ti.set_fingerprints(tav);
 
 	if (ti.recovery_context()) {
+		recovery_set_usb_product_ids(&ti);
+
 		ti.property_set("ro.product.vendor.model", ti.property_get("ro.product.model"));
 		ti.property_set("ro.product.vendor.manufacturer", ti.property_get("ro.product.manufacturer"));
 
@@ -211,7 +257,6 @@ void vendor_load_properties()
 	}
 
 	if (ti.vendor_context() || ti.recovery_context()) {
-		vendor_set_usb_product_ids(&ti);
 		vendor_set_sku(&ti);
 
 		if (ti.property_get("ro.build.characteristics") == "tv") {
@@ -233,4 +278,7 @@ void vendor_load_properties()
 	} else if (ti.is_model("baracus") && !ti.vendor_context()) {
 		ti.property_set("ro.boot.secureos", "none");
 	}
+
+	if (ti.vendor_context())
+		vendor_set_usb_product_ids(&ti);
 }
